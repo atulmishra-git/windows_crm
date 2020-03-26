@@ -8,42 +8,7 @@
             <br/>
             <form id="id_create_manager" class="contact100-form validate-form">
                 {% csrf_token %}
-                <div>
-                    <label>First Name</label>
-                    {{ add_manager_form.first_name }}
-                </div>
-
-                <div>
-                    <label>Surname</label>
-                    {{ add_manager_form.surname }}
-                </div>
-
-                <div>
-                    <label>Phone</label>
-                    {{ add_manager_form.phone.errors }}
-                    {{ add_manager_form.phone }}
-                </div>
-
-                <div>
-                    <label>Username</label>
-                    {{ add_manager_form.username.errors }}
-                    {{ add_manager_form.username }}
-                </div>
-
-                <div>
-                    <label>Email Address</label>
-                    {{ add_manager_form.email.errors }}
-                    {{ add_manager_form.email }}
-                </div>
-
-                <div>
-                    <label>Password</label>
-                    {{ add_manager_form.password }}
-                </div>
-                <p id="validator" style="display: none !important;"
-                   class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert">
-                    <i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span
-                        id="general_error"></span></p>
+                {{ form }}
                 <button type="button" onclick="create_manager()" class="button">Create</button>
             </form>
             <br/>

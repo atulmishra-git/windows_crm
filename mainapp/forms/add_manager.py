@@ -7,6 +7,11 @@ class ManagerForm(forms.ModelForm):
         model = User
         fields = ["first_name", "surname", "phone", 'username', 'email', 'password']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for key, val in self.fields.items():
+            self.fields[key].widget.attrs['placeholder'] = self.fields[key].label
+
 
 class AddManagerForm(forms.Form):
     first_name = forms.CharField(required=True,

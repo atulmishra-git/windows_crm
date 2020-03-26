@@ -7,7 +7,7 @@ from .usermanager import UserManager
 
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(max_length=255)
+    first_name = models.CharField("First Name", max_length=255)
     surname = models.CharField(max_length=255)
     phone = models.CharField(max_length=20, unique=True)
     username = models.CharField(max_length=255, unique=True)
