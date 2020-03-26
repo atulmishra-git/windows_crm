@@ -18,3 +18,5 @@ urllib3==1.25.8
 webencodings==0.5.1
 Werkzeug==1.0.0
 xhtml2pdf==0.2.4
+pdfkit==0.6.1
+
