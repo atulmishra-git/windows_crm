@@ -1,0 +1,38 @@
+{% extends 'dashboard.html' %}
+{% block maincontent %}
+    <div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+            <h1>Purchases</h1>
+            <div class="tasks-list-container compact-list margin-top-35">
+                {% if not purchases %}
+                    <div class="task-listing">No Purchase Record Found</div>
+                {% endif %}
+                {% for purchase in purchases %}
+                    <div class="task-listing">
+					<!-- Job Listing Details -->
+                        <div class="task-listing-details">
+                            <!-- Details -->
+                            <div class="task-listing-description">
+                                <h4 class="task-listing-title"><b>Reseller Name - </b>{{ purchase.reseller_name }}</h4>
+                                <h4 class="task-listing-title"><b>Module Type - </b>{{ purchase.module_type }}</h4>
+                                <h4 class="task-listing-title"><b>Module Count - </b>{{ purchase.module_count }}</h4>
+                                <h4 class="task-listing-title"><b>Installation Date - </b>{{ purchase.installation_date }}</h4>
+                                <h4 class="task-listing-title"><b>Order Date - </b>{{ purchase.order_date }}</h4>
+                                <br/>
+                                <button class="button" onclick="generate_btn({{ purchase.id }})">Generate Offer</button>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generate_btn(purchase_id) {
+            window.location = "{% url 'mainapp:generate_offer' purchase_id=1234 %}".replace(/1234/, purchase_id);
+        }
+    </script>
+
+{% endblock %}

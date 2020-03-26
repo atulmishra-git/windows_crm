@@ -1,0 +1,34 @@
+{% extends 'dashboard.html' %}
+{% block maincontent %}
+    <div class="dashboard-content-container" >
+        <div class="dashboard-content-inner">
+            <h1>Search Results</h1>
+            <div class="tasks-list-container compact-list margin-top-35">
+                {% for customer in customers %}
+                    <div class="task-listing">
+					<!-- Job Listing Details -->
+                        <div class="task-listing-details">
+                            <!-- Details -->
+                            <div class="task-listing-description">
+                                <h3 class="task-listing-title">{{ customer.first_name }} {{ customer.surname }}</h3>
+                                <ul class="task-icons">
+                                    <li><b>Phone - </b>{{ customer.phone }}</li><br/>
+                                    <li><b>Mobile - </b>{{ customer.mobile }}</li><br/>
+                                    <li><b>Place - </b>{{ customer.street }}, {{ customer.place }}</li><br/>
+                                    <li><a href="#" id="{{ customer.id }}" onclick="customer_click(this)"><b>Select</b></a></li><br/>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function customer_click(btn) {
+            window.location = "{% url 'mainapp:customer_home' customer_id=1234 %}".replace(/1234/, btn.id);
+        }
+    </script>
+
+{% endblock %}

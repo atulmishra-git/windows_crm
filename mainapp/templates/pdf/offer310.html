@@ -1,0 +1,1542 @@
+<html>
+<head>
+    <style>
+        td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div style="width:100%; text-align:right;">
+    <img src="mainapp/static/images/logo1.png" width="220px" height="100px"/>
+</div>
+<br>
+<h3>Ihr Partner für Energie </h3>
+<hr>
+<div>
+    <b>{{ purchase.gender }}</b>
+</div>
+<div>
+    <b>{{ purchase.name }}</b>
+</div>
+<div>
+    <b>{{ purchase.street }}</b>
+</div>
+<div>
+    <b>{{ purchase.postcode }}, {{ purchase.place }}</b>
+</div>
+<div class="col-md-12" style="float:right">
+    Germering den, {{ purchase.purchase.order_date | date }}
+</div>
+<div style="float:left">
+</div>
+<br>
+<br>
+<div style="float:left">
+    Auftragsbestätigung
+</div>
+<div style="float:right">
+    <b>Kundennr.: {{ purchase.purchase.created_at | date }}</b>
+</div>
+<br><br>
+<div>Sehr geehrtex {{ purchase.fullname }},</div>
+<br><br>
+<div>vielen Dank für Ihr Interesse an unseren Leistungen.</div>
+<br>
+<div>Anbei erhalten Sie Ihre Auftragsbestätigung, die für Sie persönlich erstellt wurde.</div>
+<div>Auf den folgenden Seiten finden Sie einen detaillierten Überblick bezüglich unserer Leistungen.</div>
+<br>
+<div>Wir gewähren eine sorgfältige Planung und Montage Ihrer Photovoltaikanlage mit unseren leistungsstarken</div>
+<div>und qualitativ hochwertigen Komponenten.</div>
+<br>
+<div>Für Rückfragen steht Ihnen das gerne zur Verfügung.</div>
+<br><br>
+<div>Mit freundlichen Grüßen</div>
+<br>
+<div>lhr</div>
+<br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+<table cellspacing="0" border="0">
+    <colgroup span="3" width="78"></colgroup>
+    <colgroup width="106"></colgroup>
+    <colgroup width="78"></colgroup>
+    <colgroup width="84"></colgroup>
+    <colgroup width="136"></colgroup>
+    <tbody>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="21" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><b><font size="4" color="#000000"><br></font></b></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" align="left" valign="bottom"><b><font
+                size="4" color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">confirmation
+            letter</font></font></font></b></td>
+        <td style="border-top: 2px solid #000000;" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="17" align="left" valign="middle"><font color="#000000"><br></font></td>
+        <td align="left" valign="middle"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+            align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">date</font></font></font></td>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" align="right" valign="middle"
+            sdnum="1033;1033;M/D/YYYY"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.purchase.created_at | date }}</font></font></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="17" align="left" valign="middle"><font color="#000000"><br></font></td>
+        <td align="left" valign="middle"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">phone</font></font></font></td>
+        <td style="border-left: 2px solid #000000" align="right" valign="middle" sdnum="1033;0;@"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">080555454</font></font></font>
+        </td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="17" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Arranger /
+            in</font></font></font></td>
+        <td style="border-left: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="17" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Commission</font></font></font></td>
+        <td style="border-left: 2px solid #000000; border-right: 2px solid #000000" colspan="2" align="left"
+            valign="middle"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ request.user.first_name }} {{ request.user.surname }}</font></font></font>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" height="17" align="left"
+            valign="middle"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.gender }}</font></font></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="middle"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+            align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Customer number.</font></font></font></td>
+        <td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="right" valign="middle"><font
+                color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.purchase.customer.phone }}</font></font></font></td>
+        <td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="middle"><font color="#000000"><font
+                style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.name }}</font></font></font>
+        </td>
+        <td style="border-right: 2px solid #000000" align="left" valign="middle"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="middle"><font color="#000000"><font
+                style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.street }}</font></font></font>
+        </td>
+        <td style="border-right: 2px solid #000000" align="left" valign="middle"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000" height="21" align="left"
+            valign="middle"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.postcode }}, {{ purchase.place }}</font></font></font></td>
+        <td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="middle"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="21" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" height="21" align="left"
+            valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">DELIVERY TERMS</font></font></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+            align="center" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">free House</font></font></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Your sign</font></font></font>
+        </td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+            align="center" valign="middle"><font align="center" color="#000000"><font
+                style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.purchase.customer.id }}</font></font></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="21" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000; border-right: 2px solid #000000" colspan="2" height="21" align="left"
+            valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">DATE OF DELIVERY</font></font></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+            align="center" valign="bottom" sdval="2020" sdnum="1033;"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">2020</font></font></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000"
+            align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Installation</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000" height="21" align="left"
+            valign="bottom" bgcolor="#FFFF99"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">The goods are delivered one day before the start of
+            assembly</font></font></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom" bgcolor="#FFFF99"><font
+                color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom" bgcolor="#FFFF99"><font
+                color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom" bgcolor="#FFFF99"><font
+                color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom" bgcolor="#FFFF99"><font
+                color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Dear {{ purchase.fullname }}, </font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" colspan="7" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">We hereby confirm your order in
+            accordance with our general terms and conditions:</font></font></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" colspan="7" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Complete service including
+            advice, planning, installation and commissioning of a by configured photovoltaic
+            system.</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td height="21" colspan="7" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="21" align="left" colspan="3" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Photovoltaic system with a
+            module output of:</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">310</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">kW / p</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000"
+            height="21" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">POS</font></font></font></b>
+        </td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom">
+            <b><font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">QUANTITY</font></font></font></b>
+        </td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom">
+            <b><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">UNIT</font></font></font></b></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom">
+            <b><font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DESCRIPTION</font></font></font></b>
+        </td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000"
+            align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000"
+            height="21" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000"
+            align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" height="20" align="right"
+            valign="bottom" sdval="1" sdnum="1033;"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">1</font></font></font></td>
+        <td style="border-top: 2px solid #000000" align="right" valign="bottom" sdval="0" sdnum="1033;0;#,##0"><font
+                color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.purchase.module_type }}</font></font></font></td>
+        <td style="border-top: 2px solid #000000" align="center" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">{{ purchase.purchase.module_count }}</font></font></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Monocrystalline high-performance
+            modules</font></font></font></b></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">SENEC.Solar</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">310</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Positive power tolerance (-0 Wp / +3 Wp)</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;"> (incl. 20-year guarantee extension for SENEC Solar
+            Modules) </font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">further technical details can be found in the attached data
+            sheet</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Module dimensions: 1650 mm x 992 mm x 35 mm; </font><font
+                style="vertical-align: inherit;">18.5 kg</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td align="left" valign="bottom"><b><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Guarantee according to the manufacturer's
+            instructions</font></font></font></b></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">You will receive detailed technical data on the modules with the</font></font></font>
+        </td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Module data sheet attached</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+
+
+{#    {% if purcahse.purchase.with_battery == True %}#}
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="right" valign="bottom" sdval="2"
+                sdnum="1033;">
+                <font color="#000000"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">2</font></font></font>
+            </td>
+            <td align="right" valign="bottom" sdval="1" sdnum="1033;"><font color="#000000"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></font></td>
+            <td align="center" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">piece</font></font></font></td>
+            <td align="left" valign="bottom"><b><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">Storage medium with integrated hybrid inverter</font></font></font></b>
+            </td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                    color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><b><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">SENEC.Home V3 hybrid 2.5</font></font></font></b></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                    color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="center" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><b><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">(incl. 20 year warranty extension for SENEC.Home
+                V3)</font></font></font></b></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                    color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="right" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><b><font color="#000000"><br></font></b></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                    color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">-</font></font></font></td>
+            <td align="left" valign="bottom"><b><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">Guarantee according to the manufacturer's
+                instructions</font></font></font></b></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                    color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                    color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                    color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                    color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+            <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font>
+            </td>
+        </tr>
+{#    {% endif %}#}
+    <tr>
+        <td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000" height="21" align="left"
+            valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" colspan="5" align="left"
+            valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">(Number of inverters and model type are defined by fine measure)</font></font></font>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<table cellspacing="0" border="0">
+    <colgroup span="2" width="93"></colgroup>
+    <colgroup width="80"></colgroup>
+    <colgroup width="379"></colgroup>
+    <tbody>
+
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="21" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000"
+            height="21" align="center" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">POS</font></font></font></b>
+        </td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom">
+            <b><font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">QUANTITY</font></font></font></b>
+        </td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom">
+            <b><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">UNIT</font></font></font></b></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000"
+            align="left" valign="bottom"><b><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">DESCRIPTION</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" height="20" align="right"
+            valign="bottom" sdval="3" sdnum="1033;"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">3</font></font></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><b><font
+                color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Double
+            insulated solar cable</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Operating temperature -40 ° to +
+            120 ° C</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Short-circuit proof + 280 °
+            C</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">High resistance to UV, ozone and
+            hydrolysis</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"> </font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Very good mechanical resistance
+            to</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Water, oils and chemicals</font></font></font>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cable thickness: 4 or 6 mm²
+            (depending on the size of the system)</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Guarantee according to the
+            manufacturer's instructions</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="right" valign="bottom" sdval="4" sdnum="1033;">
+            <font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4</font></font></font>
+        </td>
+        <td align="right" valign="bottom" sdnum="1033;0;0.00"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">xxxx</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">sqm</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Substructure (Würth, K2 or S:
+            Flex)</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">mounting
+            profile</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Roof hook stainless steel A2, 35
+            * 6 mm</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">End and middle clamps including
+            M8 screw set</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rail connector 35 * 8 * 120
+            mm</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Plate head - wood screws 8 * 100
+            mm</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hammer head screw stainless
+            steel A2</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Guarantee according to the
+            manufacturer's instructions</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font
+                color="#000000"><br></font></b>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="right" valign="bottom" sdval="5" sdnum="1033;">
+            <font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5</font></font></font>
+        </td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">flat-rate</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Safety equipment and / or
+            personal protection measures</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="right" valign="bottom" sdval="6" sdnum="1033;">
+            <font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6</font></font></font>
+        </td>
+        <td align="right" valign="bottom" sdnum="1033;0;0.00"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">xxxxx</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">sqm</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">equipment
+            installation</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Configuration of your
+            photovoltaic system with optimally coordinated </font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Components for maximum power
+            generation.</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="right" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">6a</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Installation of the substructure
+            on your roof. </font><font style="vertical-align: inherit;">Putting the stainless steel</font></font></font>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">anchor on the
+            rafters. </font><font style="vertical-align: inherit;">Alignment and attachment of the</font></font></font>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tailor-made aluminum base
+            profiles on the anchors.</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Preparation of the mounting
+            system for mounting the modules,</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">as well as connecting, securing
+            and wiring the modules.</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">All electrical final work of the
+            photovoltaic system will be</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">by our authorized master
+            electrician at the expense of the company</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">executed.</font></font></font>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="right" valign="bottom" sdval="7" sdnum="1033;">
+            <font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">7</font></font></font>
+        </td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Registration
+            RU</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font
+                color="#000000"><br></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">EVU registration,
+            correspondence, documentation for meters and</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">special documentation for
+            utility companies such as operational diagram, </font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Test report and completion
+            report.</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000" height="21" align="left"
+            valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+<table cellspacing="0" border="0">
+    <colgroup span="2" width="93"></colgroup>
+    <colgroup width="80"></colgroup>
+    <colgroup width="379"></colgroup>
+    <tbody>
+
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="21" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000"
+            height="21" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">POS</font></font></font></b>
+        </td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom">
+            <b><font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">QUANTITY</font></font></font></b>
+        </td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000" align="left" valign="bottom">
+            <b><font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">UNIT</font></font></font></b></td>
+        <td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000"
+            align="left" valign="bottom"><b><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">DESCRIPTION</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" height="20" align="left"
+            valign="bottom" sdval="8" sdnum="1033;"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">8th</font></font></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000;" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><b><font
+                color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Electrical
+            installation work</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td align="left" valign="bottom" style="border-right: 2px solid #000000"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Meter cabinet + AC wiring +
+            assembly</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Wiring and fastening the
+            inverter</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Acceptance and
+            instruction</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Documentation of the
+            system</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Registration and completion
+            notification with the energy supplier</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">-</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Overvoltage
+            protection</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="right" valign="bottom" sdval="9" sdnum="1033;">
+            <font color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9</font></font></font>
+        </td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Project planning /
+            optimization</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">The planning (dimensioning and
+            optimization) of the PV system takes place</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="27" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="middle"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">using a dynamic simulation
+            program (e.g. PV * Sol®</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Professional by Dr. </font><font
+                style="vertical-align: inherit;">Valentin Software) as well as the project planning on
+            site.</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Under certain circumstances, the
+            resulting module performance can</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">PV system are higher or lower,
+            the is reduced</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Accordingly, the purchase price
+            should be higher than the module output</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">possible, the client can do so
+            with a simple declaration of consent</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">expand the order
+            accordingly.</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000" height="21" align="left"
+            valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-top: 2px solid #000000; border-left: 2px solid #000000" height="20" align="left"
+            valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-top: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="right" valign="bottom" sdval="10" sdnum="1033;">
+            <font color="#000000"><font style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;">10</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><u><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">terms of
+            payment</font></font></font></u></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="middle"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">100% after delivery of the goods
+            and on-roof installation.</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="middle" bgcolor="#FFFFFF"><b><font
+                align="center" color="#FF0000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Please note that the AC connection only takes place after receipt of
+            payment.</font></font></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="center" valign="bottom" sdnum="1033;0;0%"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font
+                color="#000000"><br></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom" sdnum="1033;0;0%"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="center" valign="bottom" sdval="1" sdnum="1033;0;0%"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">100%</font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">On the day of construction</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">xxxx</font></font></font></b>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="center" valign="bottom" sdnum="1033;0;0%"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><b><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">(but not before approval of any requested loan
+            funds)</font></font></font></b></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom" sdnum="1033;0;#,##0.00 "><b><font
+                color="#000000"><br></font></b></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="center" valign="bottom" sdnum="1033;0;0%"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">uses only TÜV-tested components,</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">that meet all current standards and
+            certifications.</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font align="center" color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Our general terms and conditions apply exclusively, visible
+            under</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;"></font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font align="center" color="#000000"><br></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td colspan="2" align="right" valign="middle"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Subtotal:</font></font></font></b></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="middle" sdnum="1033;0;#,##0.00 "><font
+                color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xxx</font></font></font>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td colspan="2" align="right" valign="middle"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Taxes 19 percent%:</font></font></font></td>
+        <td style="border-right: 2px solid #000000" align="left" valign="middle" sdnum="1033;0;#,##0.00"><font
+                color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">xxxx</font></font></font></td>
+    </tr>
+    <tr>
+        <td style="border-left: 2px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+        <td colspan="2" align="right" valign="middle"><b><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">Total:</font></font></font></b>
+        </td>
+        <td style="border-right: 2px solid #000000" align="left" valign="middle" sdnum="1033;0;#,##0.00 "><b><font
+                color="#000000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xxx</font></font></font></b>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid #000000; border-left: 2px solid #000000" height="21" align="left"
+            valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 2px solid #000000; border-right: 2px solid #000000" align="left" valign="bottom"><font
+                color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td height="20" colspan="4" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">The client confirms a copy of
+            this order and the general terms and conditions received and accepted the company.</font></font></font></td>
+    </tr>
+
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 1px solid #000000" height="20" align="left" valign="bottom"><font
+                color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">X</font></font></font></td>
+        <td align="right" valign="bottom" sdnum="1033;1033;M/D/YYYY"><font color="#000000"><br></font></td>
+        <td align="right" valign="bottom" sdnum="1033;1033;M/D/YYYY"><font color="#000000"><br></font></td>
+        <td style="border-bottom: 1px solid #000000" align="left" valign="bottom"><font color="#000000"><font
+                style="vertical-align: inherit;"><font style="vertical-align: inherit;">X</font></font></font></td>
+    </tr>
+    <tr>
+        <td align="left" valign="top"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Place and Date </font></font></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="top"><font color="#000000"><font style="vertical-align: inherit;"><font
+                style="vertical-align: inherit;">Signature </font></font></font></td>
+    </tr>
+    <tr>
+        <td height="20" align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+        <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

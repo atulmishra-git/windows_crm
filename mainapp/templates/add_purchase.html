@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-content-container" data-simplebar>
+        <div class="dashboard-content-inner">
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <h1>Add New Purchase</h1>
+                </div>
+                <div class="col-md-6" style="text-align: right;">
+                    <button class="button" onclick="new_customer_btn()">Add Customer</button>
+                </div>
+            </div>
+            <br/>
+            <form id="id_create_purchase_record" class="contact100-form validate-form">
+                {% csrf_token %}
+                <div>
+                    <label>Select Customer</label>
+                    {{ add_purchase.customer }}
+                </div>
+                <div>
+                    <label>Reseller Name</label>
+                    {{ add_purchase.reseller_name }}
+                </div>
+                <div>
+                    <label>Module Count</label>
+                    {{ add_purchase.module_count }}
+                </div>
+                <div>
+                    <label>Module Type</label>
+                    {{ add_purchase.module_type }}
+                </div>
+                <div>
+                    <label>Memory Type</label>
+                    {{ add_purchase.memory_type }}
+                </div>
+                <div>
+                    <label>KWP</label>
+                    {{ add_purchase.kwp }}
+                </div>
+                <div>
+                    <label>Price Without Tax</label>
+                    {{ add_purchase.price_without_tax }}
+                </div>
+                <div>
+                    <label>Price With Tax</label>
+                    {{ add_purchase.price_with_tax }}
+                </div>
+                <div>
+                    <label>Offer Created</label>
+                    {{ add_purchase.offer_created }}
+                </div>
+                <div>
+                    <label>With Battery</label>
+                    {{ add_purchase.with_battery }}
+                </div>
+                <div>
+                    <label>Cancellation</label>
+                    {{ add_purchase.cancellation }}
+                </div>
+                <div>
+                    <label>Project Planning Created</label>
+                    {{ add_purchase.project_planning_created }}
+                </div>
+                <div>
+                    <label>Installation Date</label>
+                    {{ add_purchase.installation_date }}
+                </div>
+                <div>
+                    <label>AC Date</label>
+                    {{ add_purchase.ac_date }}
+                </div>
+                <div>
+                    <label>Photo Roof Area</label>
+                    {{ add_purchase.photo_roof_access }}
+                </div>
+                <div>
+                    <label>Photo Counter Cabinet</label>
+                    {{ add_purchase.photo_counter_cabinet }}
+                </div>
+                <div>
+                    <label>Video Counter</label>
+                    {{ add_purchase.video_counter }}
+                </div>
+                <div>
+                    <label>Photo of Counter</label>
+                    {{ add_purchase.photo_of_counter }}
+                </div>
+                <div>
+                    <label>Power of Attorney</label>
+                    {{ add_purchase.power_of_attorney }}
+                </div>
+                <div>
+                    <label>Data Collection</label>
+                    {{ add_purchase.data_collection }}
+                </div>
+                <div>
+                    <label>Order Date</label>
+                    {{ add_purchase.order_date }}
+                </div>
+
+                <p id="validator" style="display: none !important;"
+                   class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert">
+                    <i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span
+                        id="general_error"></span></p>
+                <button type="button" onclick="create_purchase_record()" class="button">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function create_purchase_record() {
+            var form_data = $('#id_create_purchase_record');
+            $.ajax({
+                type: 'post',
+                url: "{% url 'mainapp:add_purchase' %}",
+                data: form_data.serialize(),
+                success: function (data) {
+                    if (data["success"]) {
+                        window.location = "{% url 'mainapp:home' %}";
+                    } else {
+                        $('#general_error').html(data["message"]);
+                        $("#validator").fadeIn();
+                        setTimeout(function () {
+                            $('#general_error').html();
+                            $("#validator").fadeOut();
+                        }, 2000);
+                    }
+                }
+            });
+        }
+
+        function new_customer_btn() {
+            window.location = "{% url 'mainapp:add_customer' %}";
+        }
+
+    </script>
+
+{% endblock %}

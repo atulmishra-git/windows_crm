@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Dashboard Container -->
+<div class="dashboard-container" style="height: 100%">
+    <div class="dashboard-sidebar">
+        <div class="dashboard-sidebar-inner" data-simplebar>
+            <div class="dashboard-nav-container">
+                <div class="dashboard-nav">
+                    <div class="dashboard-nav-inner">
+                        <div>
+                            <form method="post" id="id_search_user">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="text" id="chat-search" name="search" class="form-control"
+                                           placeholder="Search" required="true">
+                                    <span class="input-group-append">
+                                    <button type="button" id="search" class="btn btn-primary shadow-none"><i
+                                            class="fas fa-search"></i></button>
+                                </span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-content chat-list slimscroll" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="general_chat">
+                                <!--User Chat Box  -->
+                                {% for user in users %}
+                                    <a href="#" id="{{ user.0 }}" name="{{ user.1 }}"
+                                       class="media new-message chat-message">
+                                        <div class="media-left">
+                                            <span class="round-10 bg-success"></span>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="d-inline-block" style="text-align: left;">
+                                                <h3>{{ user.1 }}</h3>
+                                            </div>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block maincontent %}
+    {% endblock %}
+
+</div>
+
+{% endblock %}

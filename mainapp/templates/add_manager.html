@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-content-container" data-simplebar>
+        <div class="dashboard-content-inner">
+            <h1>Add New Manager</h1>
+            <br/>
+            <form id="id_create_manager" class="contact100-form validate-form">
+                {% csrf_token %}
+                <div>
+                    <label>First Name</label>
+                    {{ add_manager_form.first_name }}
+                </div>
+
+                <div>
+                    <label>Surname</label>
+                    {{ add_manager_form.surname }}
+                </div>
+
+                <div>
+                    <label>Phone</label>
+                    {{ add_manager_form.phone.errors }}
+                    {{ add_manager_form.phone }}
+                </div>
+
+                <div>
+                    <label>Username</label>
+                    {{ add_manager_form.username.errors }}
+                    {{ add_manager_form.username }}
+                </div>
+
+                <div>
+                    <label>Email Address</label>
+                    {{ add_manager_form.email.errors }}
+                    {{ add_manager_form.email }}
+                </div>
+
+                <div>
+                    <label>Password</label>
+                    {{ add_manager_form.password }}
+                </div>
+                <p id="validator" style="display: none !important;"
+                   class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert">
+                    <i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span
+                        id="general_error"></span></p>
+                <button type="button" onclick="create_manager()" class="button">Create</button>
+            </form>
+            <br/>
+            <h1>Managers</h1>
+            <div class="tasks-list-container compact-list margin-top-35">
+                {% if not managers %}
+                    <div class="task-listing">No Managers Found</div>
+                {% endif %}
+                {% for manager in managers %}
+                    <div class="task-listing">
+					<!-- Job Listing Details -->
+                        <div class="task-listing-details">
+                            <!-- Details -->
+                            <div class="task-listing-description">
+                                <h4 class="task-listing-title">First Name - {{ manager.first_name }}</h4>
+                                <h4 class="task-listing-title">Surname - {{ manager.surname }}</h4>
+                                <h4 class="task-listing-title">Phone - {{ manager.phone }}</h4>
+                                <h4 class="task-listing-title">Username - {{ manager.username }}</h4>
+                                <h4 class="task-listing-title">Email - {{ manager.email }}</h4>
+                                <a href="{% url 'mainapp:delete_manager' manager_id=manager.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function create_manager() {
+            var form_data = $('#id_create_manager');
+            $.ajax({
+                type: 'post',
+                url: "{% url 'mainapp:add_manager' %}",
+                data: form_data.serialize(),
+                success: function (data) {
+                    if (data["success"]) {
+                        window.location = "{% url 'mainapp:home' %}";
+                    } else {
+                        $('#general_error').html(data["message"]);
+                        $("#validator").fadeIn();
+                        setTimeout(function () {
+                            $('#general_error').html();
+                            $("#validator").fadeOut();
+                        }, 2000);
+                    }
+                }
+            });
+        }
+
+    </script>
+
+{% endblock %}

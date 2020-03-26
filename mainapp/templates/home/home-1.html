@@ -1,0 +1,113 @@
+{% extends 'dashboard.html' %}
+{% block maincontent %}
+    <!-- Dashboard Content
+	================================================== -->
+	<div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+
+			<!-- Dashboard Headline -->
+			<div class="dashboard-headline">
+                <form id="id_search_form" method="post" action="{% url 'mainapp:home' %}">
+                    {% csrf_token %}
+                    <div class="row col-md-12">
+                        <div class="row col-md-9">
+                            <div class="col-md-8">
+                                {{ search_form.name }}
+                            </div>
+                            <div class="col-md-1">
+                                <button class="button" type="submit">Search</button>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <button class="button" type="button" onclick="task_list_btn()">Open Task List</button>
+                        </div>
+                    </div>
+                </form>
+                <br/><br/>
+                <div class="row col-md-12">
+                    <div class="col-md-4" style="text-align: center;">
+                        <button style="width: 100%;" class="button">Welcome Letter</button>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <button style="width: 100%;" class="button" id="{{ customer.id }}"  onclick="offer_btn(this)">Offer</button>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <button style="width: 100%;" class="button">Offer Confirmation</button>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="row col-md-12">
+                    <div class="col-md-4" style="text-align: center;">
+                        <button style="width: 100%;" class="button" id="{{ customer.id }}" onclick="invoice_btn(this)">Invoice</button>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <button style="width: 100%;" class="button" id="{{ customer.id }}" onclick="add_attachments(this)">Attchments (PDF, Photos, Etc.)</button>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <button style="width: 100%;" class="button" id="{{ customer.id }}" onclick="add_call_notes(this)">Call Notes</button>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="row col-md-12">
+                    <div class="col-md-4" style="text-align: center;">
+                        <button style="width: 100%;" class="button" onclick="add_purchase_record()">Add Purchase</button>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <button style="width: 100%;" class="button" onclick="add_customer_click()">Add Customer</button>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        {% if user.is_staff %}
+                            <button style="width: 100%;" class="button" onclick="add_manager_click()">Add Manager </button>
+                        {% endif %}
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <div class="row col-md-12">
+                    <div class="col-md-12" style="text-align: right;">
+                        <button class="button" onclick="add_chat_click()">Chat</button>
+                    </div>
+                </div>
+                <br/>
+
+            </div>
+	    </div>
+    </div>
+	<!-- Dashboard Content / End -->
+
+    <script>
+       function add_manager_click() {
+            window.location = "{% url 'mainapp:add_manager' %}";
+       }
+       function add_customer_click() {
+            window.location = "{% url 'mainapp:add_customer' %}";
+       }
+       function add_purchase_record() {
+            window.location = "{% url 'mainapp:add_purchase' %}";
+       }
+       function add_call_notes(btn) {
+            window.open(
+                "{% url 'mainapp:add_call_notes' customer_id=1234 %}".replace(/1234/, btn.id),
+                '_blank');
+       }
+       function add_attachments(btn) {
+            window.location = "{% url 'mainapp:add_attachments' customer_id=1234 %}".replace(/1234/, btn.id);
+       }
+       function add_chat_click() {
+            window.location = "{% url 'mainapp:chat' %}";
+       }
+       function task_list_btn() {
+           window.open( "{% url 'mainapp:open_task_list' %}", '_blank');
+       }
+       function invoice_btn(btn) {
+           window.location = "{% url 'mainapp:invoices' customer_id=1234 %}".replace(/1234/, btn.id);
+       }
+       function offer_btn(btn) {
+           window.location = "{% url 'mainapp:offer' customer_id=1234 %}".replace(/1234/, btn.id);
+       }
+    </script>
+{% endblock %}

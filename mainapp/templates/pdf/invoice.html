@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <style>
+            table, th, td {
+                border: 0.5px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:100%; text-align:right;">
+            <img src="mainapp/static/images/logo1.png" width="220px" height="100px"/>
+        </div>
+        <hr>
+        <div>
+            <b>{{ purchase.name }}</b>
+        </div>
+        <div>
+            <b>{{ purchase.street }}</b>
+        </div>
+        <div>
+            <b>{{ purchase.postcode }}, {{ purchase.place }}</b>
+        </div>
+        <div class="right" style="text-align:right;">
+            <div>
+                <b>Installation Date: {{ purchase.installation_date }}</b>
+            </div>
+            <div>
+                <b>Customer ID: {{ purchase.customer_id }}</b>
+            </div>
+            <b>Date: {{ purchase.date_month }}</b>
+        </div>
+        <div class="row col-md-12" >
+            <div class="col-md-6" style="float: left;">
+                <h3>Rechnung</h3>
+                <b>{{ purchase.fullname }}</b>
+                <span><p>Bitte bei Zahlungen und Schriftverkehr angeben!</p></span>
+            </div>
+        </div>
+
+
+        <table style="width:100%;">
+            <tbody>
+            <tr style="
+            background-color: #97c6e2;
+            border: 0.5px solid black;
+            border-collapse: collapse;
+            vertical-align: middle;">
+                <th style="height:25px;">Beschreibung</th>
+                <th style="height:25px;">Betrag</th>
+            </tr>
+            <tr style="height: 97px;">
+                <td>Lieferung und Montage der Photovoltaikanlage <br><br>(inkl. Komponenten)</td>
+                <td style="">{{ purchase.price_without_tax }}</td>
+            </tr>
+            <tr>
+                <td style="height:25px; text-align: right;" >Summe netto &nbsp;  </td>
+                <td style="height:25px;">&nbsp; {{ purchase.price_without_tax }}</td>
+            </tr>
+            <tr>
+                <td style="height:25px; text-align: right;" >zzgl. 19% MwSt &nbsp;</td>
+                <td style="height:25px;">&nbsp; {{ purchase.tax }}</td>
+            </tr>
+            <tr>
+                <td style="height:25px; text-align: right;" ><b>Summe brutto &nbsp;</b></td>
+                <td style="height:25px;">&nbsp; {{ purchase.price_with_tax }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Bitte begleichen Sie den Rechnungsbetrag umgehend nach Erhalt der Rechnung auf das unten angegebene Konto.</p>
+    </body>
+</html>

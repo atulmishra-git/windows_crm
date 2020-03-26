@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-content-container" data-simplebar>
+        <div class="dashboard-content-inner">
+            {% if user.is_superuser == True %}
+                <h1>Assign New Task</h1>
+            <br/>
+            <form id="id_create_task" class="contact100-form validate-form">
+                {% csrf_token %}
+                <div>
+                    <label>User</label>
+                    {{ add_task_form.user }}
+                </div>
+
+                <div>
+                    <label>Task</label>
+                    {{ add_task_form.message }}
+                </div>
+                <p id="validator" style="display: none !important;"
+                   class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert">
+                    <i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span
+                        id="general_error"></span></p>
+                <button type="button" onclick="create_task()" class="button">Assign Task</button>
+            </form>
+            <br/>
+            {% endif %}
+            <h1>Tasks</h1>
+            <div class="tasks-list-container compact-list margin-top-35">
+                {% if not tasks %}
+                    <div class="task-listing">No Tasks Found</div>
+                {% endif %}
+                {% for task in tasks %}
+                    <div class="task-listing">
+					<!-- Job Listing Details -->
+                        <div class="task-listing-details">
+                            <!-- Details -->
+                            <div class="task-listing-description">
+                                {% if user.is_superuser == True %}
+                                    <h3 class="task-listing-title">Manager - {{ task.user.first_name }} {{ task.user.surname }}</h3>
+                                {% endif %}
+                                <h4 class="task-listing-title">{{ task.message }}</h4>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function create_task() {
+            var form_data = $('#id_create_task');
+            $.ajax({
+                type: 'post',
+                url: "{% url 'mainapp:open_task_list' %}",
+                data: form_data.serialize(),
+                success: function (data) {
+                    if (data["success"]) {
+                        window.location.reload();
+                    } else {
+                        $('#general_error').html(data["message"]);
+                        $("#validator").fadeIn();
+                        setTimeout(function () {
+                            $('#general_error').html();
+                            $("#validator").fadeOut();
+                        }, 2000);
+                    }
+                }
+            });
+        }
+
+    </script>
+
+{% endblock %}

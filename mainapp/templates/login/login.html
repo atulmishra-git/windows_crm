@@ -1,0 +1,124 @@
+{% load static %}
+<html lang="en-US">
+<head>
+    <!-- =============== Meta =============== -->
+    <meta charset="UTF-8">
+
+    <!-- =============== Title =============== -->
+    <title>LogIn Here</title>
+
+    <!-- =============== Favicon =============== -->
+    <link href="{% static '/assets/img/favicon.ico' %}" rel="shortcut icon"/>
+
+    <!-- =============== Viewport =============== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- =============== Description =============== -->
+    <meta name="description" content=""/>
+
+    <!-- =============== keywords =============== -->
+    <meta name="keywords" content=""/>
+
+    <!-- =============== Author =============== -->
+    <meta name="author" content=""/>
+
+    <!-- =============== Bootstrap =============== -->
+    <link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}"/>
+
+    <!-- Font Asw Icon -->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- =============== Main_CSS =============== -->
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}"/>
+
+    <!-- =============== Responsive_CSS =============== -->
+    <link rel="stylesheet" href="{% static '/assets/css/responsive.css' %}"/>
+
+</head>
+<body>
+
+
+<section class="login-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 m-0 p-0">
+                <div class="login-bg">
+
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="logo">
+                    <img src="{% static '/assets/img/logo.png' %}" class="img-fluid text-center" alt=""/>
+                </div>
+                <div class="login-form-area">
+                    <form method="post" id="login-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ login_form.username }}
+                        </div>
+                        <div class="form-group">
+                            {{ login_form.password }}
+                        </div>
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <a href="#">Password Vergessen ?</a>
+                            </label>
+                        </div>
+                        <button type="button" onclick="login_click()" class="btn btn-primary btn-block">Login</button>
+                        <h4>{{ error_message }}</h4>
+                        <p id="validator" style="display: none !important;"
+                           class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert">
+                            <i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span
+                                id="general_error"></span></p>
+                    </form>
+                </div>
+
+                <!-- Support area -->
+                <div class="login-bottom-area">
+                    <a href="#"><i class="fas fa-headset"></i> Support</a>
+                    <h6>info@desativ-tech.de</h6>
+                    <h6>+49 89 2000 12 70</h6>
+                    <a href="https://www.desativ-tech.de">www.desativ-tech.de</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- =============== jquery-3.3.1.min.js =============== -->
+<script src="{% static '/assets/js/jquery-3.3.1.min.js' %}"></script>
+
+<!-- =============== bootstrap.min.js =============== -->
+<script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+
+<script>
+
+    function login_click() {
+        var form_data = $('#login-form');
+        $.ajax({
+            type: 'post',
+            url: "{% url 'mainapp:login' %}",
+            data: form_data.serialize(),
+            success: function (data) {
+                if (data["success"]) {
+                    window.location = "{% url 'mainapp:home' %}";
+                } else {
+                    $('#general_error').html(data["message"]);
+                    $("#validator").fadeIn();
+                    setTimeout(function () {
+                        $('#general_error').html();
+                        $("#validator").fadeOut();
+                    }, 2000);
+                }
+            }
+        });
+    }
+
+</script>
+{#{% endblock %}#}

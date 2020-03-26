@@ -1,0 +1,251 @@
+
+
+
+/*
+	==========================================
+    Reset Css
+	==========================================
+*/
+ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	margin: 0;
+}
+p{
+	margin: 0;
+}
+
+/* hero-area  */
+.hero-area{
+	background:url('../img/hero_bg.jpg');
+	background-position:center;
+	background-size:cover;
+	height:100vh;
+	
+}
+
+/*Start slidebar area*/
+.sidenav {
+	height: 100%;
+	width: 12%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color:#fff;
+	overflow-x: hidden;
+	padding-top: 20px;
+	border-right: 1px solid #ddd;
+}
+.sidenav a {
+	padding: 10px 8px 10px 16px;
+	text-decoration: none;
+	font-size: 15px;
+	color: #818181;
+	display: block;
+}
+.logo-area{
+	background: blue;
+	padding: 25px;
+}
+.sidenav a:hover {
+    background: #999;
+    color: #fefefe;
+    font-size: 15px;
+}
+
+.main {
+	margin-left: 160px; /* Same as the width of the sidenav */
+	font-size: 28px; /* Increased text to enable scrolling */
+	padding: 0px 10px;
+}
+
+/*@media screen and (max-height: 450px) {
+	.sidenav {padding-top: 15px;}
+	.sidenav a {font-size: 18px;}
+}*/
+/*Finished Slide bar area*/
+
+
+/*Start nav area*/
+.nav-item input {
+    background: #d5d5d5;
+    color: white !important;
+    height: 30px;
+    width: 150px;
+    text-align: center;
+    margin: 7px 575px 0px 15px;
+}
+/*li.nav-item img {
+    max-width: 6%;
+}*/
+.profile-area h6 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.profile-area p {
+	font-size: 13px;
+	color: green;
+    }/*
+    .bell {
+	margin-left:750px;
+}*/
+nav.navbar.navbar-expand-md.navbar-light {
+    border-bottom: 1px solid #ddd;
+}
+/*a.nav-brand img {
+    max-width: 60%;
+}*/
+.nav-link {
+    margin: 0px 6px 0px;
+}
+/*Start Rounded-area*/
+.round-img img{
+	max-width: 10%;
+}
+.top-area,.check-area,.card-area{
+	margin-left: 12%;
+}
+.row {
+	margin: 0;
+	padding: 0;
+}
+.round-img {
+    background: #3939ff;
+    padding: 5% 0px;
+    border-radius: 5px;
+    color: white;
+}
+.list-area ol{
+    list-style-type: circle;
+}
+.list-area {
+    padding: 20px 13px;
+    box-shadow: 0px 0px 10px 1px #ddd;
+    border-radius: 5px;
+}
+/*Start CArd area*/
+.card-area{
+	padding: 5% 0%;
+}
+.card {
+    box-shadow: 0px 0px 10px 1px #ddd;
+}
+li.text-right span {
+    background: linear-gradient(90deg, #5910ff, #dc76ff);
+    color: white;
+    padding: 5px 5%;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.card{
+	padding: 20px;
+}
+.card-list ol li {
+    padding-top: 25px;
+}
+.card.msg-list ul li {
+    padding: 5px 0px;
+}
+li.text-left span {
+    background: white;
+    color: black;
+    padding: 5px 5%;
+    margin-left: 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 1px #ddd;
+}
+.todo-list ol li{
+	padding-top: 20px;
+}
+li p {
+    font-size: 10px;
+}
+
+
+
+.list-area ul li i {
+    color: #fff;
+    background: #15bd15;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    border-radius: 50px;
+    line-height: 35px;
+}
+.card-list .fas.fa-check{
+	color: #fff;
+	background: #15bd15;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 30px;
+}
+.card-list .fas.fa-plus{
+	color: #fff;
+	background: #15bd15;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 30px;
+
+}
+
+.card-list h6 {
+  margin-bottom: 25px;
+}
+.list-area ul li {
+  margin-top: 6px;
+}
+.fas.fa-check:after {
+	position: absolute;
+	content: '';
+	height: 165px;
+	width: 2px;
+	background: #d9d9d9;
+	top: 46px;
+	left: 39px;
+	z-index: -9;
+}
+/* .fas.fa-plus:after{ */
+	/* position: absolute; */
+	/* content: ''; */
+	/* height: 114px; */
+	/* width: 2px; */
+	/* background: #15bd15; */
+	/* top: 46px; */
+	/* left: 39px; */
+	/* z-index: -9; */
+/* } */
+.card-list ul li p {
+	font-size: 14px;
+	margin: 0px 27px;
+}
+
+
+
+
+.card-list ul li i::after {
+  content: '';
+  position: absolute;
+  background: #d9d9d9;
+  height: 240px;
+  width: 2px;
+  top: 85px;
+  left: 32px;
+  /* z-index: 1 !important; */
+  /* Z-indax Not Working */
+}

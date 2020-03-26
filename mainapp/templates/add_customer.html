@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+            <h1>Add New Customer</h1>
+            <br/>
+            <form id="id_create_customer" class="contact100-form validate-form">
+                {% csrf_token %}
+                <div>
+                    <label>Customer Type</label>
+                    {{ add_customer_form.purpose }}
+                </div>
+
+                <div>
+                    <label>Gender</label>
+                    {{ add_customer_form.gender }}
+                </div>
+
+                <div>
+                    <label>First Name</label>
+                    {{ add_customer_form.first_name }}
+                </div>
+
+                <div>
+                    <label>Surname</label>
+                    {{add_customer_form.surname}}
+                </div>
+
+                <div>
+                    <label>Phone</label>
+                    {{add_customer_form.phone.errors}}
+                    {{add_customer_form.phone}}
+                </div>
+
+                <div>
+                    <label>Mobile</label>
+                    {{add_customer_form.mobile.errors}}
+                    {{add_customer_form.mobile}}
+                </div>
+
+                <div>
+                    <label>Place</label>
+                    {{add_customer_form.place}}
+                </div>
+
+                <div>
+                    <label>Street</label>
+                    {{ add_customer_form.street }}
+                </div>
+
+                <div>
+                    <label>Postcode</label>
+                    {{add_customer_form.postcode}}
+                </div>
+                <p id="validator" style="display: none !important;" class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert"><i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span id="general_error"></span></p>
+                <button type="button" onclick="create_customer()" class="button">Create</button>
+			</form>
+        </div>
+    </div>
+
+    <script>
+        function create_customer() {
+            var form_data = $('#id_create_customer');
+            $.ajax({
+                type: 'post',
+                url: "{% url 'mainapp:add_customer' %}",
+                data: form_data.serialize(),
+                success: function (data) {
+                    if(data["success"]){
+                        window.location = "{% url 'mainapp:home' %}";
+                    }
+                    else {
+                        $('#general_error').html(data["message"]);
+                        $("#validator").fadeIn();
+                        setTimeout(function () {
+                            $('#general_error').html();
+                            $("#validator").fadeOut();
+                        }, 2000);
+                    }
+                }
+            });
+        }
+
+    </script>
+
+{% endblock %}
