@@ -1,11 +1,25 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, CreateView
 from mainapp.forms.login import LoginForm
-from mainapp.forms.add_manager import AddManagerForm
+from mainapp.forms.add_manager import AddManagerForm, ManagerForm
 from django.shortcuts import render, redirect, reverse
 from django.http import JsonResponse
 from mainapp.models import User
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import login, logout, authenticate
+
+
+class CreateManagerView(CreateView):
+    template_name = 'add_manager.html'
+    form_class = ManagerForm
+    model = User
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateManagerView, self).get_context_data(**kwargs)
+        context['operation'] = "Add a"
+        return context
+
+    def get_success_url(self):
+        return reverse("home", kwargs=dict())
 
 
 class AddManagerView(TemplateView):

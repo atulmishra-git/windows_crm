@@ -2,6 +2,12 @@ from django import forms
 from mainapp.models import User
 
 
+class ManagerForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["first_name", "surname", "phone", 'username', 'email', 'password']
+
+
 class AddManagerForm(forms.Form):
     first_name = forms.CharField(required=True,
                                 max_length=255,
