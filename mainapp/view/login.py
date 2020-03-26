@@ -27,7 +27,7 @@ class LoginView(TemplateView):
             username = login_form.cleaned_data.get('username')
             password = login_form.cleaned_data.get('password')
 
-            user = User.fetch(username=username)
+            user = User.fetch(username=username, is_superuser=None)
             if not user:
                 return JsonResponse({
                     "success": False,
