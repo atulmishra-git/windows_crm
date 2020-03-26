@@ -27,14 +27,13 @@ class LoginView(TemplateView):
             username = login_form.cleaned_data.get('username')
             password = login_form.cleaned_data.get('password')
 
-            user = User.fetch(username=username, is_superuser=None)
+            user = User.fetch(username=username)
             if not user:
                 return JsonResponse({
                     "success": False,
                     "message": "User not found."
 
                 })
-
             if authenticate(request, username=username, password=password):
                 login(request, user)
 

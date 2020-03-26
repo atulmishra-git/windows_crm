@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from mainapp.forms.add_manager import AddManagerForm
+from mainapp.forms.add_manager import ManagerForm as AddManagerForm
 from mainapp.forms.search_user import SearchForm
 from django.shortcuts import render, redirect, reverse
 from mainapp.models import Customer

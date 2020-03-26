@@ -4,12 +4,13 @@
 
     <div class="dashboard-content-container" data-simplebar>
         <div class="dashboard-content-inner">
-            <h1>Add New Manager</h1>
+            <h1>{{ operation }} Manager {% if manager %}{{ manager }}{% endif %}</h1>
             <br/>
-            <form id="id_create_manager" class="contact100-form validate-form">
+            <form id="id_create_manager" class="contact100-form validate-form" method="POST">
                 {% csrf_token %}
                 {{ form }}
-                <button type="button" onclick="create_manager()" class="button">Create</button>
+{#                <button type="button" onclick="create_manager()" class="button">Create</button>#}
+                <button type="submit" class="button">Submit</button>
             </form>
             <br/>
             <h1>Managers</h1>
@@ -28,6 +29,7 @@
                                 <h4 class="task-listing-title">Phone - {{ manager.phone }}</h4>
                                 <h4 class="task-listing-title">Username - {{ manager.username }}</h4>
                                 <h4 class="task-listing-title">Email - {{ manager.email }}</h4>
+                                <a href="{% url 'mainapp:edit_manager' pk=manager.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
                                 <a href="{% url 'mainapp:delete_manager' manager_id=manager.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
                                 <br/>
                             </div>

@@ -23,7 +23,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['phone', 'first_name', 'email']
 
     def __str__(self):
-        return self.first_name + self.surname
+        return self.first_name + " " + self.surname
 
     @classmethod
     def fetch(cls, username=None, user_id=None, is_superuser=False):
