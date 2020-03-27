@@ -1,10 +1,10 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column
+from crispy_forms.layout import Layout, Submit, Row, Column, HTML
 
 
 from mainapp.forms.mixins import LabelAdder
-from mainapp.models import Customer, PurchaseRecord
+from mainapp.models import PurchaseRecord
 
 
 class PurchaseRecordForm(LabelAdder, forms.ModelForm):
@@ -24,39 +24,58 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Row(
-                Column('customer', css_class='form-group col-md-6 mb-0'),
+                Column('customer', css_class='form-group col-md-12 mb-0'),
+                css_class='form-row'
+            ),
+            HTML('<h3>Module</h3>'),
+            Row(
                 Column('manufacturer', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
-            'with_battery',
             Row(
                 Column('watt', css_class='form-group col-md-4 mb-0'),
+                Column('module_count', css_class='form-group col-md-4 mb-0'),
                 Column('kwp', css_class='form-group col-md-4 mb-0'),
-                Column('price_without_tax', css_class='form-group col-md-4 mb-0'),
                 css_class='form-row'
             ),
-            'offer_by',
+            HTML('<h3>Choose if there is battery system or not</h3>'),
+            'with_battery',
             Row(
-                Column('offer_date', css_class='form-group col-md-6 mb-0'),
-                Column('reseller_name', css_class='form-group col-md-4 mb-0'),
+                Column('manufacturer', css_class='form-group col-md-6 mb-0'),
+                Column('kwh', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            HTML('<h3>Price</h3>'),
+            'price_without_tax',
+            HTML('<p>Tax: 19%'
+                 '<br/>'
+                 'Price With Tax: <div id="total_price"></div></p>'
+                 '<br/>'),
+            'offer_by',
+            HTML('<h4>Offer Details</h4><br/>'),
+            Row(
+                Column('offer_date', css_class='form-group col-md-4 mb-0'),
+                Column('reseller_name', css_class='form-group col-md-6 mb-0'),
                 Column('declined', css_class='form-group col-md-2 mb-0'),
                 css_class='form-row'
             ),
+            HTML('<h4>Technical Details</h4><br/>'),
             Row(
                 Column('date_sent', css_class='form-group col-md-6 mb-0'),
                 Column('project_planning_created', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
             Row(
-                Column('dc_term', css_class='form-group col-md-4 mb-0'),
+                Column('dc_term', css_class='form-group col-md-6 mb-0'),
                 Column('dc_mechanic', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
             Row(
-                Column('ac_term', css_class='form-group col-md-4 mb-0'),
+                Column('ac_term', css_class='form-group col-md-6 mb-0'),
                 Column('ac_mechanic', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
+            HTML('<h4>Information of the Roof</h4><br/>'),
             'roof_type',
             Row(
                 Column('roof_tilt', css_class='form-group col-md-4 mb-0'),
@@ -65,14 +84,14 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                 css_class='form-row'
             ),
             Row(
-                Column('module_type', css_class='form-group col-md-4 mb-0'),
-                Column('memory_type', css_class='form-group col-md-6 mb-0'),
+                Column('', css_class='form-group col-md-4 mb-0'),
+                Column('', css_class='form-group col-md-4 mb-0'),
+                HTML('<p>'
+                     'Total Area of all modules: <div id="total_area"></div>'
+                     '</p>'
+                     '<br/>'),
                 css_class='form-row'
             ),
-            Row(
-                Column('installation_date', css_class='form-group col-md-4 mb-0'),
-                Column('cancellation', css_class='form-group col-md-6 mb-0'),
-                css_class='form-row'
-            ),
-            Submit('submit', 'Sign in')
+            'extra_details',
+            Submit('submit', 'Submit')
         )

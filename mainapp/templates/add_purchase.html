@@ -14,41 +14,14 @@
                 </div>
             </div>
             <br/>
-            <form method="POST" id="id_create_purchase_record" class="contact100-form validate-form">
+            <form method="POST">
                 {% csrf_token %}
-{#                {{ form|crispy }}#}
-
-                <p id="validator" style="display: none !important;"
-                   class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert">
-                    <i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span
-                        id="general_error"></span></p>
-                <button type="button" onclick="create_purchase_record()" class="button">Create</button>
+                {% crispy form %}
             </form>
         </div>
     </div>
 
     <script>
-        function create_purchase_record() {
-            var form_data = $('#id_create_purchase_record');
-            $.ajax({
-                type: 'post',
-                url: "{% url 'mainapp:add_purchase' %}",
-                data: form_data.serialize(),
-                success: function (data) {
-                    if (data["success"]) {
-                        window.location = "{% url 'mainapp:home' %}";
-                    } else {
-                        $('#general_error').html(data["message"]);
-                        $("#validator").fadeIn();
-                        setTimeout(function () {
-                            $('#general_error').html();
-                            $("#validator").fadeOut();
-                        }, 2000);
-                    }
-                }
-            });
-        }
-
         function new_customer_btn() {
             window.location = "{% url 'mainapp:add_customer' %}";
         }
