@@ -26,9 +26,16 @@
             window.location = "{% url 'mainapp:add_customer' %}";
         }
         $('#id_module_area').change(function() {
-            console.log($('#id_module_area').val());
             $('#total_area').html($('#id_module_area').val()*$('#id_module_count').val());
         });
+        $('#id_watt').change(function() {
+            $('#id_kwp').html($('#id_watt').val()*$('#id_module_count').val()/1000);
+        });
+        $('#id_module_count').change(function() {
+            $('#id_kwp').html($('#id_watt').val()*$('#id_module_count').val()/1000);
+            $('#total_area').html($('#id_module_area').val()*$('#id_module_count').val());
+        });
+
 
     </script>
 

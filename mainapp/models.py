@@ -137,9 +137,8 @@ class CallNotes(models.Model):
 
 class PurchaseRecord(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='purchase_records')
-    watt = models.PositiveIntegerField(null=True)
-    module_count = models.PositiveIntegerField(null=True)
-    kwp = models.CharField(max_length=255)
+    watt = models.PositiveIntegerField(null=True, default=0)
+    module_count = models.PositiveIntegerField(null=True, default=0)
 
     with_battery = models.BooleanField(blank=True, default=False, null=True)
     manufacturer = models.CharField(max_length=255, null=True, blank=True)
@@ -192,7 +191,11 @@ class PurchaseRecord(models.Model):
 
     @property
     def price_with_tax(self):
-        return "%.2f" % (self.price_without_tax * 1.19)
+        return "%.2f" % (getattr(self, 'price_without_tax', 0) * 1.19)
+
+    @property
+    def kwp(self):
+        return "%.2f" % (getattr(self, 'module_count', 0) * getattr(self, 'watt', 0) / 1000.0)
 
     @property
     def total_area(self):

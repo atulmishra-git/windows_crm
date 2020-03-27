@@ -34,7 +34,10 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
             Row(
                 Column('watt', css_class='form-group col-md-4 mb-0'),
                 Column('module_count', css_class='form-group col-md-4 mb-0'),
-                Column('kwp', css_class='form-group col-md-4 mb-0'),
+                HTML('<p>'
+                     'KWP:  <strong><div id="id_kwp"></div></strong>'
+                     '</p>'
+                     '<br/>'),
                 css_class='form-row'
             ),
             HTML('<h3>Choose if there is battery system or not</h3>'),
