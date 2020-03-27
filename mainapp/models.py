@@ -63,6 +63,10 @@ OFFER_CHOICES = (
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=255)
+    offer_id = models.CharField(max_length=255, blank=True,
+                                null=True)
+    invoice_id = models.CharField(max_length=255, blank=True,
+                                  null=True)
     street = models.CharField(max_length=500)
     postcode = models.CharField(max_length=255)
     place = models.CharField(max_length=255)
@@ -169,13 +173,13 @@ class PurchaseRecord(models.Model):
     installation_date = models.DateTimeField()
     cancellation = models.BooleanField(blank=True, default=True)
 
-    photo_roof_access = models.BooleanField(blank=True, default=True)
-    photo_counter_cabinet = models.BooleanField(blank=True, default=True)
-    video_counter = models.BooleanField(blank=True, default=True)
-    photo_of_counter = models.BooleanField(blank=True, default=True)
-    power_of_attorney = models.BooleanField(blank=True, default=True)
-    data_collection = models.BooleanField(blank=True, default=True)
-    order_date = models.DateTimeField()
+    # photo_roof_access = models.BooleanField(blank=True, default=True)
+    # photo_counter_cabinet = models.BooleanField(blank=True, default=True)
+    # video_counter = models.BooleanField(blank=True, default=True)
+    # photo_of_counter = models.BooleanField(blank=True, default=True)
+    # power_of_attorney = models.BooleanField(blank=True, default=True)
+    # data_collection = models.BooleanField(blank=True, default=True)
+    # order_date = models.DateTimeField()
 
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
