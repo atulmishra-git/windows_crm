@@ -146,7 +146,8 @@ class PurchaseRecord(models.Model):
     kwh = models.CharField(max_length=255, blank=True, null=True)
 
     price_without_tax = models.FloatField(help_text="Price in Euro (€)", null=True,
-                                          validators=[MinValueValidator(0, "Should be above 0")])
+                                          validators=[MinValueValidator(0, "Should be above 0")],
+                                          default=0)
 
     offer_by = models.CharField(choices=OFFER_CHOICES, max_length=16, null=True)
     # OFFER INFORMATION
@@ -166,7 +167,8 @@ class PurchaseRecord(models.Model):
     roof_tilt = models.FloatField(help_text="in Degrees", null=True, blank=True)
     alignment = models.CharField(max_length=64, null=True, blank=True)
     module_area = models.FloatField(help_text="Area in meter squared (m2)", null=True, blank=True,
-                                    validators=[MinValueValidator(0, "Should be above 0")])
+                                    validators=[MinValueValidator(0, "Should be above 0")],
+                                    default=0)
 
     extra_details = models.TextField(blank=True, null=True)
 

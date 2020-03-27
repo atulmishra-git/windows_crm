@@ -47,8 +47,8 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
             HTML('<h3>Price</h3>'),
             'price_without_tax',
             HTML('<p>Tax: 19%'
-                 '<br/>'
-                 'Price With Tax: <div id="total_price"></div></p>'
+                 # '<br/>'
+                 # 'Price With Tax: <div id="total_price"></div></p>'
                  '<br/>'),
             'offer_by',
             HTML('<h4>Offer Details</h4><br/>'),

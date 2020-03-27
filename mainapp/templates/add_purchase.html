@@ -25,6 +25,10 @@
         function new_customer_btn() {
             window.location = "{% url 'mainapp:add_customer' %}";
         }
+        $('#id_module_area').change(function() {
+            console.log($('#id_module_area').val());
+            $('#total_area').html($('#id_module_area').val()*$('#id_module_count').val());
+        });
 
     </script>
 
