@@ -143,6 +143,7 @@ class PurchaseRecord(models.Model):
     kwp = models.CharField(max_length=255)
 
     with_battery = models.BooleanField(blank=True, default=False, null=True)
+    kwh = models.CharField(max_length=255, blank=True, null=True)
 
     price_without_tax = models.FloatField(help_text="Price in Euro (€)", null=True,
                                           validators=[MinValueValidator(0, "Should be above 0")])
@@ -167,12 +168,13 @@ class PurchaseRecord(models.Model):
     module_area = models.FloatField(help_text="Area in meter squared (m2)", null=True,
                                     validators=[MinValueValidator(0, "Should be above 0")])
 
-    module_type = models.CharField(max_length=255)
-    memory_type = models.CharField(max_length=255)
+    extra_details = models.TextField(blank=True, null=True)
 
-    installation_date = models.DateTimeField()
-    cancellation = models.BooleanField(blank=True, default=True)
-
+    # module_type = models.CharField(max_length=255)
+    # memory_type = models.CharField(max_length=255)
+    #
+    # installation_date = models.DateTimeField()
+    # cancellation = models.BooleanField(blank=True, default=True)
     # photo_roof_access = models.BooleanField(blank=True, default=True)
     # photo_counter_cabinet = models.BooleanField(blank=True, default=True)
     # video_counter = models.BooleanField(blank=True, default=True)
