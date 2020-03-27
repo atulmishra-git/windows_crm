@@ -1,57 +1,60 @@
-from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import reverse
+from django.views.generic import CreateView, UpdateView, DeleteView
+
 from mainapp.forms.call_notes import AddCallNotesForm
-from django.shortcuts import render
+from mainapp.forms.mixins import FormRequestMixin
 from mainapp.models import Customer, CallNotes
-from django.http import JsonResponse
 
 
-class CallNotesView(TemplateView):
+class CallNotesFormRequestMixin(object):
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        kwargs['customer_id'] = self.kwargs['customer_id']
+        return kwargs
+
+
+class CallNotesRedirectMixin:
+    def get_success_url(self):
+        return reverse('mainapp:add_call_notes', kwargs=dict(customer_id=self.kwargs['customer_id']))
+
+
+class CallNotesCreateView(LoginRequiredMixin, CallNotesFormRequestMixin, CallNotesRedirectMixin, CreateView):
     template_name = 'call_notes.html'
+    form_class = AddCallNotesForm
+    model = CallNotes
 
-    def get(self, request, customer_id, *args, **kwargs):
-        add_call_notes = AddCallNotesForm()
-
-        customer = Customer.fetch(customer_id=customer_id)
-        call_notes = CallNotes.fetch(customer_id=customer)
-
-        context = {
-            'add_call_notes': add_call_notes,
-            'customer_id': customer_id,
+    def get_context_data(self, **kwargs):
+        context = super(CallNotesCreateView, self).get_context_data(**kwargs)
+        customer = Customer.fetch(customer_id=self.kwargs['customer_id'])
+        call_notes = CallNotes.fetch(customer_id=customer).order_by('-id')
+        context.update(**{
+            'customer_id': customer.id,
             'customer': customer,
-            'call_notes': call_notes
+            'object_list': call_notes
+        })
+        return context
 
-        }
-        return render(request, self.template_name, context=context)
 
-    def post(self, request, customer_id):
-        try:
-            customer_id = request.POST.get('customer_id')
-            add_call_notes = AddCallNotesForm(request.POST)
-            user_id = request.user.id
+class CallNotesUpdateView(LoginRequiredMixin, CallNotesFormRequestMixin, CallNotesRedirectMixin, UpdateView):
+    template_name = 'call_notes.html'
+    form_class = AddCallNotesForm
+    model = CallNotes
 
-            if add_call_notes.is_valid():
-                notes = add_call_notes.cleaned_data.get('notes')
+    def get_context_data(self, **kwargs):
+        context = super(CallNotesUpdateView, self).get_context_data(**kwargs)
+        customer = Customer.fetch(customer_id=self.kwargs['customer_id'])
+        context.update(**{
+            'customer_id': customer.id,
+            'customer': customer,
+        })
+        context['operation'] = 'Update'
+        return context
 
-                call_notes = CallNotes.create(customer_id=customer_id, user_id=user_id, notes=notes)
-                if call_notes:
-                    return JsonResponse({
-                        'success': True,
-                    })
 
-                return JsonResponse({
-                    'success': False,
-                    'message': "Can't create the call note. Please try again"
-                })
+class CallNotesDeleteView(LoginRequiredMixin, CallNotesRedirectMixin, DeleteView):
+    model = CallNotes
 
-            else:
-                return JsonResponse({
-                    'success': False,
-                    'message': 'Please Fill All the Fields.'
-                })
-
-        except Exception as e:
-            print("Exception occurs in Creating Call Notes View. Error: {}".format(str(e)))
-            return JsonResponse({
-                'success': False,
-                'message': "Something went wrong. Please Try Again!"
-            })
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)

@@ -2,63 +2,43 @@
 {% block maincontent %}
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
-            <h1>Add New Call Notes</h1>
+            <h1>{{ operation|default:'Add New' }} Call Note</h1>
             <br/>
-            <form id="id_create_callnotes" class="contact100-form validate-form">
+            <form method="POST" id="id_create_callnotes" class="contact100-form validate-form">
                 {% csrf_token %}
-                {{ add_call_notes.notes }}
-                <input hidden id="id_customer" name="customer_id" value="{{ customer_id }}">
-                <p id="validator" style="display: none !important;" class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert"><i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span id="general_error"></span></p>
-                <button type="button" onclick="create_call_notes()" class="button">Submit</button>
+                {{ form }}
+                <button type="submit" class="button">Submit</button>
             </form>
 
+            {% if object_list %}
             <div class="tasks-list-container compact-list margin-top-35">
-                {% if not call_notes %}
+                {% if not object_list %}
                     <div class="task-listing">No Call Notes</div>
                 {% endif %}
-                {% for note in call_notes %}
+                {% for note in object_list %}
                     <div class="task-listing">
 					<!-- Job Listing Details -->
                         <div class="task-listing-details">
                             <!-- Details -->
                             <div class="task-listing-description">
-                                <h3 class="task-listing-title">Customer ID - {{ note.customer.id }}</h3>
-                                <h4 class="task-listing-title">Customer Name - {{ note.customer.first_name }}</h4>
-                                <h4 class="task-listing-title">Manager Name - {{ note.user.first_name }}</h4>
-                                <h4 class="task-listing-title">Call Notes - {{ note.notes }}</h4>
+                                <h3 class="task-listing-title">Customer ID - {{ note.customer.id }} {{ note.created|default:"" }}</h3>
+                                <p class="task-listing-title">Creator - {{ note.user.first_name }}</p>
+                                <p class="task-listing-title">Call Notes - {{ note.notes }}</p>
+                                <p>
+                                    <a href="{% url 'mainapp:edit_call_notes' customer_id=customer_id pk=note.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
+                                    <a href="{% url 'mainapp:delete_call_notes' customer_id=customer_id pk=note.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
+                                </p>
                                 <br/>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
+            {% endif %}
         </div>
     </div>
 
     <script>
-        function create_call_notes() {
-            var customer_id = $('#id_customer').val();
-            var form_data = $('#id_create_callnotes');
-            $.ajax({
-                type: 'post',
-                url: "{% url 'mainapp:add_call_notes' customer_id=1234 %}".replace(/1234/, customer_id),
-                data: form_data.serialize(),
-                success: function (data) {
-                    if(data["success"]){
-                        window.location.reload();
-                    }
-                    else {
-                        $('#general_error').html(data["message"]);
-                        $("#validator").fadeIn();
-                        setTimeout(function () {
-                            $('#general_error').html();
-                            $("#validator").fadeOut();
-                        }, 2000);
-                    }
-                }
-            });
-        }
-
     </script>
 
 {% endblock %}

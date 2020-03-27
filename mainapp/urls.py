@@ -30,7 +30,10 @@ urlpatterns = [
     path('delete/task/<int:pk>/', task.DeleteTaskView.as_view(), name='delete_task'),
     path('mark_complete/<int:pk>/', task.mark_completed, name='mark_completed'),
 
-    path('call_notes/<customer_id>', call_notes.CallNotesView.as_view(), name='add_call_notes'),
+    path('call_notes/<customer_id>/', call_notes.CallNotesCreateView.as_view(), name='add_call_notes'),
+    path('call_notes/<customer_id>/<int:pk>/', call_notes.CallNotesUpdateView.as_view(), name='edit_call_notes'),
+    path('delete/call_notes/<customer_id>/<int:pk>/', call_notes.CallNotesDeleteView.as_view(), name='delete_call_notes'),
+
     path('attachments/<customer_id>', attachments.AttachmentsView.as_view(), name='add_attachments'),
     path('chat/', chat.ChatView.as_view(), name='chat'),
     path('fetch_twilio_access_token/<identity>', chat.GetAccessToken.as_view(), name='fetch_twilio_access_token'),
