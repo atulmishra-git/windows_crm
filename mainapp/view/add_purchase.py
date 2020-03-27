@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from mainapp.forms.add_purchase_record import AddPurchaseRecordForm
-from mainapp.forms.add_customer import AddCustomerForm
+from mainapp.forms.add_customer import CustomerForm
 from django.shortcuts import render, redirect, reverse
 from django.http import JsonResponse
 from mainapp.models import PurchaseRecord

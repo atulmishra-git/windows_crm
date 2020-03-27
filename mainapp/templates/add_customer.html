@@ -4,85 +4,72 @@
 
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
-            <h1>Add New Customer</h1>
+            <h1>{{ operation }} {{ object_type }} {% if object %}{{ object }}{% endif %}</h1>
             <br/>
-            <form id="id_create_customer" class="contact100-form validate-form">
+            <form id="id_create_customer" method="POST" class="contact100-form validate-form">
                 {% csrf_token %}
-                <div>
-                    <label>Customer Type</label>
-                    {{ add_customer_form.purpose }}
-                </div>
-
-                <div>
-                    <label>Gender</label>
-                    {{ add_customer_form.gender }}
-                </div>
-
-                <div>
-                    <label>First Name</label>
-                    {{ add_customer_form.first_name }}
-                </div>
-
-                <div>
-                    <label>Surname</label>
-                    {{add_customer_form.surname}}
-                </div>
-
-                <div>
-                    <label>Phone</label>
-                    {{add_customer_form.phone.errors}}
-                    {{add_customer_form.phone}}
-                </div>
-
-                <div>
-                    <label>Mobile</label>
-                    {{add_customer_form.mobile.errors}}
-                    {{add_customer_form.mobile}}
-                </div>
-
-                <div>
-                    <label>Place</label>
-                    {{add_customer_form.place}}
-                </div>
-
-                <div>
-                    <label>Street</label>
-                    {{ add_customer_form.street }}
-                </div>
-
-                <div>
-                    <label>Postcode</label>
-                    {{add_customer_form.postcode}}
-                </div>
-                <p id="validator" style="display: none !important;" class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert"><i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span id="general_error"></span></p>
-                <button type="button" onclick="create_customer()" class="button">Create</button>
+                {{ form }}
+                <button type="submit" class="button">Submit</button>
 			</form>
+            <br/>
+            <h1>Customers</h1>
+            <div class="tasks-list-container compact-list margin-top-35">
+                {% if not objects %}
+                    <div class="task-listing">No {{ object_type }}(s) Found</div>
+                {% endif %}
+                {% for obj in objects %}
+                    <div class="task-listing">
+                    <!-- Job Listing Details -->
+                        <div class="task-listing-details">
+                            <!-- Details -->
+                            <div class="task-listing-description">
+                                <table class="table">
+                                    <tr>
+                                        <th>First Name</th>
+                                        <td>{{ obj.first_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>SurName</th>
+                                        <td>{{ obj.surname }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Street</th>
+                                        <td>{{ obj.street }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Postcode</th>
+                                        <td>{{ obj.postcode }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Place</th>
+                                        <td>{{ obj.place }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>{{ obj.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mobile</th>
+                                        <td>{{ obj.mobile}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{ obj.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'mainapp:edit_customer' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
+                                            <a href="{% url 'mainapp:delete_customer' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-
-    <script>
-        function create_customer() {
-            var form_data = $('#id_create_customer');
-            $.ajax({
-                type: 'post',
-                url: "{% url 'mainapp:add_customer' %}",
-                data: form_data.serialize(),
-                success: function (data) {
-                    if(data["success"]){
-                        window.location = "{% url 'mainapp:home' %}";
-                    }
-                    else {
-                        $('#general_error').html(data["message"]);
-                        $("#validator").fadeIn();
-                        setTimeout(function () {
-                            $('#general_error').html();
-                            $("#validator").fadeOut();
-                        }, 2000);
-                    }
-                }
-            });
-        }
-
-    </script>
 
 {% endblock %}

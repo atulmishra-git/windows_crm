@@ -1,58 +1,50 @@
-from django.views.generic import TemplateView
-from mainapp.forms.login import LoginForm
-from mainapp.forms.add_customer import AddCustomerForm
-from django.shortcuts import render, redirect, reverse
-from django.http import JsonResponse
+from django.shortcuts import reverse
+from django.views.generic import CreateView, UpdateView, DeleteView
+
+from mainapp.forms.add_customer import CustomerForm
 from mainapp.models import Customer
+from mainapp.view.mixins import RedirectToHome
 
 
-class AddCustomerView(TemplateView):
+class AddCustomerView(CreateView):
     template_name = 'add_customer.html'
+    form_class = CustomerForm
+    model = Customer
+
+    def get_context_data(self, **kwargs):
+        context = super(AddCustomerView, self).get_context_data(**kwargs)
+        context['operation'] = "Add New"
+        context['object_type'] = "Customer"
+        context['fields'] = list(self.form_class.base_fields.keys())
+        context['objects'] = Customer.objects.values('id', *context['fields'])
+        return context
+
+    def get_success_url(self):
+        return reverse('mainapp:add_customer', kwargs=dict())
+
+
+class UpdateCustomerView(UpdateView):
+    template_name = 'add_customer.html'
+    form_class = CustomerForm
+    model = Customer
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateCustomerView, self).get_context_data(**kwargs)
+        context['operation'] = "Update"
+        context['object_type'] = "Customer"
+        context['fields'] = list(self.form_class.base_fields.keys())
+        context['objects'] = Customer.objects.values('id', *context['fields'])
+        return context
+
+    def get_success_url(self):
+        return reverse('mainapp:add_customer', kwargs=dict())
+
+
+class DeleteCustomerView(DeleteView):
+    model = Customer
 
     def get(self, request, *args, **kwargs):
-        add_customer_form = AddCustomerForm()
+        return self.delete(request, *args, **kwargs)
 
-        context = {
-            'add_customer_form': add_customer_form
-        }
-
-        return render(request, self.template_name, context=context)
-
-    def post(self, request):
-        try:
-            add_customer_form = AddCustomerForm(request.POST)
-
-            if add_customer_form.is_valid():
-                first_name = add_customer_form.cleaned_data.get('first_name')
-                surname = add_customer_form.cleaned_data.get('surname')
-                phone = add_customer_form.cleaned_data.get('phone')
-                mobile = add_customer_form.cleaned_data.get('mobile')
-                place = add_customer_form.cleaned_data.get('place')
-                street = add_customer_form.cleaned_data.get('street')
-                postcode = add_customer_form.cleaned_data.get('postcode')
-                gender = add_customer_form.cleaned_data.get('gender')
-                purpose = add_customer_form.cleaned_data.get('purpose')
-
-                customer = Customer.create(first_name=first_name, surname=surname, phone=phone, place=place,
-                                           street=street, postcode=postcode, mobile=mobile)
-
-                if customer:
-                    return JsonResponse({
-                        'success': True,
-                    })
-
-                return JsonResponse({
-                    'success': False,
-                    'message': 'Error in Adding Customer'
-                })
-            else:
-                return JsonResponse({
-                    'success': False,
-                    'message': 'Please Fill all the Fields'
-                })
-
-        except Exception as e:
-            return JsonResponse({
-                'success': False,
-                'message': 'Something Went Wrong. Please Try Again!'
-            })
+    def get_success_url(self):
+        return reverse('mainapp:add_customer', kwargs=dict())
