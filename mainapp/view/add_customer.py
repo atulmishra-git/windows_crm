@@ -16,7 +16,7 @@ class AddCustomerView(CreateView):
         context['operation'] = "Add New"
         context['object_type'] = "Customer"
         context['fields'] = list(self.form_class.base_fields.keys())
-        context['objects'] = Customer.objects.values('id', *context['fields'])
+        context['objects'] = Customer.objects.order_by('-id').values('id', *context['fields'])
         return context
 
     def get_success_url(self):
