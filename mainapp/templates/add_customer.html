@@ -25,24 +25,16 @@
                             <div class="task-listing-description">
                                 <table class="table">
                                     <tr>
-                                        <th>First Name</th>
-                                        <td>{{ obj.first_name }}</td>
+                                        <th>Customer ID</th>
+                                        <td>{{ obj.id }}</td>
                                     </tr>
                                     <tr>
-                                        <th>SurName</th>
-                                        <td>{{ obj.surname }}</td>
+                                        <th>Name</th>
+                                        <td>{{ obj.first_name }} {{ obj.surname }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Street</th>
-                                        <td>{{ obj.street }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Postcode</th>
-                                        <td>{{ obj.postcode }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Place</th>
-                                        <td>{{ obj.place }}</td>
+                                        <th>Adress</th>
+                                        <td>{{ obj.street }} {{ object.place }} {{ obj.postcode }}</td>
                                     </tr>
                                     <tr>
                                         <th>Phone</th>
