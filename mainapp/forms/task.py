@@ -13,6 +13,10 @@ class AddTaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request", None)
         super().__init__(*args, **kwargs)
+        if not self.request.user.is_superuser:
+            self.fields['user'].queryset = self.fields['user'].queryset.filter(
+                pk=self.request.user.pk
+            )
 
     def save(self, commit=True):
         instance = super(AddTaskForm, self).save(commit=commit)

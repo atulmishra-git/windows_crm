@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import JsonResponse
 from django.views.generic import CreateView, UpdateView, DeleteView
+
+from mainapp.forms.mixins import FormRequestMixin
 from mainapp.forms.task import AddTaskForm
 from django.shortcuts import reverse, redirect
 from mainapp.models import Tasks
@@ -13,7 +15,7 @@ class IsCreatorMixin(object):
         return super().dispatch(request, *args, **kwargs)
 
 
-class TasksView(LoginRequiredMixin, CreateView):
+class TasksView(LoginRequiredMixin, FormRequestMixin, CreateView):
     template_name = 'task_list.html'
     form_class = AddTaskForm
     model = Tasks
@@ -28,16 +30,11 @@ class TasksView(LoginRequiredMixin, CreateView):
         context['operation'] = 'Create'
         return context
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['request'] = self.request
-        return kwargs
-
     def get_success_url(self):
         return reverse('mainapp:open_task_list', kwargs=dict())
 
 
-class TaskUpdateView(IsCreatorMixin, UpdateView):
+class TaskUpdateView(IsCreatorMixin, FormRequestMixin, UpdateView):
     template_name = 'task_list.html'
     form_class = AddTaskForm
     model = Tasks
