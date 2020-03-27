@@ -39,9 +39,16 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
             ),
             HTML('<h3>Choose if there is battery system or not</h3>'),
             'with_battery',
+            HTML('<h3>With Battery</h3>'),
             Row(
                 Column('manufacturer', css_class='form-group col-md-6 mb-0'),
                 Column('kwh', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            HTML('<h3>WR - Without Battery</h3>'),
+            Row(
+                Column('manufacturer2', css_class='form-group col-md-6 mb-0'),
+                Column('kwh2', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
             HTML('<h3>Price</h3>'),

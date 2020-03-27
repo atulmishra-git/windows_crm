@@ -137,13 +137,15 @@ class CallNotes(models.Model):
 
 class PurchaseRecord(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='purchase_records')
-    manufacturer = models.CharField(max_length=255, null=True)
     watt = models.PositiveIntegerField(null=True)
     module_count = models.PositiveIntegerField(null=True)
     kwp = models.CharField(max_length=255)
 
     with_battery = models.BooleanField(blank=True, default=False, null=True)
+    manufacturer = models.CharField(max_length=255, null=True, blank=True)
     kwh = models.CharField(max_length=255, blank=True, null=True)
+    manufacturer2 = models.CharField('Manufacturer', max_length=255, blank=True, null=True)
+    kwh2 = models.CharField('Kw/H', max_length=255, blank=True, null=True)
 
     price_without_tax = models.FloatField(help_text="Price in Euro (€)", null=True,
                                           validators=[MinValueValidator(0, "Should be above 0")],
