@@ -21,6 +21,10 @@ urlpatterns = [
     path('delete/customer/<int:pk>/', add_customer.DeleteCustomerView.as_view(), name='delete_customer'),
 
     path('add_purchase/', add_purchase.AddPurchaseView.as_view(), name='add_purchase'),
+    path('purchases/', add_purchase.ListPurchaseView.as_view(), name='list_purchase'),
+    path('purchases/<int:pk>/', add_purchase.UpdatePurchaseView.as_view(), name='edit_purchase'),
+    path('delete/purchases/<int:pk>/', add_purchase.DeletePurchaseView.as_view(), name='delete_purchase'),
+    
     path('call_notes/<customer_id>', call_notes.CallNotesView.as_view(), name='add_call_notes'),
     path('attachments/<customer_id>', attachments.AttachmentsView.as_view(), name='add_attachments'),
     path('chat/', chat.ChatView.as_view(), name='chat'),
