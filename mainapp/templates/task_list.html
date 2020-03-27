@@ -4,74 +4,72 @@
 
     <div class="dashboard-content-container" data-simplebar>
         <div class="dashboard-content-inner">
-            {% if user.is_superuser == True %}
-                <h1>Assign New Task</h1>
+            <h1>{{ operation }} Task</h1>
             <br/>
-            <form id="id_create_task" class="contact100-form validate-form">
+            <form method="POST" id="id_create_task" class="contact100-form validate-form">
                 {% csrf_token %}
+                {{ form }}
                 <div>
-                    <label>User</label>
-                    {{ add_task_form.user }}
+                    <button type="submit" class="button">Submit</button>
                 </div>
-
-                <div>
-                    <label>Task</label>
-                    {{ add_task_form.message }}
-                </div>
-                <p id="validator" style="display: none !important;"
-                   class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert">
-                    <i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span
-                        id="general_error"></span></p>
-                <button type="button" onclick="create_task()" class="button">Assign Task</button>
             </form>
             <br/>
-            {% endif %}
             <h1>Tasks</h1>
             <div class="tasks-list-container compact-list margin-top-35">
-                {% if not tasks %}
+                {% if not object_list %}
                     <div class="task-listing">No Tasks Found</div>
                 {% endif %}
-                {% for task in tasks %}
-                    <div class="task-listing">
-					<!-- Job Listing Details -->
-                        <div class="task-listing-details">
-                            <!-- Details -->
-                            <div class="task-listing-description">
-                                {% if user.is_superuser == True %}
-                                    <h3 class="task-listing-title">Manager - {{ task.user.first_name }} {{ task.user.surname }}</h3>
+                {% for obj in object_list %}
+                <div class="task-listing">
+                <!-- Job Listing Details -->
+                    <div class="task-listing-details">
+                        <!-- Details -->
+                        <div class="task-listing-description">
+                            <table class="table">
+                                <tr>
+                                    <th>Todo Date</th>
+                                    <td>{{ obj.todo_date }}</td>
+                                </tr>
+                                {% if request.user.is_superuser %}
+                                    <tr>
+                                        <th>Manager</th>
+                                        <td>{{ obj.user }} ({{ obj.user.email }})</td>
+                                    </tr>
                                 {% endif %}
-                                <h4 class="task-listing-title">{{ task.message }}</h4>
-                                <br/>
-                            </div>
+                                <tr>
+                                    <th>Completed</th>
+                                    <td>{{ obj.completed }}{{ "    " }}
+                                        {% if not obj.completed %}
+                                        <a href="{% url 'mainapp:mark_completed' pk=obj.id %}">Mark Complete</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Creator</th>
+                                    <td>{{ obj.creator }} {{ obj.creator.email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {{ obj.message }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'mainapp:edit_task' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
+                                        <a href="{% url 'mainapp:delete_task' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
     <script>
-        function create_task() {
-            var form_data = $('#id_create_task');
-            $.ajax({
-                type: 'post',
-                url: "{% url 'mainapp:open_task_list' %}",
-                data: form_data.serialize(),
-                success: function (data) {
-                    if (data["success"]) {
-                        window.location.reload();
-                    } else {
-                        $('#general_error').html(data["message"]);
-                        $("#validator").fadeIn();
-                        setTimeout(function () {
-                            $('#general_error').html();
-                            $("#validator").fadeOut();
-                        }, 2000);
-                    }
-                }
-            });
-        }
-
     </script>
 
 {% endblock %}

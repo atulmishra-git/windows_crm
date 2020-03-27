@@ -25,6 +25,11 @@ urlpatterns = [
     path('purchases/<int:pk>/', add_purchase.UpdatePurchaseView.as_view(), name='edit_purchase'),
     path('delete/purchases/<int:pk>/', add_purchase.DeletePurchaseView.as_view(), name='delete_purchase'),
     
+    path('task_list/', task.TasksView.as_view(), name='open_task_list'),
+    path('task/<int:pk>/', task.TaskUpdateView.as_view(), name='edit_task'),
+    path('delete/task/<int:pk>/', task.DeleteTaskView.as_view(), name='delete_task'),
+    path('mark_complete/<int:pk>/', task.mark_completed, name='mark_completed'),
+
     path('call_notes/<customer_id>', call_notes.CallNotesView.as_view(), name='add_call_notes'),
     path('attachments/<customer_id>', attachments.AttachmentsView.as_view(), name='add_attachments'),
     path('chat/', chat.ChatView.as_view(), name='chat'),
@@ -32,7 +37,6 @@ urlpatterns = [
     path('user_search/', chat.user_search, name='user_search'),
     path('chat_messages/', chat.chat_messages, name='chat_messages'),
     path('send_messages/', chat.send_messages, name='send_messages'),
-    path('task_list/', task.TasksView.as_view(), name='open_task_list'),
     path('invoices/<customer_id>', invoices.InvoicesView.as_view(), name='invoices'),
     path('generate_invoices/<purchase_id>', invoices.download_invoice, name='generate_invoices'),
     path('offer/<customer_id>', offer.OfferView.as_view(), name='offer'),
