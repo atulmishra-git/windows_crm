@@ -284,7 +284,17 @@ class Attachments(models.Model):
 
 class Tasks(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
-    message = models.CharField(max_length=1000)
+    message = models.TextField(blank=False)
+    todo_date = models.DateField(blank=True, null=True)
+    completed = models.BooleanField(default=False)
+
+    creator = models.ForeignKey('User', on_delete=models.SET_NULL,
+                                null=True, related_name='created_tasks')
+    created = models.DateField(null=True)
+
+    def save(self, *args, **kwargs):
+        self.created = timezone.now().date()
+        super().save(*args, **kwargs)
 
     @classmethod
     def create(cls, user_id, message):
