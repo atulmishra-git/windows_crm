@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
@@ -53,6 +54,10 @@ PURPOSE_CHOICES = (
     ('Comapny', 'Company'),
     ('individual', 'individual'),
     ('Family', 'Family')
+)
+OFFER_CHOICES = (
+    ('Email', 'Via Email'),
+    ('Letter', 'Via Letter'),
 )
 
 
@@ -128,18 +133,42 @@ class CallNotes(models.Model):
 
 class PurchaseRecord(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='purchase_records')
-    reseller_name = models.CharField(max_length=255)
+    manufacturer = models.CharField(max_length=255, null=True)
+    watt = models.PositiveIntegerField(null=True)
     module_count = models.CharField(max_length=255)
+    kwp = models.CharField(max_length=255)
+
+    with_battery = models.BooleanField(blank=True, default=False, null=True)
+
+    price_without_tax = models.FloatField(help_text="Price in Euro (€)", null=True,
+                                          validators=[MinValueValidator(0, "Should be above 0")])
+
+    offer_by = models.CharField(choices=OFFER_CHOICES, max_length=16, null=True)
+    # OFFER INFORMATION
+    offer_date = models.DateField(null=True)
+    reseller_name = models.CharField(max_length=255, null=True)
+    declined = models.BooleanField(default=False, null=True)
+    # TECHNICAL DETAILS
+    date_sent = models.DateField('AG geschickt/AG Sent', null=True)
+    project_planning_created = models.BooleanField('Projektierung Erstellt',
+                                                   blank=True, default=True)
+    dc_term = models.DateField('DC Termin', blank=True, null=True)
+    dc_mechanic = models.CharField(max_length=255, blank=True, null=True)
+    ac_term = models.DateField('AC Termin', blank=True, null=True)
+    ac_mechanic = models.CharField(max_length=255, blank=True, null=True)
+    # INFORMATION FOR THE ROOF
+    roof_type = models.CharField(max_length=255, null=True)
+    roof_tilt = models.FloatField(help_text="in Degrees", null=True)
+    alignment = models.CharField(max_length=64, null=True)
+    module_area = models.FloatField(help_text="Area in meter squared (m2)", null=True,
+                                    validators=[MinValueValidator(0, "Should be above 0")])
+
     module_type = models.CharField(max_length=255)
     memory_type = models.CharField(max_length=255)
-    kwp = models.CharField(max_length=255)
-    price_without_tax = models.CharField(max_length=255)
-    price_with_tax = models.CharField(max_length=255)
-    offer_created = models.BooleanField(blank=True, default=True)
-    cancellation = models.BooleanField(blank=True, default=True)
-    project_planning_created = models.BooleanField(blank=True, default=True)
+
     installation_date = models.DateTimeField()
-    ac_date = models.DateTimeField()
+    cancellation = models.BooleanField(blank=True, default=True)
+
     photo_roof_access = models.BooleanField(blank=True, default=True)
     photo_counter_cabinet = models.BooleanField(blank=True, default=True)
     video_counter = models.BooleanField(blank=True, default=True)
@@ -147,10 +176,17 @@ class PurchaseRecord(models.Model):
     power_of_attorney = models.BooleanField(blank=True, default=True)
     data_collection = models.BooleanField(blank=True, default=True)
     order_date = models.DateTimeField()
-    with_battery = models.BooleanField(blank=True, default=False)
-    send_by_email = models.BooleanField(default=False)
+
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
+
+    @property
+    def price_with_tax(self):
+        return "%.2f €" % self.price_without_tax * 1.19
+
+    @property
+    def total_area(self):
+        return "%.2f m^2" % self.price_without_tax * 1.19
 
     @classmethod
     def create(cls, customer_id, reseller_name, module_count, module_type, kwp, price_without_tax, price_with_tax,
