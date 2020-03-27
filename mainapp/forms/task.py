@@ -1,13 +1,17 @@
 from django import forms
+from django.contrib.admin import widgets
+from django.forms.widgets import SelectDateWidget
+
 from mainapp.models import Tasks
 
 
 class AddTaskForm(forms.ModelForm):
     class Meta:
         model = Tasks
-        fields = ['user', 'message', 'todo_date', 'completed']
+        fields = ['user', 'message', 'todo_date', 'todo_time', 'completed']
         widgets = {
             'todo_date': forms.DateTimeInput(attrs={'type': 'date'}),
+            'todo_time': forms.TimeInput(attrs={'type': 'time'}),
         }
 
     def __init__(self, *args, **kwargs):

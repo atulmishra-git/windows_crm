@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
@@ -285,12 +287,17 @@ class Attachments(models.Model):
 class Tasks(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
     message = models.TextField(blank=False)
-    todo_date = models.DateField(blank=True, null=True)
+    todo_date = models.DateField('Complete Before', blank=True, null=True)
+    todo_time = models.TimeField('', blank=True, default=datetime.time(16, 0))
     completed = models.BooleanField(default=False)
 
     creator = models.ForeignKey('User', on_delete=models.SET_NULL,
                                 null=True, related_name='created_tasks')
     created = models.DateField(null=True)
+
+    @property
+    def complete_before(self):
+        return datetime.datetime.combine(self.todo_date, self.todo_time)
 
     def save(self, *args, **kwargs):
         self.created = timezone.now().date()

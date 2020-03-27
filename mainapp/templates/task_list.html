@@ -28,8 +28,8 @@
                                 {% if not obj.completed %}
                                 <table class="table">
                                     <tr>
-                                        <th>Todo Date</th>
-                                        <td>{{ obj.todo_date }}</td>
+                                        <th>Complete Before</th>
+                                        <td>{{ obj.complete_before }}</td>
                                     </tr>
                                     {% if request.user.is_superuser %}
                                         <tr>
