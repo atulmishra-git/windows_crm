@@ -195,7 +195,7 @@ class PurchaseRecord(models.Model):
 
     @property
     def kwp(self):
-        return "%.2f" % (getattr(self, 'module_count', 0) * getattr(self, 'watt', 0) / 1000.0)
+        return "%.4f" % (getattr(self, 'module_count', 0) * getattr(self, 'watt', 0) / 1000.0)
 
     @property
     def total_area(self):
