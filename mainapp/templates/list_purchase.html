@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+            <div class="row col-md-12">
+                <p>
+                    <a class="button" href="{% url 'mainapp:add_purchase' %}">Add {{ object_type|title }}</a>
+                    <br/>
+                    <br/>
+                </p>
+            </div>
+            <h1>{{ object_type }}</h1>
+            <div class="tasks-list-container compact-list margin-top-35">
+                {% if not object_list %}
+                    <div class="task-listing">No {{ object_type }}(s) Found</div>
+                {% endif %}
+                    <div class="task-listing">
+                    <!-- Job Listing Details -->
+                        <div class="task-listing-details">
+                            <!-- Details -->
+                            <div class="task-listing-description">
+                                <table class="table">
+                                    <tr>
+                                        <th>{{ object_type|title }} ID</th>
+                                        <th>Manufacturer</th>
+                                        <th>Watt</th>
+                                        <th>Battery</th>
+                                        <th>Count</th>
+                                        <th>Price</th>
+                                        <th>Roof Type</th>
+                                    </tr>
+                                    {% for obj in object_list %}
+                                    <tr>
+                                        <td>{{ obj.id }}</td>
+                                        <td>{{ obj.manufacturer }}</td>
+                                        <td>{{ obj.watt }}</td>
+                                        <td>{{ obj.with_battery }}</td>
+                                        <td>{{ obj.module_count }}</td>
+                                        <td>{{ obj.price_with_tax }}</td>
+                                        <td>{{ obj.roof_type }}</td>
+                                        <td>
+                                            <a href="{% url 'mainapp:edit_purchase' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
+                                            <a href="{% url 'mainapp:delete_purchase' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

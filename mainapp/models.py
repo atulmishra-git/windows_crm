@@ -139,7 +139,7 @@ class PurchaseRecord(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='purchase_records')
     manufacturer = models.CharField(max_length=255, null=True)
     watt = models.PositiveIntegerField(null=True)
-    module_count = models.CharField(max_length=255)
+    module_count = models.PositiveIntegerField(null=True)
     kwp = models.CharField(max_length=255)
 
     with_battery = models.BooleanField(blank=True, default=False, null=True)
@@ -150,11 +150,11 @@ class PurchaseRecord(models.Model):
 
     offer_by = models.CharField(choices=OFFER_CHOICES, max_length=16, null=True)
     # OFFER INFORMATION
-    offer_date = models.DateField(null=True)
-    reseller_name = models.CharField(max_length=255, null=True)
-    declined = models.BooleanField(default=False, null=True)
+    offer_date = models.DateField(blank=True, null=True)
+    reseller_name = models.CharField(max_length=255, null=True, blank=True)
+    declined = models.BooleanField(default=False, null=True, blank=True)
     # TECHNICAL DETAILS
-    date_sent = models.DateField('AG geschickt/AG Sent', null=True)
+    date_sent = models.DateField('AG geschickt/AG Sent', null=True, blank=True)
     project_planning_created = models.BooleanField('Projektierung Erstellt',
                                                    blank=True, default=True)
     dc_term = models.DateField('DC Termin', blank=True, null=True)
@@ -162,10 +162,10 @@ class PurchaseRecord(models.Model):
     ac_term = models.DateField('AC Termin', blank=True, null=True)
     ac_mechanic = models.CharField(max_length=255, blank=True, null=True)
     # INFORMATION FOR THE ROOF
-    roof_type = models.CharField(max_length=255, null=True)
-    roof_tilt = models.FloatField(help_text="in Degrees", null=True)
-    alignment = models.CharField(max_length=64, null=True)
-    module_area = models.FloatField(help_text="Area in meter squared (m2)", null=True,
+    roof_type = models.CharField(max_length=255, null=True, blank=True)
+    roof_tilt = models.FloatField(help_text="in Degrees", null=True, blank=True)
+    alignment = models.CharField(max_length=64, null=True, blank=True)
+    module_area = models.FloatField(help_text="Area in meter squared (m2)", null=True, blank=True,
                                     validators=[MinValueValidator(0, "Should be above 0")])
 
     extra_details = models.TextField(blank=True, null=True)
@@ -188,7 +188,7 @@ class PurchaseRecord(models.Model):
 
     @property
     def price_with_tax(self):
-        return "%.2f €" % self.price_without_tax * 1.19
+        return "%.2f" % (self.price_without_tax * 1.19)
 
     @property
     def total_area(self):

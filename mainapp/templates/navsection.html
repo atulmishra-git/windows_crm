@@ -10,7 +10,7 @@
         <a href=""><i class="fas fa-comment">&nbsp Chat</i></a>
         <a href=# onclick="task_list_btn()"><i class="fas fa-calendar-check">&nbsp To do</i></a>
         <a href=""><i class="fas fa-calendar-alt">&nbsp Calendar</i></a>
-        <a href="{% url 'mainapp:add_purchase' %}" style="margin-top: 100px;">Purchase</a>
+        <a href="{% url 'mainapp:list_purchase' %}" style="margin-top: 100px;">Purchase</a>
         <a href={% url 'mainapp:add_customer' %}>Customer</a>
         {% if user.is_staff %}
         <a href="{% url 'mainapp:add_manager' %}">Manager</a>
