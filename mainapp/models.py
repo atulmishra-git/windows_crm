@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from .usermanager import UserManager
 
@@ -134,19 +135,19 @@ class PurchaseRecord(models.Model):
     kwp = models.CharField(max_length=255)
     price_without_tax = models.CharField(max_length=255)
     price_with_tax = models.CharField(max_length=255)
-    offer_created = models.BooleanField(default=True)
-    cancellation = models.BooleanField(default=True)
-    project_planning_created = models.BooleanField(default=True)
-    installation_date = models.DateTimeField(auto_now_add=True)
-    ac_date = models.DateTimeField(auto_now_add=True)
-    photo_roof_access = models.BooleanField(default=True)
-    photo_counter_cabinet = models.BooleanField(default=True)
-    video_counter = models.BooleanField(default=True)
-    photo_of_counter = models.BooleanField(default=True)
-    power_of_attorney = models.BooleanField(default=True)
-    data_collection = models.BooleanField(default=True)
-    order_date = models.DateTimeField(auto_now_add=True)
-    with_battery = models.BooleanField(default=False)
+    offer_created = models.BooleanField(blank=True, default=True)
+    cancellation = models.BooleanField(blank=True, default=True)
+    project_planning_created = models.BooleanField(blank=True, default=True)
+    installation_date = models.DateTimeField()
+    ac_date = models.DateTimeField()
+    photo_roof_access = models.BooleanField(blank=True, default=True)
+    photo_counter_cabinet = models.BooleanField(blank=True, default=True)
+    video_counter = models.BooleanField(blank=True, default=True)
+    photo_of_counter = models.BooleanField(blank=True, default=True)
+    power_of_attorney = models.BooleanField(blank=True, default=True)
+    data_collection = models.BooleanField(blank=True, default=True)
+    order_date = models.DateTimeField()
+    with_battery = models.BooleanField(blank=True, default=False)
     send_by_email = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
@@ -157,6 +158,10 @@ class PurchaseRecord(models.Model):
                photo_counter_cabinet, video_counter, photo_of_counter, power_of_attorney, data_collection,
                order_date, memory_type, with_battery):
         try:
+            if not installation_date:
+                installation_date = timezone.now()
+                ac_date = timezone.now()
+                order_date = timezone.now()
             purchase_record = cls.objects.create(customer_id=customer_id, reseller_name=reseller_name,
                                                  module_count=module_count, module_type=module_type, kwp=kwp,
                                                  price_without_tax=price_without_tax, price_with_tax=price_with_tax,
