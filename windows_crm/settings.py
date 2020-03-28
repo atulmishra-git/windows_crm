@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'mainapp'
+    'channels',
+    'mainapp',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +80,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'windows_crm.wsgi.application'
-
+ASGI_APPLICATION = "windows_crm.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

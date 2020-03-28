@@ -34,8 +34,10 @@ urlpatterns = [
     path('call_notes/<customer_id>/<int:pk>/', call_notes.CallNotesUpdateView.as_view(), name='edit_call_notes'),
     path('delete/call_notes/<customer_id>/<int:pk>/', call_notes.CallNotesDeleteView.as_view(), name='delete_call_notes'),
 
+    path('chat/', include(('chat.urls', 'chat'), 'chat')),
+
     path('attachments/<customer_id>', attachments.AttachmentsView.as_view(), name='add_attachments'),
-    path('chat/', chat.ChatView.as_view(), name='chat'),
+    path('chat2/', chat.ChatView.as_view(), name='chat2'),
     path('fetch_twilio_access_token/<identity>', chat.GetAccessToken.as_view(), name='fetch_twilio_access_token'),
     path('user_search/', chat.user_search, name='user_search'),
     path('chat_messages/', chat.chat_messages, name='chat_messages'),
