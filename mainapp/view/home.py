@@ -1,10 +1,10 @@
+from django.db.models import Q
 from django.views.generic import TemplateView
 from mainapp.forms.add_manager import ManagerForm as AddManagerForm
 from mainapp.forms.search_user import SearchForm
 from django.shortcuts import render, redirect, reverse
 from mainapp.models import Customer
 from random import randrange
-from django.http import JsonResponse
 
 
 class HomeView(TemplateView):
@@ -23,11 +23,15 @@ class HomeView(TemplateView):
         return render(request, self.template_name, context=context)
 
     def post(self, request):
-        customer_name = request.POST.get('name')
+        query = request.POST.get('name')
 
         customer_list = {}
-        if customer_name:
-            customer_list = Customer.fetch(name=customer_name)
+        if query:
+            customer_list = Customer.objects.filter(
+                Q(id=query) | Q(first_name__icontains=query) |
+                Q(surname__icontains=query) | Q(email__icontains=query) |
+                Q(phone__icontains=query) | Q(mobile__icontains=query)
+            )
 
         context = {
             'customers': customer_list
