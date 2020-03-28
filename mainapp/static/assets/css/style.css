@@ -72,3 +72,6 @@ p {
     margin: 3px 0px;
     display: block;
 }
+.errorlist {
+	color: red
+}
