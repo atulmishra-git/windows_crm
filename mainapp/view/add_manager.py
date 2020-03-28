@@ -19,6 +19,8 @@ class CreateManagerView(IsSuperAdmin, CreateView):
         return context
 
     def get_success_url(self):
+        self.object.set_password(self.object.password)
+        self.object.save()
         return reverse('mainapp:add_manager', kwargs=dict())
 
 
