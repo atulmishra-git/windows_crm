@@ -12,14 +12,16 @@
 </style>
 
 <div class="search-bar">
-{#    <select class="form-control selectpicker" id="select-country" data-live-search="true">#}
+{#    <select class="form-control selectpicker" id="select-customer" data-live-search="true">#}
 {#        {% for customer in customers %}#}
 {#            <option data-tokens="{{ customer.id }} {{ customer.first_name }} {{ customer.email }}">{{ customer.name }}</option>#}
 {#        {% endfor %}#}
 {#    </select>#}
     <form method="POST" action="{% url 'mainapp:home' %}">
         {% csrf_token %}
-        {{ search_form.name }}
+        <input type="text" name="name"
+               style="width: 50%"
+               class="form-control" placeholder="Search" maxlength="255" required="" id="id_name">
         <button class="button" type="submit" id="id_search_btn" hidden></button>
     </form>
 </div>

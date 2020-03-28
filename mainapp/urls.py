@@ -10,7 +10,7 @@ urlpatterns = [
 
     # Home
     path('home/', home.HomeView.as_view(), name='home'),
-    path('home/customer/<customer_id>', home.CustomerHomeView.as_view(), name='customer_home'),
+    path('home/customer/<customer_id>/', home.CustomerHomeView.as_view(), name='customer_home'),
 
     path('manager/', add_manager.CreateManagerView.as_view(), name='add_manager'),
     path('manager/<int:pk>/', add_manager.UpdateManagerView.as_view(), name='edit_manager'),

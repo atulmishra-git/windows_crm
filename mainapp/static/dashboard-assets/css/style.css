@@ -91,13 +91,13 @@ p{
 /*li.nav-item img {
     max-width: 6%;
 }*/
-.profile-area h6 {
+.profile-area {
 	font-size: 14px;
 	font-weight: bold;
 }
 .profile-area p {
 	font-size: 13px;
-	color: green;
+	color: #299840;
     }/*
     .bell {
 	margin-left:750px;
@@ -121,9 +121,22 @@ nav.navbar.navbar-expand-md.navbar-light {
 .horizontal-item {
 	flex: 1;
 }
-/*a.nav-brand img {
-    max-width: 60%;
-}*/
+
+div.circle-container {
+	display: flex;
+    align-items: center;
+    justify-content:center;
+	border-radius: 50%;
+	width: 3.5em;
+	height: 3.5em;
+	background: grey;
+}
+div.circle-container .circle-container-item {
+	font-size: x-large;
+	font-weight: bold;
+	color: white;
+}
+
 .nav-link {
     margin: 0px 6px 0px;
 }
@@ -138,11 +151,23 @@ nav.navbar.navbar-expand-md.navbar-light {
 	margin: 0;
 	padding: 0;
 }
+.blue-bg {
+	background: #0055aa;
+	color: white;
+	border-radius: 10%
+}
 .round-img {
-    background: #3939ff;
+    background: #0055aa;
     padding: 5% 0px;
     border-radius: 5px;
     color: white;
+}
+.home-card {
+	height: 300px;
+}
+.home-card a:hover{
+	color: white!important;
+	text-underline: none;
 }
 .list-area ol{
     list-style-type: circle;

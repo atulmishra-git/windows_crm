@@ -97,7 +97,7 @@ class Customer(models.Model):
         try:
             customer = cls.objects.all()
             if customer_id:
-                customer = customer.filter(id=customer_id).first()
+                customer = customer.filter(id=customer_id).last()
 
             if name:
                 customer = customer.filter(first_name__contains=name)
