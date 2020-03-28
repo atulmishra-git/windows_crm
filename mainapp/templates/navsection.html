@@ -1,12 +1,12 @@
 {% load static %}
 <section>
     <div class="sidenav">
-        <div class="logo-area mb-5">
-            <a href="/">
-                <div class="">
+        <div class="logo-area mb-5" style="height: 9.5%; min-height: 50px; position: relative">
+            <div class="vertical-center">
+                <a href="/">
                     <img src="{% static '/dashboard-assets/img/logo.png' %}" class="img-fluid" alt="Company Logo">
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
         <a href="/"><i class="fas fa-home"></i>&nbsp Dashbord</a>
 {#        <a href=""><i class="fas fa-user">&nbsp {{ customer.first_name }} {{ customer.surname }}</i></a>#}
@@ -20,7 +20,13 @@
         {% if user.is_staff %}
             <a href="{% url 'mainapp:add_manager' %}"><i class="fas fa-plus"></i>&nbsp <span><strong>Manager</strong></span></a>
         {% endif %}
-        <a href="{% url 'mainapp:logout' %}" style="color:red; font-weight:bold; position: absolute; bottom: 10px; left: 10px">Logout</a>
+        <a href="{% url 'mainapp:logout' %}" style="color:red; font-weight:bold; margin-top: 25px; margin-bottom: 10px">Logout</a>
+        <div class="login-bottom-area">
+            <div><i class="fas fa-headset"></i> Support</div>
+            <div>info@desativ-tech.de</div>
+            <div>+49 89 2000 12 70</div>
+            <div><a href="https://www.desativ-tech.de">www.desativ-tech.de</a></div>
+        </div>
     </div>
 </section>
 <section class="top-area">

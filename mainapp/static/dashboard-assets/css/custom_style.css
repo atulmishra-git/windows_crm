@@ -27,7 +27,7 @@ img.avatar-img {
   transform: translate(-50%, -50%);
 }
 
-.sidenav a i {
+.sidenav i {
     color: #fff;
     background: #005afa;
     height: 35px;
@@ -37,6 +37,10 @@ img.avatar-img {
     line-height: 35px;
 }
 
-.sidenav a span {
-    /*color: #005afa;*/
+.sidenav div {
+    padding: 0px 8px 0px 8px;
+}
+
+.sidenav div a {
+    padding: 0px 8px 0px 8px;
 }
