@@ -26,3 +26,17 @@ img.avatar-img {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+.sidenav a i {
+    color: #fff;
+    background: #005afa;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    border-radius: 50px;
+    line-height: 35px;
+}
+
+.sidenav a span {
+    /*color: #005afa;*/
+}
