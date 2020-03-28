@@ -79,13 +79,15 @@ p{
 
 /*Start nav area*/
 .nav-item input {
+	flex: 1;
     background: #d5d5d5;
-    color: white !important;
     height: 30px;
     width: 150px;
     text-align: center;
     margin: 7px 575px 0px 15px;
 }
+
+.search-bar
 /*li.nav-item img {
     max-width: 6%;
 }*/
@@ -102,6 +104,22 @@ p{
 }*/
 nav.navbar.navbar-expand-md.navbar-light {
     border-bottom: 1px solid #ddd;
+	flex: 1;
+}
+
+.navbar-nav {
+	flex: 1;
+	height: 50px;
+	width: inherit;
+	justify-content: space-around;
+}
+
+.horizontal {
+	display:flex;
+	flex-direction: row;
+}
+.horizontal-item {
+	flex: 1;
 }
 /*a.nav-brand img {
     max-width: 60%;

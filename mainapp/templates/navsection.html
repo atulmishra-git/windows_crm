@@ -24,31 +24,12 @@
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link">
-                    <i class="fas fa-calendar-check"></i>
+                <a class="nav-link" href="/">
+                    <span>EWB</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-comment"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active-link" href="">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-calendar"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <form id="id_search_form" method="post" action="{% url 'mainapp:home' %}">
-                    {% csrf_token %}
-                    {{ search_form.name }}
-                    <button class="button" type="submit" id="id_search_btn" hidden></button>
-                </form>
+                {% include 'home/search_form.html' %}
             </li>
             <li class="nav-item ">
                 <a class="nav-link " href="">
@@ -61,19 +42,22 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <div class="profile-area">
-                        <h6>Mert Bu</h6>
-                        <p>Anwesend</p>
+                <div class="horizontal">
+                    <div class="horizontal-item">
+                        <a class="nav-link" href="">
+                            <div class="profile-area">
+                                <h6>{{ request.user.first_name }} {{ request.user.surname }}</h6>
+                                <p>Anwesend</p>
+                            </div>
+                        </a>
                     </div>
-
-                </a>
-            </li>
-            <li class="">
-                <a class="nav-brand" href="">
-                    <img src="{% static '/dashboard-assets/img/sazib.webp' %}" class="img-fluid rounded-circle"
-                         style="    width: 50px;" alt="">
-                </a>
+                    <div class="horizontal-item">
+                        <a class="nav-brand" href="">
+                            <img src="{% static '/dashboard-assets/img/sazib.webp' %}" class="img-fluid rounded-circle"
+                                 style="    width: 50px;" alt="">
+                        </a>
+                        </div>
+                </div>
             </li>
         </ul>
 
