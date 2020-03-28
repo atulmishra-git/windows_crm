@@ -50,8 +50,9 @@
                                         <td>{{ obj.creator }} {{ obj.creator.email }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Todo</th>
                                         <td>
-                                            {{ obj.message }}
+                                            <strong>{{ obj.message }}</strong>
                                         </td>
                                     </tr>
                                     <tr>
@@ -59,6 +60,7 @@
                                             <a href="{% url 'mainapp:edit_task' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
                                             <a href="{% url 'mainapp:delete_task' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
                                         </td>
+                                        <td></td>
                                     </tr>
                                 </table>
                                 {% else %}
