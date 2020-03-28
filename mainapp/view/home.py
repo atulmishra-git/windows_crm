@@ -24,11 +24,17 @@ class HomeView(TemplateView):
 
     def post(self, request):
         query = request.POST.get('name')
+        try:
+            int_query = int(query)
+        except ValueError:
+            int_query = 0
 
         customer_list = {}
-        if query:
+        if int_query > 0:
+            customer_list = Customer.objects.filter(id=int_query)
+        elif query:
             customer_list = Customer.objects.filter(
-                Q(id=query) | Q(first_name__icontains=query) |
+                Q(first_name__icontains=query) |
                 Q(surname__icontains=query) | Q(email__icontains=query) |
                 Q(phone__icontains=query) | Q(mobile__icontains=query)
             )
