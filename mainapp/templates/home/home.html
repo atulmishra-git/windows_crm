@@ -6,21 +6,29 @@
     <div class="container-fluid" style="padding: 0px 40px">
         <div class="row mt-5">
             <div class="col-md-12 col-lg-12">
-                <div class="round-img text-center home-card">
+                <div class="round-img text-center">
 {#                    <a href="{% url 'mainapp:customer_home' customer_id=customer.pk %}">#}
-                    <img src="https://picsum.photos/seed/{{ customer.id }}000/200/200" class="img-fluid mx-auto rounded-circle"
-                         alt="">
-{#                        <div class="img-fluid mx-auto circle-container">#}
-{#                            <div class="circle-container-item">#}
-{#                                {{ customer.first_name.0|title }}#}
-{#                            </div>#}
-{#                        </div>#}
-                        <h3 class="pt-4">{{ customer.first_name }} {{ customer.surname }}</h3>
-                        <p style="font-size: 12px; padding-top: 5px;">
-                            <p>{{ customer.email }} | {{ customer.mobile }}</p>
-                            <div>{{ customer.street }} {{ customer.place }} {{ customer.postcode }}</div>
-                        </p>
-{#                    </a>#}
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 col-sm-0"></div>
+                        <div class="col-md-3 col-lg-3 col-sm-6">
+                            <img src="https://picsum.photos/seed/{{ customer.id }}000/200/200" class="vert-hori-center avatar-img rounded-circle"
+                            alt="">
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-6">
+    {#                        <div class="img-fluid mx-auto circle-container">#}
+    {#                            <div class="circle-container-item">#}
+    {#                                {{ customer.first_name.0|title }}#}
+    {#                            </div>#}
+    {#                        </div>#}
+                            <h3 class="pt-4">{{ customer.first_name }} {{ customer.surname }}</h3>
+                            <p style="font-size: 12px; padding-top: 5px;">
+                                <p>{{ customer.email }} | {{ customer.mobile }}</p>
+                                <div>{{ customer.street }} {{ customer.place }} {{ customer.postcode }}</div>
+                            </p>
+    {#                    </a>#}
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-0"></div>
+                    </div>
                 </div>
             </div>
         </div>

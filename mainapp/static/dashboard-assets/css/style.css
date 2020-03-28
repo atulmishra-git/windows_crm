@@ -6,6 +6,9 @@
     Reset Css
 	==========================================
 */
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
 ul {
 	margin: 0;
 	padding: 0;
@@ -31,7 +34,6 @@ p{
 	background-position:center;
 	background-size:cover;
 	height:100vh;
-	
 }
 
 /*Start slidebar area*/
@@ -65,6 +67,7 @@ p{
     background: #999;
     color: #fefefe;
     font-size: 15px;
+	text-decoration: none;
 }
 
 .main {
@@ -187,9 +190,7 @@ div.circle-container .circle-container-item {
 .card-area{
 	padding: 5% 0%;
 }
-.card {
-    box-shadow: 0px 0px 10px 1px #ddd;
-}
+
 li.text-right span {
     background: linear-gradient(90deg, #5910ff, #dc76ff);
     color: white;
@@ -203,6 +204,10 @@ li.text-right span {
 	text-align: center;
 	vertical-align: middle;
 	margin-bottom: 20px;
+	box-shadow: 0px 0px 10px 1px #ddd;
+}
+.card a:hover {
+	text-decoration: none;
 }
 .card-list ol li {
     padding-top: 25px;
@@ -227,8 +232,6 @@ li.text-left span {
 li p {
     font-size: 10px;
 }
-
-
 
 .list-area ul li i {
     color: #fff;

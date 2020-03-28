@@ -267,7 +267,7 @@ a { color: #66676b; transition: 0.3s; }
 a, button { outline: none !important; }
 a:focus,
 a:hover { text-decoration: none; color: #333;}
-img { max-width: 100%; }
+/*img { max-width: 100%; }*/
 
 
 /* ---------------------------------- */

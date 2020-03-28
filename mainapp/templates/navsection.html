@@ -8,16 +8,16 @@
                 </div>
             </a>
         </div>
-        <a href="/"><i class="fas fa-home">&nbsp Dashbord</i></a>
-        <a href=""><i class="fas fa-user">&nbsp {{ customer.first_name }} {{ customer.surname }}</i></a>
-        <a href=""><i class="fas fa-envelope">&nbsp {{ customer.email }}</i></a>
-        <a href="/chat/"><i class="fas fa-comment">&nbsp Chat</i></a>
-        <a href=# onclick="task_list_btn()"><i class="fas fa-calendar-check">&nbsp To do</i></a>
-        <a href=""><i class="fas fa-calendar-alt">&nbsp Calendar</i></a>
+        <a href="/"><i class="fas fa-home"></i>&nbsp Dashbord</a>
+{#        <a href=""><i class="fas fa-user">&nbsp {{ customer.first_name }} {{ customer.surname }}</i></a>#}
+{#        <a href=""><i class="fas fa-envelope">&nbsp {{ customer.email }}</i></a>#}
+        <a href="/chat/"><i class="fas fa-comment"></i>&nbsp Chat</a>
+        <a href="/task_list/"><i class="fas fa-calendar-check"></i>&nbsp To do</a>
+        <a href=""><i class="fas fa-calendar-alt"></i>&nbsp Calendar</a>
         <a href="{% url 'mainapp:list_purchase' %}" style="margin-top: 100px;">Purchase</a>
         <a href={% url 'mainapp:add_customer' %}>Customer</a>
         {% if user.is_staff %}
-        <a href="{% url 'mainapp:add_manager' %}">Manager</a>
+            <a href="{% url 'mainapp:add_manager' %}">Manager</a>
         {% endif %}
         <a href="{% url 'mainapp:logout' %}" style="color:red; font-weight:bold; margin-top:50px;">Logout</a>
     </div>

@@ -4,3 +4,25 @@
     font-size: 13px;
     color: #444;
 }
+
+img.avatar-img {
+    width: 150px;
+    height: auto;
+    max-width: 150px !important;
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.vert-hori-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
