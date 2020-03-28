@@ -16,7 +16,7 @@ import datetime
 
 
 class ChatView(TemplateView):
-    template_name = 'chat/chat.html'
+    template_name = 'chat2/chat.html'
 
     def get(self, request, *args, **kwargs):
         context = {}
