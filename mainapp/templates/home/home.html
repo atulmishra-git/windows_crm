@@ -48,11 +48,13 @@
             <div class="col-md-6 col-lg-6">
                 <div class="round-img text-center home-card">
 {#                    <a href="{% url 'mainapp:customer_home' customer_id=customer.pk %}">#}
-                        <div class="img-fluid mx-auto circle-container">
-                            <div class="circle-container-item">
-                                {{ customer.first_name.0|title }}
-                            </div>
-                        </div>
+                    <img src="https://picsum.photos/200/200" class="img-fluid mx-auto rounded-circle"
+                         alt="">
+{#                        <div class="img-fluid mx-auto circle-container">#}
+{#                            <div class="circle-container-item">#}
+{#                                {{ customer.first_name.0|title }}#}
+{#                            </div>#}
+{#                        </div>#}
                         <h3 class="pt-4">{{ customer.first_name }} {{ customer.surname }}</h3>
                         <p style="font-size: 12px; padding-top: 5px;">
                             <p>{{ customer.email }} | {{ customer.mobile }}</p>
