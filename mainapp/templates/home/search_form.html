@@ -17,11 +17,14 @@
 {#            <option data-tokens="{{ customer.id }} {{ customer.first_name }} {{ customer.email }}">{{ customer.name }}</option>#}
 {#        {% endfor %}#}
 {#    </select>#}
-    <form method="POST" action="{% url 'mainapp:home' %}">
+    <form method="POST" action="{% url 'mainapp:home' %}" style="position: relative;">
         {% csrf_token %}
         <input type="text" name="name"
                style="width: 50%"
                class="form-control" placeholder="Search" maxlength="255" required="" id="id_name">
+        <div style="position: absolute; top: 10px; left: 30px;">
+            <i class="fas fa-search"></i>
+        </div>
         <button class="button" type="submit" id="id_search_btn" hidden></button>
     </form>
 </div>
