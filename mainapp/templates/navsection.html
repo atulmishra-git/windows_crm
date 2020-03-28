@@ -2,7 +2,11 @@
 <section>
     <div class="sidenav">
         <div class="logo-area mb-5">
-            <img src="{% static '/dashboard-assets/img/logo.png' %}" class="img-fluid" alt="Company Logo">
+            <a href="/">
+                <div class="">
+                    <img src="{% static '/dashboard-assets/img/logo.png' %}" class="img-fluid" alt="Company Logo">
+                </div>
+            </a>
         </div>
         <a href="/"><i class="fas fa-home">&nbsp Dashbord</i></a>
         <a href=""><i class="fas fa-user">&nbsp {{ customer.first_name }} {{ customer.surname }}</i></a>

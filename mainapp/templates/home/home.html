@@ -1,51 +1,11 @@
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en-US">
-<head>
-    <!-- =============== Meta =============== -->
-    <meta charset="UTF-8">
 
-    <!-- =============== Viewport =============== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- =============== Description =============== -->
-    <meta name="description" content=""/>
-
-    <!-- =============== keywords =============== -->
-    <meta name="keywords" content=""/>
-
-
-    <!-- =============== Title =============== -->
-    <title>Dashbord</title>
-
-
-    <!-- =============== Bootstrap =============== -->
-    <link rel="stylesheet" href="{% static '/dashboard-assets/css/bootstrap.min.css' %}"/>
-
-    <!-- =============== Favicon =============== -->
-    <link href="{% static '/dashboard-assets/img/logo.png" rel="shortcut icon' %}"/>
-
-    <!-- =============== Fontawsome =============== -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-
-    <!-- =============== Main_CSS =============== -->
-    <link rel="stylesheet" href="{% static '/dashboard-assets/css/style.css' %}"/>
-
-    <!-- =============== Responsive_CSS =============== -->
-    <link rel="stylesheet" href="{% static '/dashboard-assets/css/responsive.css' %}"/>
-
-    <!-- =============== CUSTOM CSS =============== -->
-    <link rel="stylesheet" href="{% static '/dashboard-assets/css/custom_style.css' %}"/>
-
-</head>
-<body>
-{% include "navsection.html" %}
 <!-- Start 2nd section -->
-<section class="check-area">
-    <div class="container-fluid">
+{% block content %}
+    <div class="container-fluid" style="padding: 0px 40px">
         <div class="row mt-5">
-            <div class="col-md-6 col-lg-6">
+            <div class="col-md-12 col-lg-12">
                 <div class="round-img text-center home-card">
 {#                    <a href="{% url 'mainapp:customer_home' customer_id=customer.pk %}">#}
                     <img src="https://picsum.photos/seed/{{ customer.id }}000/200/200" class="img-fluid mx-auto rounded-circle"
@@ -63,6 +23,8 @@
 {#                    </a>#}
                 </div>
             </div>
+        </div>
+        <div class="row mt-5">
             <div class="col-md-6 col-lg-6">
                 <div class="list-area home-card">
                     <ul>
@@ -75,43 +37,35 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- start card section -->
-<section class="card-area">
-    <div class="container-fluid">
-        <div class="card-deck" style="display: flex;">
-            <div class="row" style="flex: 1;">
-                <div class="col-md-4 col-lg-4">
+            <div class="col-md-6 col-lg-6">
+                <div class="" style="display: flex; flex-direction: column">
                     <div class="card">
-                        <div class="todo-list">
-                            <h6 style="text-align: center" id="{{ customer.id }}" onclick="open_chat(this)">Chat</h6>
-                        </div>
+                        <a href="/chat/">
+                            <span id="{{ customer.id }}" onclick="open_chat(this)">Chat</span>
+                        </a>
                     </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
                     <div class="card">
-                        <div class="todo-list">
-                            <h6 style="text-align: center" id="{{ customer.id }}" onclick="add_call_notes(this)">Call
-                                Notice</h6>
-                        </div>
+                        <a href="{% url 'mainapp:add_call_notes' customer_id=customer.id %}">
+                            <span id="{{ customer.id }}" onclick="add_call_notes(this)">Call Notice</span>
+                        </a>
                     </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
                     <div class="card">
-                        <div class="todo-list">
-                            <h6 onclick="task_list_btn()" style="text-align: center">To Do List</h6>
-                        </div>
+                        <a href="{% url 'mainapp:open_task_list' %}">
+                            <span onclick="task_list_btn()" >To Do List</span>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <span>Attachment</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    <!-- start card section -->
+{% endblock %}
 
 <script>
-    function open_chat(btn) {
+    function open_chat() {
         window.open(
             "/chat/",
             '_blank');

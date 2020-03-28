@@ -37,26 +37,29 @@ p{
 /*Start slidebar area*/
 .sidenav {
 	height: 100%;
-	width: 12%;
+	width: 15%;
 	position: fixed;
 	z-index: 1;
 	top: 0;
 	left: 0;
 	background-color:#fff;
 	overflow-x: hidden;
-	padding-top: 20px;
+	/*padding-top: 20px;*/
 	border-right: 1px solid #ddd;
 }
 .sidenav a {
 	padding: 10px 8px 10px 16px;
 	text-decoration: none;
 	font-size: 15px;
-	color: #818181;
+	color: #555;
 	display: block;
 }
 .logo-area{
-	background: blue;
+	background: #005afa;
 	padding: 25px;
+}
+.logo-area a:hover{
+	background: transparent;
 }
 .sidenav a:hover {
     background: #999;
@@ -144,20 +147,23 @@ div.circle-container .circle-container-item {
 .round-img img{
 	max-width: 10%;
 }
-.top-area,.check-area,.card-area{
-	margin-left: 12%;
+.top-area,.card-area{
+	margin-left: 15%;
+}
+.check-area {
+	margin-left: 15%;
 }
 .row {
 	margin: 0;
 	padding: 0;
 }
 .blue-bg {
-	background: #0055aa;
+	background: #005afa;
 	color: white;
 	border-radius: 10%
 }
 .round-img {
-    background: #0055aa;
+    background: #005afa;
     padding: 5% 0px;
     border-radius: 5px;
     color: white;
@@ -194,6 +200,9 @@ li.text-right span {
 
 .card{
 	padding: 20px;
+	text-align: center;
+	vertical-align: middle;
+	margin-bottom: 20px;
 }
 .card-list ol li {
     padding-top: 25px;
