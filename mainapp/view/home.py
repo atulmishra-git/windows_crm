@@ -13,7 +13,7 @@ class HomeView(TemplateView):
     def get(self, request, customer_id=None, *args, **kwargs):
         search_form = SearchForm()
         add_manager_form = AddManagerForm()
-        customers = Customer.objects.values('id', 'first_name', 'email')
+        # customers = Customer.objects.values('id', 'first_name', 'email')
 
         customer_dict = {}
         if customer_id:
@@ -22,7 +22,7 @@ class HomeView(TemplateView):
                 'search_form': search_form,
                 'add_manage_form': add_manager_form,
                 'customer': customer_dict,
-                'customers': customers
+                # 'customers': customers
             }
             return render(request, self.template_name, context=context)
 

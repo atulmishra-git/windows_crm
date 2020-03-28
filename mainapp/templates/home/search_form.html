@@ -1,0 +1,45 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+
+<style>
+    .search-bar {
+{#        padding-top: 10px;#}
+    }
+
+</style>
+
+<div class="search-bar">
+{#    <select class="form-control selectpicker" id="select-country" data-live-search="true">#}
+{#        {% for customer in customers %}#}
+{#            <option data-tokens="{{ customer.id }} {{ customer.first_name }} {{ customer.email }}">{{ customer.name }}</option>#}
+{#        {% endfor %}#}
+{#    </select>#}
+    <form method="POST" action="{% url 'mainapp:home' %}">
+        {% csrf_token %}
+        {{ search_form.name }}
+        <button class="button" type="submit" id="id_search_btn" hidden></button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var input = document.getElementById("id_name");
+        input.addEventListener("keyup", function (event) {
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                document.getElementById("id_search_btn").click();
+            }
+        });
+{#        $('.selectpicker').selectpicker();#}
+    });
+
+    $(function() {
+      $('.selectpicker').selectpicker();
+    });
+</script>
