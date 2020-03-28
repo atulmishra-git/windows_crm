@@ -2,6 +2,9 @@
 {% block maincontent %}
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
+            <div>
+                <h4>Customer - {{ customer.id }} | {{ customer.first_name }} {{ customer.surname }}</h4>
+            </div>
             <h1>{{ operation|default:'Add New' }} Call Note</h1>
             <br/>
             <form method="POST" id="id_create_callnotes" class="contact100-form validate-form">
@@ -21,9 +24,9 @@
                         <div class="task-listing-details">
                             <!-- Details -->
                             <div class="task-listing-description">
-                                <h3 class="task-listing-title">Customer ID - {{ note.customer.id }} {{ note.created|default:"" }}</h3>
+                                <h3 class="task-listing-title">{{ note.created|default:"" }}</h3>
                                 <p class="task-listing-title">Creator - {{ note.user.first_name }}</p>
-                                <p class="task-listing-title">Call Notes - {{ note.notes }}</p>
+                                <p class="task-listing-title">Call Notes - <span class="sys-font" style="font-size: 18px">{{ note.notes|title }}</span></p>
                                 <p>
                                     <a href="{% url 'mainapp:edit_call_notes' customer_id=customer_id pk=note.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
                                     <a href="{% url 'mainapp:delete_call_notes' customer_id=customer_id pk=note.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
