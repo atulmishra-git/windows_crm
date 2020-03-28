@@ -53,10 +53,12 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            if (data.sender.id != {{ request.user.id}}) {
+            console.log(data.sender, {{ request.user.id}}, data);
+            if (data.sender == {{ request.user.id}}) {
                 $("div.msg_history").append('<div class="outgoing_msg">\n' +
                     '              <div class="sent_msg">\n' +
                     '                <p>'+ data.message + '</p>\n' +
+{#                    '                <span class="time_date">' + data.timestamp + '</span> </div>\n' +#}
                     '                <span class="time_date">' + data.timestamp + '</span> </div>\n' +
                     '            </div>');
             } else {
@@ -64,8 +66,8 @@
                     '              <div class="incoming_msg_img"> <img class="img-fluid mx-auto rounded-circle" src="https://picsum.photos/seed/{{ data.sender.id }}/200/200" alt="sunil"> </div>\n' +
                     '              <div class="received_msg">\n' +
                     '                <div class="received_withd_msg">\n' +
-                    '                  <p>{{ data.message }}</p>\n' +
-                    '                  <span class="time_date">{{ data.timestamp }}</span><br/>\n' +
+                    '                  <p>' + data.message + '</p>\n' +
+                    '                  <span class="time_date">' + data.timestamp + '</span><br/>\n' +
                     '                </div>\n' +
                     '              </div>\n' +
                     '            </div>')

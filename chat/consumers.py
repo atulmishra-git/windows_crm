@@ -67,7 +67,8 @@ class ChatConsumer(WebsocketConsumer):
             self.room_group_name,
             {
                 'type': 'chat_message',
-                'message': message
+                'message': message,
+                'sender': self.scope['user'].id
             }
         )
 
@@ -78,7 +79,7 @@ class ChatConsumer(WebsocketConsumer):
         # Send message to WebSocket
         self.send(text_data=json.dumps({
             'message': message,
-            'sender': self.scope['user'].id,
+            'sender': event['sender'],
             'timestamp': str(datetime.now())
         }))
 
