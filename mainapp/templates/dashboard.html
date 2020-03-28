@@ -6,12 +6,12 @@
 <!-- Dashboard Container -->
 <div class="dashboard-container" style="height: 100%">
 
+    {% if customer %}
 	<!-- Dashboard Sidebar
 	================================================== -->
 	<div class="dashboard-sidebar">
 		<div class="dashboard-sidebar-inner" data-simplebar>
 			<div class="dashboard-nav-container">
-
 				<!-- Responsive Navigation Trigger -->
 				<a href="#" class="dashboard-responsive-nav-trigger">
 					<span class="hamburger hamburger--collapse" >
@@ -21,7 +21,6 @@
 					</span>
 					<span class="trigger-title">Dashboard Navigation</span>
 				</a>
-
 				<!-- Navigation -->
 				<div class="dashboard-nav">
 					<div class="dashboard-nav-inner">
@@ -29,7 +28,6 @@
 							<li ><a href={% url 'mainapp:home' %}><i class="icon-material-outline-home"></i> Home</a></li>
 						</ul>
 						<ul data-submenu-title="Customer Details">
-                            {% if customer %}
                                 <li><a href=#><i class="icon-material-outline-person-pin"></i><b>ID:</b> {{ customer.id }}</a></li>
                                 <li><a href=#><i class="icon-material-outline-person-pin"></i><b>Name:</b> {{ customer.first_name }} {{ customer.surname }}</a></li>
                                 <li><a href=#><i class="icon-material-outline-person-pin"></i><b>Phone:</b> {{ customer.phone }}</a></li>
@@ -37,15 +35,6 @@
                                 <li><a href=#><i class="icon-material-outline-person-pin"></i><b>Place:</b> {{ customer.place }}</a></li>
                                 <li><a href=#><i class="icon-material-outline-person-pin"></i><b>Postcode:</b> {{ customer.postcode }}</a></li>
                                 <li><a href=#><i class="icon-material-outline-person-pin"></i><b>Street:</b> {{ customer.street }}</a></li>
-                            {% else %}
-                                <li><a href=#><i class="icon-material-outline-person-pin"></i>Customer ID</a></li>
-                                <li><a href=#><i class="icon-material-outline-person-pin"></i>Name</a></li>
-                                <li><a href=#><i class="icon-material-outline-person-pin"></i>Phone</a></li>
-                                <li><a href=#><i class="icon-material-outline-person-pin"></i>Mobile</a></li>
-                                <li><a href=#><i class="icon-material-outline-person-pin"></i>Place</a></li>
-                                <li><a href=#><i class="icon-material-outline-person-pin"></i>PostCode</a></li>
-                                <li><a href=#><i class="icon-material-outline-person-pin"></i>Street</a></li>
-                            {% endif %}
 						</ul>
 
 						<ul data-submenu-title="Account">
@@ -59,6 +48,7 @@
 			</div>
 		</div>
 	</div>
+    {% endif %}
 	<!-- Dashboard Sidebar / End -->
 
     {% block maincontent %}
