@@ -22,11 +22,14 @@ class TasksView(LoginRequiredMixin, FormRequestMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        tasks = Tasks.objects.all().order_by('completed', 'todo_date')
+        tasks = Tasks.objects.filter(completed=False).order_by('completed', 'todo_date')
+        completed_tasks = Tasks.objects.filter(completed=True)
         if not self.request.user.is_superuser:
             # only logged in users tasks
             tasks = tasks.filter(user=self.request.user)
+            completed_tasks = completed_tasks.order_by('-id').filter(user=self.request.user)[:5]
         context['object_list'] = tasks
+        context['completed_object_list'] = completed_tasks
         context['operation'] = 'Create'
         return context
 

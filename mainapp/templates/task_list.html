@@ -15,7 +15,7 @@
             </form>
             <br/>
             <h1>Tasks</h1>
-            <div class="tasks-list-container compact-list margin-top-35">
+            <h3 class="tasks-list-container compact-list margin-top-35">
                 {% if not object_list %}
                     <div class="task-listing">No Tasks Found</div>
                 {% endif %}
@@ -63,18 +63,28 @@
                                         <td></td>
                                     </tr>
                                 </table>
-                                {% else %}
-                                    {% if obj.completed %}
-                                        <strike>{{ obj.message }}</strike>
-                                    {% else %}
-                                        {{ obj.message }}
-                                    {% endif %}
                                 {% endif %}
                             <br/>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
+                <h4>Completed</h4>
+                {% for obj in completed_object_list %}
+                    <div class="task-listing">
+                    <!-- Job Listing Details -->
+                        <div class="task-listing-details">
+                            <!-- Details -->
+                            <div class="task-listing-description">
+                                {% if user.is_superuser %}
+                                    <span>{{ obj.user }}</span>
+                                {% endif %}
+                                <span>{{ obj.todo_date }}</span>
+                                <span><strike>{{ obj.message }}</strike></span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
             </div>
         </div>
     </div>
