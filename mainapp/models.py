@@ -265,6 +265,7 @@ class Attachments(models.Model):
                                                            'image/vnd.microsoft.icon', 'image/png',
                                                            'application/msword', 'application/vnd.ms-excel',
                                                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                                           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                            'video/x-msvideo', 'video/mpeg', 'video/webm', 'video/mp4'],
                                             max_upload_size=5242880)
     created_at = models.DateTimeField(auto_now_add=True)
