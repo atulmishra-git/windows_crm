@@ -6,6 +6,8 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+
+from mainapp.fields import ContentTypeRestrictedFileField
 from .usermanager import UserManager
 
 
@@ -225,7 +227,8 @@ class PurchaseRecord(models.Model):
                                                  project_planning_created=project_planning_created,
                                                  installation_date=installation_date, ac_date=ac_date,
                                                  photo_roof_access=photo_roof_area,
-                                                 photo_counter_cabinet=photo_counter_cabinet, video_counter=video_counter,
+                                                 photo_counter_cabinet=photo_counter_cabinet,
+                                                 video_counter=video_counter,
                                                  photo_of_counter=photo_of_counter, power_of_attorney=power_of_attorney,
                                                  data_collection=data_collection, order_date=order_date,
                                                  memory_type=memory_type, with_battery=with_battery)
@@ -255,9 +258,11 @@ class PurchaseRecord(models.Model):
 
 class Attachments(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='attachments')
-    file_type = models.CharField(max_length=255)
-    file_link = models.CharField(max_length=1000)
-    upload = models.FileField(upload_to='uploads/', null=True)
+    file_name = models.CharField(max_length=255)
+    upload = ContentTypeRestrictedFileField(upload_to='uploads/', null=True,
+                                            content_types=['application/pdf', 'image/jpg', 'image/png', 'image/gif',
+                                                           'image/jpeg'],
+                                            max_upload_size=5242880)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
 
