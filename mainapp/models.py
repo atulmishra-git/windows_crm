@@ -13,13 +13,13 @@ from .usermanager import UserManager
 
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField("First Name", max_length=255)
-    surname = models.CharField(max_length=255)
-    phone = models.CharField(max_length=20, unique=True)
-    username = models.CharField(max_length=255, unique=True)
-    email = models.EmailField(max_length=255, unique=True)
-    is_active = models.BooleanField(_('active'), default=True)
-    is_deleted = models.BooleanField(_('deleted'), default=False)
+    first_name = models.CharField(_("First Name"), max_length=255)
+    surname = models.CharField(_("Surname"), max_length=255)
+    phone = models.CharField(_("Phone"), max_length=20, unique=True)
+    username = models.CharField(_("Username"), max_length=255, unique=True)
+    email = models.EmailField(_("Email"), max_length=255, unique=True)
+    is_active = models.BooleanField(_("Active"), default=True)
+    is_deleted = models.BooleanField(_('Deleted'), default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     is_staff = models.BooleanField(_('staff status'), default=False)
 
@@ -51,38 +51,38 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 GENDER_CHOICES = (
-    ('Male', 'Male'),
-    ('Female', 'Female')
+    ('Male', _('Male')),
+    ('Female', _('Female'))
 )
 PURPOSE_CHOICES = (
-    ('Comapny', 'Company'),
-    ('individual', 'individual'),
-    ('Family', 'Family')
+    ('Comapny', _('Company')),
+    ('individual', _('individual')),
+    ('Family', _('Family'))
 )
 OFFER_CHOICES = (
-    ('Email', 'Via Email'),
-    ('Letter', 'Via Letter'),
+    ('Email', _('Via Email')),
+    ('Letter', _('Via Letter')),
 )
 
 
 class Customer(models.Model):
-    first_name = models.CharField(max_length=255)
-    offer_id = models.CharField(max_length=255, blank=True,
+    first_name = models.CharField(_("first name"), max_length=255)
+    offer_id = models.CharField(_("offer id"), max_length=255, blank=True,
                                 null=True)
     invoice_id = models.CharField(max_length=255, blank=True,
                                   null=True)
-    street = models.CharField(max_length=500)
-    postcode = models.CharField(max_length=255)
-    place = models.CharField(max_length=255)
-    surname = models.CharField(max_length=255)
+    street = models.CharField(_("street"), max_length=500)
+    postcode = models.CharField(_("postcode"), max_length=255)
+    place = models.CharField(_("place"), max_length=255)
+    surname = models.CharField(_("surname"), max_length=255)
     phone = models.CharField(max_length=20, unique=True)
     mobile = models.CharField(max_length=20, unique=True, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_deleted = models.BooleanField(_('deleted'), default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    gender = models.CharField(max_length=100, choices=GENDER_CHOICES, null=True, blank=True)
-    purpose = models.CharField(max_length=100, choices=PURPOSE_CHOICES, null=True, blank=True)
+    gender = models.CharField(_("gender"), max_length=100, choices=GENDER_CHOICES, null=True, blank=True)
+    purpose = models.CharField(_("purpose"), max_length=100, choices=PURPOSE_CHOICES, null=True, blank=True)
 
     @classmethod
     def create(cls, first_name, street, postcode, place, surname, phone, mobile, gender, purpose):
@@ -116,7 +116,7 @@ class Customer(models.Model):
 class CallNotes(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='call_notes')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='call_notes')
-    notes = models.CharField(max_length=1000)
+    notes = models.CharField(_("notes"), max_length=1000)
     created = models.DateField(null=True)
 
     def save(self, *args, **kwargs):
@@ -146,41 +146,41 @@ class CallNotes(models.Model):
 
 class PurchaseRecord(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='purchase_records')
-    watt = models.PositiveIntegerField(null=True, default=0)
-    module_count = models.PositiveIntegerField(null=True, default=0)
+    watt = models.PositiveIntegerField(_("watt"), null=True, default=0)
+    module_count = models.PositiveIntegerField(_("module count"), null=True, default=0)
 
-    with_battery = models.BooleanField(blank=True, default=False, null=True)
-    manufacturer = models.CharField(max_length=255, null=True, blank=True)
-    kwh = models.CharField(max_length=255, blank=True, null=True)
-    manufacturer2 = models.CharField('Manufacturer', max_length=255, blank=True, null=True)
-    kwh2 = models.CharField('Kw/H', max_length=255, blank=True, null=True)
+    with_battery = models.BooleanField(_("with battery"), blank=True, default=False, null=True)
+    manufacturer = models.CharField(_("manufacturer"), max_length=255, null=True, blank=True)
+    kwh = models.CharField(_("Kw/H"), max_length=255, blank=True, null=True)
+    manufacturer2 = models.CharField(_('Manufacturer'), max_length=255, blank=True, null=True)
+    kwh2 = models.CharField(_('Kw/H'), max_length=255, blank=True, null=True)
 
-    price_without_tax = models.FloatField(help_text="Price in Euro (€)", null=True,
-                                          validators=[MinValueValidator(0, "Should be above 0")],
+    price_without_tax = models.FloatField(_("price without tax"), help_text=_("Price in Euro (€)"), null=True,
+                                          validators=[MinValueValidator(0, _("Should be above 0"))],
                                           default=0)
 
-    offer_by = models.CharField(choices=OFFER_CHOICES, max_length=16, null=True)
+    offer_by = models.CharField(_("offer by"), choices=OFFER_CHOICES, max_length=16, null=True)
     # OFFER INFORMATION
-    offer_date = models.DateField(blank=True, null=True)
-    reseller_name = models.CharField(max_length=255, null=True, blank=True)
-    declined = models.BooleanField(default=False, null=True, blank=True)
+    offer_date = models.DateField(_("offer date"), blank=True, null=True)
+    reseller_name = models.CharField(_("reseller name"), max_length=255, null=True, blank=True)
+    declined = models.BooleanField(_("declined"), default=False, null=True, blank=True)
     # TECHNICAL DETAILS
-    date_sent = models.DateField('AG geschickt/AG Sent', null=True, blank=True)
-    project_planning_created = models.BooleanField('Projektierung Erstellt',
+    date_sent = models.DateField(_('date sent'), null=True, blank=True)
+    project_planning_created = models.BooleanField(_('project planning created'),
                                                    blank=True, default=True)
-    dc_term = models.DateField('DC Termin', blank=True, null=True)
-    dc_mechanic = models.CharField(max_length=255, blank=True, null=True)
-    ac_term = models.DateField('AC Termin', blank=True, null=True)
-    ac_mechanic = models.CharField(max_length=255, blank=True, null=True)
+    dc_term = models.DateField(_('DC Term'), blank=True, null=True)
+    dc_mechanic = models.CharField(_('DC mechanic'), max_length=255, blank=True, null=True)
+    ac_term = models.DateField(_('AC Term'), blank=True, null=True)
+    ac_mechanic = models.CharField(_('AC mechanic'), max_length=255, blank=True, null=True)
     # INFORMATION FOR THE ROOF
-    roof_type = models.CharField(max_length=255, null=True, blank=True)
-    roof_tilt = models.FloatField(help_text="in Degrees", null=True, blank=True)
-    alignment = models.CharField(max_length=64, null=True, blank=True)
-    module_area = models.FloatField(help_text="Area in meter squared (m2)", null=True, blank=True,
-                                    validators=[MinValueValidator(0, "Should be above 0")],
+    roof_type = models.CharField(_("roof type"), max_length=255, null=True, blank=True)
+    roof_tilt = models.FloatField(_("roof tilt"), help_text=_("in Degrees"), null=True, blank=True)
+    alignment = models.CharField(_("alignment"), max_length=64, null=True, blank=True)
+    module_area = models.FloatField(_("module area"), help_text=_("Area in meter squared (m2)"), null=True, blank=True,
+                                    validators=[MinValueValidator(0, _("Should be above 0"))],
                                     default=0)
 
-    extra_details = models.TextField(blank=True, null=True)
+    extra_details = models.TextField(_("extra details"), blank=True, null=True)
 
     # module_type = models.CharField(max_length=255)
     # memory_type = models.CharField(max_length=255)
@@ -258,8 +258,8 @@ class PurchaseRecord(models.Model):
 
 class Attachments(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='attachments')
-    file_name = models.CharField(max_length=255)
-    upload = ContentTypeRestrictedFileField(upload_to='uploads/', null=True,
+    file_name = models.CharField(_("File Name"), max_length=255)
+    upload = ContentTypeRestrictedFileField(_("Upload"), upload_to='uploads/', null=True,
                                             content_types=['application/pdf', 'image/jpg', 'image/png', 'image/gif',
                                                            'image/jpeg', 'image/bmp', 'text/plain', 'text/csv',
                                                            'image/vnd.microsoft.icon', 'image/png',
@@ -306,10 +306,10 @@ class Attachments(models.Model):
 
 class Tasks(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
-    message = models.TextField(blank=False)
-    todo_date = models.DateField('Complete Before', blank=True, null=True)
+    message = models.TextField(_("message"), blank=False)
+    todo_date = models.DateField(_('Complete Before'), blank=True, null=True)
     todo_time = models.TimeField('', blank=True, default=datetime.time(16, 0))
-    completed = models.BooleanField(default=False)
+    completed = models.BooleanField(_('completed'), default=False)
 
     creator = models.ForeignKey('User', on_delete=models.SET_NULL,
                                 null=True, related_name='created_tasks')
