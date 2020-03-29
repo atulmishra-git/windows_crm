@@ -146,6 +146,9 @@ STATICFILES_DIRS = (
       'windows_crm/static/'
     )
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DATETIME_FORMAT = '%B %d, %Y, %I:%M %P'

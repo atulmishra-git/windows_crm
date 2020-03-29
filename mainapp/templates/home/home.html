@@ -63,7 +63,9 @@
                         </a>
                     </div>
                     <div class="card">
-                        <span>Attachment</span>
+                        <a href="{% url 'mainapp:add_attachments' customer_id=customer.id %}">
+                            <span>Attachment</span>
+                        </a>
                     </div>
                 </div>
             </div>

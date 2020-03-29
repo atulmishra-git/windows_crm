@@ -1,16 +1,14 @@
 {% extends 'dashboard.html' %}
+{% load crispy_forms_tags %}
 {% block maincontent %}
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
             <h1>Add New Attachments</h1>
             <br/>
-            <form id="id_create_attachment" class="contact100-form validate-form">
+            <form method="POST" enctype="multipart/form-data" id="id_create_attachment" class="contact100-form validate-form">
                 {% csrf_token %}
-                {{ add_attachment.file_type }}
-                <input type='file' id="id_upload_file" name="upload_file" required/>
-                <input hidden id="id_customer" name="customer_id" value="{{ customer_id }}">
-                <p id="validator" style="display: none !important;" class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert"><i class="mr-1 mdi mdi-checkbox-blank-circle-outline icon-warning"></i><span id="general_error"></span></p>
-                <button type="button" onclick="create_attachments()" class="button">Submit</button>
+                {{ form|crispy }}
+                <button type="submit" class="button">Submit</button>
             </form>
 
             <div class="tasks-list-container compact-list margin-top-35">
@@ -23,8 +21,8 @@
                         <div class="task-listing-details">
                             <!-- Details -->
                             <div class="task-listing-description">
-                                <h4 class="task-listing-title">File Type - {{ attachment.file_type }}</h4>
-                                <h4 class="task-listing-title">Call Notes - {{ attachment.file_link }}</h4>
+                                <span>{{ attachment.id }}. </span>
+                                <span class="task-listing-title"><a href="{{ MEDIA_URL }}{{ attachment.upload.url }}">{{ attachment.file_name }}</a></span>
                                 <br/>
                             </div>
                         </div>
@@ -35,33 +33,6 @@
     </div>
 
     <script>
-        function create_attachments() {
-            var customer_id = $('#id_customer').val();
-            var data = new FormData($('#id_create_attachment')[0]);
-            $.ajax({
-                type: 'post',
-                enctype: "multipart/form-data",
-                processData: false,
-                contentType: false,
-                cache: false,
-                url: "{% url 'mainapp:add_attachments' customer_id=1234 %}".replace(/1234/, customer_id),
-                data: data,
-                success: function (data) {
-                    if(data["success"]){
-                        window.location.reload();
-                    }
-                    else {
-                        $('#general_error').html(data["message"]);
-                        $("#validator").fadeIn();
-                        setTimeout(function () {
-                            $('#general_error').html();
-                            $("#validator").fadeOut();
-                        }, 2000);
-                    }
-                }
-            });
-        }
-
     </script>
 
 {% endblock %}

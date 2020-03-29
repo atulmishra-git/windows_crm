@@ -1,9 +1,35 @@
-from django.views.generic import TemplateView
-from mainapp.forms.attachments import AddAttachmentsForm
-from django.shortcuts import render
+from django.views.generic import TemplateView, CreateView
+from mainapp.forms.attachments import AddAttachmentsForm, AttachmentForm
+from django.shortcuts import render, reverse
 from mainapp.models import Customer, Attachments
 from django.http import JsonResponse
 from mainapp.gc_storage import save_file
+
+
+class CustomerFormKwargMixin:
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['customer_id'] = self.kwargs['customer_id']
+        return kwargs
+
+
+class AttachmentCreateView(CustomerFormKwargMixin, CreateView):
+    template_name = 'attachments.html'
+    model = Attachments
+    form_class = AttachmentForm
+
+    def get_context_data(self, **kwargs):
+        customer = Customer.objects.get(id=self.kwargs['customer_id'])
+        attachments = customer.attachments.all()
+        cxt = super().get_context_data(**kwargs)
+        cxt.update({
+            'customer': customer,
+            'attachments': attachments
+        })
+        return cxt
+
+    def get_success_url(self):
+        return reverse('mainapp:add_attachments', kwargs=dict(customer_id=self.kwargs['customer_id']))
 
 
 class AttachmentsView(TemplateView):
