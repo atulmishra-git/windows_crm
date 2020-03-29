@@ -11,11 +11,10 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
         model = PurchaseRecord
         exclude = ['created_at', 'is_active']
         widgets = {
-            'offer_date': forms.DateTimeInput(attrs={'type': 'date'}),
-            'date_sent': forms.DateTimeInput(attrs={'type': 'date'}),
-            'dc_term': forms.DateTimeInput(attrs={'type': 'date'}),
-            'ac_term': forms.DateTimeInput(attrs={'type': 'date'}),
-            'installation_date': forms.DateTimeInput(attrs={'type': 'date'}),
+            'offer_date': forms.DateInput(attrs={'type': 'date'}),
+            'date_sent': forms.DateInput(attrs={'type': 'date'}),
+            'dc_term': forms.DateInput(attrs={'type': 'date'}),
+            'ac_term': forms.DateInput(attrs={'type': 'date'}),
         }
 
     def __init__(self, *args, **kwargs):
