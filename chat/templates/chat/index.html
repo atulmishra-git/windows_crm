@@ -16,15 +16,19 @@
           </div>
           <div class="inbox_chat">
           {% for user in users %}
-              <a href="{% url 'mainapp:chat:room' user=user.id %}">
+            <a href="{% url 'mainapp:chat:room' user=user.id %}">
             <div class="chat_list">
               <div class="chat_people">
                 <div class="chat_img">
                     <img src="https://picsum.photos/seed/{{ user.id }}/200/200" class="img-fluid mx-auto rounded-circle"  alt="">
                 </div>
                 <div class="chat_ib">
-                  <h5>{{ user }} <span class="chat_date"></span></h5>
-                  <p>Click to chat</p>
+                  <h4>{{ user }} <span class="chat_date"></span></h4>
+                  <h5>{% if user.last_sender == request.user.first_name %}
+                      You:
+                      {% else %}
+                      {{ user.last_sender|default:"" }}:
+                      {% endif %} {{ user.last_message|default:"" }}</h5>
                 </div>
               </div>
             </div>

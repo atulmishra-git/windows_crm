@@ -6,6 +6,9 @@ class ChatRoom(models.Model):
     users = models.ManyToManyField('mainapp.User', related_name='chat_rooms')
     name = models.CharField(max_length=16, unique=True, null=False)
 
+    def get_last_message(self):
+        return self.message_set.latest('timestamp')
+
 
 class Message(models.Model):
     timestamp = models.DateTimeField()
