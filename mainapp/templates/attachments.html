@@ -3,6 +3,13 @@
 {% block maincontent %}
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
+            {% if operation %}
+                <p style="padding-bottom: 15px;">
+                    <a href="{% url 'mainapp:add_attachments' customer_id=customer_id %}">
+                        <button class="button"><i class="icon-material-outline-arrow-back"></i> Go Back</button>
+                    </a>
+                </p>
+            {% endif %}
             <h1>{{ operation|default:"Add New" }} Attachment</h1>
             <br/>
             <form method="POST" enctype="multipart/form-data" id="id_create_attachment" class="contact100-form validate-form">

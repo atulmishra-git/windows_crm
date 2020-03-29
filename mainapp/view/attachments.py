@@ -41,6 +41,7 @@ class UpdateAttachmentView(CustomerFormKwargMixin, LoginRequiredMixin, UpdateVie
     def get_context_data(self, **kwargs):
         context = super(UpdateAttachmentView, self).get_context_data(**kwargs)
         context['operation'] = "Update"
+        context['customer_id'] = self.kwargs['customer_id']
         return context
 
     def get_success_url(self):
