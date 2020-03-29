@@ -74,7 +74,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <form method="POST" action="{% url 'mainapp:home' %}" class="form-inline my-4 my-lg-2">
           {% csrf_token %}
-          <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <input name="name" required class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -93,7 +93,7 @@
                 </a>
                   <a class="navbar-brand" href="#">
                       <div class="circle-container">
-                    <img src="https://picsum.photos/seed/{{ request.user.id }}/200/200" class="avatar-img rounded-circle"
+                    <img src="https://picsum.photos/seed/{{ request.user.id }}/200/200" class="rounded-circle"
                             alt="">
                           </div>
                   </a>
