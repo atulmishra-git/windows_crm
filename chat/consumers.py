@@ -6,6 +6,7 @@ from datetime import datetime
 
 from chat.models import ChatRoom, Message
 from mainapp.models import User
+from windows_crm.settings import DATETIME_FORMAT
 
 
 def get_room(ids):
@@ -80,7 +81,7 @@ class ChatConsumer(WebsocketConsumer):
         self.send(text_data=json.dumps({
             'message': message,
             'sender': event['sender'],
-            'timestamp': str(datetime.now())
+            'timestamp': datetime.now().strftime(DATETIME_FORMAT)
         }))
 
     def create_room(self, event):

@@ -147,3 +147,5 @@ STATICFILES_DIRS = (
     )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DATETIME_FORMAT = '%B %d, %Y, %I:%M %P'
