@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 <!-- Start 2nd section -->
@@ -49,22 +50,22 @@
                 <div class="" style="display: flex; flex-direction: column">
                     <div class="card">
                         <a href="/chat/">
-                            <span id="{{ customer.id }}" onclick="open_chat(this)">Chat</span>
+                            <span id="{{ customer.id }}" onclick="open_chat(this)">{% trans 'Chat' %}</span>
                         </a>
                     </div>
                     <div class="card">
                         <a href="{% url 'mainapp:add_call_notes' customer_id=customer.id %}">
-                            <span id="{{ customer.id }}" onclick="add_call_notes(this)">Call Notice</span>
+                            <span id="{{ customer.id }}" onclick="add_call_notes(this)">{% trans 'Call Notice' %}</span>
                         </a>
                     </div>
                     <div class="card">
                         <a href="{% url 'mainapp:open_task_list' %}">
-                            <span onclick="task_list_btn()" >To Do List</span>
+                            <span onclick="task_list_btn()" >{% trans 'To Do List' %}</span>
                         </a>
                     </div>
                     <div class="card">
                         <a href="{% url 'mainapp:add_attachments' customer_id=customer.id %}">
-                            <span>Attachment</span>
+                            <span>{% trans 'Attachment' %}</span>
                         </a>
                     </div>
                 </div>

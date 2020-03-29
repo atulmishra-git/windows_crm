@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 01:23+0545\n"
+"POT-Creation-Date: 2020-03-30 01:42+0545\n"
 "PO-Revision-Date: 2014-01-04 00:10+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -256,9 +256,58 @@ msgstr ""
 msgid "completed"
 msgstr ""
 
-#: mainapp/templates/add_manager.html:13
+#: mainapp/templates/add_manager.html:8
 #, python-format
 msgid "%(operation)s Manager "
+msgstr ""
+
+#: mainapp/templates/home/home.html:53 mainapp/templates/navsection.html:19
+msgid "Chat"
+msgstr "LOLOLOLO"
+
+#: mainapp/templates/home/home.html:58
+msgid "Call Notice"
+msgstr ""
+
+#: mainapp/templates/home/home.html:63
+msgid "To Do List"
+msgstr ""
+
+#: mainapp/templates/home/home.html:68
+msgid "Attachment"
+msgstr ""
+
+#: mainapp/templates/navsection.html:16
+msgid "Dashboard"
+msgstr ""
+
+#: mainapp/templates/navsection.html:20
+msgid "To Do"
+msgstr ""
+
+#: mainapp/templates/navsection.html:21
+msgid "Calendar"
+msgstr ""
+
+#: mainapp/templates/navsection.html:23
+msgid "Customer"
+msgstr ""
+
+#: mainapp/templates/navsection.html:24
+msgid "Purchase"
+msgstr ""
+
+# mainapp/templates/add_manager.html:8
+#: mainapp/templates/navsection.html:26
+msgid "Manager"
+msgstr "Manager"
+
+#: mainapp/templates/navsection.html:28
+msgid "Logout"
+msgstr ""
+
+#: mainapp/templates/navsection.html:30
+msgid "Support"
 msgstr ""
 
 #: windows_crm/settings.py:130
@@ -276,7 +325,3 @@ msgstr ""
 # mainapp/templates/add_manager.html:8
 #~ msgid "update"
 #~ msgstr "aktualisieren"
-
-# mainapp/templates/add_manager.html:8
-#~ msgid "Manager"
-#~ msgstr "Manager"

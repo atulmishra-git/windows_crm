@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 {#    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>#}
 {#  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
@@ -12,21 +13,21 @@
                 </a>
             </div>
         </div>
-        <a href="/"><i class="fas fa-home"></i>&nbsp Dashboard</a>
+        <a href="/"><i class="fas fa-home"></i>&nbsp {% trans 'Dashboard' %}</a>
 {#        <a href=""><i class="fas fa-user">&nbsp {{ customer.first_name }} {{ customer.surname }}</i></a>#}
 {#        <a href=""><i class="fas fa-envelope">&nbsp {{ customer.email }}</i></a>#}
-        <a href="/chat/"><i class="fas fa-comment"></i>&nbsp Chat</a>
-        <a href="/task_list/"><i class="fas fa-calendar-check"></i>&nbsp To do</a>
-        <a href=""><i class="fas fa-calendar-alt"></i>&nbsp Calendar</a>
+        <a href="/chat/"><i class="fas fa-comment"></i>&nbsp {% trans 'Chat' %}</a>
+        <a href="/task_list/"><i class="fas fa-calendar-check"></i>&nbsp {% trans 'To Do' %}</a>
+        <a href=""><i class="fas fa-calendar-alt"></i>&nbsp {% trans 'Calendar' %}</a>
         <div style="margin-top: 50px;"></div>
-        <a href={% url 'mainapp:add_customer' %}><i class="fas fa-plus"></i>&nbsp <span><strong>Customer</strong></span></a>
-        <a href="{% url 'mainapp:list_purchase' %}"><i class="fas fa-plus"></i>&nbsp <span><strong>Purchase</strong></span></a>
+        <a href={% url 'mainapp:add_customer' %}><i class="fas fa-plus"></i>&nbsp <span><strong>{% trans 'Customer' %}</strong></span></a>
+        <a href="{% url 'mainapp:list_purchase' %}"><i class="fas fa-plus"></i>&nbsp <span><strong>{% trans 'Purchase' %}</strong></span></a>
         {% if user.is_staff %}
-            <a href="{% url 'mainapp:add_manager' %}"><i class="fas fa-plus"></i>&nbsp <span><strong>Manager</strong></span></a>
+            <a href="{% url 'mainapp:add_manager' %}"><i class="fas fa-plus"></i>&nbsp <span><strong>{% trans 'Manager' %}</strong></span></a>
         {% endif %}
-        <a href="{% url 'mainapp:logout' %}" style="color:red; font-weight:bold; margin-top: 25px; margin-bottom: 10px">Logout</a>
+        <a href="{% url 'mainapp:logout' %}" style="color:red; font-weight:bold; margin-top: 25px; margin-bottom: 10px">{% trans 'Logout' %}</a>
         <div class="login-bottom-area">
-            <div><i class="fas fa-headset"></i> Support</div>
+            <div><i class="fas fa-headset"></i> {% trans 'Support' %}</div>
             <div>info@desativ-tech.de</div>
             <div>+49 89 2000 12 70</div>
             <div><a href="https://www.desativ-tech.de">www.desativ-tech.de</a></div>
