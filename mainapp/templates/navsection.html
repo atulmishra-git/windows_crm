@@ -99,6 +99,16 @@
                   </a>
               </div>
           </li>
+            <li>
+                <form method="POST" action="/i18n/setlang/" id="lang-form">
+                    {% csrf_token %}
+                    <select name="language" value="" onchange="$('#lang-form').submit()">
+                        <option value="en">En</option>
+                        <option value="de">De</option>
+                    </select>
+                    <button hidden type="submit">Sub</button>
+                </form>
+            </li>
         </ul>
       </div>
     </nav>
