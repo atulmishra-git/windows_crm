@@ -261,7 +261,11 @@ class Attachments(models.Model):
     file_name = models.CharField(max_length=255)
     upload = ContentTypeRestrictedFileField(upload_to='uploads/', null=True,
                                             content_types=['application/pdf', 'image/jpg', 'image/png', 'image/gif',
-                                                           'image/jpeg'],
+                                                           'image/jpeg', 'image/bmp', 'text/plain', 'text/csv',
+                                                           'image/vnd.microsoft.icon', 'image/png',
+                                                           'application/msword', 'application/vnd.ms-excel',
+                                                           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                                           'video/x-msvideo', 'video/mpeg', 'video/webm', 'video/mp4'],
                                             max_upload_size=5242880)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
