@@ -6,7 +6,10 @@
 
 <style>
     .search-bar {
-{#        padding-top: 10px;#}
+        margin-top: -0.75%;
+    }
+    .search-button {
+        position: absolute; top: 50%; left: 30px; transform: translateY(-50%);
     }
 
 </style>
@@ -22,7 +25,7 @@
         <input type="text" name="name"
                style="width: 50%"
                class="form-control" placeholder="Search" maxlength="255" required="" id="id_name">
-        <div style="position: absolute; top: 10px; left: 30px;">
+        <div class="search-button">
             <i class="fas fa-search"></i>
         </div>
         <button class="button" type="submit" id="id_search_btn" hidden></button>

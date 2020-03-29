@@ -125,7 +125,7 @@ input[type="email"],
 input[type="number"],
 textarea,
 select {
-	height: 48px;
+	height: 48px !important;
 	line-height: 48px;
 	padding: 0 20px;
 	outline: none;
