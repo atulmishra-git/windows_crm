@@ -39,6 +39,8 @@ urlpatterns = [
     path('chat/', include(('chat.urls', 'chat'), 'chat')),
 
     path('<int:customer_id>/attachments/', attachments.AttachmentCreateView.as_view(), name='add_attachments'),
+    path('<int:customer_id>/attachments/<int:pk>/', attachments.UpdateAttachmentView.as_view(), name='edit_attachments'),
+    path('delete/<int:customer_id>/attachments/<int:pk>/', attachments.DeleteAttachmentView.as_view(), name='delete_attachments'),
 
     # path('chat2/', chat.ChatView.as_view(), name='chat2'),
     # path('fetch_twilio_access_token/<identity>', chat.GetAccessToken.as_view(), name='fetch_twilio_access_token'),

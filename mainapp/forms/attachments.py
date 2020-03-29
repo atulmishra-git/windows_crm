@@ -16,13 +16,3 @@ class AttachmentForm(forms.ModelForm):
         instance = super().save(commit=False)
         instance.customer_id = self.customer_id
         instance.save()
-
-
-class AddAttachmentsForm(forms.Form):
-    file_type = forms.CharField(required=True,
-                                max_length=1000,
-                                widget=forms.TextInput(
-                                      attrs={
-                                          'class': 'form-control',
-                                      }
-                                ))
