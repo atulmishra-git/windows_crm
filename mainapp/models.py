@@ -268,8 +268,13 @@ class Attachments(models.Model):
                                                            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                            'video/x-msvideo', 'video/mpeg', 'video/webm', 'video/mp4'],
                                             max_upload_size=5242880)
+    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
+
+    @property
+    def file_type(self):
+        return self.upload.name.split('.')[-1]
 
     @classmethod
     def create(cls, customer_id, file_type, file_link):

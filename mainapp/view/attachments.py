@@ -2,6 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, UpdateView, DeleteView
 from mainapp.forms.attachments import AttachmentForm
 from django.shortcuts import render, reverse
+
+from mainapp.forms.mixins import FormRequestMixin
 from mainapp.models import Customer, Attachments
 
 
@@ -12,7 +14,7 @@ class CustomerFormKwargMixin:
         return kwargs
 
 
-class AttachmentCreateView(CustomerFormKwargMixin, LoginRequiredMixin, CreateView):
+class AttachmentCreateView(CustomerFormKwargMixin, FormRequestMixin, LoginRequiredMixin, CreateView):
     template_name = 'attachments.html'
     model = Attachments
     form_class = AttachmentForm
