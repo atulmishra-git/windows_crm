@@ -130,12 +130,12 @@ nav.navbar.navbar-expand-md.navbar-light {
 
 div.circle-container {
 	display: flex;
-    align-items: center;
-    justify-content:center;
-	border-radius: 50%;
-	width: 3.5em;
-	height: 3.5em;
-	background: grey;
+    /*align-items: center;*/
+    /*justify-content:center;*/
+    /*border-radius: 50%;*/
+	width: 2.5em;
+	height: 2.5em;
+	/*background: grey;*/
 }
 div.circle-container .circle-container-item {
 	font-size: x-large;
@@ -150,9 +150,13 @@ div.circle-container .circle-container-item {
 .round-img img{
 	max-width: 10%;
 }
-.top-area,.card-area{
+.top-area{
 	margin-left: 15%;
 }
+.card-area{
+	margin-left: 15%;
+}
+
 .check-area {
 	margin-left: 15%;
 }
