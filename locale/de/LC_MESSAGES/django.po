@@ -20,11 +20,11 @@ msgstr ""
 
 #: mainapp/fields.py:40
 msgid "The allowed file size is {}. Current filesize: {}"
-msgstr ""
+msgstr "Die erlaubte Dateigröße ist: {}. Aktuelle Dateigröße: {}"
 
 #: mainapp/fields.py:43
 msgid "Filetype not supported."
-msgstr ""
+msgstr "Dateityp wird nicht unterstützt."
 
 #: mainapp/models.py:16
 msgid "First Name"
@@ -36,266 +36,266 @@ msgstr "Nachname"
 
 #: mainapp/models.py:18
 msgid "Phone"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: mainapp/models.py:19
 msgid "Username"
-msgstr ""
+msgstr "Benutzername"
 
 #: mainapp/models.py:20
 msgid "Email"
-msgstr ""
+msgstr "E-Mail"
 
 #: mainapp/models.py:21
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #: mainapp/models.py:22
 msgid "Deleted"
-msgstr ""
+msgstr "gelöscht"
 
 #: mainapp/models.py:24
 msgid "staff status"
-msgstr ""
+msgstr "Personalstatus"
 
 #: mainapp/models.py:54
 msgid "Male"
-msgstr ""
+msgstr "männlich"
 
 #: mainapp/models.py:55
 msgid "Female"
-msgstr ""
+msgstr "weiblich"
 
 #: mainapp/models.py:58
 msgid "Company"
-msgstr ""
+msgstr "Firma"
 
 #: mainapp/models.py:59
 msgid "individual"
-msgstr ""
+msgstr "Einzel"
 
 #: mainapp/models.py:60
 msgid "Family"
-msgstr ""
+msgstr "Familie"
 
 #: mainapp/models.py:63
 msgid "Via Email"
-msgstr ""
+msgstr "per E-Mail"
 
 #: mainapp/models.py:64
 msgid "Via Letter"
-msgstr ""
+msgstr "per Post"
 
 #: mainapp/models.py:69
 msgid "first name"
-msgstr ""
+msgstr "Vorname"
 
 #: mainapp/models.py:70
 msgid "offer id"
-msgstr ""
+msgstr "Angebots-Nr."
 
 #: mainapp/models.py:74
 msgid "street"
-msgstr ""
+msgstr "Straße u. Hsnr."
 
 #: mainapp/models.py:75
 msgid "postcode"
-msgstr ""
+msgstr "Postleitzahl"
 
 #: mainapp/models.py:76
 msgid "place"
-msgstr ""
+msgstr "Ort"
 
 #: mainapp/models.py:77
 msgid "surname"
-msgstr ""
+msgstr "Nachname"
 
 #: mainapp/models.py:81 mainapp/models.py:199 mainapp/models.py:273
 msgid "active"
-msgstr ""
+msgstr "Aktiv"
 
 #: mainapp/models.py:82
 msgid "deleted"
-msgstr ""
+msgstr "gelöscht"
 
 #: mainapp/models.py:84
 msgid "gender"
-msgstr ""
+msgstr "Geschlecht"
 
 #: mainapp/models.py:85
 msgid "purpose"
-msgstr ""
+msgstr "Grund"
 
 #: mainapp/models.py:119
 msgid "notes"
-msgstr ""
+msgstr "Notizen"
 
 #: mainapp/models.py:149
 msgid "watt"
-msgstr ""
+msgstr "Watt"
 
 #: mainapp/models.py:150
 msgid "module count"
-msgstr ""
+msgstr "Anzahl der Module"
 
 #: mainapp/models.py:152
 msgid "with battery"
-msgstr ""
+msgstr "mit Speicher"
 
 #: mainapp/models.py:153
 msgid "manufacturer"
-msgstr ""
+msgstr "Hersteller"
 
 #: mainapp/models.py:154 mainapp/models.py:156
 msgid "Kw/H"
-msgstr ""
+msgstr "Kw/h"
 
 #: mainapp/models.py:155
 msgid "Manufacturer"
-msgstr ""
+msgstr "Hersteller"
 
 #: mainapp/models.py:158
 msgid "price without tax"
-msgstr ""
+msgstr "Preis netto"
 
 #: mainapp/models.py:158
 msgid "Price in Euro (€)"
-msgstr ""
+msgstr "Preis in Euro (€)"
 
 #: mainapp/models.py:159 mainapp/models.py:180
 msgid "Should be above 0"
-msgstr ""
+msgstr "muss größer 0 sein"
 
 #: mainapp/models.py:162
 msgid "offer by"
-msgstr ""
+msgstr "Angebot von"
 
 #: mainapp/models.py:164
 msgid "offer date"
-msgstr ""
+msgstr "Angebotsdatum"
 
 #: mainapp/models.py:165
 msgid "reseller name"
-msgstr ""
+msgstr "Verkäufer"
 
 #: mainapp/models.py:166
 msgid "declined"
-msgstr ""
+msgstr "Storno"
 
 #: mainapp/models.py:168
 msgid "date sent"
-msgstr ""
+msgstr "gesendet am"
 
 #: mainapp/models.py:169
 msgid "project planning created"
-msgstr ""
+msgstr "Projektplannung erstellt"
 
 #: mainapp/models.py:171
 msgid "DC Term"
-msgstr ""
+msgstr "DC - Termin"
 
 #: mainapp/models.py:172
 msgid "DC mechanic"
-msgstr ""
+msgstr "DC - Monteur"
 
 #: mainapp/models.py:173
 msgid "AC Term"
-msgstr ""
+msgstr "AC - Termin"
 
 #: mainapp/models.py:174
 msgid "AC mechanic"
-msgstr ""
+msgstr "AC - Monteur"
 
 #: mainapp/models.py:176
 msgid "roof type"
-msgstr ""
+msgstr "Dachart"
 
 #: mainapp/models.py:177
 msgid "roof tilt"
-msgstr ""
+msgstr "Dachneigung"
 
 #: mainapp/models.py:177
 msgid "in Degrees"
-msgstr ""
+msgstr "in Grad °"
 
 #: mainapp/models.py:178
 msgid "alignment"
-msgstr ""
+msgstr "Dachausrichtung"
 
 #: mainapp/models.py:179
 msgid "module area"
-msgstr ""
+msgstr "Modulfläche"
 
 #: mainapp/models.py:179
 msgid "Area in meter squared (m2)"
-msgstr ""
+msgstr "gesamte Modulfläche"
 
 #: mainapp/models.py:183
 msgid "extra details"
-msgstr ""
+msgstr "sonstige Kundenwünsche"
 
 #: mainapp/models.py:261
 #, fuzzy
 #| msgid "First Name"
 msgid "File Name"
-msgstr "Vorname"
+msgstr "Dateiname"
 
 #: mainapp/models.py:262
 msgid "Upload"
-msgstr ""
+msgstr "Hochladen"
 
 #: mainapp/models.py:309
 msgid "message"
-msgstr ""
+msgstr "Nachricht"
 
 #: mainapp/models.py:310
 msgid "Complete Before"
-msgstr ""
+msgstr "Zu erledigen bis:"
 
 #: mainapp/models.py:312
 msgid "completed"
-msgstr ""
+msgstr "erledigt"
 
 #: mainapp/templates/add_manager.html:8
 #, python-format
 msgid "%(operation)s Manager "
-msgstr ""
+msgstr "%(operation)s Manager "
 
 #: mainapp/templates/home/home.html:53 mainapp/templates/navsection.html:19
 msgid "Chat"
-msgstr "LOLOLOLO"
+msgstr "Chat"
 
 #: mainapp/templates/home/home.html:58
 msgid "Call Notice"
-msgstr ""
+msgstr "Gesprächsnotizen"
 
 #: mainapp/templates/home/home.html:63
 msgid "To Do List"
-msgstr ""
+msgstr "Aufgaben"
 
 #: mainapp/templates/home/home.html:68
 msgid "Attachment"
-msgstr ""
+msgstr "Datein und Anlagen"
 
 #: mainapp/templates/navsection.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: mainapp/templates/navsection.html:20
 msgid "To Do"
-msgstr ""
+msgstr "Aufgaben"
 
 #: mainapp/templates/navsection.html:21
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"
 
 #: mainapp/templates/navsection.html:23
 msgid "Customer"
-msgstr ""
+msgstr "Kunden"
 
 #: mainapp/templates/navsection.html:24
 msgid "Purchase"
-msgstr ""
+msgstr "PV-Anlage"
 
 # mainapp/templates/add_manager.html:8
 #: mainapp/templates/navsection.html:26
@@ -304,23 +304,23 @@ msgstr "Manager"
 
 #: mainapp/templates/navsection.html:28
 msgid "Logout"
-msgstr ""
+msgstr "Ausloggen"
 
 #: mainapp/templates/navsection.html:30
 msgid "Support"
-msgstr ""
+msgstr "Support"
 
 #: windows_crm/settings.py:130
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: windows_crm/settings.py:131
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 # mainapp/templates/add_manager.html:8
 #~ msgid "Add New"
-#~ msgstr "neue hinzufügen"
+#~ msgstr "hinzufügen"
 
 # mainapp/templates/add_manager.html:8
 #~ msgid "update"
