@@ -17,8 +17,13 @@ def index(request):
     last_sender = Subquery(Message.objects.filter(
         room_id=OuterRef('chat_room')
     ).order_by('-id').values('sender__first_name')[:1])
+    # chat_room_annotation = Subquery(
+    #     ChatRoom.objects.filter(
+    #         Q(name=OuterRef('room_name1').bitor(Q(name=OuterRef('room_name2'))))
+    #     ).values('name')
+    # )
 
-    users_with_chat_room = User.objects.all().annotate(
+    users_with_chat_room = User.objects.exclude(id=request.user.id).annotate(
         room_name1=Concat(F('id'), Value('_'), Value(uid)),
         room_name2=Concat(Value(uid), Value('_'), F('id'))).filter(
             Q(chat_rooms__name=F('room_name1')) | Q(chat_rooms__name=F('room_name2'))
@@ -31,7 +36,8 @@ def index(request):
         last_sender=last_sender,
     )
     context = {
-        'users': users_with_chat_room_messages
+        'users': users_with_chat_room_messages | User.objects.exclude(id=request.user.id)
+        # 'users': User.objects.exclude(id=request.user.id)
     }
     return render(request, 'chat/index.html', context=context)
 
