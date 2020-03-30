@@ -57,7 +57,7 @@ p{
 	display: block;
 }
 .logo-area{
-	background: #005afa;
+	background: #1D619D;
 	padding: 0px;
 }
 .logo-area a:hover{
@@ -165,12 +165,12 @@ div.circle-container .circle-container-item {
 	padding: 0;
 }
 .blue-bg {
-	background: #005afa;
+	background: #1D619D;
 	color: white;
 	border-radius: 10%
 }
 .round-img {
-    background: #005afa;
+    background: #1D619D;
     padding: 5% 0px;
     border-radius: 5px;
     color: white;

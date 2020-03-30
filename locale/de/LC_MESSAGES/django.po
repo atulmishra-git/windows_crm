@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 01:42+0545\n"
+"POT-Creation-Date: 2020-03-30 09:22+0545\n"
 "PO-Revision-Date: 2014-01-04 00:10+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: chat/templates/chat/index.html:11
+msgid "People"
+msgstr ""
+
+#: chat/templates/chat/index.html:15 mainapp/templates/navsection.html:78
+#: mainapp/templates/navsection.html:79
+msgid "Search"
+msgstr ""
+
+#: chat/templates/chat/room.html:8
+msgid "Go Back"
+msgstr ""
+
+#: chat/templates/chat/room.html:36
+#, fuzzy
+#| msgid "message"
+msgid "Type a message"
+msgstr "Nachricht"
+
 #: mainapp/fields.py:40
 msgid "The allowed file size is {}. Current filesize: {}"
 msgstr "Die erlaubte Dateigröße ist: {}. Aktuelle Dateigröße: {}"
@@ -26,23 +45,30 @@ msgstr "Die erlaubte Dateigröße ist: {}. Aktuelle Dateigröße: {}"
 msgid "Filetype not supported."
 msgstr "Dateityp wird nicht unterstützt."
 
-#: mainapp/models.py:16
+#: mainapp/forms/add_purchase_record.py:106
+#: mainapp/templates/add_customer.html:13 mainapp/templates/task_list.html:14
+msgid "Submit"
+msgstr ""
+
+#: mainapp/models.py:16 mainapp/templates/add_manager.html:28
 msgid "First Name"
 msgstr "Vorname"
 
-#: mainapp/models.py:17
+#: mainapp/models.py:17 mainapp/templates/add_manager.html:29
 msgid "Surname"
 msgstr "Nachname"
 
-#: mainapp/models.py:18
+#: mainapp/models.py:18 mainapp/templates/add_customer.html:49
+#: mainapp/templates/add_manager.html:30
 msgid "Phone"
 msgstr "Telefonnummer"
 
-#: mainapp/models.py:19
+#: mainapp/models.py:19 mainapp/templates/add_manager.html:31
 msgid "Username"
 msgstr "Benutzername"
 
-#: mainapp/models.py:20
+#: mainapp/models.py:20 mainapp/templates/add_customer.html:57
+#: mainapp/templates/add_manager.html:32
 msgid "Email"
 msgstr "E-Mail"
 
@@ -190,7 +216,7 @@ msgstr "gesendet am"
 msgid "project planning created"
 msgstr "Projektplannung erstellt"
 
-#: mainapp/models.py:171
+#: mainapp/models.py:171 mainapp/templates/list_purchase.html:33
 msgid "DC Term"
 msgstr "DC - Termin"
 
@@ -198,7 +224,7 @@ msgstr "DC - Termin"
 msgid "DC mechanic"
 msgstr "DC - Monteur"
 
-#: mainapp/models.py:173
+#: mainapp/models.py:173 mainapp/templates/list_purchase.html:34
 msgid "AC Term"
 msgstr "AC - Termin"
 
@@ -248,7 +274,7 @@ msgstr "Hochladen"
 msgid "message"
 msgstr "Nachricht"
 
-#: mainapp/models.py:310
+#: mainapp/models.py:310 mainapp/templates/task_list.html:32
 msgid "Complete Before"
 msgstr "Zu erledigen bis:"
 
@@ -256,10 +282,85 @@ msgstr "Zu erledigen bis:"
 msgid "completed"
 msgstr "erledigt"
 
+#: mainapp/templates/add_customer.html:16
+#, fuzzy
+#| msgid "Customer"
+msgid "Customers"
+msgstr "Kunden"
+
+#: mainapp/templates/add_customer.html:19
+#: mainapp/templates/list_purchase.html:18
+#, python-format
+msgid "No %(object_type)s(s) Found"
+msgstr ""
+
+#: mainapp/templates/add_customer.html:29
+#, fuzzy
+#| msgid "Customer"
+msgid "Customer ID"
+msgstr "Kunden"
+
+#: mainapp/templates/add_customer.html:33
+#, fuzzy
+#| msgid "First Name"
+msgid "Name"
+msgstr "Dateiname"
+
+#: mainapp/templates/add_customer.html:37
+msgid "Address"
+msgstr ""
+
+#: mainapp/templates/add_customer.html:41
+#, fuzzy
+#| msgid "offer id"
+msgid "Offer ID"
+msgstr "Angebots-Nr."
+
+#: mainapp/templates/add_customer.html:45
+msgid "Invoice"
+msgstr ""
+
+#: mainapp/templates/add_customer.html:53
+msgid "Mobile"
+msgstr ""
+
+#: mainapp/templates/add_customer.html:62 mainapp/templates/add_manager.html:33
+#: mainapp/templates/task_list.html:61
+msgid "Edit"
+msgstr ""
+
+#: mainapp/templates/add_customer.html:63 mainapp/templates/add_manager.html:34
+#: mainapp/templates/task_list.html:62
+#, fuzzy
+#| msgid "Deleted"
+msgid "Delete"
+msgstr "gelöscht"
+
 #: mainapp/templates/add_manager.html:8
 #, python-format
 msgid "%(operation)s Manager "
 msgstr "%(operation)s Manager "
+
+# mainapp/templates/add_manager.html:8
+#: mainapp/templates/add_manager.html:17
+#, fuzzy
+#| msgid "Manager"
+msgid "Managers"
+msgstr "Manager"
+
+#: mainapp/templates/add_manager.html:20
+msgid "No Managers Found"
+msgstr ""
+
+#: mainapp/templates/add_purchase.html:11 mainapp/templates/navsection.html:24
+msgid "Purchase"
+msgstr "PV-Anlage"
+
+#: mainapp/templates/add_purchase.html:14
+#, fuzzy
+#| msgid "Customer"
+msgid "Add Customer"
+msgstr "Kunden"
 
 #: mainapp/templates/home/home.html:53 mainapp/templates/navsection.html:19
 msgid "Chat"
@@ -277,6 +378,45 @@ msgstr "Aufgaben"
 msgid "Attachment"
 msgstr "Datein und Anlagen"
 
+#: mainapp/templates/list_purchase.html:10
+#, python-format
+msgid "Add %(object_type|title)s"
+msgstr ""
+
+#: mainapp/templates/list_purchase.html:29
+msgid "Watt"
+msgstr ""
+
+#: mainapp/templates/list_purchase.html:30
+msgid "Count"
+msgstr ""
+
+#: mainapp/templates/list_purchase.html:31
+msgid "KWP"
+msgstr ""
+
+#: mainapp/templates/list_purchase.html:32
+#, fuzzy
+#| msgid "with battery"
+msgid "Battery"
+msgstr "mit Speicher"
+
+#: mainapp/templates/list_purchase.html:59
+#, fuzzy
+#| msgid "with battery"
+msgid "With Battery"
+msgstr "mit Speicher"
+
+#: mainapp/templates/list_purchase.html:65
+#, fuzzy
+#| msgid "with battery"
+msgid "Without Battery"
+msgstr "mit Speicher"
+
+#: mainapp/templates/list_purchase.html:71
+msgid "Extra"
+msgstr ""
+
 #: mainapp/templates/navsection.html:16
 msgid "Dashboard"
 msgstr "Dashboard"
@@ -289,16 +429,13 @@ msgstr "Aufgaben"
 msgid "Calendar"
 msgstr "Kalender"
 
-#: mainapp/templates/navsection.html:23
+#: mainapp/templates/navsection.html:23 mainapp/view/add_customer.py:18
+#: mainapp/view/add_customer.py:35
 msgid "Customer"
 msgstr "Kunden"
 
-#: mainapp/templates/navsection.html:24
-msgid "Purchase"
-msgstr "PV-Anlage"
-
 # mainapp/templates/add_manager.html:8
-#: mainapp/templates/navsection.html:26
+#: mainapp/templates/navsection.html:26 mainapp/templates/task_list.html:37
 msgid "Manager"
 msgstr "Manager"
 
@@ -310,6 +447,55 @@ msgstr "Ausloggen"
 msgid "Support"
 msgstr "Support"
 
+#: mainapp/templates/task_list.html:8
+#, fuzzy, python-format
+#| msgid "%(operation)s Manager "
+msgid " %(operation)s Task "
+msgstr "%(operation)s Manager "
+
+#: mainapp/templates/task_list.html:18
+msgid "Tasks"
+msgstr ""
+
+#: mainapp/templates/task_list.html:21
+msgid "No Tasks Found"
+msgstr ""
+
+#: mainapp/templates/task_list.html:42 mainapp/templates/task_list.html:73
+#, fuzzy
+#| msgid "completed"
+msgid "Completed"
+msgstr "erledigt"
+
+#: mainapp/templates/task_list.html:50
+msgid "Creator"
+msgstr ""
+
+#: mainapp/templates/task_list.html:54
+msgid "Todo"
+msgstr ""
+
+# mainapp/templates/add_manager.html:8
+#: mainapp/view/add_customer.py:17 mainapp/view/add_manager.py:18
+msgid "Add New"
+msgstr "hinzufügen"
+
+# mainapp/templates/add_manager.html:8
+#: mainapp/view/add_customer.py:34 mainapp/view/add_manager.py:36
+#: mainapp/view/task.py:48
+#, fuzzy
+#| msgid "update"
+msgid "Update"
+msgstr "aktualisieren"
+
+#: mainapp/view/task.py:15 mainapp/view/task.py:75
+msgid "You are not permitted to perform the action."
+msgstr ""
+
+#: mainapp/view/task.py:34
+msgid "Create"
+msgstr ""
+
 #: windows_crm/settings.py:130
 msgid "English"
 msgstr "English"
@@ -317,11 +503,3 @@ msgstr "English"
 #: windows_crm/settings.py:131
 msgid "German"
 msgstr "Deutsch"
-
-# mainapp/templates/add_manager.html:8
-#~ msgid "Add New"
-#~ msgstr "hinzufügen"
-
-# mainapp/templates/add_manager.html:8
-#~ msgid "update"
-#~ msgstr "aktualisieren"
