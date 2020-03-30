@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from mainapp.view import login, home, add_manager, add_customer, add_purchase, call_notes, attachments, chat, task, \
+from mainapp.view import login, home, add_manager, add_customer, add_purchase, call_notes, attachments, task, \
     invoices, offer
 
 
@@ -42,13 +42,10 @@ urlpatterns = [
     path('<int:customer_id>/attachments/<int:pk>/', attachments.UpdateAttachmentView.as_view(), name='edit_attachments'),
     path('delete/<int:customer_id>/attachments/<int:pk>/', attachments.DeleteAttachmentView.as_view(), name='delete_attachments'),
 
-    # path('chat2/', chat.ChatView.as_view(), name='chat2'),
-    # path('fetch_twilio_access_token/<identity>', chat.GetAccessToken.as_view(), name='fetch_twilio_access_token'),
-    path('user_search/', chat.user_search, name='user_search'),
-    # path('chat_messages/', chat.chat_messages, name='chat_messages'),
-    # path('send_messages/', chat.send_messages, name='send_messages'),
-    path('invoices/<customer_id>', invoices.InvoicesView.as_view(), name='invoices'),
-    path('generate_invoices/<purchase_id>', invoices.download_invoice, name='generate_invoices'),
+    path('invoices/<customer_id>/', invoices.InvoicesView.as_view(), name='invoices'),
+    path('generate_invoices/<purchase_id>/', invoices.download_invoice, name='generate_invoices'),
+    # path('pdf_invoice/<purchase_id>/', invoices.pdf_invoice, name='pdf_invoice'),
+
     path('offer/<customer_id>', offer.OfferView.as_view(), name='offer'),
     path('generate_offer/<purchase_id>', offer.download_offer, name='generate_offer'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

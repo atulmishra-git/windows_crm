@@ -1,8 +1,13 @@
+import pdfkit
+from django.template.context import RequestContext
+from django.template.response import TemplateResponse
 from django.views.generic import TemplateView
 from django.shortcuts import render
-from mainapp.models import Customer, PurchaseRecord, Attachments
 from django.http import HttpResponse
-from django.template.loader import get_template
+from django.template.loader import get_template, render_to_string
+from django.conf import settings
+
+from mainapp.models import Customer, PurchaseRecord, Attachments
 from mainapp.utils import render_to_pdf
 
 
@@ -22,46 +27,33 @@ class InvoicesView(TemplateView):
 
 
 def download_invoice(request, purchase_id):
-    template = get_template('pdf/invoice.html')
+    # template = get_template('pdf/invoice.html')
     purchase = PurchaseRecord.fetch_by_id(purchase_id=purchase_id)
+    if not purchase:
+        return HttpResponse(status=404)
     customer = purchase.customer
-    fullname = customer.first_name + ' ' + customer.surname
-    if customer.gender == 'Male':
-        fullname = 'Mr ' + fullname
-    else:
-        fullname = 'Ms ' + fullname
-
-    tax = float(purchase.price_without_tax) * 0.19
 
     p = {
+        'id': purchase.id,
         'name': purchase.customer.first_name + ' ' + purchase.customer.surname,
         'customer_id': customer.id,
-        'fullname': fullname,
+        'fullname': f'{"Mr. " if customer.gender == "Male" else "Ms. "}{str(customer)}',
         'street': customer.street,
         'postcode': customer.postcode,
         'place': customer.place,
-        'installation_date': purchase.installation_date.date(),
-        'date_month': purchase.installation_date.date(),
+        'offer_date': purchase.offer_date,
+        'date_sent': purchase.date_sent,
         'price_without_tax': purchase.price_without_tax,
-        'tax': tax,
+        'tax': "%0.2f" % (purchase.price_without_tax * 0.19),
         'price_with_tax': purchase.price_with_tax,
     }
-
     context = {
         'purchase': p
     }
 
-    html = template.render(context)
-    pdf = render_to_pdf('pdf/invoice.html', context)
-    if pdf:
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Invoice_{}_{}.pdf".format(str(customer.id), str(purchase_id))
-        content = "inline; filename='%s'" % filename
-        download = request.GET.get("download")
-        if download:
-            content = "attachment; filename='%s'" % filename
-        response['Content-Disposition'] = content
-        create_attachment = Attachments.create_attachment(customer_id=customer.id, file_type="Invoice",
-                                                          upload=context)
-        return response
-    return HttpResponse("Not found")
+    rendered = render_to_string('pdf/invoice.html',
+                                context,
+                                request=request)
+    pdf = pdfkit.from_string(rendered, False)
+    pdfkit.from_file()
+    return HttpResponse(pdf, content_type="application/pdf")

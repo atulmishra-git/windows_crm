@@ -14,12 +14,12 @@
                             <!-- Details -->
                             <div class="task-listing-description">
                                 <h4 class="task-listing-title"><b>Reseller Name - </b>{{ purchase.reseller_name }}</h4>
-                                <h4 class="task-listing-title"><b>Module Type - </b>{{ purchase.module_type }}</h4>
+                                <h4 class="task-listing-title"><b>Module Watt - </b>{{ purchase.watt }}</h4>
                                 <h4 class="task-listing-title"><b>Module Count - </b>{{ purchase.module_count }}</h4>
-                                <h4 class="task-listing-title"><b>Installation Date - </b>{{ purchase.installation_date }}</h4>
-                                <h4 class="task-listing-title"><b>Order Date - </b>{{ purchase.order_date }}</h4>
                                 <br/>
-                                <button class="button" onclick="generate_btn({{ purchase.id }})">Generate Invoice</button>
+                                <a target="_blank" href="{% url 'mainapp:generate_invoices' purchase_id=purchase.id %}">
+                                    <button class="button">Generate Invoice</button>
+                                </a>
                                 <br/>
                             </div>
                         </div>
@@ -30,9 +30,6 @@
     </div>
 
     <script>
-        function generate_btn(purchase_id) {
-            window.location = "{% url 'mainapp:generate_invoices' purchase_id=1234 %}".replace(/1234/, purchase_id);
-        }
     </script>
 
 {% endblock %}

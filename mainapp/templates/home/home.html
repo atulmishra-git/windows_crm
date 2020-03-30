@@ -49,18 +49,19 @@
             <div class="col-md-6 col-lg-6">
                 <div class="" style="display: flex; flex-direction: column">
                     <div class="card">
-                        <a href="/chat/">
-                            <span id="{{ customer.id }}" onclick="open_chat(this)">{% trans 'Chat' %}</span>
+{#                        {{request.session|get:'_language' }}#}
+                        <a href="{% url 'mainapp:invoices' customer_id=customer.id %}">
+                            <span>{% trans 'Invoice' %}</span>
                         </a>
                     </div>
                     <div class="card">
                         <a href="{% url 'mainapp:add_call_notes' customer_id=customer.id %}">
-                            <span id="{{ customer.id }}" onclick="add_call_notes(this)">{% trans 'Call Notice' %}</span>
+                            <span>{% trans 'Call Notice' %}</span>
                         </a>
                     </div>
                     <div class="card">
                         <a href="{% url 'mainapp:open_task_list' %}">
-                            <span onclick="task_list_btn()" >{% trans 'To Do List' %}</span>
+                            <span>{% trans 'To Do List' %}</span>
                         </a>
                     </div>
                     <div class="card">
@@ -76,21 +77,6 @@
 {% endblock %}
 
 <script>
-    function open_chat() {
-        window.open(
-            "/chat/",
-            '_blank');
-    }
-
-    function add_call_notes(btn) {
-        window.open(
-            "{% url 'mainapp:add_call_notes' customer_id=1234 %}".replace(/1234/, btn.id),
-            '_blank');
-    }
-
-    function task_list_btn() {
-        window.open("{% url 'mainapp:open_task_list' %}", '_blank');
-    }
 </script>
 
 </body>

@@ -110,7 +110,7 @@ class Customer(models.Model):
             return None
 
     def __str__(self):
-        return self.first_name
+        return self.first_name + " " + self.surname
 
 
 class CallNotes(models.Model):
