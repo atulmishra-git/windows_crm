@@ -1,5 +1,6 @@
 from django.shortcuts import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.utils.translation import ugettext_lazy as _
 
 from mainapp.forms.add_customer import CustomerForm
 from mainapp.models import Customer
@@ -13,8 +14,8 @@ class AddCustomerView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(AddCustomerView, self).get_context_data(**kwargs)
-        context['operation'] = "Add New"
-        context['object_type'] = "Customer"
+        context['operation'] = _("Add New")
+        context['object_type'] = _("Customer")
         context['fields'] = list(self.form_class.base_fields.keys())
         context['objects'] = Customer.objects.order_by('-id').values('id', *context['fields'])
         return context
@@ -30,8 +31,8 @@ class UpdateCustomerView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateCustomerView, self).get_context_data(**kwargs)
-        context['operation'] = "Update"
-        context['object_type'] = "Customer"
+        context['operation'] = _("Update")
+        context['object_type'] = _("Customer")
         context['fields'] = list(self.form_class.base_fields.keys())
         context['objects'] = Customer.objects.values('id', *context['fields'])
         return context

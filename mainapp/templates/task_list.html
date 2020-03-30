@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 
     <div class="dashboard-content-container" data-simplebar>
         <div class="dashboard-content-inner">
-            <h1>{{ operation }} Task</h1>
+            <h1>{% blocktrans %} {{ operation }} Task {% endblocktrans %}</h1>
             <br/>
             <form method="POST" id="id_create_task" class="contact100-form validate-form">
                 {% csrf_token %}
                 {{ form }}
                 <div>
-                    <button type="submit" class="button">Submit</button>
+                    <button type="submit" class="button">{% trans 'Submit' %}</button>
                 </div>
             </form>
             <br/>
-            <h1>Tasks</h1>
+            <h1>{% trans 'Tasks' %}</h1>
             <h3 class="tasks-list-container compact-list margin-top-35">
                 {% if not object_list %}
-                    <div class="task-listing">No Tasks Found</div>
+                    <div class="task-listing">{% trans 'No Tasks Found' %}</div>
                 {% endif %}
                 {% for obj in object_list %}
                 <div class="task-listing">
@@ -28,17 +29,17 @@
                                 {% if not obj.completed %}
                                 <table class="table">
                                     <tr>
-                                        <th>Complete Before</th>
+                                        <th>{% trans 'Complete Before' %}</th>
                                         <td>{{ obj.complete_before }}</td>
                                     </tr>
                                     {% if request.user.is_superuser %}
                                         <tr>
-                                            <th>Manager</th>
+                                            <th>{% trans 'Manager' %}</th>
                                             <td>{{ obj.user }} ({{ obj.user.email }})</td>
                                         </tr>
                                     {% endif %}
                                     <tr>
-                                        <th>Completed</th>
+                                        <th>{% trans 'Completed' %}</th>
                                         <td>{{ obj.completed }}{{ "    " }}
                                             {% if not obj.completed %}
                                             <a href="{% url 'mainapp:mark_completed' pk=obj.id %}">Mark Complete</a>
@@ -46,19 +47,19 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Creator</th>
+                                        <th>{% trans 'Creator' %}</th>
                                         <td>{{ obj.creator }} {{ obj.creator.email }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Todo</th>
+                                        <th>{% trans 'Todo' %}</th>
                                         <td>
                                             <strong>{{ obj.message }}</strong>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <a href="{% url 'mainapp:edit_task' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
-                                            <a href="{% url 'mainapp:delete_task' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
+                                            <a href="{% url 'mainapp:edit_task' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>{% trans 'Edit' %}</span></a>
+                                            <a href="{% url 'mainapp:delete_task' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>{% trans 'Delete' %}</span></a>
                                         </td>
                                         <td></td>
                                     </tr>
@@ -69,7 +70,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <h4>Completed</h4>
+                <h4>{% trans 'Completed' %}</h4>
                 {% for obj in completed_object_list %}
                     <div class="task-listing">
                     <!-- Job Listing Details -->

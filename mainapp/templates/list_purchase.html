@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
             <div class="row col-md-12">
                 <p>
-                    <a class="button" href="{% url 'mainapp:add_purchase' %}">Add {{ object_type|title }}</a>
+                    <a class="button" href="{% url 'mainapp:add_purchase' %}">{% blocktrans %}Add {{ object_type|title }}{% endblocktrans %}</a>
                     <br/>
                     <br/>
                 </p>
@@ -14,7 +15,7 @@
             <h1>{{ object_type }}</h1>
             <div class="tasks-list-container compact-list margin-top-35">
                 {% if not object_list %}
-                    <div class="task-listing">No {{ object_type }}(s) Found</div>
+                    <div class="task-listing">{% blocktrans %}No {{ object_type }}(s) Found{% endblocktrans %}</div>
                 {% endif %}
                     <div class="task-listing">
                     <!-- Job Listing Details -->
@@ -25,12 +26,12 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>{{ object_type|title }} ID</th>
-                                            <th>Watt</th>
-                                            <th>Count</th>
-                                            <th>KWP</th>
-                                            <th>Battery</th>
-                                            <th>DC Term</th>
-                                            <th>AC Term</th>
+                                            <th>{% trans 'Watt'  %}</th>
+                                            <th>{% trans 'Count'  %}</th>
+                                            <th>{% trans 'KWP' %}</th>
+                                            <th>{% trans 'Battery' %}</th>
+                                            <th>{% trans 'DC Term' %}</th>
+                                            <th>{% trans 'AC Term' %}</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -55,19 +56,19 @@
                                         </tr>
                                         {% if obj.with_battery %}
                                             <tr>
-                                                <td>With Battery</td>
+                                                <td>{% trans 'With Battery' %}</td>
                                                 <td colspan="2"><strong>Mf: </strong>{{ obj.manufacturer }}</td>
                                                 <td colspan="6"><strong>KWH: </strong>{{ obj.kwh }}</td>
                                             </tr>
                                         {% else %}
                                             <tr>
-                                                <td>W/O Battery</td>
+                                                <td>{% trans 'Without Battery' %}</td>
                                                 <td colspan="2"><strong>Mf: </strong>{{ obj.manufacturer2 }}</td>
                                                 <td colspan="6"><strong>KWH: </strong>{{ obj.kwh2 }}</td>
                                             </tr>
                                         {% endif %}
                                         <tr>
-                                            <td style="border-bottom: solid thin">Extra</td>
+                                            <td style="border-bottom: solid thin">{% trans 'Extra' %}</td>
                                             <td style="border-bottom: solid thin" colspan="8">{{ obj.extra_details }}</td>
                                         </tr>
                                         {% endfor %}

@@ -1,4 +1,5 @@
 {% extends 'chat/chat_base.html' %}
+{% load i18n %}
 <!-- chat/templates/chat/index.html -->
 
 {% block people_container %}
@@ -7,11 +8,11 @@
           <div class="">
 {#          it was headind_srch#}
             <div class="recent_heading">
-              <h4>People</h4>
+              <h4>{% trans 'People' %}</h4>
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
+                <input type="text" class="search-bar"  placeholder="{% trans 'Search' %}" >
             </div>
           </div>
           <div class="inbox_chat">

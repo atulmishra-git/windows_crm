@@ -1,10 +1,11 @@
 {% extends 'chat/chat_base.html' %}
+{% load i18n %}
 <!-- chat/templates/chat/room.html -->
 
 {% block message_container %}
     <p style="padding-left: 2%;">
         <a href="{% url 'mainapp:chat:index' %}">
-            <button class="button">Go Back</button>
+            <button class="button">{% trans 'Go Back' %}</button>
         </a>
     </p>
 
@@ -32,7 +33,7 @@
       </div>
       <div class="type_msg">
         <div class="input_msg_write">
-          <input type="text" id="chat-message-input" class="write_msg" placeholder="Type a message" />
+          <input type="text" id="chat-message-input" class="write_msg" placeholder={% trans "Type a message" %} />
           <button class="msg_send_btn" id="chat-message-submit" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
         </div>
       </div>

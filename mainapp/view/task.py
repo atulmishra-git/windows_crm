@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import JsonResponse
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.utils.translation import ugettext_lazy as _
 
 from mainapp.forms.mixins import FormRequestMixin
 from mainapp.forms.task import AddTaskForm
@@ -11,7 +12,7 @@ from mainapp.models import Tasks
 class IsCreatorMixin(object):
     def dispatch(self, request, *args, **kwargs):
         if request.user != self.get_object().creator:
-            return JsonResponse({'message': 'You are not permitted to perform the action.'})
+            return JsonResponse({'message': _('You are not permitted to perform the action.')})
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -30,7 +31,7 @@ class TasksView(LoginRequiredMixin, FormRequestMixin, CreateView):
             completed_tasks = completed_tasks.order_by('-id').filter(user=self.request.user)[:5]
         context['object_list'] = tasks
         context['completed_object_list'] = completed_tasks
-        context['operation'] = 'Create'
+        context['operation'] = _('Create')
         return context
 
     def get_success_url(self):
@@ -44,7 +45,7 @@ class TaskUpdateView(IsCreatorMixin, FormRequestMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['operation'] = 'Update'
+        context['operation'] = _('Update')
         return context
 
     def get_success_url(self):
@@ -71,7 +72,7 @@ def mark_completed(request, pk):
             task.completed = True
             task.save()
         else:
-            return JsonResponse({'messsage': 'Action not permitted'},
+            return JsonResponse({'messsage': _('You are not permitted to perform the action.')},
                                 status=400)
     except:
         pass

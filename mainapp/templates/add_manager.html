@@ -14,10 +14,10 @@
                 <button type="submit" class="button">Submit</button>
             </form>
             <br/>
-            <h1>Managers</h1>
+            <h1>{% trans 'Managers' %}</h1>
             <div class="tasks-list-container compact-list margin-top-35">
                 {% if not managers %}
-                    <div class="task-listing">No Managers Found</div>
+                    <div class="task-listing">{% trans 'No Managers Found' %}</div>
                 {% endif %}
                 {% for manager in managers %}
                     <div class="task-listing">
@@ -25,13 +25,13 @@
                         <div class="task-listing-details">
                             <!-- Details -->
                             <div class="task-listing-description">
-                                <h4 class="task-listing-title">First Name - {{ manager.first_name }}</h4>
-                                <h4 class="task-listing-title">Surname - {{ manager.surname }}</h4>
-                                <h4 class="task-listing-title">Phone - {{ manager.phone }}</h4>
-                                <h4 class="task-listing-title">Username - {{ manager.username }}</h4>
-                                <h4 class="task-listing-title">Email - {{ manager.email }}</h4>
-                                <a href="{% url 'mainapp:edit_manager' pk=manager.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
-                                <a href="{% url 'mainapp:delete_manager' manager_id=manager.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
+                                <h4 class="task-listing-title">{% trans 'First Name' %} - {{ manager.first_name }}</h4>
+                                <h4 class="task-listing-title">{% trans 'Surname' %} - {{ manager.surname }}</h4>
+                                <h4 class="task-listing-title">{% trans 'Phone' %} - {{ manager.phone }}</h4>
+                                <h4 class="task-listing-title">{% trans 'Username' %} - {{ manager.username }}</h4>
+                                <h4 class="task-listing-title">{% trans 'Email' %} - {{ manager.email }}</h4>
+                                <a href="{% url 'mainapp:edit_manager' pk=manager.id %}" class=""><i class="icon-feather-edit"></i> <span>{% trans 'Edit' %}</span></a>
+                                <a href="{% url 'mainapp:delete_manager' manager_id=manager.id %}" class=""><i class="icon-material-outline-delete"></i> <span>{% trans 'Delete' %}</span></a>
                                 <br/>
                             </div>
                         </div>
@@ -42,27 +42,6 @@
     </div>
 
     <script>
-        function create_manager() {
-            var form_data = $('#id_create_manager');
-            $.ajax({
-                type: 'post',
-                url: "{% url 'mainapp:add_manager' %}",
-                data: form_data.serialize(),
-                success: function (data) {
-                    if (data["success"]) {
-                        window.location = "{% url 'mainapp:home' %}";
-                    } else {
-                        $('#general_error').html(data["message"]);
-                        $("#validator").fadeIn();
-                        setTimeout(function () {
-                            $('#general_error').html();
-                            $("#validator").fadeOut();
-                        }, 2000);
-                    }
-                }
-            });
-        }
-
     </script>
 
 {% endblock %}
