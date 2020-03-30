@@ -36,7 +36,10 @@ def index(request):
         last_sender=last_sender,
     )
     context = {
-        'users': users_with_chat_room_messages | User.objects.exclude(id=request.user.id)
+        'users': users_with_chat_room_messages | User.objects.exclude(
+            id=request.user.id).exclude(
+            id__in=users_with_chat_room_messages.values_list('id')
+        )
         # 'users': User.objects.exclude(id=request.user.id)
     }
     return render(request, 'chat/index.html', context=context)
