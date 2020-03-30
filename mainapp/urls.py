@@ -43,11 +43,8 @@ urlpatterns = [
     path('<int:customer_id>/attachments/<int:pk>/', attachments.UpdateAttachmentView.as_view(), name='edit_attachments'),
     path('delete/<int:customer_id>/attachments/<int:pk>/', attachments.DeleteAttachmentView.as_view(), name='delete_attachments'),
 
-    path('invoices/<customer_id>/', invoices.InvoicesView.as_view(), name='invoices'),
-    path('generate_invoices/<purchase_id>/', invoices.download_invoice, name='generate_invoices'),
-    # path('pdf_invoice/<purchase_id>/', invoices.pdf_invoice, name='pdf_invoice'),
-
-    path('offer/<purchase_id>/', offers.download_offer, name='pdf_offer'),
-
-    path('generate_offer/<purchase_id>', offer.download_offer, name='generate_offer'),
+    path('offer/<customer_id>/', offers.download_offer, name='pdf_offer'),
+    path('offer_confirm/<customer_id>/', offers.download_offer_confirm, name='pdf_offer_confirm'),
+    path('install/<customer_id>/', offers.download_install, name='pdf_install'),
+    path('invoice/<customer_id>/', offers.download_invoice, name='pdf_invoice'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

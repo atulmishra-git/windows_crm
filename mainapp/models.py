@@ -145,7 +145,8 @@ class CallNotes(models.Model):
 
 
 class PurchaseRecord(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='purchase_records')
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE,
+                                    related_name='purchase_record')
     watt = models.PositiveIntegerField(_("watt"), null=True, default=0)
     module_count = models.PositiveIntegerField(_("module count"), null=True, default=0)
 

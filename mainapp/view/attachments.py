@@ -21,7 +21,7 @@ class AttachmentCreateView(CustomerFormKwargMixin, FormRequestMixin, LoginRequir
 
     def get_context_data(self, **kwargs):
         customer_id = self.kwargs['customer_id']
-        attachments = Attachments.objects.filter(customer_id=customer_id)
+        attachments = Attachments.objects.filter(customer_id=customer_id).order_by('-id')
         cxt = super().get_context_data(**kwargs)
         cxt.update({
             'customer_id': customer_id,

@@ -8,7 +8,6 @@
         <div class="row mt-5">
             <div class="col-md-12 col-lg-12">
                 <div class="round-img text-center">
-                    <a href="{% url 'mainapp:pdf_offer' purchase_id=2 %}">LINK</a>
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-sm-0"></div>
                         <div class="col-md-3 col-lg-3 col-sm-6">
@@ -37,10 +36,17 @@
             <div class="col-md-6 col-lg-6">
                 <div class="list-area home-card">
                     <ul>
-                        <li><a role="button" class="btn btn-primary btn-block" href="#">Offer</a></li>
-                        <li><a role="button" class="btn btn-primary btn-block" href="#">Offer Confirmation</a></li>
-                        <li><a role="button" class="btn btn-primary btn-block" href="#">Installation</a></li>
-                        <li><a role="button" class="btn btn-primary btn-block" href="#">Invoice</a></li>
+                        {% if customer.purchase_record %}
+                            <li><a role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_offer' customer_id=customer.id %}">Offer</a></li>
+                            <li><a role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_offer_confirm' customer_id=customer.id %}">Offer Confirmation</a></li>
+                            <li><a role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_install' customer_id=customer.id %}">Installation</a></li>
+                            <li><a role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_invoice' customer_id=customer.id %}">Invoice</a></li>
+                        {% else %}
+                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>Offer</a></li>
+                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>Offer Confirmation</a></li>
+                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>Installation</a></li>
+                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>Invoice</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -48,8 +54,8 @@
                 <div class="" style="display: flex; flex-direction: column">
                     <div class="card">
 {#                        {{request.session|get:'_language' }}#}
-                        <a href="{% url 'mainapp:invoices' customer_id=customer.id %}">
-                            <span>{% trans 'Invoice' %}</span>
+                        <a href="{% url 'mainapp:chat:index' %}">
+                            <span>{% trans 'Chat' %}</span>
                         </a>
                     </div>
                     <div class="card">
