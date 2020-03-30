@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.shortcuts import render
 from mainapp.models import Customer, PurchaseRecord
 from django.http import HttpResponse
@@ -53,19 +53,6 @@ def download_offer(request, purchase_id):
     context = {
         'purchase': p
     }
-
-    # html = template.render(context)
-    # pdf = render_to_pdf('pdf/new_offer_310.html', context)
-    # if pdf:
-    #     response = HttpResponse(pdf, content_type='application/pdf')
-    #     filename = "Invoice_%s.pdf" % "12341231"
-    #     content = "inline; filename='%s'" % filename
-    #     download = request.GET.get("download")
-    #     if download:
-    #         content = "attachment; filename='%s'" % filename
-    #     response['Content-Disposition'] = content
-    #     return response
-    # return HttpResponse("Not found")
 
     return render_to_pdf(
         'pdf/new_offer_310_2.html',

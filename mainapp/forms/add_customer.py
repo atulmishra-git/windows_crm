@@ -9,9 +9,3 @@ class CustomerForm(LabelAdder, forms.ModelForm):
         model = Customer
         fields = ['purpose', 'gender', 'first_name', 'surname', 'offer_id', 'invoice_id', 'street',
                   'postcode', 'place', 'phone', 'mobile', 'email']
-
-    # gender = forms.ChoiceField(required=True,
-    #                            choices=GENDER_CHOICES,
-    #                            widget=forms.Select({
-    #                                'class': 'form-control'
-    #                            }))

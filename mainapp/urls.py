@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from mainapp.view import login, home, add_manager, add_customer, add_purchase, call_notes, attachments, task, \
     invoices, offer
+from mainapp.view.pdfs import offers
 
 
 app_name = 'mainapp'
@@ -46,6 +47,7 @@ urlpatterns = [
     path('generate_invoices/<purchase_id>/', invoices.download_invoice, name='generate_invoices'),
     # path('pdf_invoice/<purchase_id>/', invoices.pdf_invoice, name='pdf_invoice'),
 
-    path('offer/<customer_id>', offer.OfferView.as_view(), name='offer'),
+    path('offer/<purchase_id>/', offers.download_offer, name='pdf_offer'),
+
     path('generate_offer/<purchase_id>', offer.download_offer, name='generate_offer'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

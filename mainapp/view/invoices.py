@@ -28,7 +28,7 @@ class InvoicesView(TemplateView):
 
 def download_invoice(request, purchase_id):
     # template = get_template('pdf/invoice.html')
-    purchase = PurchaseRecord.fetch_by_id(purchase_id=purchase_id)
+    purchase = PurchaseRecord.objects.last(purchase_id=purchase_id)
     if not purchase:
         return HttpResponse(status=404)
     customer = purchase.customer
@@ -54,6 +54,14 @@ def download_invoice(request, purchase_id):
     rendered = render_to_string('pdf/invoice.html',
                                 context,
                                 request=request)
-    pdf = pdfkit.from_string(rendered, False)
-    pdfkit.from_file()
+    options = {
+        'page-size': 'Letter',
+        'margin-top': '0.75in',
+        'margin-right': '0.75in',
+        'margin-bottom': '0.75in',
+        'margin-left': '0.75in',
+        'encoding': "UTF-8",
+        'no-outline': None
+    }
+    pdf = pdfkit.from_string(rendered, False, options=options)
     return HttpResponse(pdf, content_type="application/pdf")
