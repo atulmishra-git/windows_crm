@@ -176,7 +176,7 @@ div.circle-container .circle-container-item {
     color: white;
 }
 .home-card {
-	height: 300px;
+	/*height: 300px;*/
 }
 .home-card a:hover{
 	color: white!important;
