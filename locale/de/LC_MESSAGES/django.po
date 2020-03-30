@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 11:01+0545\n"
+"POT-Creation-Date: 2020-03-30 17:32+0545\n"
 "PO-Revision-Date: 2014-01-04 00:10+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,7 +47,7 @@ msgstr "Dateityp wird nicht unterstützt."
 
 #: mainapp/forms/add_purchase_record.py:44
 msgid "Choose if there is battery system or not"
-msgstr ""
+msgstr "Bitte auswählen ob Speicher gewählt wurde"
 
 #: mainapp/forms/add_purchase_record.py:52
 #: mainapp/templates/list_purchase.html:65
@@ -58,7 +58,7 @@ msgstr "mit Speicher"
 
 #: mainapp/forms/add_purchase_record.py:58
 msgid "Price"
-msgstr ""
+msgstr "Preis"
 
 #: mainapp/forms/add_purchase_record.py:65
 #, fuzzy
@@ -74,16 +74,16 @@ msgstr "sonstige Kundenwünsche"
 
 #: mainapp/forms/add_purchase_record.py:88
 msgid "Information of the Roof"
-msgstr ""
+msgstr "Informationen zum Dach"
 
 #: mainapp/forms/add_purchase_record.py:100
 msgid "Total Area of all modules"
-msgstr ""
+msgstr "Gesamtfläche aller Module"
 
 #: mainapp/forms/add_purchase_record.py:106
 #: mainapp/templates/add_customer.html:13 mainapp/templates/task_list.html:14
 msgid "Submit"
-msgstr ""
+msgstr "Erstellen"
 
 #: mainapp/models.py:16 mainapp/templates/add_manager.html:28
 msgid "First Name"
