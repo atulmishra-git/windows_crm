@@ -41,7 +41,7 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                      '<br/>'),
                 css_class='form-row'
             ),
-            HTML(f'<h3>{_("Choose if there is battery system or not")}</h3>'),
+            HTML('<h3>%s</h3>' % _("Choose if there is battery system or not")),
             'with_battery',
             HTML(f'<h3>{_("With Battery")}</h3>'),
             Row(
@@ -49,27 +49,27 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                 Column('kwh', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
-            HTML(f'<h3>WR - {_("Without Battery")}</h3>'),
+            HTML('<h3>WR - %s</h3>' % _("Without Battery")),
             Row(
                 Column('manufacturer2', css_class='form-group col-md-6 mb-0'),
                 Column('kwh2', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
-            HTML(f'<h3>{_("Price")}</h3>'),
+            HTML('<h3></h3>' % _("Price")),
             'price_without_tax',
             HTML('<p>Tax: 19%'
                  # '<br/>'
                  # 'Price With Tax: <div id="total_price"></div></p>'
                  '<br/>'),
             'offer_by',
-            HTML(f'<h4>{_("Offer Details")}</h4><br/>'),
+            HTML('<h4>%s</h4><br/>' % _("Offer Details")),
             Row(
                 Column('offer_date', css_class='form-group col-md-4 mb-0'),
                 Column('reseller_name', css_class='form-group col-md-6 mb-0'),
                 Column('declined', css_class='form-group col-md-2 mb-0'),
                 css_class='form-row'
             ),
-            HTML(f'<h4>{_("Technical Details")}</h4><br/>'),
+            HTML('<h4></h4><br/>' % _("Technical Details")),
             Row(
                 Column('date_sent', css_class='form-group col-md-6 mb-0'),
                 Column('project_planning_created', css_class='form-group col-md-6 mb-0'),
@@ -85,7 +85,7 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                 Column('ac_mechanic', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
-            HTML(f'<h4>{_("Information of the Roof")}</h4><br/>'),
+            HTML('<h4></h4><br/>' % _("Information of the Roof")),
             'roof_type',
             Row(
                 Column('roof_tilt', css_class='form-group col-md-4 mb-0'),
@@ -97,7 +97,7 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                 Column('', css_class='form-group col-md-4 mb-0'),
                 Column('', css_class='form-group col-md-4 mb-0'),
                 HTML('<p>'
-                     f'{_("Total Area of all modules")}: <div id="total_area"></div>'
+                     '%s: <div id="total_area"></div>' % _("Total Area of all modules") +
                      '</p>'
                      '<br/>'),
                 css_class='form-row'
