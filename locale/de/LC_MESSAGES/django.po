@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 10:21+0545\n"
+"POT-Creation-Date: 2020-03-31 10:41+0545\n"
 "PO-Revision-Date: 2014-01-04 00:10+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -364,12 +364,14 @@ msgid "Offer ID"
 msgstr "Angebots-Nr."
 
 #: mainapp/templates/add_customer.html:62 mainapp/templates/add_manager.html:33
-#: mainapp/templates/attachments.html:32 mainapp/templates/task_list.html:68
+#: mainapp/templates/attachments.html:32
+#: mainapp/templates/list_purchase.html:51 mainapp/templates/task_list.html:68
 msgid "Edit"
 msgstr "bearbeiten"
 
 #: mainapp/templates/add_customer.html:63 mainapp/templates/add_manager.html:34
-#: mainapp/templates/attachments.html:33 mainapp/templates/task_list.html:69
+#: mainapp/templates/attachments.html:33
+#: mainapp/templates/list_purchase.html:54 mainapp/templates/task_list.html:69
 #, fuzzy
 #| msgid "Deleted"
 msgid "Delete"
@@ -487,17 +489,13 @@ msgid "Support"
 msgstr "Support"
 
 #: mainapp/templates/task_list.html:10
-#, fuzzy
-#| msgid "Create"
 msgid "Create Task"
-msgstr "erstellen"
+msgstr "Aufgabe hinzufügen"
 
 # mainapp/templates/add_manager.html:8
 #: mainapp/templates/task_list.html:12
-#, fuzzy
-#| msgid "update"
 msgid "Update Task"
-msgstr "aktualisieren"
+msgstr "Aufgabe aktualisieren"
 
 #: mainapp/templates/task_list.html:24
 msgid "Tasks"
@@ -514,6 +512,10 @@ msgstr "Erledigt"
 #: mainapp/templates/task_list.html:50
 msgid "No"
 msgstr "Nien"
+
+#: mainapp/templates/task_list.html:52
+msgid "Mark Complete"
+msgstr "Erledigt"
 
 #: mainapp/templates/task_list.html:57
 msgid "Creator"

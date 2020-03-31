@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'windows_crm.middleware.ForceLangMiddleware',
 ]
 
 ROOT_URLCONF = 'windows_crm.urls'
@@ -124,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de'
 from django.utils.translation import gettext_lazy as _
 LANGUAGES = (
     ('en', _('English')),

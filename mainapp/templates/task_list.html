@@ -49,7 +49,7 @@
                                         <td>
                                             {% trans "No" %}{{ "    " }}
                                             {% if not obj.completed %}
-                                            <a href="{% url 'mainapp:mark_completed' pk=obj.id %}">Mark Complete</a>
+                                            <a href="{% url 'mainapp:mark_completed' pk=obj.id %}">{% trans 'Mark Complete' %}</a>
                                             {% endif %}
                                         </td>
                                     </tr>

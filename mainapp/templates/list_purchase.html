@@ -48,10 +48,10 @@
                                             <td>{{ obj.dc_term }}</td>
                                             <td>{{ obj.ac_term }}</td>
                                             <td>
-                                                <a href="{% url 'mainapp:edit_purchase' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
+                                                <a href="{% url 'mainapp:edit_purchase' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>{% trans 'Edit' %}</span></a>
                                             </td>
                                             <td>
-                                                <a href="{% url 'mainapp:delete_purchase' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
+                                                <a href="{% url 'mainapp:delete_purchase' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>{% trans 'Delete' %}</span></a>
                                             </td>
                                         </tr>
                                         {% if obj.with_battery %}
