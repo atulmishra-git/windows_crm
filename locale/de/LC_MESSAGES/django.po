@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 15:49+0545\n"
+"POT-Creation-Date: 2020-03-31 15:52+0545\n"
 "PO-Revision-Date: 2014-01-04 00:10+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr "Nachname"
 
 #: mainapp/models.py:18 mainapp/models.py:78
 #: mainapp/templates/add_customer.html:49 mainapp/templates/add_manager.html:30
-#: mainapp/templates/home/customer_purchase_modal.html:34
+#: mainapp/templates/home/customer_purchase_modal.html:36
 msgid "Phone"
 msgstr "Telefonnummer"
 
@@ -107,7 +107,7 @@ msgstr "Benutzername"
 
 #: mainapp/models.py:20 mainapp/models.py:80
 #: mainapp/templates/add_customer.html:57 mainapp/templates/add_manager.html:32
-#: mainapp/templates/home/customer_purchase_modal.html:30
+#: mainapp/templates/home/customer_purchase_modal.html:32
 msgid "Email"
 msgstr "E-Mail"
 
@@ -160,7 +160,7 @@ msgid "offer id"
 msgstr "Angebots-Nr."
 
 #: mainapp/models.py:72 mainapp/templates/add_customer.html:45
-#: mainapp/templates/home/customer_purchase_modal.html:48
+#: mainapp/templates/home/customer_purchase_modal.html:50
 msgid "Invoice ID"
 msgstr "Rechnung-Nr."
 
@@ -181,7 +181,7 @@ msgid "surname"
 msgstr "Nachname"
 
 #: mainapp/models.py:79 mainapp/templates/add_customer.html:53
-#: mainapp/templates/home/customer_purchase_modal.html:36
+#: mainapp/templates/home/customer_purchase_modal.html:38
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -205,7 +205,8 @@ msgstr "Anrede"
 msgid "notes"
 msgstr "Notizen"
 
-#: mainapp/models.py:148 mainapp/templates/home/customer_purchase_modal.html:17
+#: mainapp/models.py:148 mainapp/templates/home/customer_purchase_modal.html:10
+#: mainapp/templates/home/customer_purchase_modal.html:17
 #: mainapp/templates/navsection.html:23
 msgid "Customer"
 msgstr "Kunden"
@@ -230,8 +231,8 @@ msgstr "Hersteller"
 msgid "Kw/H"
 msgstr "Kw/h"
 
-#: mainapp/models.py:156 mainapp/templates/home/customer_purchase_modal.html:71
-#: mainapp/templates/home/customer_purchase_modal.html:78
+#: mainapp/models.py:156 mainapp/templates/home/customer_purchase_modal.html:73
+#: mainapp/templates/home/customer_purchase_modal.html:80
 msgid "Manufacturer"
 msgstr "Hersteller"
 
@@ -272,24 +273,24 @@ msgid "project planning created"
 msgstr "Projektplannung erstellt"
 
 #: mainapp/models.py:172
-#: mainapp/templates/home/customer_purchase_modal.html:105
+#: mainapp/templates/home/customer_purchase_modal.html:107
 #: mainapp/templates/list_purchase.html:33
 msgid "DC Term"
 msgstr "DC - Termin"
 
 #: mainapp/models.py:173
-#: mainapp/templates/home/customer_purchase_modal.html:107
+#: mainapp/templates/home/customer_purchase_modal.html:109
 msgid "DC mechanic"
 msgstr "DC - Monteur"
 
 #: mainapp/models.py:174
-#: mainapp/templates/home/customer_purchase_modal.html:111
+#: mainapp/templates/home/customer_purchase_modal.html:113
 #: mainapp/templates/list_purchase.html:34
 msgid "AC Term"
 msgstr "AC - Termin"
 
 #: mainapp/models.py:175
-#: mainapp/templates/home/customer_purchase_modal.html:113
+#: mainapp/templates/home/customer_purchase_modal.html:115
 msgid "AC mechanic"
 msgstr "AC - Monteur"
 
@@ -358,11 +359,12 @@ msgid "No %(object_type)s(s) Found"
 msgstr "Es %(object_type)s(s) wurde nichts gefunden!"
 
 #: mainapp/templates/add_customer.html:29
+#: mainapp/templates/home/customer_purchase_modal.html:24
 msgid "Customer ID"
 msgstr "Kunden-ID"
 
 #: mainapp/templates/add_customer.html:33
-#: mainapp/templates/home/customer_purchase_modal.html:28
+#: mainapp/templates/home/customer_purchase_modal.html:30
 msgid "Name"
 msgstr "Dateiname"
 
@@ -371,7 +373,7 @@ msgid "Address"
 msgstr "Adresse"
 
 #: mainapp/templates/add_customer.html:41
-#: mainapp/templates/home/customer_purchase_modal.html:46
+#: mainapp/templates/home/customer_purchase_modal.html:48
 msgid "Offer ID"
 msgstr "Angebots-Nr."
 
@@ -421,63 +423,69 @@ msgstr "Anlagen hinzufügen"
 msgid "Download"
 msgstr "Herunterladen"
 
-#: mainapp/templates/home/customer_purchase_modal.html:24
-msgid "Purpose"
-msgstr "Anrede"
-
-#: mainapp/templates/home/customer_purchase_modal.html:40
-msgid "Street"
-msgstr "Straße u. Hsnr."
-
-#: mainapp/templates/home/customer_purchase_modal.html:42
-msgid "Place"
-msgstr "Ort"
-
-#: mainapp/templates/home/customer_purchase_modal.html:53
+#: mainapp/templates/home/customer_purchase_modal.html:10
+#: mainapp/templates/home/customer_purchase_modal.html:55
 #: mainapp/templates/navsection.html:24 mainapp/view/add_purchase.py:25
 msgid "Purchase"
 msgstr "PV-Anlage"
 
-#: mainapp/templates/home/customer_purchase_modal.html:58
+#: mainapp/templates/home/customer_purchase_modal.html:26
+msgid "Purpose"
+msgstr "Anrede"
+
+#: mainapp/templates/home/customer_purchase_modal.html:42
+msgid "Street"
+msgstr "Straße u. Hsnr."
+
+#: mainapp/templates/home/customer_purchase_modal.html:44
+msgid "Place"
+msgstr "Ort"
+
+#: mainapp/templates/home/customer_purchase_modal.html:60
+#: mainapp/templates/list_purchase.html:28
+msgid "Purchase ID"
+msgstr "Anlagen-ID"
+
+#: mainapp/templates/home/customer_purchase_modal.html:62
 #: mainapp/templates/list_purchase.html:29
 msgid "Watt"
 msgstr "Watt"
 
-#: mainapp/templates/home/customer_purchase_modal.html:62
+#: mainapp/templates/home/customer_purchase_modal.html:66
 msgid "Module Count"
 msgstr "Anzahl der Module"
 
-#: mainapp/templates/home/customer_purchase_modal.html:66
+#: mainapp/templates/home/customer_purchase_modal.html:68
 #: mainapp/templates/list_purchase.html:59
 msgid "With Battery"
 msgstr "mit Speicher"
 
-#: mainapp/templates/home/customer_purchase_modal.html:73
-#: mainapp/templates/home/customer_purchase_modal.html:80
+#: mainapp/templates/home/customer_purchase_modal.html:75
+#: mainapp/templates/home/customer_purchase_modal.html:82
 msgid "KW/H"
 msgstr ""
 
-#: mainapp/templates/home/customer_purchase_modal.html:85
+#: mainapp/templates/home/customer_purchase_modal.html:87
 msgid "Price without tax"
 msgstr "Preis netto"
 
-#: mainapp/templates/home/customer_purchase_modal.html:87
+#: mainapp/templates/home/customer_purchase_modal.html:89
 msgid "Offer by"
 msgstr "Angebot senden"
 
-#: mainapp/templates/home/customer_purchase_modal.html:91
+#: mainapp/templates/home/customer_purchase_modal.html:93
 msgid "Offer Date"
 msgstr "Angebotsdatum"
 
-#: mainapp/templates/home/customer_purchase_modal.html:93
+#: mainapp/templates/home/customer_purchase_modal.html:95
 msgid "Reseller Name"
 msgstr "Verkäufer"
 
-#: mainapp/templates/home/customer_purchase_modal.html:99
+#: mainapp/templates/home/customer_purchase_modal.html:101
 msgid "Date sent"
 msgstr "gesendet am"
 
-#: mainapp/templates/home/customer_purchase_modal.html:101
+#: mainapp/templates/home/customer_purchase_modal.html:103
 msgid "Project Planning Created"
 msgstr "Projektplannung erstellt"
 
@@ -496,10 +504,6 @@ msgstr "Aufgaben"
 #: mainapp/templates/home/home.html:69
 msgid "Attachment"
 msgstr "Dateien und Anlagen"
-
-#: mainapp/templates/list_purchase.html:28
-msgid "Purchase ID"
-msgstr "Anlagen-ID"
 
 #: mainapp/templates/list_purchase.html:30
 msgid "Count"
