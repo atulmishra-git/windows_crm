@@ -13,12 +13,12 @@ class HomeView(TemplateView):
     def get(self, request, customer_id=None, *args, **kwargs):
         search_form = SearchForm()
         add_manager_form = AddManagerForm()
-        customers = Customer.objects.values('id', 'first_name', 'email')
+        customer = Customer.objects.last()
         context = {
             'search_form': search_form,
             'add_manage_form': add_manager_form,
-            'customer': Customer.objects.last(),
-            'customers': customers
+            'customer': customer,
+            'attachments': customer.attachments.order_by('-id')[:5],
         }
         return render(request, self.template_name, context=context)
 
@@ -52,13 +52,14 @@ class CustomerHomeView(TemplateView):
         search_form = SearchForm()
         add_manager_form = AddManagerForm()
 
-        customer_dict = {}
+        customer = {}
         if customer_id:
-            customer_dict = Customer.fetch(customer_id=customer_id)
+            customer = Customer.fetch(customer_id=customer_id)
             context = {
                 'search_form': search_form,
                 'add_manage_form': add_manager_form,
-                'customer': customer_dict
+                'customer': customer,
+                'attachments': customer.attachments.order_by('-id')[:5]
             }
             return render(request, self.template_name, context=context)
 
@@ -68,10 +69,10 @@ class CustomerHomeView(TemplateView):
             total_records = customer_list.count()
             random = randrange(total_records)
 
-            customer_dict = customer_list[random]
+            customer = customer_list[random]
         context = {
             'search_form': search_form,
             'add_manage_form': add_manager_form,
-            'customer': customer_dict
+            'customer': customer
         }
         return render(request, self.template_name, context=context)
