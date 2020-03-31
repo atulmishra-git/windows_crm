@@ -8,7 +8,7 @@
         <div class="dashboard-content-inner">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>{{ operation|default:"Add New" }} {% trans 'Purchase' %}</h1>
+                    <h1>{% if operation %} {{operation}} {% else %} {% trans 'Add Purchase' %} {% endif %}</h1>
                 </div>
                 <div class="col-md-6" style="text-align: right;">
                     <button class="button" onclick="new_customer_btn()">{% blocktrans %}Add Customer{% endblocktrans %}</button>

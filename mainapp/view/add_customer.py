@@ -14,8 +14,7 @@ class AddCustomerView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(AddCustomerView, self).get_context_data(**kwargs)
-        context['operation'] = _("Add New")
-        context['object_type'] = _("Customer")
+        context['operation'] = _("Add New Customer")
         context['fields'] = list(self.form_class.base_fields.keys())
         context['objects'] = Customer.objects.order_by('-id').values('id', *context['fields'])
         return context
@@ -31,8 +30,7 @@ class UpdateCustomerView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateCustomerView, self).get_context_data(**kwargs)
-        context['operation'] = _("Update")
-        context['object_type'] = _("Customer")
+        context['operation'] = _("Update Customer")
         context['fields'] = list(self.form_class.base_fields.keys())
         context['objects'] = Customer.objects.values('id', *context['fields'])
         return context

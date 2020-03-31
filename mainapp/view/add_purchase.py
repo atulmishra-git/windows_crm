@@ -1,5 +1,7 @@
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.shortcuts import reverse
+from django.utils.translation import ugettext_lazy as _
+
 from mainapp.forms.add_purchase_record import PurchaseRecordForm
 from mainapp.models import PurchaseRecord
 from mainapp.permissions import IsSuperAdmin
@@ -20,7 +22,7 @@ class ListPurchaseView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
-        context['object_type'] = 'Purchase'
+        context['object_type'] = _('Purchase')
         return context
 
 
@@ -31,7 +33,7 @@ class UpdatePurchaseView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdatePurchaseView, self).get_context_data(**kwargs)
-        context['operation'] = "Update"
+        context['operation'] = _("Update Purchase")
         return context
 
     def get_success_url(self):

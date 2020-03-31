@@ -5,7 +5,13 @@
 
     <div class="dashboard-content-container" data-simplebar>
         <div class="dashboard-content-inner">
-            <h1>{% blocktrans %} {{ operation }} Task {% endblocktrans %}</h1>
+            <h1>
+                {% if operation.lower == 'create' %}
+                    {% trans 'Create Task' %}
+                {% else %}
+                    {% trans 'Update Task' %}
+                {% endif %}
+            </h1>
             <br/>
             <form method="POST" id="id_create_task" class="contact100-form validate-form">
                 {% csrf_token %}
@@ -40,7 +46,8 @@
                                     {% endif %}
                                     <tr>
                                         <th>{% trans 'Completed' %}</th>
-                                        <td>{{ obj.completed }}{{ "    " }}
+                                        <td>
+                                            {% trans "No" %}{{ "    " }}
                                             {% if not obj.completed %}
                                             <a href="{% url 'mainapp:mark_completed' pk=obj.id %}">Mark Complete</a>
                                             {% endif %}

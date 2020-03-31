@@ -5,13 +5,13 @@
 
     <div class="dashboard-content-container" data-simplebar>
         <div class="dashboard-content-inner">
-            <h1>{% blocktrans %}{{ operation }} Manager {% endblocktrans %}{% if manager %}{{ manager }}{% endif %}</h1>
+            <h1>{% blocktrans %}{{ operation }} {% endblocktrans %}{% if manager %}{{ manager }}{% endif %}</h1>
             <br/>
             <form id="id_create_manager" class="contact100-form validate-form" method="POST">
                 {% csrf_token %}
                 {{ form }}
 {#                <button type="button" onclick="create_manager()" class="button">Create</button>#}
-                <button type="submit" class="button">Submit</button>
+                <button type="submit" class="button">{% trans 'Submit' %}</button>
             </form>
             <br/>
             <h1>{% trans 'Managers' %}</h1>

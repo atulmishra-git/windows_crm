@@ -49,18 +49,15 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                 Column('kwh', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
-            HTML('<h3>WR - %s</h3>' % _("Without Battery")),
+            HTML('<h3>%s</h3>' % _("WR - Without Battery")),
             Row(
                 Column('manufacturer2', css_class='form-group col-md-6 mb-0'),
                 Column('kwh2', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
-            HTML('<h3></h3>' % _("Price")),
+            HTML('<h3>%s</h3>' % _("Price")),
             'price_without_tax',
-            HTML('<p>Tax: 19%'
-                 # '<br/>'
-                 # 'Price With Tax: <div id="total_price"></div></p>'
-                 '<br/>'),
+            HTML('<p>{}: 19%<br/>'.format(_("Tax"))),
             'offer_by',
             HTML('<h4>%s</h4><br/>' % _("Offer Details")),
             Row(

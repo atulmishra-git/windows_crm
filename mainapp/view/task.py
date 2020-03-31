@@ -31,7 +31,7 @@ class TasksView(LoginRequiredMixin, FormRequestMixin, CreateView):
             completed_tasks = completed_tasks.order_by('-id').filter(user=self.request.user)[:5]
         context['object_list'] = tasks
         context['completed_object_list'] = completed_tasks
-        context['operation'] = _('Create')
+        context['operation'] = 'Create'
         return context
 
     def get_success_url(self):
@@ -45,7 +45,7 @@ class TaskUpdateView(IsCreatorMixin, FormRequestMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['operation'] = _('Update')
+        context['operation'] = 'Update'
         return context
 
     def get_success_url(self):

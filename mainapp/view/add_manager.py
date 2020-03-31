@@ -15,7 +15,7 @@ class CreateManagerView(IsSuperAdmin, CreateView):
     def get_context_data(self, **kwargs):
         managers_list = User.fetch()
         context = super(CreateManagerView, self).get_context_data(**kwargs)
-        context['operation'] = _("Add New")
+        context['operation'] = _("Add Manager")
         context['managers'] = managers_list
         return context
 
@@ -33,7 +33,7 @@ class UpdateManagerView(IsSuperAdmin, UpdateView):
     def get_context_data(self, **kwargs):
         managers_list = User.fetch()
         context = super(UpdateManagerView, self).get_context_data(**kwargs)
-        context['operation'] = _("Update")
+        context['operation'] = _("Update Manager")
         context['manager'] = str(self.object)
         context['managers'] = managers_list
         return context

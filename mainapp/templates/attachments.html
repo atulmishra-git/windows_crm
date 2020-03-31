@@ -1,5 +1,7 @@
 {% extends 'dashboard.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
+
 {% block maincontent %}
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
@@ -10,12 +12,12 @@
                     </a>
                 </p>
             {% endif %}
-            <h1>{{ operation|default:"Add New" }} Attachment</h1>
+            <h1>{% if operation %} {{ operation }} {% else %} {% trans "Add New Attachment" %} {% endif %}</h1>
             <br/>
             <form method="POST" enctype="multipart/form-data" id="id_create_attachment" class="contact100-form validate-form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit" class="button">Submit</button>
+                <button type="submit" class="button">{% trans 'Submit' %}</button>
             </form>
 
             <div class="tasks-list-container compact-list margin-top-35">
@@ -27,11 +29,11 @@
                             <td>{{ attachment.uploaded_by }}</td>
                             <td>{{ attachment.created_at }}</td>
                             <td>
-                                <a style="text-decoration: none" href="{% url 'mainapp:edit_attachments' customer_id=customer_id pk=attachment.id %}" class="">&nbsp &nbsp<i class="icon-feather-edit"></i><span> Edit</span></a>
-                                <a style="text-decoration: none" href="{% url 'mainapp:delete_attachments' customer_id=customer_id pk=attachment.id %}" class="">&nbsp &nbsp<i class="icon-material-outline-delete"></i><span class="danger"> Delete</span></a>
+                                <a style="text-decoration: none" href="{% url 'mainapp:edit_attachments' customer_id=customer_id pk=attachment.id %}" class="">&nbsp &nbsp<i class="icon-feather-edit"></i><span> {% trans 'Edit' %}</span></a>
+                                <a style="text-decoration: none" href="{% url 'mainapp:delete_attachments' customer_id=customer_id pk=attachment.id %}" class="">&nbsp &nbsp<i class="icon-material-outline-delete"></i><span class="danger"> {% trans 'Delete' %}</span></a>
                             </td>
                             <td>
-                                <a style="text-decoration: none" target="_blank" href="{{ MEDIA_URL }}{{ attachment.upload.url }}">[ <i class="icon-feather-download"></i><span> Download ]</span></a>
+                                <a style="text-decoration: none" target="_blank" href="{{ MEDIA_URL }}{{ attachment.upload.url }}">[ <i class="icon-feather-download"></i><span> {% trans 'Download' %} ]</span></a>
                             </td>
                         </tr>
                     {% endfor %}

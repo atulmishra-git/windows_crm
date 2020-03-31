@@ -26,7 +26,7 @@
                 <div class="chat_ib">
                   <h4>{{ user }} <span class="chat_date"></span></h4>
                   <h5>{% if user.last_sender == request.user.first_name %}
-                      You:
+                      {% trans 'You' %}:
                       {% else %}
                       {{ user.last_sender|default:"" }}:
                       {% endif %} {{ user.last_message|default:"" }}</h5>

@@ -69,15 +69,15 @@ class Customer(models.Model):
     first_name = models.CharField(_("first name"), max_length=255)
     offer_id = models.CharField(_("offer id"), max_length=255, blank=True,
                                 null=True)
-    invoice_id = models.CharField(max_length=255, blank=True,
+    invoice_id = models.CharField(_("Invoice ID"), max_length=255, blank=True,
                                   null=True)
     street = models.CharField(_("street"), max_length=500)
     postcode = models.CharField(_("postcode"), max_length=255)
     place = models.CharField(_("place"), max_length=255)
     surname = models.CharField(_("surname"), max_length=255)
-    phone = models.CharField(max_length=20, unique=True)
-    mobile = models.CharField(max_length=20, unique=True, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(_("Phone"), max_length=20, unique=True)
+    mobile = models.CharField(_("Mobile"), max_length=20, unique=True, null=True, blank=True)
+    email = models.EmailField(_("Email"), null=True, blank=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_deleted = models.BooleanField(_('deleted'), default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -145,7 +145,7 @@ class CallNotes(models.Model):
 
 
 class PurchaseRecord(models.Model):
-    customer = models.OneToOneField(Customer, on_delete=models.CASCADE,
+    customer = models.OneToOneField(Customer, verbose_name=_("Customer"), on_delete=models.CASCADE,
                                     related_name='purchase_record')
     watt = models.PositiveIntegerField(_("watt"), null=True, default=0)
     module_count = models.PositiveIntegerField(_("module count"), null=True, default=0)
@@ -306,7 +306,7 @@ class Attachments(models.Model):
 
 
 class Tasks(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
+    user = models.ForeignKey(User, verbose_name=_("User"), on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
     message = models.TextField(_("message"), blank=False)
     todo_date = models.DateField(_('Complete Before'), blank=True, null=True)
     todo_time = models.TimeField('', blank=True, default=datetime.time(16, 0))

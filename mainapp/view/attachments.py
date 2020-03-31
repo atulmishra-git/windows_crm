@@ -40,7 +40,7 @@ class UpdateAttachmentView(CustomerFormKwargMixin, LoginRequiredMixin, UpdateVie
 
     def get_context_data(self, **kwargs):
         context = super(UpdateAttachmentView, self).get_context_data(**kwargs)
-        context['operation'] = "Update"
+        context['operation'] = "Update Attachment"
         context['customer_id'] = self.kwargs['customer_id']
         return context
 
