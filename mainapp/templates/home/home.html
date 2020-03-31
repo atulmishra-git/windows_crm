@@ -7,7 +7,9 @@
     <div class="container-fluid" style="padding: 0px 40px">
         <div class="row mt-5">
             <div class="col-md-12 col-lg-12">
-                <div class="round-img text-center">
+                <div class="round-img text-center"
+                     data-toggle="modal" data-target="#PurchaseModal"
+                >
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-sm-0"></div>
                         <div class="col-md-3 col-lg-3 col-sm-6">
@@ -15,17 +17,11 @@
                             alt="">
                         </div>
                         <div class="col-md-3 col-lg-3 col-sm-6">
-    {#                        <div class="img-fluid mx-auto circle-container">#}
-    {#                            <div class="circle-container-item">#}
-    {#                                {{ customer.first_name.0|title }}#}
-    {#                            </div>#}
-    {#                        </div>#}
                             <h3 class="pt-4">{{ customer.first_name }} {{ customer.surname }}</h3>
                             <p style="font-size: 12px; padding-top: 5px;">
                                 <p>{{ customer.email }} | {{ customer.mobile }}</p>
                                 <div>{{ customer.street }} {{ customer.place }} {{ customer.postcode }}</div>
                             </p>
-    {#                    </a>#}
                         </div>
                         <div class="col-md-3 col-lg-3 col-sm-0"></div>
                     </div>
@@ -77,7 +73,10 @@
             </div>
         </div>
     </div>
-    <!-- start card section -->
+
+    <!-- start modal section -->
+    {% include 'home/customer_purchase_modal.html' %}
+
 {% endblock %}
 
 <script>

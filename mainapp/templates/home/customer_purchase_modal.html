@@ -1,0 +1,127 @@
+{% load static %}
+{% load i18n %}
+
+<link rel="stylesheet" href="{% static '/dashboard-assets/css/home_modal.css' %}"/>
+
+<div class="modal fade bd-example-modal-lg" id="PurchaseModal" tabindex="-1" role="dialog" aria-labelledby="CustomerPurchaseInformation" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Customer Purchase Information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <h4>{% trans 'Customer' %}</h4>
+            <br>
+            <table class="table table-sm">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{% trans 'Customer ID' %}</th>
+                        <td>{{ customer.id }}</td>
+                        <th scope="row">{% trans 'Purpose' %}</th>
+                        <td>{{ customer.purpose }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'Name' %}</th>
+                        <td>{{ customer|title }}</td>
+                        <th scope="row">{% trans 'Email' %}</th>
+                        <td>{{ customer.email }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'Phone' %}</th>
+                        <td>{{ customer.phone }}</td>
+                        <th scope="row">{% trans 'Mobile' %}</th>
+                        <td>{{ customer.mobile }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'Street' %}</th>
+                        <td>{{ customer.street }}</td>
+                        <th scope="row">{% trans 'Place' %}</th>
+                        <td>{{ customer.place }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'Offer ID' %}</th>
+                        <td>{{ customer.offer_id }}</td>
+                        <th scope="row">{% trans 'Invoice ID' %}</th>
+                        <td>{{ customer.invoice_id }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>{% trans 'Purchase' %}</h4>
+            <br>
+            <table class="table table-sm">
+                <tbody>
+                    <tr>
+                        <th scope="row">{% trans 'Purchase ID' %}</th>
+                        <td>{{ customer.purchase_record.id }}</td>
+                        <th scope="row">{% trans 'Watt' %}</th>
+                        <td>{{ customer.purchase_record.watt }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'Module Count' %}</th>
+                        <td>{{ customer.purchase_record.module_count }}</td>
+                        <th colspan="1" scope="row">{% trans 'With Battery' %}</th>
+                        <td colspan="1">{{ customer.purchase_record.with_battery }}</td>
+                    </tr>
+                    {% if customer.with_battery %}
+                        <tr>
+                            <th scope="row">{% trans 'Manufacturer' %}</th>
+                            <td>{{ customer.purchase_record.manufacturer }}</td>
+                            <th scope="row">{% trans 'KW/H' %}</th>
+                            <td>{{ customer.purchase_record.kwh }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <th scope="row">{% trans 'Manufacturer' %}</th>
+                            <td>{{ customer.purchase_record.manufacturer2 }}</td>
+                            <th scope="row">{% trans 'KW/H' %}</th>
+                            <td>{{ customer.purchase_record.kwh2 }}</td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">{% trans 'Price without tax' %}</th>
+                        <td>{{ customer.purchase_record.price_without_tax }}</td>
+                        <th scope="row">{% trans 'Offer by' %}</th>
+                        <td>{{ customer.purchase_record.offer_by }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'Offer Date' %}</th>
+                        <td>{{ customer.purchase_record.offer_date }}</td>
+                        <th scope="row">{% trans 'Reseller Name' %}</th>
+                        <td>{{ customer.purchase_record.reseller_name }}</td>
+{#                        <th scope="row">{% trans 'Declined' %}</th>#}
+{#                        <td>{{ customer.purchase_record.declined }}</td>#}
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'Date sent' %}</th>
+                        <td>{{ customer.purchase_record.date_sent }}</td>
+                        <th scope="row">{% trans 'Project Planning Created' %}</th>
+                        <td>{{ customer.purchase_record.project_planning_created }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'DC Term' %}</th>
+                        <td>{{ customer.purchase_record.dc_term }}</td>
+                        <th scope="row">{% trans 'DC mechanic' %}</th>
+                        <td>{{ customer.purchase_record.dc_mechanic }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans 'AC Term' %}</th>
+                        <td>{{ customer.purchase_record.ac_term }}</td>
+                        <th scope="row">{% trans 'AC mechanic' %}</th>
+                        <td>{{ customer.purchase_record.ac_mechanic }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
