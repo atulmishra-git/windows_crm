@@ -336,8 +336,6 @@ msgid "completed"
 msgstr "erledigt"
 
 #: mainapp/templates/add_customer.html:16
-#, fuzzy
-#| msgid "Customer"
 msgid "Customers"
 msgstr "Kunden"
 
