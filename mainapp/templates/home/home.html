@@ -33,15 +33,15 @@
                 <div class="list-area home-card">
                     <ul>
                         {% if customer.purchase_record %}
-                            <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_offer' customer_id=customer.id %}">Offer</a></li>
-                            <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_offer_confirm' customer_id=customer.id %}">Offer Confirmation</a></li>
-                            <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_install' customer_id=customer.id %}">Installation</a></li>
-                            <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_invoice' customer_id=customer.id %}">Invoice</a></li>
+                            <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_offer' customer_id=customer.id %}">{% trans "Offer" %}</a></li>
+                            <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_offer_confirm' customer_id=customer.id %}">{% trans "Offer Confirmation" %}</a></li>
+                            <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_install' customer_id=customer.id %}">{% trans "Installation" %}</a></li>
+                            <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_invoice' customer_id=customer.id %}">{% trans "Invoice" %}</a></li>
                         {% else %}
-                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>Offer</a></li>
-                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>Offer Confirmation</a></li>
-                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>Installation</a></li>
-                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>Invoice</a></li>
+                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>{% trans "Offer" %}</a></li>
+                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>{% trans "Offer Confirmation" %}</a></li>
+                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>{% trans "Installation" %}</a></li>
+                            <li><a role="button" onclick="alert('Customer has no purchase record')" class="btn btn-primary btn-block" disabled>{% trans "Invoice" %}</a></li>
                         {% endif %}
                     </ul>
                 </div>

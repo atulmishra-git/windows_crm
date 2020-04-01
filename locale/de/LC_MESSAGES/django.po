@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 15:52+0545\n"
+"POT-Creation-Date: 2020-04-01 23:48+0545\n"
 "PO-Revision-Date: 2014-01-04 00:10+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -185,7 +185,7 @@ msgstr "Nachname"
 msgid "Mobile"
 msgstr "Mobil"
 
-#: mainapp/models.py:81 mainapp/models.py:200 mainapp/models.py:274
+#: mainapp/models.py:81 mainapp/models.py:201 mainapp/models.py:291
 msgid "active"
 msgstr "Aktiv"
 
@@ -211,140 +211,140 @@ msgstr "Notizen"
 msgid "Customer"
 msgstr "Kunden"
 
-#: mainapp/models.py:150
-msgid "watt"
-msgstr "Watt"
-
-#: mainapp/models.py:151
-msgid "module count"
-msgstr "Anzahl der Module"
-
-#: mainapp/models.py:153
-msgid "with battery"
-msgstr "mit Speicher"
-
-#: mainapp/models.py:154
+#: mainapp/models.py:150 mainapp/models.py:155
 msgid "manufacturer"
 msgstr "Hersteller"
 
-#: mainapp/models.py:155 mainapp/models.py:157
+#: mainapp/models.py:151
+msgid "watt"
+msgstr "Watt"
+
+#: mainapp/models.py:152
+msgid "module count"
+msgstr "Anzahl der Module"
+
+#: mainapp/models.py:154
+msgid "with battery"
+msgstr "mit Speicher"
+
+#: mainapp/models.py:156 mainapp/models.py:158
 msgid "Kw/H"
 msgstr "Kw/h"
 
-#: mainapp/models.py:156 mainapp/templates/home/customer_purchase_modal.html:73
+#: mainapp/models.py:157 mainapp/templates/home/customer_purchase_modal.html:73
 #: mainapp/templates/home/customer_purchase_modal.html:80
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: mainapp/models.py:159
+#: mainapp/models.py:160
 msgid "price without tax"
 msgstr "Preis netto"
 
-#: mainapp/models.py:159
+#: mainapp/models.py:160
 msgid "Price in Euro (€)"
 msgstr "Preis in Euro (€)"
 
-#: mainapp/models.py:160 mainapp/models.py:181
+#: mainapp/models.py:161 mainapp/models.py:182
 msgid "Should be above 0"
 msgstr "muss größer 0 sein"
 
-#: mainapp/models.py:163
+#: mainapp/models.py:164
 msgid "offer by"
 msgstr "Angebot senden"
 
-#: mainapp/models.py:165
+#: mainapp/models.py:166
 msgid "offer date"
 msgstr "Angebotsdatum"
 
-#: mainapp/models.py:166
+#: mainapp/models.py:167
 msgid "reseller name"
 msgstr "Verkäufer"
 
-#: mainapp/models.py:167
+#: mainapp/models.py:168
 msgid "declined"
 msgstr "Storno"
 
-#: mainapp/models.py:169
+#: mainapp/models.py:170
 msgid "date sent"
 msgstr "gesendet am"
 
-#: mainapp/models.py:170
+#: mainapp/models.py:171
 msgid "project planning created"
 msgstr "Projektplannung erstellt"
 
-#: mainapp/models.py:172
+#: mainapp/models.py:173
 #: mainapp/templates/home/customer_purchase_modal.html:107
 #: mainapp/templates/list_purchase.html:33
 msgid "DC Term"
 msgstr "DC - Termin"
 
-#: mainapp/models.py:173
+#: mainapp/models.py:174
 #: mainapp/templates/home/customer_purchase_modal.html:109
 msgid "DC mechanic"
 msgstr "DC - Monteur"
 
-#: mainapp/models.py:174
+#: mainapp/models.py:175
 #: mainapp/templates/home/customer_purchase_modal.html:113
 #: mainapp/templates/list_purchase.html:34
 msgid "AC Term"
 msgstr "AC - Termin"
 
-#: mainapp/models.py:175
+#: mainapp/models.py:176
 #: mainapp/templates/home/customer_purchase_modal.html:115
 msgid "AC mechanic"
 msgstr "AC - Monteur"
 
-#: mainapp/models.py:177
+#: mainapp/models.py:178
 msgid "roof type"
 msgstr "Dachart"
 
-#: mainapp/models.py:178
+#: mainapp/models.py:179
 msgid "roof tilt"
 msgstr "Dachneigung"
 
-#: mainapp/models.py:178
+#: mainapp/models.py:179
 msgid "in Degrees"
 msgstr "in Grad °"
 
-#: mainapp/models.py:179
+#: mainapp/models.py:180
 msgid "alignment"
 msgstr "Dachausrichtung"
 
-#: mainapp/models.py:180
+#: mainapp/models.py:181
 msgid "module area"
 msgstr "Modulfläche"
 
-#: mainapp/models.py:180
+#: mainapp/models.py:181
 msgid "Area in meter squared (m2)"
 msgstr "gesamte Modulfläche"
 
-#: mainapp/models.py:184
+#: mainapp/models.py:185
 msgid "extra details"
 msgstr "sonstige Kundenwünsche"
 
-#: mainapp/models.py:262
+#: mainapp/models.py:279
 msgid "File Name"
 msgstr "Dateiname"
 
-#: mainapp/models.py:263
+#: mainapp/models.py:280
 msgid "Upload"
 msgstr "Hochladen"
 
-#: mainapp/models.py:309
+#: mainapp/models.py:326
 #, fuzzy
 #| msgid "Username"
 msgid "User"
 msgstr "Benutzername"
 
-#: mainapp/models.py:310
+#: mainapp/models.py:327
 msgid "message"
 msgstr "Nachricht"
 
-#: mainapp/models.py:311 mainapp/templates/task_list.html:38
+#: mainapp/models.py:328 mainapp/templates/task_list.html:38
 msgid "Complete Before"
 msgstr "Zu erledigen bis:"
 
-#: mainapp/models.py:313
+#: mainapp/models.py:330
 msgid "completed"
 msgstr "erledigt"
 
@@ -420,6 +420,7 @@ msgid "Add New Attachment"
 msgstr "Anlagen hinzufügen"
 
 #: mainapp/templates/attachments.html:36
+#: mainapp/templates/home/customer_purchase_modal.html:133
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -488,6 +489,33 @@ msgstr "gesendet am"
 #: mainapp/templates/home/customer_purchase_modal.html:103
 msgid "Project Planning Created"
 msgstr "Projektplannung erstellt"
+
+#: mainapp/templates/home/customer_purchase_modal.html:122
+#, fuzzy
+#| msgid "Attachment"
+msgid "Attachments"
+msgstr "Dateien und Anlagen"
+
+#: mainapp/templates/home/customer_purchase_modal.html:130
+#: mainapp/templates/task_list.html:57
+msgid "Creator"
+msgstr "Autor"
+
+#: mainapp/templates/home/home.html:36 mainapp/templates/home/home.html:41
+msgid "Offer"
+msgstr "Angebot erstellen"
+
+#: mainapp/templates/home/home.html:37 mainapp/templates/home/home.html:42
+msgid "Offer Confirmation"
+msgstr "Auftragsbestätigung erstellen"
+
+#: mainapp/templates/home/home.html:38 mainapp/templates/home/home.html:43
+msgid "Installation"
+msgstr "Montagebestätigung erstellen"
+
+#: mainapp/templates/home/home.html:39 mainapp/templates/home/home.html:44
+msgid "Invoice"
+msgstr "Rechnung erstellen"
 
 #: mainapp/templates/home/home.html:54 mainapp/templates/navsection.html:19
 msgid "Chat"
@@ -580,10 +608,6 @@ msgstr "Nien"
 #: mainapp/templates/task_list.html:52
 msgid "Mark Complete"
 msgstr "Erledigt"
-
-#: mainapp/templates/task_list.html:57
-msgid "Creator"
-msgstr "Autor"
 
 #: mainapp/templates/task_list.html:61
 msgid "Todo"
