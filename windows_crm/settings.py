@@ -162,3 +162,4 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DATETIME_FORMAT = '%B %d, %Y, %I:%M %P'
+USE_THOUSAND_SEPARATOR = True
