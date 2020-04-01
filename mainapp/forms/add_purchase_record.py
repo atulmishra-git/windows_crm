@@ -28,10 +28,10 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                 css_class='form-row'
             ),
             HTML('<h3>Module</h3>'),
-            # Row(
-            #     Column('manufacturer', css_class='form-group col-md-6 mb-0'),
-            #     css_class='form-row'
-            # ),
+            Row(
+                Column('module_manufacturer', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
             Row(
                 Column('watt', css_class='form-group col-md-4 mb-0'),
                 Column('module_count', css_class='form-group col-md-4 mb-0'),
