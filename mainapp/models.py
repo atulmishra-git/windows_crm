@@ -202,15 +202,15 @@ class PurchaseRecord(models.Model):
 
     @property
     def tax(self):
-        return "%.2f" % (getattr(self, 'price_without_tax', 0) * 0.19)
+        return round(float("%.2f" % (getattr(self, 'price_without_tax', 0) * 0.19)))
 
     @property
     def price_with_tax(self):
-        return "%.2f" % (getattr(self, 'price_without_tax', 0) * 1.19)
+        return round(float("%.2f" % (getattr(self, 'price_without_tax', 0) * 1.19)))
 
     @property
     def kwp(self):
-        return "%.2f" % (getattr(self, 'module_count', 0) * getattr(self, 'watt', 0) / 1000.0)
+        return round(float("%.2f" % (getattr(self, 'module_count', 0) * getattr(self, 'watt', 0) / 1000.0)))
 
     @property
     def manufacturer_display(self):
@@ -226,7 +226,7 @@ class PurchaseRecord(models.Model):
 
     @property
     def total_area(self):
-        return "%.2f" % (self.module_count * self.module_area)
+        return round(float("%.2f" % (self.module_count * self.module_area)))
 
     @classmethod
     def create(cls, customer_id, reseller_name, module_count, module_type, kwp, price_without_tax, price_with_tax,
