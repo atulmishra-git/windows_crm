@@ -23,7 +23,6 @@ OPTIONS = {
 
 
 def save_to_attachment(customer, rendered, by):
-    return
     name = f"uploads/{customer.id}offer{int(time.time())}.pdf"
     pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
     att = Attachments.objects.create(file_name=name.split("/")[-1].split(".")[0],
