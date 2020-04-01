@@ -1,6 +1,7 @@
 from datetime import datetime
 import time
 import pdfkit
+from django.contrib.auth.decorators import login_required
 
 from django.core.files.base import File
 from django.http.response import HttpResponse
@@ -21,7 +22,10 @@ OPTIONS = {
 }
 
 
-def save_to_attachment(customer, name, by):
+def save_to_attachment(customer, rendered, by):
+    return
+    name = f"uploads/{customer.id}offer{int(time.time())}.pdf"
+    pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
     att = Attachments.objects.create(file_name=name.split("/")[-1].split(".")[0],
                                      uploaded_by=by,
                                      customer_id=customer.id)
@@ -29,6 +33,7 @@ def save_to_attachment(customer, name, by):
     att.save()
 
 
+@login_required
 def download_offer(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     purchase = customer.purchase_record
@@ -37,24 +42,10 @@ def download_offer(request, customer_id):
     else:
         template_name = 'pdf/offer2.html'
 
-    # context = {
-    #     'gender': "Mr" if customer.gender == 'Male' else "Ms",
-    #     'name': str(customer),
-    #     'customer_id': customer.id,
-    #     'street': customer.street,
-    #     'postcode': customer.postcode,
-    #     'place': customer.place,
-    #     'last_name': customer.surname,
-    #     'creation_date': datetime.today(),
-    # }
     context = {
-        'mrms': "Mr",
-        'name': "Denis Ibrahimi",
-        'customer_id': 10299,
-        'street': "Bayern Munchen",
-        'postcode': "8920",
-        'place': "4th Block, Sunshine Street",
-        'last_name': "Ibrahimi",
+        'gender': "Mr" if customer.gender == 'Male' else "Ms",
+        'customer': customer,
+        'creator': request.user,
         'creation_date': datetime.today(),
     }
 
@@ -62,9 +53,7 @@ def download_offer(request, customer_id):
                                 context,
                                 request=request)
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    name = f"uploads/{customer_id}offer{int(time.time())}.pdf"
-    pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
-    save_to_attachment(customer=customer, name=name, by=request.user)
+    save_to_attachment(customer=customer, rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -102,9 +91,7 @@ def download_offer_confirm(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    name = f"uploads/{customer_id}offer_confirmation{int(time.time())}.pdf"
-    pdfkit.from_string(rendered, "media/"+name, options=OPTIONS)
-    save_to_attachment(customer=customer, name=name, by=request.user)
+    save_to_attachment(customer=customer, rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -139,9 +126,7 @@ def download_install(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    name = f"uploads/{customer_id}installation{int(time.time())}.pdf"
-    pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
-    save_to_attachment(customer=customer, name=name, by=request.user)
+    save_to_attachment(customer=customer, rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -166,7 +151,5 @@ def download_invoice(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    name = f"uploads/{customer_id}invoice{int(time.time())}.pdf"
-    pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
-    save_to_attachment(customer=customer, name=name, by=request.user)
+    save_to_attachment(customer=customer, rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")

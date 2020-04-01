@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Vorlage AG SENEC.Solar 310 Watt inkl. Montagebestätigung</title>
 	<style>
         body {
             font-family: Arial, Arial, Helvetica, sans-serif;
@@ -13,10 +12,15 @@
 {#			width: 595px;#}
 {#			margin: auto;#}
 {#			border: 1px solid #ccc;#}
-			overflow: hidden;
+{#			overflow: auto;#}
 {#			padding: 20px 40px;#}
-{#			height: 842px;#}
+			height: 1208px;
 		}
+        .container::after {
+          content: "";
+          display: block;
+          clear: both;
+        }
         .logo-div {
             width: 100%;
         }
@@ -58,7 +62,7 @@
 			overflow: hidden;
 			float: left;
 			padding-bottom: 100px;
-            height: 510px;
+            height: 420px;
 {#            background-color: #6f42c1;#}
 		}
         .border {
@@ -95,7 +99,7 @@
 			border: 2px solid #000;
 			width: 150px;
 			padding: 3px 0;
-            margin: 60px 0;
+            margin: 31px 0;
 		}
 		.customer-info-box p {
 			margin: 0;
@@ -182,11 +186,11 @@
 		<div class="info-area-1">
             <div class="info-contact">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</div>
             <div class="info-link"><a href="www.energiewerke-bayern.de">www.energiewerke-bayern.de</a></div>
-			<p>{{ mrms|title }}</p>
+			<p>{{ mrms|title|default:"-" }}</p>
             <div class="info-link"><a href="info@energiewerke-bayern.de">info@energiewerke-bayern.de</a></div>
-			<p>{{ name|title }}</p>
-			<p>{{ street|title }}</p>
-			<p>{{ postcode|upper }}, {{ place|title }}</p>
+			<p>{{ customer|title }}</p>
+			<p>{{ customer.street|title|default:"-" }}</p>
+			<p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
 		</div>
 		<div class="Germering-area" style="float: right;">
 		<p>Germering den, <span>{{ creation_date|date }}</span></p>
@@ -194,11 +198,11 @@
 	<div style="height: 50px;"></div>
 	<div class="offer-start-area">
 		<p style="float: left;"><b>Angebot</b></p>
-		<p style="float: right;"> <b>Kundennr : <span>{{ customer_id }}</span> </b></p>
+		<p style="float: right;"> <b>Kundennr : <span>{{ customer.id }}</span> </b></p>
 	</div>
     <div style="height: 100px;"></div>
 	<div class="offer-end-area">
-		<p style="margin: 0;padding: 0;">{% if mrms %}({{ mrms|title }}) {% endif %}Sehr geehrter Herr {{ last_name|title }}, </p>
+		<p style="margin: 0;padding: 0;">Sehr{% if mrms == 'Mr' %} geehrter {% else %} geehrte {% endif %}  Herr {{ customer.surname|title }}, </p>
         <div style="height: 15px;"></div>
 		<p>vielen Dank für Ihr Interesse an unseren Leistungen</p>
         <div style="height: 15px;"></div>
@@ -239,10 +243,11 @@
         </table>
     </div>
 	</div>
+    <div><!--clear--></div>
 
 {#    PAGE 22222222   #}
     <div style="height: 1px; background-color: white"></div>
-    <div class="container">
+    <div class="container" >
 		<div class="logo-div">
             <div class="logo">
                 <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
@@ -263,23 +268,23 @@
                     </tr>
                     <tr>
                         <td>Datum</td>
-                        <td>XXXXX</td>
+                        <td>{{ creation_date|date }}</td>
                     </tr>
                     <tr>
                         <td>Telefon</td>
-                        <td>XXXXX</td>
+                        <td>089-89311773</td>
                     </tr>
                     <tr>
                         <td>Bearbeiter/in</td>
-                        <td>XXXXX</td>
+                        <td>{{ creator|title }}</td>
                     </tr>
                     <tr>
                         <td>Kundennr</td>
-                        <td>XXXXX</td>
+                        <td>{{ customer.id }}</td>
                     </tr>
                     <tr>
                         <td>Kommission</td>
-                        <td>XXXXX</td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
@@ -289,10 +294,10 @@
         <br>
         <br>
         <div class="customer-info-box">
-            <p>Herrn</p>
-            <p>XXX</p>
-            <p>XXX</p>
-            <p>XXX</p>
+            <p>{{ mrms|title|default:"-" }}</p>
+            <p>{{ customer|title }}</p>
+            <p>{{ customer.street|title|default:"-" }}</p>
+            <p>{{ customer.postcode|upper|default:"-" }}</p>
         </div>
 
         <div class="delivery-note-area">
@@ -300,11 +305,11 @@
                 <tr>
                     <td>LIEFERBEDINGUNGEN</td>
                     <td> <span style="border: 2px solid #000;padding: 3px;">frei Haus</span></td>
-                    <td>fIhr Zeichen : <span style="border: 2px solid black; padding: 2px 15px;">XXXXXXXX</span></td>
+                    <td>fIhr Zeichen : <span style="border: 2px solid black; padding: 2px 15px;">{{ customer|title }}</span></td>
                 </tr>
                 <tr>
                     <td>LIEFERTERMIN</td>
-                    <td colspan="2"> <span style="border: 2px solid #000;padding: 3px;">2020</span><span style="border: 2px solid #000;padding: 3px;margin-left: 5px;">Inbetriebnahme</span></td>
+                    <td colspan="2"> <span style="border: 2px solid #000;padding: 3px;">{% now "Y" %}</span><span style="border: 2px solid #000;padding: 3px;margin-left: 5px;">Inbetriebnahme</span></td>
                 </tr>
                 <tr>
                     <td colspan="3"><span style="background:#ffd45a;">Die Warenanlieferung erfolgt einen Tag vor Montagebeginn</p></span>
@@ -315,14 +320,14 @@
 
         <div class="hombble-area">
             <br>
-            <p style="margin: 0;padding: 0;">Sehr geehrter Herr</p>
+            <p style="margin: 0;padding: 0;">Sehr{% if mrms == 'Mr' %} geehrter {% else %} geehrte {% endif %}  Herr {{ customer.surname|title }}</p>
             <p style="margin: 0;padding: 0;">hiermit bestätigen wir zu unseren allgemeinen Geschäftsbedingungen Ihren Auftrag:</p>
             <p><b>Komplett-Service inkl. Beratung, Planung, Montage und Inbetriebnahme einer durch die
      konfigurierten Photovoltaik-Anlage.</b></p>
         </div>
         <div class="photovoltaic-introduce">
             <p style="float: left;">Photovoltaik - Anlage mit einer Modulleistung von: </p>
-            <p style="float: left;margin-left: 30px;"><span style="border: 2px solid #000;padding: 5px 20px;,margin-right: 10px;">XXX</span> kW/p </p>
+            <p style="float: left;margin-left: 30px;"><span style="border: 2px solid #000;padding: 5px 20px;,margin-right: 10px;">{{ customer.purchase_record.kwp }}</span> kW/p </p>
         </div>
         <br>
         <br>
@@ -337,7 +342,7 @@
             </tr>
              <tr>
                 <td style="width: 40px;text-align: center;">1</td>
-                <td style="width: 80px;">16</td>
+                <td style="width: 80px;">{{ customer.purchase_record.module_count }}</td>
                 <td style="width: 80px;">Stück</td>
                 <td>
                     <b>Monokristalline Hochleistungsmodule</b>
@@ -358,8 +363,8 @@
                 <td style="width: 80px;">Stück</td>
                 <td>
                     <b>Speichermedium mit integriertem Hybrid-Wechselrichter</b>
-                    <p class="bold">SENEC.Home V3 hybrid 5.0</p>
-                    <p class="bold">(inkl. 20 Jahre Garantieverlängerung für SENEC.Home V3)</p>
+                    <p class="bold">{{ customer.purchase_record.manufacturer_display }} {{ customer.purchase_record.kwh_display }}</p>
+                    <p class="bold">(inkl. 20 Jahre Garantieverlängerung für {{ customer.purchase_record.manufacturer_display }} {{ customer.purchase_record.kwh_display }})</p>
                     <p></p>
                     <p class="bold">- Garantie nach Herstellerangaben</p>
                 </td>
@@ -373,9 +378,9 @@
             </tr>
         </table>
     </div>
+    <div><!--clear--></div>
 
-    <div style="height: 60px; background-color: white"></div>
-
+{#    <div style="height: 60px; background-color: white"></div>#}
     <div class="container">
 		<div class="logo-div">
             <div class="logo">
@@ -406,7 +411,7 @@
         </tr>
         <tr>
             <td style="width: 40px;text-align: center;">4</td>
-            <td style="width: 80px;">26,08 m²</td>
+            <td style="width: 80px;">{{ customer.purchase_record.total_area }} m²</td>
             <td style="width: 80px;"></td>
             <td>
                 <b>Unterkonstruktion (Würth, K2 oder S:Flex)</b>
@@ -416,7 +421,7 @@
                 <p>- Schienenverbinder 35 * 8 * 120 mm</p>
                 <p>- Tellerkopf - Holzschrauben 8 * 100 mm</p>
                 <p>- Hammerkopfschraube Edelstahl A2</p>
-                <p>- <b>Garantie nach Herstellerangaben</b></p>
+                <span>- <strong>Garantie nach Herstellerangaben<strong></span>
             </td>
          </tr>
          <tr>
@@ -429,12 +434,12 @@
         </tr>
         <tr>
             <td style="width: 40px;text-align: center;">6</td>
-            <td style="width: 80px;">26,08 m²</td>
+            <td style="width: 80px;">{{ customer.purchase_record.total_area }} m²</td>
             <td style="width: 80px;"></td>
             <td>
                 <b>Anlagenmontage</b>
                 <p>Konfiguration Ihrer Photovoltaik Anlage mit optimaler abgestimmten</p>
-                <p>Komponenten für maximale Stromgewinnung</p>
+                <span>Komponenten für maximale Stromgewinnung</span>
             </td>
          </tr>
 		 <tr>
@@ -442,15 +447,14 @@
 			<td style="width: 80px;"></td>
 			<td style="width: 80px;"></td>
 			<td>
-                <p>Montasge der Unterkonstruktion auf Ihr Dach. Setzen der Edelstahl-</p>
+                <span>Montasge der Unterkonstruktion auf Ihr Dach. Setzen der Edelstahl-</span>
                 <p>anker auf die Dachsparren. Ausrichtung und Befestigung der nach</p>
                 <p>Maß zugeschnittenen Aluminium - Basisprofile auf die Anker.</p>
                 <p>Vorbereitung des Halterungssystems zur Befestigung der Module,</p>
                 <p>sowie Anschluss, Sicherung und Verkabelung der Module.</p>
-                <p></p>
                 <p>Alle elektrischen Abschlussarbeiten der Photovoltaik-Anlage werden</p>
                 <p>von unserem autorisierten Elektromeister auf Kosten der Firma</p>
-                <p>Energiewerke Bayern GmbH ausgeführt.</p>
+                <span>Energiewerke Bayern GmbH ausgeführt.</span>
 			</td>
 		</tr>
 		 <tr>
@@ -458,14 +462,16 @@
 			<td style="width: 80px;"></td>
 			<td style="width: 80px;"></td>
 			<td>
-				<b>Anmeldung EVU</b>
+				<strong>Anmeldung EVU</strong>
                 <p>EVU-Anmeldung, Schriftverkehr, Dokumentation für Zähler sowie</p>
                 <p>spezielle Dokumentationen für EVU wie Betriebsschaltbild,</p>
-                <p>Prüfprotokoll und Fertigmeldung.</p>
+                <span>Prüfprotokoll und Fertigmeldung.</span>
 			</td>
 		    </tr>
         </table>
     </div>
+    <div><!--clear--></div>
+
     <div class="container">
 		<div class="logo-div">
             <div class="logo">
@@ -506,8 +512,7 @@
                     <p>PV-Anlage höher oder auch niedriger ausfallen, Reduziert sich der</p>
                     <p>Kaufpreis entsprechend sollte eine höhere Modulleistung als vorgesehen</p>
                     <p>möglich sein, so kann der AG durch eine einfache Zustimmunserklärung</p>
-                    <p>den Auftrag entsprechend ausweiten.</p>
-                    </p>
+                    <span>den Auftrag entsprechend ausweiten.</span>
                 </td>
             </tr>
             <tr>
@@ -517,7 +522,7 @@
                 <td style="padding-top: 10px;">
                     <b><u>Zahlungsbedingungen</u></b><br><br>
                     <span>100 % nach Lieferung der Ware und Aufdachmontage.</span><br>
-                    <span><span style="color: red;">Bitte beachten Sie, dass der AC-Anschluss erst nach dem Zahlungseingang erfolgt.</span></span><br><br>
+                    <span><span style="color: red;">Bitte beachten Sie, dass der AC-Anschluss erst nach dem Zahlungseingang erfolgt.</span></span><br>
                 </td>
             </tr>
             <tr>
@@ -527,12 +532,12 @@
                 <td style="">
                     <span>
                         Am Tag der Verbauung
-                        <span style="margin-left:19em; font-size: 16px; font-weight: bold">217123,30 €</span>
+                        <span style="margin-left:19em; font-weight: bold">{{ customer.purchase_record.price_without_tax }} €</span>
                     </span>
                     <p><strong>(jedoch nicht vor Bewilligung evtl. beantragter Kreditmittel)</strong></p>
                     <p class="p-small">Energiewerke Bayern GmbH verwendet ausschließlich TÜV geprüfte Komponenten,</p>
-                    <p class="p-small">die sämtlichen gängigen Normen und Zertifizierungen entsprechen.</p>
-                    <p></p>
+                    <span class="p-small">die sämtlichen gängigen Normen und Zertifizierungen entsprechen.</span>
+                    <div style="height: 5px;"></div>
                     <p class="p-small">Es gelten ausschließlich unsere Allgemeinen Geschäftsbedingungen,</p>
                     <span class="p-small">einsehbar unter www.energiewerke-bayern.de</span>
                 </td>
@@ -541,10 +546,10 @@
                 <td style="margin-top: -30px;width: 40px;text-align: center;"></td>
                 <td style="margin-top: -30px;width: 80px;"></td>
                 <td style="margin-top: -30px;width: 80px;"></td>
-                <td style="margin-top: -30px;">
-                    <p style="text-align: right;margin-right: 30px;"><b>Zwischensumme :&nbsp;&nbsp;&nbsp;123456 €</b></p>
-                    <p style="text-align: right;margin-right: 30px;"><b>MwSt 19% :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1234</b></p>
-                    <p style="text-align: right;margin-right: 30px;"><b>Gesamtsumme :&nbsp;&nbsp;&nbsp;123456 €</b></p>
+                <td style="margin-top: -30px; text-align: right">
+                    <span style="text-align: right;margin-right: 30px;"><b>Zwischensumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_without_tax }} €</b></span>
+                    <p style="text-align: right;margin-right: 30px;"><b>MwSt 19% :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.tax }}</b></p>
+                    <span style="text-align: right;margin-right: 30px;"><b>Gesamtsumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_with_tax }} €</b></span>
                 </td>
             </tr>
         </table>
@@ -565,7 +570,8 @@
             <p style="width: 40%;float: left;border-bottom: 2px solid #000;padding-bottom: 10px;"></p>
             <p style="width: 50%;float: right;border-bottom: 2px solid #000;padding-bottom: 10px;padding-left: 10px;"></p>
         </div>
-        <div class="info-contact" style="margin-top: 10px;">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</div>
+        <div class="info-contact" style="margin-top: 1px;">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</div>
 	</div>
+    <div><!--clear--></div>
 </body>
 </html>
