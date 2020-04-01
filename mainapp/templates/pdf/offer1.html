@@ -5,6 +5,10 @@
 	<meta charset="UTF-8">
 	<title>Vorlage AG SENEC.Solar 310 Watt inkl. Montagebestätigung</title>
 	<style>
+        body {
+            font-family: Arial, Arial, Helvetica, sans-serif;
+            font-size: 17px;
+        }
 		.container {
 {#			width: 595px;#}
 {#			margin: auto;#}
@@ -13,35 +17,63 @@
 {#			padding: 20px 40px;#}
 {#			height: 842px;#}
 		}
+        .logo-div {
+            width: 100%;
+        }
 		.logo {
-			width: 200px;
+			width: 280px;
 			float: right;
+{#            background-color: purple;#}
 		}
 		.logo img {
 			width: 100%;
 		}
 		.header-title {
-			padding: 10px;
-			border-bottom: 2px solid #ccc;
+			padding-bottom: 10px;
+			border-bottom: 3px solid #777;
 		}
 		.info-area-1 {
 			padding: 20px 0;
 		}
+		.info-contact {
+			margin-top: -15px;
+            font-size: 13px;
+            color: #222;
+            padding-bottom: 40px;
+		}
+        .info-link {
+            float: right;
+            margin-top: -15px;
+            font-size: 14px;
+        }
 		.info-area-1 p {
 			padding: 2px;
 			margin:0;
 		}
 		.offer-start-area {
-			margin: 30px 0;
+			margin-top: 40px;
+            margin-bottom: 30px
 		}
 		.offer-end-area {
 			overflow: hidden;
 			float: left;
 			padding-bottom: 100px;
-			border-bottom: 2px solid #ccc;
+            height: 510px;
+{#            background-color: #6f42c1;#}
 		}
+        .border {
+            border-bottom: 2px solid #ccc;
+        }
+        .border span {
+            color: white;
+        }
+        .footer-table {
+            width: 100%;
+            font-size: 15px;
+        }
         .confirmation_table {
 			border-collapse: collapse;
+            width: 400px;
 		}
 		.confirmation_table tr:first-child {
 			border: 2px solid #000;
@@ -56,10 +88,14 @@
 		.confirmation-area .confirmation-box {
 			float: right;
 		}
+		.confirmation-area .confirmation-box-left {
+			float: left;
+		}
 		.customer-info-box {
 			border: 2px solid #000;
 			width: 150px;
-			padding: 3px 10px;
+			padding: 3px 0;
+            margin: 60px 0;
 		}
 		.customer-info-box p {
 			margin: 0;
@@ -89,29 +125,65 @@
 		.invoice-table tr:first-child {
 			border: 2px solid #000;
 		}
+        .invoice-table tr th {
+            border: none;
+            padding: 5px;
+        }
+        .invoice-table th{
+            text-align: left;
+        }
+        .invoice-table th td{
+            padding-left: 10px;
+        }
+        .invoice-table tr td:nth-child(4) {
+            padding-left: 15px;
+        }
 		.invoice-table tr td {
 			border: none;
 			text-align: left;
-			    padding: 10px 0;
-		}
+            vertical-align: top;
+            padding-left: 10px;
+            padding-bottom: 20px;
+        }
+        .invoice-table tr td:nth-child(1) {
+            text-align: right;
+        }
+        .invoice-table tr td:nth-child(2) {
+            text-align: right;
+        }
+        .invoice-table tr td:nth-child(3) {
+            text-align: right;
+        }
 		.invoice-table p {
-			margin: 0;
 			padding: 1px;
 		}
+        .invoice-table td span {
+            margin-bottom: 5px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .p-small {
+            font-size: 13px;
+        }
 	</style>
 </head>
-<body style="">
+<body>
 	<div class="container">
-		<div class="logo">
-			<img src="http://localhost:8000/static/images/logo1.png" style="width: 200px;" alt="logo">
-		</div>
-		<br>
-		<br>
+        <div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+            </div>
+        </div>
+        <div style="height: 125px;"></div>
 		<div class="header-title">
 			<h3>Ihr Partner für Energie </h3>
 		</div>
 		<div class="info-area-1">
+            <div class="info-contact">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</div>
+            <div class="info-link"><a href="www.energiewerke-bayern.de">www.energiewerke-bayern.de</a></div>
 			<p>{{ mrms|title }}</p>
+            <div class="info-link"><a href="info@energiewerke-bayern.de">info@energiewerke-bayern.de</a></div>
 			<p>{{ name|title }}</p>
 			<p>{{ street|title }}</p>
 			<p>{{ postcode|upper }}, {{ place|title }}</p>
@@ -119,41 +191,71 @@
 		<div class="Germering-area" style="float: right;">
 		<p>Germering den, <span>{{ creation_date|date }}</span></p>
 	</div>
-	<br>
-	<br>
+	<div style="height: 50px;"></div>
 	<div class="offer-start-area">
 		<p style="float: left;"><b>Angebot</b></p>
 		<p style="float: right;"> <b>Kundennr : <span>{{ customer_id }}</span> </b></p>
 	</div>
-	<br>
-	<br>
-	<br>
-
+    <div style="height: 100px;"></div>
 	<div class="offer-end-area">
 		<p style="margin: 0;padding: 0;">{% if mrms %}({{ mrms|title }}) {% endif %}Sehr geehrter Herr {{ last_name|title }}, </p>
+        <div style="height: 15px;"></div>
 		<p>vielen Dank für Ihr Interesse an unseren Leistungen</p>
+        <div style="height: 15px;"></div>
 		<p style="margin: 0;padding: 0;">Anbei erhalten Sie Ihr Angebot, das für Sie persönlich erstellt wurde. </p>
+        <div style="height: 15px;"></div>
 		<p style="margin: 0;padding: 0;">Auf den folgenden Seiten finden Sie einen detaillierten Überblick bezüglich unserer Leistungen.</p>
+        <div style="height: 15px;"></div>
 		<p>Wir gewähren eine sorgfältige Planung und Montage Ihrer Photovoltaikanlage mit unseren leistungsstarken
-und qualitativ hochwertigen Komponenten.</p>
-	<p>Für Rückfragen steht Ihnen das Team der gerne zur Verfügung.</p>
-	<p style="margin-top: 50px;">Mit freundlichen Grüßen</p>
-	<p>Ihr Team</p>
+            und qualitativ hochwertigen Komponenten.</p>
+        <p>Für Rückfragen steht Ihnen das Team der gerne zur Verfügung.</p>
+        <p style="margin-top: 50px;">Mit freundlichen Grüßen</p>
+        <div style="height: 2px;"></div>
+        <p>Ihr Energiewerke Bayern GmbH Team</p>
 	</div>
+    <div class="border">
+        <span>&nbsp;</span>
+    </div>
+    <div>
+        <table class="footer-table">
+            <tr>
+                <td>Energiewerke Bayern GmbH</td>
+                <td>Commerzbank München</td>
+                <td>Geschäftsführer:</td>
+            </tr>
+            <tr>
+                <td>Augsburgerstr. 1C</td>
+                <td>IBAN:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE90 7004 0041 0212 8999 01</td>
+                <td>Krinninger Andreas</td>
+            </tr>
+            <tr>
+                <td>D-82110 Germering</td>
+                <td>BIC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COBADEFFXXX</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tel.: 089-89311773</td>
+            </tr>
+        </table>
+    </div>
 	</div>
 
 {#    PAGE 22222222   #}
-    <div style="height: 410px; background-color: white"></div>
-
+    <div style="height: 1px; background-color: white"></div>
     <div class="container">
-		<div class="logo">
-			<img src="http://localhost:8000/static/images/logo1.png" style="width: 200px;" alt="logo">
-		</div>
-		<br>
-		<br>
-		<br>
-		<br>
+		<div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+            </div>
+        </div>
+		<div style="height: 100px;"></div>
         <div class="confirmation-area">
+            <div class="confirmation-box-left">
+                <span style="margin-bottom: 10px"><strong style="font-size: 19px">Energiewerke-Bayern GmbH</strong> </span><br>
+                Augsburgerstr. 1C <br>
+                82110 Germering <br>
+                Tel.: 089-89311773 <br>
+            </div>
             <div class="confirmation-box">
                 <table border="2" class="confirmation_table">
                     <tr>
@@ -198,14 +300,14 @@ und qualitativ hochwertigen Komponenten.</p>
                 <tr>
                     <td>LIEFERBEDINGUNGEN</td>
                     <td> <span style="border: 2px solid #000;padding: 3px;">frei Haus</span></td>
-                    <td>fIhr Zeichen : <span>XXXXXXXX</span></td>
+                    <td>fIhr Zeichen : <span style="border: 2px solid black; padding: 2px 15px;">XXXXXXXX</span></td>
                 </tr>
                 <tr>
                     <td>LIEFERTERMIN</td>
                     <td colspan="2"> <span style="border: 2px solid #000;padding: 3px;">2020</span><span style="border: 2px solid #000;padding: 3px;margin-left: 5px;">Inbetriebnahme</span></td>
                 </tr>
                 <tr>
-                    <td colspan="3"><span style="background:#63ff84;">Die Warenanlieferung erfolgt einen Tag vor Montagebeginn</p></span>
+                    <td colspan="3"><span style="background:#ffd45a;">Die Warenanlieferung erfolgt einen Tag vor Montagebeginn</p></span>
 
                 </tr>
             </table>
@@ -228,222 +330,242 @@ und qualitativ hochwertigen Komponenten.</p>
 
         <table class="invoice-table" border="2">
             <tr>
-                <td>POS</td>
-                <td>MENGE</td>
-                <td>EINHEIT</td>
-                <td>BEZEICHNUNG</td>
+                <th>POS</th>
+                <th>MENGE</th>
+                <th>EINHEIT</th>
+                <th>BEZEICHNUNG</th>
             </tr>
              <tr>
                 <td style="width: 40px;text-align: center;">1</td>
-                <td style="width: 80px;">#BEZUG</td>
+                <td style="width: 80px;">16</td>
                 <td style="width: 80px;">Stück</td>
                 <td>
                     <b>Monokristalline Hochleistungsmodule</b>
+                    <div style="height: 30px;"></div>
+                    <p>SENEC.Solar 310 Watt</p>
                     <p>- Positive Leistungstoleranz (-0 Wp / +3 Wp)</p>
-                    <p>-(inkl. 20 Jahre Garantieverlängerung für SENEC Solar Module) </p>
+                    <p>- (inkl. 20 Jahre Garantieverlängerung für SENEC Solar Module)</p>
                     <p>- weitere technische Details sind dem beigefügten Datenblatt entnehmbar</p>
+                    <p>- Modulabmessungen: 1650 mm x 992 mm x 35 mm ; 18,5 kg</p>
+                    <p>- <b>Garantie nach Herstellerangaben</b></p>
+                    <p>Ausführliche technische Daten zu den Modulen erhalten Sie mit dem</p>
+                    <p>Moduldatenblatt anbei</p>
                 </td>
              </tr>
              <tr>
                 <td style="width: 40px;text-align: center;">2</td>
-                <td style="width: 80px;">#BEZUG</td>
+                <td style="width: 80px;">1</td>
                 <td style="width: 80px;">Stück</td>
                 <td>
-                    <b>Monokristalline Hochleistungsmodule</b>
-                    <p>- Positive Leistungstoleranz (-0 Wp / +3 Wp)</p>
-                    <p>-(inkl. 20 Jahre Garantieverlängerung für SENEC Solar Module) </p>
-                    <p>- weitere technische Details sind dem beigefügten Datenblatt entnehmbar</p>
+                    <b>Speichermedium mit integriertem Hybrid-Wechselrichter</b>
+                    <p class="bold">SENEC.Home V3 hybrid 5.0</p>
+                    <p class="bold">(inkl. 20 Jahre Garantieverlängerung für SENEC.Home V3)</p>
+                    <p></p>
+                    <p class="bold">- Garantie nach Herstellerangaben</p>
                 </td>
             </tr>
             <tr>
-                <td style="width: 40px;text-align: center;">3</td>
-                <td style="width: 80px;"></td>
-                <td style="width: 80px;"></td>
-                <td>
-                    <p><b>Solarkabel doppelt Isoliert</b></p>
-                    <p>- Einsatztemperatur -40° bis +120°C</p>
-                    <p>- Kurzschlussfest +280°C </p>
-                    <p>- Hohe UV-, Ozon-, Hydrolysebeständigkeit</p>
-                    <p>- Einsatztemperatur -40° bis +120°C</p>
-                    <p>- Kurzschlussfest +280°C </p>
-                    <p>- Hohe UV-, Ozon-, Hydrolysebeständigkeit</p>
+                <td></td>
+                <td></td>
+                <td style="text-align: left;" colspan="2">
+                    (Anzahl der Wechselrichter und Modelltyp werden nach Feinmaß definiert)
                 </td>
             </tr>
-            <tr>
-                <td style="width: 40px;text-align: center;">4</td>
-                <td style="width: 80px;"></td>
-                <td style="width: 80px;"></td>
-                <td>
-                    <b>Solarkabel doppelt Isoliert</b>
-                    <p>- Positive Leistungstoleranz (-0 Wp / +3 Wp)</p>
-                    <p>-(inkl. 20 Jahre Garantieverlängerung für SENEC Solar Module) </p>
-                    <p>- weitere technische Details sind dem beigefügten Datenblatt entnehmbar</p>
-                </td>
-            </tr>
-             <tr>
-                <td style="width: 40px;text-align: center;">5</td>
-                <td style="width: 80px;">Pauschal</td>
-                <td style="width: 80px;"></td>
-                <td>
-                    <p><b>Arbeitsschutzgerät und / oder Personenschutzmaßnahmen</b></p>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 40px;text-align: center;">6</td>
-                <td style="width: 80px;"></td>
-                <td style="width: 80px;">xxxxx m²</td>
-                <td>
-                    <p><b>Anlagenmontage</b></p>
-                    <p>Konfiguration Ihrer Photovoltaik Anlage mit optimaler abgestimmten
-    Komponenten für maximale Stromgewinnung</p>
-                </td>
-             </tr>
         </table>
     </div>
 
     <div style="height: 60px; background-color: white"></div>
 
     <div class="container">
-		<div class="logo">
-			<img src="http://localhost:8000/static/images/logo1.png" style="width: 200px;" alt="logo">
-		</div>
+		<div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+            </div>
+        </div>
 		<table class="invoice-table" border="2">
 		<tr>
-			<td>POS</td>
-			<td>MENGE</td>
-			<td>EINHEIT</td>
-			<td>BEZEICHNUNG</td>
+			<th>POS</th>
+			<th>MENGE</th>
+			<th>EINHEIT</th>
+			<th>BEZEICHNUNG</th>
 		</tr>
-
+        <tr>
+            <td style="width: 40px;text-align: center;">3</td>
+            <td style="width: 80px;"></td>
+            <td style="width: 80px;"></td>
+            <td>
+                <b>Solarkabel doppelt Isoliert</b>
+                <p>- Einsatztemperatur -40° bis +120°C</p>
+                <p>- Kurzschlussfest +280°C</p>
+                <p>- Hohe UV-, Ozon-, Hydrolysebeständigkeit</p>
+                <p>&nbsp; Sehr gute mechanische Beständigkeit gegnüber </p>
+                <p>&nbsp; Wasser, Ölen und Chemikalien </p>
+                <p>- Kabelstärke: 4 oder 6 mm2 (je nach Anlagengröße)</p>
+                <b>- Garantie nach Herstellerangaben</b>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 40px;text-align: center;">4</td>
+            <td style="width: 80px;">26,08 m²</td>
+            <td style="width: 80px;"></td>
+            <td>
+                <b>Unterkonstruktion (Würth, K2 oder S:Flex)</b>
+                <p>- Montageprofil</p>
+                <p>- Dachhaken A2, 35 * 6 mm</p>
+                <p>- End- und Mittelklemmen inkl. Schraubensatz M8</p>
+                <p>- Schienenverbinder 35 * 8 * 120 mm</p>
+                <p>- Tellerkopf - Holzschrauben 8 * 100 mm</p>
+                <p>- Hammerkopfschraube Edelstahl A2</p>
+                <p>- <b>Garantie nach Herstellerangaben</b></p>
+            </td>
+         </tr>
+         <tr>
+            <td style="width: 40px;text-align: center;">5</td>
+            <td style="width: 80px;">Pauschal</td>
+            <td style="width: 80px;"></td>
+            <td>
+                <b>Arbeitsschutzgerät und / oder Personenschutzmaßnahmen</b>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 40px;text-align: center;">6</td>
+            <td style="width: 80px;">26,08 m²</td>
+            <td style="width: 80px;"></td>
+            <td>
+                <b>Anlagenmontage</b>
+                <p>Konfiguration Ihrer Photovoltaik Anlage mit optimaler abgestimmten</p>
+                <p>Komponenten für maximale Stromgewinnung</p>
+            </td>
+         </tr>
 		 <tr>
 			<td style="width: 40px;text-align: center;">6a</td>
 			<td style="width: 80px;"></td>
-			<td style="width: 80px;">xxxxx m²</td>
+			<td style="width: 80px;"></td>
 			<td>
-				<p><b>Anlagenmontage</b></p>
-				<p>Montage der Unterkonstruktion auf Ihr Dach. Setzen der Edelstahlanker auf die Dachsparren. Ausrichtung und Befestigung der nach
-Maß zugeschnittenen Aluminium - Basisprofile auf die Anker.
-Vorbereitung des Halterungssystems zur Befestigung der Module,
-sowie Anschluss, Sicherung und Verkabelung der Module</p>
-<p>Alle elektrischen Abschlussarbeiten der Photovoltaik-Anlage werden
-von unserem autorisierten Elektromeister auf Kosten der Firma
-ausgeführt.</p>
+                <p>Montasge der Unterkonstruktion auf Ihr Dach. Setzen der Edelstahl-</p>
+                <p>anker auf die Dachsparren. Ausrichtung und Befestigung der nach</p>
+                <p>Maß zugeschnittenen Aluminium - Basisprofile auf die Anker.</p>
+                <p>Vorbereitung des Halterungssystems zur Befestigung der Module,</p>
+                <p>sowie Anschluss, Sicherung und Verkabelung der Module.</p>
+                <p></p>
+                <p>Alle elektrischen Abschlussarbeiten der Photovoltaik-Anlage werden</p>
+                <p>von unserem autorisierten Elektromeister auf Kosten der Firma</p>
+                <p>Energiewerke Bayern GmbH ausgeführt.</p>
 			</td>
 		</tr>
 		 <tr>
 			<td style="width: 40px;text-align: center;">7</td>
 			<td style="width: 80px;"></td>
-			<td style="width: 80px;">xxxxx m²</td>
+			<td style="width: 80px;"></td>
 			<td>
-				<p><b>Anmeldung EVU</b></p>
-				<p>EVU-Anmeldung, Schriftverkehr, Dokumentation für Zähler sowie
-spezielle Dokumentationen für EVU wie Betriebsschaltbild,
-Prüfprotokoll und Fertigmeldung.</p>
-
+				<b>Anmeldung EVU</b>
+                <p>EVU-Anmeldung, Schriftverkehr, Dokumentation für Zähler sowie</p>
+                <p>spezielle Dokumentationen für EVU wie Betriebsschaltbild,</p>
+                <p>Prüfprotokoll und Fertigmeldung.</p>
 			</td>
 		    </tr>
+        </table>
+    </div>
+    <div class="container">
+		<div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+            </div>
+        </div>
+        <table class="invoice-table" border="2">
             <tr>
-                    <td style="width: 40px;text-align: center;">8</td>
-                    <td style="width: 80px;"></td>
-                    <td style="width: 80px;"></td>
-                    <td>
-                        <p><b>Elektroinstallationsarbeiten</b></p>
-                        <p>- Zählerschrank + AC-Verdrahtung + Montage</p>
-                        <p>- Verkabelung und Befestigung des Wechselrichters</p>
-                        <p>- Abnahme und Einweisung</p>
-                        <p>- Dokumentation der Anlage</p>
-                        <p>- Anmeldung und Fertigmeldung beim Energieversorger</p>
-                        <p>- Überspannungsschutz</p>
-                    </td>
-                </tr>
-                 <tr>
-                    <td style="width: 40px;text-align: center;">9</td>
-                    <td style="width: 80px;"></td>
-                    <td style="width: 80px;"></td>
-                    <td>
-                        <b>Projektierung / Optimierung</b>
-                        <p>
-                            Die Planung (Dimensionierung und Optimierung) der PV-Anlage erfolgtanhand eines dynamischen Simulationsprogrammes (z.B. PV* Sol
-                            Professional von Dr. Valentin Software) sowie der Projektierung vor Ort.
-                            Unter Umständen kann die sich dabei ergebende Modulleistung der
-                            PV-Anlage höher oder auch niedriger ausfallen, Reduziert sich der
-                            Kaufpreis entsprechend sollte eine höhere Modulleistung als vorgesehen
-                            möglich sein, so kann der AG durch eine einfache Zustimmunserklärung
-                            den Auftrag entsprechend ausweiten.
-                        </p>
-                    </td>
-                </tr>
+                <th>POS</th>
+                <th>MENGE</th>
+                <th>EINHEIT</th>
+                <th>BEZEICHNUNG</th>
+            </tr>
+            <tr>
+                <td style="width: 40px;text-align: center;">8</td>
+                <td style="width: 80px;"></td>
+                <td style="width: 80px;"></td>
+                <td>
+                    <b>Elektroinstallationsarbeiten</b><br><br>
+                    <span>- Zählerschrank + AC-Verdrahtung + Montage</span><br>
+                    <span>- Verkabelung und Befestigung des Wechselrichters</span><br>
+                    <span>- Abnahme und Einweisung</span><br>
+                    <span>- Dokumentation der Anlage</span><br>
+                    <span>- Anmeldung und Fertigmeldung beim Energieversorger</span><br>
+                    <span>- Überspannungsschutz</span>
+                </td>
+            </tr>
+             <tr style="border-bottom: 1px solid black;">
+                <td style="width: 40px;text-align: center;">9</td>
+                <td style="width: 80px;"></td>
+                <td style="width: 80px;"></td>
+                <td>
+                    <b>Projektierung / Optimierung</b>
+                    <p>Die Planung (Dimensionierung und Optimierung) der PV-Anlage erfolgt
+                    <p>anhand eines dynamischen Simulationsprogrammes (z.B. PV* Sol</p>
+                    <p>Professional von Dr. Valentin Software) sowie der Projektierung vor Ort.</p>
+                    <p>Unter Umständen kann die sich dabei ergebende Modulleistung der</p>
+                    <p>PV-Anlage höher oder auch niedriger ausfallen, Reduziert sich der</p>
+                    <p>Kaufpreis entsprechend sollte eine höhere Modulleistung als vorgesehen</p>
+                    <p>möglich sein, so kann der AG durch eine einfache Zustimmunserklärung</p>
+                    <p>den Auftrag entsprechend ausweiten.</p>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 40px;text-align: center; padding-top: 10px;">10</td>
+                <td style="width: 80px;"></td>
+                <td style="width: 80px;"></td>
+                <td style="padding-top: 10px;">
+                    <b><u>Zahlungsbedingungen</u></b><br><br>
+                    <span>100 % nach Lieferung der Ware und Aufdachmontage.</span><br>
+                    <span><span style="color: red;">Bitte beachten Sie, dass der AC-Anschluss erst nach dem Zahlungseingang erfolgt.</span></span><br><br>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 40px;text-align: center;"></td>
+                <td style="width: 80px;"></td>
+                <td style="width: 80px; float: right !important;">100%</td>
+                <td style="">
+                    <span>
+                        Am Tag der Verbauung
+                        <span style="margin-left:19em; font-size: 16px; font-weight: bold">217123,30 €</span>
+                    </span>
+                    <p><strong>(jedoch nicht vor Bewilligung evtl. beantragter Kreditmittel)</strong></p>
+                    <p class="p-small">Energiewerke Bayern GmbH verwendet ausschließlich TÜV geprüfte Komponenten,</p>
+                    <p class="p-small">die sämtlichen gängigen Normen und Zertifizierungen entsprechen.</p>
+                    <p></p>
+                    <p class="p-small">Es gelten ausschließlich unsere Allgemeinen Geschäftsbedingungen,</p>
+                    <span class="p-small">einsehbar unter www.energiewerke-bayern.de</span>
+                </td>
+            </tr>
+            <tr style="margin-top: -30px;">
+                <td style="margin-top: -30px;width: 40px;text-align: center;"></td>
+                <td style="margin-top: -30px;width: 80px;"></td>
+                <td style="margin-top: -30px;width: 80px;"></td>
+                <td style="margin-top: -30px;">
+                    <p style="text-align: right;margin-right: 30px;"><b>Zwischensumme :&nbsp;&nbsp;&nbsp;123456 €</b></p>
+                    <p style="text-align: right;margin-right: 30px;"><b>MwSt 19% :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1234</b></p>
+                    <p style="text-align: right;margin-right: 30px;"><b>Gesamtsumme :&nbsp;&nbsp;&nbsp;123456 €</b></p>
+                </td>
+            </tr>
+        </table>
+        <span class="p-small">Der Auftraggeber bestätigt, eine Abschrift dieses Auftrages sowie die Allgemeinen Geschäftsbedingungen
+        der Fa. erhalten und akzeptiert zu haben.</span><br><br>
 
-                <table class="invoice-table" border="2">
-{#                <tr>#}
-{#                    <td>POS</td>#}
-{#                    <td>MENGE</td>#}
-{#                    <td>EINHEIT</td>#}
-{#                    <td>BEZEICHNUNG</td>#}
-{#                </tr>#}
+        <div style="position: relative;">
+            <span style="width: 40%;float: left;border-bottom: 2px solid #000;">X</span>
+            <span style="position: absolute; width: 40%; top: 24px; left:0; font-size: 12px;">Ort, Datum</span>
+            <span style="width: 40%;float: right;border-bottom: 2px solid #000;">X</span>
+            <span style="position: absolute; width: 40%; top: 24px; right:0; font-size: 12px;">Unterschrift</span>
 
-                </table>
-                <table class="invoice-table" border="2">
-                <tr></tr>
-                <tr>
-                    <td style="width: 40px;text-align: center;">10</td>
-                    <td style="width: 80px;"></td>
-                    <td style="width: 80px;"></td>
-                    <td>
-                        <p><b><u>Zahlungsbedingungen</u></b></p>
-                        <p>100 % nach Lieferung der Ware und Aufdachmontage.
-        Bitte beachten Sie, dass der AC-Anschluss erst nach dem Zahlungseingang erfolgt.</p>
-                    </td>
-                </tr>
-
-
-                    <tr>
-                    <td style="width: 40px;text-align: center;"></td>
-                    <td style="width: 80px;"></td>
-                    <td style="width: 80px;"></td>
-                    <td>
-                        <p style="text-align: right;margin-right: 30px;"><b> XXX</b></p>
-                    </td>
-                </tr>
-                    <tr>
-                    <td style="width: 40px;text-align: center;"></td>
-                    <td style="width: 80px;">100%</td>
-                    <td colspan="2">
-                        <p>Am Tag der Verbauung xxxx
-        (jedoch nicht vor Bewilligung evtl. beantragter Kreditmittel)
-        verwendet ausschließlich TÜV geprüfte Komponenten,
-        die sämtlichen gängigen Normen und Zertifizierungen entsprechen.
-        Es gelten ausschließlich unsere Allgemeinen Geschäftsbedingungen,
-        einsehbar unter</p>
-                    </td>
-                </tr>
-
-                    <tr>
-                    <td style="width: 40px;text-align: center;"></td>
-                    <td style="width: 80px;"></td>
-                    <td style="width: 80px;"></td>
-                    <td>
-                        <p style="text-align: right;margin-right: 30px;"><b>Zwischensumme : XXX</b></p>
-                        <p style="text-align: right;margin-right: 30px;"><b>MwSt 19% : XXX</b></p>
-                        <p style="text-align: right;margin-right: 30px;"><b>Gesamtsumme  : XXX</b></p>
-                    </td>
-                </tr>
-            </table>
-            <p>Der Auftraggeber bestätigt, eine Abschrift dieses Auftrages sowie die Allgemeinen Geschäftsbedingungen
-        der Fa. erhalten und akzeptiert zu haben.</p>
-
-        <div class="line-area">
-            <h4 style="width: 40%;float: left;border-bottom: 2px solid #000;">X</h4>
-
-            <h4 style="width: 40%;float: right;border-bottom: 2px solid #000;">X</h4>
         </div>
         <br>
         <br>
         <br>
         <div class="line-area2">
-            <p style="width: 40%;float: left;border-bottom: 2px solid #000;padding-bottom: 10px;">Ort, Datum</p>
-            <p style="width: 50%;float: right;border-bottom: 2px solid #000;padding-bottom: 10px;padding-left: 10px;">Unterschrift</p>
+            <p style="width: 40%;float: left;border-bottom: 2px solid #000;padding-bottom: 10px;"></p>
+            <p style="width: 50%;float: right;border-bottom: 2px solid #000;padding-bottom: 10px;padding-left: 10px;"></p>
         </div>
+        <div class="info-contact" style="margin-top: 10px;">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</div>
 	</div>
 </body>
 </html>

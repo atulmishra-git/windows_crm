@@ -8,8 +8,8 @@ from django.template.loader import render_to_string
 
 from mainapp.models import PurchaseRecord, Customer, Attachments
 
-WATT1 = 1
-WATT2 = 2
+WATT1 = 310
+WATT2 = 325
 OPTIONS = {
     'page-size': 'A4',
     'margin-top': '0.7842in',
