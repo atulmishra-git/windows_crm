@@ -65,24 +65,10 @@ def download_offer_confirm(request, customer_id):
     else:
         template_name = 'pdf/offer_confirm2.html'
 
-    # context = {
-    #     'gender': "Mr" if customer.gender == 'Male' else "Ms",
-    #     'name': str(customer),
-    #     'customer_id': customer.id,
-    #     'street': customer.street,
-    #     'postcode': customer.postcode,
-    #     'place': customer.place,
-    #     'last_name': customer.surname,
-    #     'creation_date': datetime.today(),
-    # }
     context = {
-        'mrms': "Mr",
-        'name': "Denis Ibrahimi",
-        'customer_id': 10299,
-        'street': "Bayern Munchen",
-        'postcode': "8920",
-        'place': "4th Block, Sunshine Street",
-        'last_name': "Ibrahimi",
+        'gender': "Mr" if customer.gender == 'Male' else "Ms",
+        'customer': customer,
+        'creator': request.user,
         'creation_date': datetime.today(),
     }
 
@@ -100,24 +86,10 @@ def download_install(request, customer_id):
     purchase = customer.purchase_record
     template_name = 'pdf/install.html'
 
-    # context = {
-    #     'gender': "Mr" if customer.gender == 'Male' else "Ms",
-    #     'name': str(customer),
-    #     'customer_id': customer.id,
-    #     'street': customer.street,
-    #     'postcode': customer.postcode,
-    #     'place': customer.place,
-    #     'last_name': customer.surname,
-    #     'creation_date': datetime.today(),
-    # }
     context = {
-        'mrms': "Mr",
-        'name': "Denis Ibrahimi",
-        'customer_id': 10299,
-        'street': "Bayern Munchen",
-        'postcode': "8920",
-        'place': "4th Block, Sunshine Street",
-        'last_name': "Ibrahimi",
+        'gender': "Mr" if customer.gender == 'Male' else "Ms",
+        'customer': customer,
+        'creator': request.user,
         'creation_date': datetime.today(),
     }
 
@@ -135,16 +107,12 @@ def download_invoice(request, customer_id):
     purchase = customer.purchase_record
     template_name = 'pdf/invoice.html'
 
-    context = {}
-    #     'gender': "Mr" if customer.gender == 'Male' else "Ms",
-    #     'name': str(customer),
-    #     'customer_id': customer.id,
-    #     'street': customer.street,
-    #     'postcode': customer.postcode,
-    #     'place': customer.place,
-    #     'last_name': customer.surname,
-    #     'creation_date': datetime.today(),
-    # }
+    context = {
+        'gender': "Mr" if customer.gender == 'Male' else "Ms",
+        'customer': customer,
+        'creator': request.user,
+        'creation_date': datetime.today(),
+    }
 
     rendered = render_to_string(template_name,
                                 context,
