@@ -1,1 +1,575 @@
-Offer Confirm 2
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 17px;
+        }
+		.container {
+{#			width: 595px;#}
+{#			margin: auto;#}
+{#			border: 1px solid #ccc;#}
+{#			overflow: auto;#}
+{#			padding: 20px 40px;#}
+			height: 1259px;
+		}
+        .container::after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+        .logo-div {
+            width: 100%;
+        }
+		.logo {
+			width: 280px;
+			float: right;
+{#            background-color: purple;#}
+		}
+		.logo img {
+			width: 100%;
+		}
+		.header-title {
+			padding-bottom: 10px;
+			border-bottom: 3px solid #777;
+		}
+		.info-area-1 {
+			padding: 20px 0;
+		}
+		.info-contact {
+			margin-top: -15px;
+            font-size: 13px;
+            color: #222;
+            padding-bottom: 40px;
+		}
+        .info-link {
+            float: right;
+            margin-top: -15px;
+            font-size: 14px;
+        }
+		.info-area-1 p {
+			padding: 2px;
+			margin:0;
+		}
+		.offer-start-area {
+			margin-top: 40px;
+            margin-bottom: 30px
+		}
+		.offer-end-area {
+			overflow: hidden;
+			float: left;
+			padding-bottom: 100px;
+            height: 420px;
+{#            background-color: #6f42c1;#}
+		}
+        .border {
+            border-bottom: 2px solid #ccc;
+        }
+        .border span {
+            color: white;
+        }
+        .footer-table {
+            width: 100%;
+            font-size: 15px;
+        }
+        .confirmation_table {
+			border-collapse: collapse;
+            width: 400px;
+		}
+		.confirmation_table tr:first-child {
+			border: 2px solid #000;
+		}
+		.confirmation_table tr td {
+			padding: 5px 20px;
+			border: none;
+		}
+		.confirmation-area {
+			margin-top: 10px;
+		}
+		.confirmation-area .confirmation-box {
+			float: right;
+		}
+		.confirmation-area .confirmation-box-left {
+			float: left;
+		}
+		.customer-info-box {
+			border: 2px solid #000;
+			width: 150px;
+			padding: 3px 0;
+            margin: 50px 0;
+		}
+		.customer-info-box p {
+			margin: 0;
+			padding: 0;
+		}
+		.delivery-note-area {
+			margin-top: 30px;
+			border: 2px solid #000;
+		}
+
+		.delivery-note-table {
+			width: 100%;
+			overflow: hidden;
+		}
+        .delivery-note-table tr td {
+            padding: 8px 0;
+            font-size: 14px;
+        }
+		.delivery-note-table tr td:last-child {
+			padding: 0;
+		}
+        .invoice-table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 14px;
+        }
+		.invoice-table tr:first-child {
+			border: 2px solid #000;
+		}
+        .invoice-table tr th {
+            border: none;
+            padding: 5px;
+        }
+        .invoice-table th{
+            text-align: left;
+        }
+        .invoice-table th td{
+            padding-left: 10px;
+        }
+        .invoice-table tr td:nth-child(4) {
+            padding-left: 15px;
+        }
+		.invoice-table tr td {
+			border: none;
+			text-align: left;
+            vertical-align: top;
+            padding-left: 10px;
+            padding-bottom: 20px;
+        }
+        .invoice-table tr td:nth-child(1) {
+            text-align: right;
+        }
+        .invoice-table tr td:nth-child(2) {
+            text-align: right;
+        }
+        .invoice-table tr td:nth-child(3) {
+            text-align: right;
+        }
+		.invoice-table p {
+			padding: 1px;
+		}
+        .invoice-table td span {
+            margin-bottom: 5px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .p-small {
+            font-size: 13px;
+        }
+	</style>
+</head>
+<body>
+	<div class="container">
+        <div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+            </div>
+        </div>
+        <div style="height: 125px;"></div>
+		<div class="header-title">
+			<h3>Ihr Partner für Energie </h3>
+		</div>
+		<div class="info-area-1">
+            <div class="info-contact">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</div>
+            <div class="info-link"><a href="www.energiewerke-bayern.de">www.energiewerke-bayern.de</a></div>
+			<p>{{ mrms|title|default:"-" }}</p>
+            <div class="info-link"><a href="info@energiewerke-bayern.de">info@energiewerke-bayern.de</a></div>
+			<p>{{ customer|title }}</p>
+			<p>{{ customer.street|title|default:"-" }}</p>
+			<p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
+		</div>
+		<div class="Germering-area" style="float: right;">
+		<p>Germering den, <span>{{ creation_date|date }}</span></p>
+	</div>
+	<div style="height: 50px;"></div>
+	<div class="offer-start-area">
+		<p style="float: left;"><b>Auftragsbestätigung</b></p>
+		<p style="float: right;"> <b>Kundennr : <span>{{ customer.id }}</span> </b></p>
+	</div>
+    <div style="height: 100px;"></div>
+	<div class="offer-end-area">
+		<p style="margin: 0;padding: 0;">Sehr{% if mrms == 'Mr' %} geehrter {% else %} geehrte {% endif %}  Herr {{ customer.surname|title }}, </p>
+        <div style="height: 15px;"></div>
+		<p>vielen Dank für Ihr Interesse an unseren Leistungen.</p>
+        <div style="height: 15px;"></div>
+		<p style="margin: 0;padding: 0;">Anbei erhalten Sie Ihre Auftragsbestätigung, die für Sie persönlich erstellt wurde. Auf den folgenden Seiten finden Sie einen detaillierten Überblick bezüglich unserer Leistungen.</p>
+        <div style="height: 15px;"></div>
+        <p>Wir gewähren eine sorgfältige Planung und Montage Ihrer Photovoltaikanlage mit unseren leistungsstarken</p>
+        <p>und qualitativ hochwertigen Komponenten.</p>
+        <div style="height: 15px;"></div>
+        <p>Für Rückfragen steht Ihnen das Team der Energiewerke Bayern GmbH gerne zur Verfügung.</p>
+        <p style="margin-top: 50px;">Mit freundlichen Grüßen</p>
+        <div style="height: 2px;"></div>
+        <p>Ihr Energiewerke Bayern GmbH Team</p>
+	</div>
+    <div class="border">
+        <span>&nbsp;</span>
+    </div>
+    <div>
+        <table class="footer-table">
+            <tr>
+                <td>Energiewerke Bayern GmbH</td>
+                <td>Commerzbank München</td>
+                <td>Geschäftsführer:</td>
+            </tr>
+            <tr>
+                <td>Augsburgerstr. 1C</td>
+                <td>IBAN:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE90 7004 0041 0212 8999 01</td>
+                <td>Krinninger Andreas</td>
+            </tr>
+            <tr>
+                <td>D-82110 Germering</td>
+                <td>BIC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COBADEFFXXX</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tel.: 089-89311773</td>
+            </tr>
+        </table>
+    </div>
+	</div>
+    <div><!--clear--></div>
+
+{#    PAGE 22222222   #}
+    <div style="height: 1px; background-color: white"></div>
+    <div class="container" >
+		<div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+            </div>
+        </div>
+		<div style="height: 100px;"></div>
+        <div class="confirmation-area">
+            <div class="confirmation-box-left">
+                <span style="margin-bottom: 10px"><strong style="font-size: 19px">Energiewerke-Bayern GmbH</strong> </span><br>
+                Augsburgerstr. 1C <br>
+                82110 Germering <br>
+                Tel.: 089-89311773 <br>
+            </div>
+            <div class="confirmation-box">
+                <table border="2" class="confirmation_table">
+                    <tr>
+                        <td colspan="2">Bestätigungsschreiben </td>
+                    </tr>
+                    <tr>
+                        <td>Datum</td>
+                        <td>{{ creation_date|date }}</td>
+                    </tr>
+                    <tr>
+                        <td>Telefon</td>
+                        <td>089-89311773</td>
+                    </tr>
+                    <tr>
+                        <td>Bearbeiter/in</td>
+                        <td>{{ creator|title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kundennr</td>
+                        <td>{{ customer.id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kommission</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="customer-info-box">
+            <p>{{ mrms|title|default:"-" }}</p>
+            <p>{{ customer|title }}</p>
+            <p>{{ customer.street|title|default:"-" }}</p>
+            <p>{{ customer.postcode|upper|default:"-" }}</p>
+        </div>
+
+        <div class="delivery-note-area">
+            <table class="delivery-note-table">
+                <tr>
+                    <td>LIEFERBEDINGUNGEN</td>
+                    <td> <span style="border: 2px solid #000;padding: 3px;">frei Haus</span></td>
+                    <td>Ihr Zeichen : <span style="border: 2px solid black; padding: 2px 15px;">{{ customer|title }}</span></td>
+                </tr>
+                <tr>
+                    <td>LIEFERTERMIN</td>
+                    <td colspan="2"> <span style="border: 2px solid #000;padding: 3px;">{% now "Y" %}</span><span style="border: 2px solid #000;padding: 3px;margin-left: 5px;">Inbetriebnahme</span></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><span style="background:#ffd45a;">Die Warenanlieferung erfolgt einen Tag vor Montagebeginn</p></span>
+
+                </tr>
+            </table>
+        </div>
+
+        <div class="hombble-area">
+            <br>
+            <p style="margin: 0;padding: 0;">Sehr{% if mrms == 'Mr' %} geehrter {% else %} geehrte {% endif %}  Herr {{ customer.surname|title }}</p>
+            <p style="margin: 0;padding: 0;">hiermit bestätigen wir zu unseren allgemeinen Geschäftsbedingungen Ihren Auftrag:</p>
+            <p><b>Komplett-Service inkl. Beratung, Planung, Montage und Inbetriebnahme einer durch die
+     konfigurierten Photovoltaik-Anlage.</b></p>
+        </div>
+        <div class="photovoltaic-introduce">
+            <p style="float: left;">Photovoltaik - Anlage mit einer Modulleistung von: </p>
+            <p style="float: left;margin-left: 30px;"><span style="border: 2px solid #000;padding: 5px 20px;,margin-right: 10px;">{{ customer.purchase_record.kwp }}</span> kW/p </p>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <table class="invoice-table" border="2">
+            <tr>
+                <th>POS</th>
+                <th>MENGE</th>
+                <th>EINHEIT</th>
+                <th>BEZEICHNUNG</th>
+            </tr>
+             <tr>
+                <td style="width: 40px;text-align: center;">1</td>
+                <td style="width: 80px;">{{ customer.purchase_record.module_count }}</td>
+                <td style="width: 80px;">Stück</td>
+                <td>
+                    <b>Monokristalline Hochleistungsmodule</b>
+                    <div style="height: 30px;"></div>
+                    <p>SENEC.Solar 335 Watt</p>
+                    <p>Positive Leistungstoleranz (-0 Wp / +5 Wp)</p>
+                    <p>(inkl. 20 Jahre Garantieverlängerung für SENEC Solar Module)</p>
+                    <p>weitere technische Details sind dem beigefügten Datenblatt entnehmbar</p>
+                    <p>Modulabmessungen: 1692 mm x 1002 mm x 35 mm ; 19,10 kg</p>
+                    <p>Garantie nach Herstellerangaben</p>
+                    <p>Ausführliche technische Daten zu den Modulen erhalten Sie mit dem</p>
+                </td>
+             </tr>
+             <tr>
+                <td style="width: 40px;text-align: center;">2</td>
+                <td style="width: 80px;">1</td>
+                <td style="width: 80px;">Stück</td>
+                <td>
+                    <b>Speichermedium mit integriertem Hybrid-Wechselrichter</b>
+                    <p class="bold">{{ customer.purchase_record.manufacturer_display }} {{ customer.purchase_record.kwh_display }}</p>
+                    <p class="bold">(inkl. 20 Jahre Garantieverlängerung für {{ customer.purchase_record.manufacturer_display }} {{ customer.purchase_record.kwh_display }})</p>
+                    <p></p>
+                    <p class="bold">- Garantie nach Herstellerangaben</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="text-align: left;" colspan="2">
+                    (Anzahl der Wechselrichter und Modelltyp werden nach Feinmaß definiert)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div><!--clear--></div>
+
+{#    <div style="height: 60px; background-color: white"></div>#}
+    <div class="container">
+		<div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+            </div>
+        </div>
+		<table class="invoice-table" border="2">
+		<tr>
+			<th>POS</th>
+			<th>MENGE</th>
+			<th>EINHEIT</th>
+			<th>BEZEICHNUNG</th>
+		</tr>
+        <tr>
+            <td style="width: 40px;text-align: center;">3</td>
+            <td style="width: 80px;"></td>
+            <td style="width: 80px;"></td>
+            <td>
+                <b>Solarkabel doppelt Isoliert</b>
+                <p>- Einsatztemperatur -40° bis +120°C</p>
+                <p>- Kurzschlussfest +280°C</p>
+                <p>- Hohe UV-, Ozon-, Hydrolysebeständigkeit</p>
+                <p>&nbsp; Sehr gute mechanische Beständigkeit gegnüber </p>
+                <p>&nbsp; Wasser, Ölen und Chemikalien </p>
+                <p>- Kabelstärke: 4 oder 6 mm2 (je nach Anlagengröße)</p>
+                <b>- Garantie nach Herstellerangaben</b>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 40px;text-align: center;">4</td>
+            <td style="width: 80px;">{{ customer.purchase_record.total_area }} m²</td>
+            <td style="width: 80px;"></td>
+            <td>
+                <b>Unterkonstruktion (Würth, K2 oder S:Flex)</b>
+                <p>- Montageprofil</p>
+                <p>- Dachhaken A2, 35 * 6 mm</p>
+                <p>- End- und Mittelklemmen inkl. Schraubensatz M8</p>
+                <p>- Schienenverbinder 35 * 8 * 120 mm</p>
+                <p>- Tellerkopf - Holzschrauben 8 * 100 mm</p>
+                <p>- Hammerkopfschraube Edelstahl A2</p>
+                <span>- <strong>Garantie nach Herstellerangaben<strong></span>
+            </td>
+         </tr>
+         <tr>
+            <td style="width: 40px;text-align: center;">5</td>
+            <td style="width: 80px;">Pauschal</td>
+            <td style="width: 80px;"></td>
+            <td>
+                <b>Arbeitsschutzgerät und / oder Personenschutzmaßnahmen</b>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 40px;text-align: center;">6</td>
+            <td style="width: 80px;">{{ customer.purchase_record.total_area }} m²</td>
+            <td style="width: 80px;"></td>
+            <td>
+                <b>Anlagenmontage</b>
+                <p>Konfiguration Ihrer Photovoltaik Anlage mit optimaler abgestimmten</p>
+                <span>Komponenten für maximale Stromgewinnung</span>
+            </td>
+         </tr>
+		 <tr>
+			<td style="width: 40px;text-align: center;">6a</td>
+			<td style="width: 80px;"></td>
+			<td style="width: 80px;"></td>
+			<td>
+                <span>Montasge der Unterkonstruktion auf Ihr Dach. Setzen der Edelstahl-</span>
+                <p>anker auf die Dachsparren. Ausrichtung und Befestigung der nach</p>
+                <p>Maß zugeschnittenen Aluminium - Basisprofile auf die Anker.</p>
+                <p>Vorbereitung des Halterungssystems zur Befestigung der Module,</p>
+                <p>sowie Anschluss, Sicherung und Verkabelung der Module.</p>
+                <p>Alle elektrischen Abschlussarbeiten der Photovoltaik-Anlage werden</p>
+                <p>von unserem autorisierten Elektromeister auf Kosten der Firma</p>
+                <span>Energiewerke Bayern GmbH ausgeführt.</span>
+			</td>
+		</tr>
+		 <tr>
+			<td style="width: 40px;text-align: center;">7</td>
+			<td style="width: 80px;"></td>
+			<td style="width: 80px;"></td>
+			<td>
+				<strong>Anmeldung EVU</strong>
+                <p>EVU-Anmeldung, Schriftverkehr, Dokumentation für Zähler sowie</p>
+                <p>spezielle Dokumentationen für EVU wie Betriebsschaltbild,</p>
+                <span>Prüfprotokoll und Fertigmeldung.</span>
+			</td>
+		    </tr>
+        </table>
+    </div>
+    <div><!--clear--></div>
+
+    <div class="container">
+		<div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+            </div>
+        </div>
+        <table class="invoice-table" border="2">
+            <tr>
+                <th>POS</th>
+                <th>MENGE</th>
+                <th>EINHEIT</th>
+                <th>BEZEICHNUNG</th>
+            </tr>
+            <tr>
+                <td style="width: 40px;text-align: center;">8</td>
+                <td style="width: 80px;"></td>
+                <td style="width: 80px;"></td>
+                <td>
+                    <b>Elektroinstallationsarbeiten</b><br><br>
+                    <span>- Zählerschrank + AC-Verdrahtung + Montage</span><br>
+                    <span>- Verkabelung und Befestigung des Wechselrichters</span><br>
+                    <span>- Abnahme und Einweisung</span><br>
+                    <span>- Dokumentation der Anlage</span><br>
+                    <span>- Anmeldung und Fertigmeldung beim Energieversorger</span><br>
+                    <span>- Überspannungsschutz</span>
+                </td>
+            </tr>
+             <tr style="border-bottom: 1px solid black;">
+                <td style="width: 40px;text-align: center;">9</td>
+                <td style="width: 80px;"></td>
+                <td style="width: 80px;"></td>
+                <td>
+                    <b>Projektierung / Optimierung</b>
+                    <p>Die Planung (Dimensionierung und Optimierung) der PV-Anlage erfolgt
+                    <p>anhand eines dynamischen Simulationsprogrammes (z.B. PV* Sol</p>
+                    <p>Professional von Dr. Valentin Software) sowie der Projektierung vor Ort.</p>
+                    <p>Unter Umständen kann die sich dabei ergebende Modulleistung der</p>
+                    <p>PV-Anlage höher oder auch niedriger ausfallen, Reduziert sich der</p>
+                    <p>Kaufpreis entsprechend sollte eine höhere Modulleistung als vorgesehen</p>
+                    <p>möglich sein, so kann der AG durch eine einfache Zustimmunserklärung</p>
+                    <span>den Auftrag entsprechend ausweiten.</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 40px;text-align: center; padding-top: 10px;">10</td>
+                <td style="width: 80px;"></td>
+                <td style="width: 80px;"></td>
+                <td style="padding-top: 10px;">
+                    <b><u>Zahlungsbedingungen</u></b><br><br>
+                    <span>100 % nach Lieferung der Ware und Aufdachmontage.</span><br>
+                    <span><span style="color: red;">Bitte beachten Sie, dass der AC-Anschluss erst nach dem Zahlungseingang erfolgt.</span></span><br>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 40px;text-align: center;"></td>
+                <td style="width: 80px;"></td>
+                <td style="width: 80px; float: right !important;">100%</td>
+                <td style="">
+                    <span>
+                        Am Tag der Verbauung
+                        <span style="margin-left:19em; font-weight: bold">{{ customer.purchase_record.price_without_tax }} €</span>
+                    </span>
+                    <p><strong>(jedoch nicht vor Bewilligung evtl. beantragter Kreditmittel)</strong></p>
+                    <p class="p-small">Energiewerke Bayern GmbH verwendet ausschließlich TÜV geprüfte Komponenten,</p>
+                    <span class="p-small">die sämtlichen gängigen Normen und Zertifizierungen entsprechen.</span>
+                    <div style="height: 5px;"></div>
+                    <p class="p-small">Es gelten ausschließlich unsere Allgemeinen Geschäftsbedingungen,</p>
+                    <span class="p-small">einsehbar unter www.energiewerke-bayern.de</span>
+                </td>
+            </tr>
+            <tr style="margin-top: -30px;">
+                <td style="margin-top: -30px;width: 40px;text-align: center;"></td>
+                <td style="margin-top: -30px;width: 80px;"></td>
+                <td style="margin-top: -30px;width: 80px;"></td>
+                <td style="margin-top: -30px; text-align: right">
+                    <span style="text-align: right;margin-right: 30px;"><b>Zwischensumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_without_tax }} €</b></span>
+                    <p style="text-align: right;margin-right: 30px;"><b>MwSt 19% :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.tax }}</b></p>
+                    <span style="text-align: right;margin-right: 30px;"><b>Gesamtsumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_with_tax }} €</b></span>
+                </td>
+            </tr>
+        </table>
+        <span class="p-small">Der Auftraggeber bestätigt, eine Abschrift dieses Auftrages sowie die Allgemeinen Geschäftsbedingungen
+        der Fa. erhalten und akzeptiert zu haben.</span><br><br>
+
+        <div style="position: relative;">
+            <span style="width: 40%;float: left;border-bottom: 2px solid #000;">X</span>
+            <span style="position: absolute; width: 40%; top: 24px; left:0; font-size: 12px;">Ort, Datum</span>
+            <span style="width: 40%;float: right;border-bottom: 2px solid #000;">X</span>
+            <span style="position: absolute; width: 40%; top: 24px; right:0; font-size: 12px;">Unterschrift</span>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="line-area2">
+            <p style="width: 40%;float: left;border-bottom: 2px solid #000;padding-bottom: 10px;"></p>
+            <p style="width: 50%;float: right;border-bottom: 2px solid #000;padding-bottom: 10px;padding-left: 10px;"></p>
+        </div>
+        <div class="info-contact" style="margin-top: 1px;">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</div>
+	</div>
+    <div><!--clear--></div>
+</body>
+</html>

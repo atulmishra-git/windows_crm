@@ -43,7 +43,7 @@ def download_offer(request, customer_id):
         template_name = 'pdf/offer2.html'
 
     context = {
-        'gender': "Mr" if customer.gender == 'Male' else "Ms",
+        'mrms': "Mr" if customer.gender == 'Male' else "Ms",
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
@@ -66,7 +66,7 @@ def download_offer_confirm(request, customer_id):
         template_name = 'pdf/offer_confirm2.html'
 
     context = {
-        'gender': "Mr" if customer.gender == 'Male' else "Ms",
+        'mrms': "Mr" if customer.gender == 'Male' else "Ms",
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
@@ -87,7 +87,7 @@ def download_install(request, customer_id):
     template_name = 'pdf/install.html'
 
     context = {
-        'gender': "Mr" if customer.gender == 'Male' else "Ms",
+        'mrms': "Mr" if customer.gender == 'Male' else "Ms",
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
@@ -108,7 +108,7 @@ def download_invoice(request, customer_id):
     template_name = 'pdf/invoice.html'
 
     context = {
-        'gender': "Mr" if customer.gender == 'Male' else "Ms",
+        'mrms': "Mr" if customer.gender == 'Male' else "Ms",
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
