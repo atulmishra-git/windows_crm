@@ -87,7 +87,7 @@ def download_install(request, customer_id):
     template_name = 'pdf/install.html'
 
     context = {
-        'mrms': "Mr" if customer.gender == 'Male' else "Ms",
+        'mrms': "Herr" if customer.gender == 'Male' else "Frau",
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
@@ -108,7 +108,7 @@ def download_invoice(request, customer_id):
     template_name = 'pdf/invoice.html'
 
     context = {
-        'mrms': "Mr" if customer.gender == 'Male' else "Ms",
+        'mrms': "Herr" if customer.gender == 'Male' else "Frau",
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
