@@ -196,18 +196,55 @@
 			<p>{{ customer.street|title|default:"-" }}</p>
 			<p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
 		</div>
-		<div class="Germering-area" style="float: right;">
-		<p>Germering den, <span>{{ creation_date|date }}</span></p>
-	</div>
+		<div class="Germering-area" style="float: left;">
+            <p><span style="font-size: 20px; font-weight: bold">Rechnung</span></p>
+        </div>
 	<div style="height: 50px;"></div>
     <div class="offer-start-area">
-		<p style="float: left;"><b>Montagebestätigung</b></p>
-		<p style="float: right;"> <b>Kundennr : <span>{{ customer.id }}</span> </b></p>
+		<p style="float: left;">
+            <b>Rechnung Nr. {{ customer.invoice_id }}</b><br>
+            <span style="font-size: 13px">Bitte bei Zahlungen und Schriftverkehr angeben!</span>
+        </p>
+		<p style="float: right;">
+            <span>Rechnungsdatum: <span>{{ creation_date|date }}</span> </span><br>
+            <span>Kundennummer: <span>{{ customer.id }}</span> </span><br>
+            <span>Leistungszeitraum: <span>{{ dc_term_month }} / {{ dc_term_year }}</span> </span><br>
+            <span></span>
+        </p>
 	</div>
     <div style="height: 100px;"></div>
 	<div class="offer-end-area">
-		<p style="margin: 0;padding: 0;">Sehr{% if mrms == 'Herr' %} geehrter Herr{% else %} geehrte Frau{% endif %} {{ customer.surname|title }}, </p>
-        <div style="height: 15px;"></div>
+        <table style="width:100%;">
+            <tbody>
+            <tr style="
+            border: 1px solid black;
+            background-color: #a9d7f3;
+            border-collapse: collapse;
+            vertical-align: middle;">
+                <th style="height:25px;">Beschreibung</th>
+                <th style="height:25px; border: 0.5px solid grey;">Betrag</th>
+            </tr>
+            <tr style="height: 97px;">
+                <td style="border: 0.5px solid grey;">Lieferung und Montage der Photovoltaikanlage <br><br>(inkl. Komponenten)</td>
+                <td style="text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.price_without_tax }} €</td>
+            </tr>
+            <tr>
+                <td style="height:25px; padding-left: 65%;" >Summe netto &nbsp;  </td>
+                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.price_without_tax }} €</td>
+            </tr>
+            <tr>
+                <td style="height:25px; padding-left: 65%;" >zzgl. 19% MwSt &nbsp;</td>
+                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.tax }} €</td>
+            </tr>
+            <tr>
+                <td style="height:25px; padding-left: 65%;" ><b>Summe brutto &nbsp;</b></td>
+                <td style="height:25px; text-align: center; border: 0.5px solid grey;"><b>{{ customer.purchase_record.price_with_tax }} €</b></td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Bitte begleichen Sie den Rechnungsbetrag umgehend nach Erhalt der Rechnung auf das unten angegebene Konto.</p>
+{#		<p style="margin: 0;padding: 0;">Sehr{% if mrms == 'Herr' %} geehrter Herr{% else %} geehrte Frau{% endif %} {{ customer.surname|title }}, </p>#}
+        <div style="height: 1px;"></div>
 	</div>
     <div class="border">
         <span>&nbsp;</span>
@@ -237,37 +274,4 @@
 	</div>
     <div><!--clear--></div>
 </body>
-</html>
-        <table style="width:100%;">
-            <tbody>
-            <tr style="
-            border: 0.5px solid grey;
-            background-color: #a9d7f3;
-            border-collapse: collapse;
-            vertical-align: middle;">
-                <th style="height:25px;">Beschreibung</th>
-                <th style="height:25px; border: 0.5px solid grey;">Betrag</th>
-            </tr>
-            <tr style="height: 97px;">
-                <td style="border: 0.5px solid grey;">Lieferung und Montage der Photovoltaikanlage <br><br>(inkl. Komponenten)</td>
-                <td style="text-align: center; border: 0.5px solid grey;">{{ purchase.price_without_tax }}</td>
-            </tr>
-            <tr>
-                <td style="height:25px; padding-left: 75%;" >Summe netto &nbsp;  </td>
-                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ purchase.price_without_tax }}</td>
-            </tr>
-            <tr>
-                <td style="height:25px; padding-left: 75%;" >zzgl. 19% MwSt &nbsp;</td>
-                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ purchase.tax }}</td>
-            </tr>
-            <tr>
-                <td style="height:25px; padding-left: 75%;" ><b>Summe brutto &nbsp;</b></td>
-                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ purchase.price_with_tax }}</td>
-            </tr>
-            </tbody>
-        </table>
-        <br/>
-        <br/>
-        <p>Bitte begleichen Sie den Rechnungsbetrag umgehend nach Erhalt der Rechnung auf das unten angegebene Konto.</p>
-    </body>
 </html>

@@ -112,6 +112,8 @@ def download_invoice(request, customer_id):
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
+        'dc_term_month':  customer.purchase_record.dc_term.month,
+        'dc_term_year':  customer.purchase_record.dc_term.year
     }
 
     rendered = render_to_string(template_name,
