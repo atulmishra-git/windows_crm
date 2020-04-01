@@ -1,60 +1,243 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 17px;
+        }
+		.container {
+{#			width: 595px;#}
+{#			margin: auto;#}
+{#			border: 1px solid #ccc;#}
+{#			overflow: auto;#}
+{#			padding: 20px 40px;#}
+			height: 1259px;
+		}
+        .container::after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+        .logo-div {
+            width: 100%;
+        }
+		.logo {
+			width: 280px;
+			float: right;
+{#            background-color: purple;#}
+		}
+		.logo img {
+			width: 100%;
+		}
+		.header-title {
+			padding-bottom: 10px;
+			border-bottom: 3px solid #777;
+		}
+		.info-area-1 {
+			padding: 20px 0;
+		}
+		.info-contact {
+			margin-top: -15px;
+            font-size: 13px;
+            color: #222;
+            padding-bottom: 40px;
+		}
+        .info-link {
+            float: right;
+            margin-top: -15px;
+            font-size: 14px;
+        }
+		.info-area-1 p {
+			padding: 2px;
+			margin:0;
+		}
+		.offer-start-area {
+			margin-top: 40px;
+            margin-bottom: 30px
+		}
+		.offer-end-area {
+			overflow: hidden;
+			float: left;
+			padding-bottom: 100px;
+            height: 420px;
+{#            background-color: #6f42c1;#}
+		}
+        .border {
+            border-bottom: 2px solid #ccc;
+        }
+        .border span {
+            color: white;
+        }
+        .footer-table {
+            width: 100%;
+            font-size: 15px;
+        }
+        .confirmation_table {
+			border-collapse: collapse;
+            width: 400px;
+		}
+		.confirmation_table tr:first-child {
+			border: 2px solid #000;
+		}
+		.confirmation_table tr td {
+			padding: 5px 20px;
+			border: none;
+		}
+		.confirmation-area {
+			margin-top: 10px;
+		}
+		.confirmation-area .confirmation-box {
+			float: right;
+		}
+		.confirmation-area .confirmation-box-left {
+			float: left;
+		}
+		.customer-info-box {
+			border: 2px solid #000;
+			width: 150px;
+			padding: 3px 0;
+            margin: 50px 0;
+		}
+		.customer-info-box p {
+			margin: 0;
+			padding: 0;
+		}
+		.delivery-note-area {
+			margin-top: 30px;
+			border: 2px solid #000;
+		}
 
-<html>
-    <head>
-        <style>
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-                background: white;
-{#                width: 21cm;#}
-{#                height: 28.7cm;#}
-                display: block;
-                margin: 0 auto;
-                padding: 10px 25px;
-                margin-bottom: 0.5cm;
-{#                box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);#}
-            }
-            table, th, td {
-                border-collapse: collapse;
-            }
-
-        </style>
-    </head>
-    <body>
-        <div style="width:100%; text-align:right;">
-            <img src="{% static 'images/logo1.png' %}" width="220px" height="100px"/>
-        </div>
-        <div>
-            <hr style="width: 50%; margin-left: 0; height: 0.5px; background-color: #333">
-            <b>{{ purchase.name|title }}</b>
-        </div>
-        <div>
-            <b>{{ purchase.street|title }}</b>
-        </div>
-        <div>
-            <b>{{ purchase.postcode }}, {{ purchase.place|title }}</b>
-        </div>
-        <div class="right" style="text-align:right;">
-            <div>
-                {% if purchase.offer_date %}
-                    <b>Offer Date: {{ purchase.offer_date }}</b>
-                {% endif %}
+		.delivery-note-table {
+			width: 100%;
+			overflow: hidden;
+		}
+        .delivery-note-table tr td {
+            padding: 8px 0;
+            font-size: 14px;
+        }
+		.delivery-note-table tr td:last-child {
+			padding: 0;
+		}
+        .invoice-table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 14px;
+        }
+		.invoice-table tr:first-child {
+			border: 2px solid #000;
+		}
+        .invoice-table tr th {
+            border: none;
+            padding: 5px;
+        }
+        .invoice-table th{
+            text-align: left;
+        }
+        .invoice-table th td{
+            padding-left: 10px;
+        }
+        .invoice-table tr td:nth-child(4) {
+            padding-left: 15px;
+        }
+		.invoice-table tr td {
+			border: none;
+			text-align: left;
+            vertical-align: top;
+            padding-left: 10px;
+            padding-bottom: 20px;
+        }
+        .invoice-table tr td:nth-child(1) {
+            text-align: right;
+        }
+        .invoice-table tr td:nth-child(2) {
+            text-align: right;
+        }
+        .invoice-table tr td:nth-child(3) {
+            text-align: right;
+        }
+		.invoice-table p {
+			padding: 1px;
+		}
+        .invoice-table td span {
+            margin-bottom: 5px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .p-small {
+            font-size: 13px;
+        }
+        .yellow-bold{
+            background-color: yellow;
+            font-weight: bold;
+        }
+	</style>
+</head>
+<body>
+	<div class="container">
+        <div class="logo-div">
+            <div class="logo">
+                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
             </div>
-            <div>
-                <b>Customer ID: {{ purchase.customer_id }}</b>
-            </div>
-            {% if purchase.date_sent %}
-                <b>Date Sent: {{ purchase.date_sent }}</b>
-            {% endif %}
         </div>
-        <div class="row col-md-12" >
-            <div class="col-md-6" style="float: left;">
-                <h3>Rechnung</h3>
-                <b>{{ purchase.fullname|title }}</b>
-                <span><p>Bitte bei Zahlungen und Schriftverkehr angeben!</p></span>
-            </div>
-        </div>
-
+        <div style="height: 125px;"></div>
+		<div class="header-title">
+			<h3>Ihr Partner für Energie </h3>
+		</div>
+		<div class="info-area-1">
+            <div class="info-contact">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</div>
+            <div class="info-link"><a href="www.energiewerke-bayern.de">www.energiewerke-bayern.de</a></div>
+			<p>{{ mrms|title|default:"-" }}</p>
+            <div class="info-link"><a href="info@energiewerke-bayern.de">info@energiewerke-bayern.de</a></div>
+			<p>{{ customer|title }}</p>
+			<p>{{ customer.street|title|default:"-" }}</p>
+			<p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
+		</div>
+		<div class="Germering-area" style="float: right;">
+		<p>Germering den, <span>{{ creation_date|date }}</span></p>
+	</div>
+	<div style="height: 50px;"></div>
+    <div class="offer-start-area">
+		<p style="float: left;"><b>Angebot</b></p>
+		<p style="float: right;"> <b>Kundennr : <span>{{ customer.id }}</span> </b></p>
+	</div>
+    <div style="height: 100px;"></div>
+	<div class="offer-end-area">
+		<p style="margin: 0;padding: 0;">Sehr{% if mrms == 'Herr' %} geehrter Herr{% else %} geehrte Frau{% endif %} {{ customer.surname|title }}, </p>
+        <div style="height: 15px;"></div>
+	</div>
+    <div class="border">
+        <span>&nbsp;</span>
+    </div>
+    <div>
+        <table class="footer-table">
+            <tr>
+                <td>Energiewerke Bayern GmbH</td>
+                <td>Commerzbank München</td>
+                <td>Geschäftsführer:</td>
+            </tr>
+            <tr>
+                <td>Augsburgerstr. 1C</td>
+                <td>IBAN:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE90 7004 0041 0212 8999 01</td>
+                <td>Krinninger Andreas</td>
+            </tr>
+            <tr>
+                <td>D-82110 Germering</td>
+                <td>BIC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COBADEFFXXX</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tel.: 089-89311773</td>
+            </tr>
+        </table>
+    </div>
+	</div>
+    <div><!--clear--></div>
+</body>
+</html>
         <table style="width:100%;">
             <tbody>
             <tr style="
