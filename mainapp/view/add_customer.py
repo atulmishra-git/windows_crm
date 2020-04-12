@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.utils.translation import ugettext_lazy as _
@@ -7,7 +8,7 @@ from mainapp.models import Customer
 from mainapp.view.mixins import RedirectToHome
 
 
-class AddCustomerView(CreateView):
+class AddCustomerView(LoginRequiredMixin, CreateView):
     template_name = 'add_customer.html'
     form_class = CustomerForm
     model = Customer
@@ -23,7 +24,7 @@ class AddCustomerView(CreateView):
         return reverse('mainapp:add_customer', kwargs=dict())
 
 
-class UpdateCustomerView(UpdateView):
+class UpdateCustomerView(LoginRequiredMixin, UpdateView):
     template_name = 'add_customer.html'
     form_class = CustomerForm
     model = Customer
@@ -39,7 +40,7 @@ class UpdateCustomerView(UpdateView):
         return reverse('mainapp:add_customer', kwargs=dict())
 
 
-class DeleteCustomerView(DeleteView):
+class DeleteCustomerView(LoginRequiredMixin, DeleteView):
     model = Customer
 
     def get(self, request, *args, **kwargs):

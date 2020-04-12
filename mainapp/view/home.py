@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.views.generic import TemplateView
 from mainapp.forms.add_manager import ManagerForm as AddManagerForm
@@ -7,7 +8,7 @@ from mainapp.models import Customer
 from random import randrange
 
 
-class HomeView(TemplateView):
+class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home/home.html'
 
     def get(self, request, customer_id=None, *args, **kwargs):
@@ -45,7 +46,7 @@ class HomeView(TemplateView):
         return render(request, 'home/search_customers.html', context=context)
 
 
-class CustomerHomeView(TemplateView):
+class CustomerHomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home/home.html'
 
     def get(self, request, customer_id=None, *args, **kwargs):

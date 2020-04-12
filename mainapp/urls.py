@@ -8,6 +8,7 @@ from mainapp.view.pdfs import offers
 
 app_name = 'mainapp'
 urlpatterns = [
+    path('heartbeat/', login.heartbeat, name='heartbeat'),
     path('', login.LoginView.as_view(), name='login'),
     path('logout', login.logout_view, name='logout'),
 

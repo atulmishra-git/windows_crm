@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.views.generic import TemplateView
 from mainapp.forms.login import LoginForm
 from django.shortcuts import render, redirect, reverse
@@ -39,3 +40,7 @@ def logout_view(request):
 
     url = reverse('mainapp:login')
     return redirect(url)
+
+
+def heartbeat(request):
+    return JsonResponse(data={}, status=200)

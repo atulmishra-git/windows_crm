@@ -8,7 +8,8 @@
     ================================================== -->
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <link rel="stylesheet" href="{% static '/css/colors/blue.css' %}">
-    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <title>{{ title|default:"CRM" }}</title>
 
     {% include 'head.html' %}
@@ -30,7 +31,6 @@
     <!-- Scripts
     ================================================== -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 {#    <script src="{% static '/js/jquery-migrate-3.0.0.min.js' %}"></script>#}
     <script src="{% static '/js/mmenu.min.js' %}"></script>
     <script src="{% static '/js/tippy.all.min.js' %}"></script>
@@ -63,6 +63,12 @@
 
     <!-- Google Autocomplete -->
     <script>
+        {# heart-beat signal to refresh the cookie #}
+        function poll() {
+          setTimeout(function(){ $.get('/heartbeat/'); poll(); }, 60 * 1000);
+        }
+        poll();
+
         function initAutocomplete() {
              var options = {
               types: ['(cities)'],

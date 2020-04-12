@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.shortcuts import reverse
 from django.utils.translation import ugettext_lazy as _
@@ -7,7 +8,7 @@ from mainapp.models import PurchaseRecord
 from mainapp.permissions import IsSuperAdmin
 
 
-class AddPurchaseView(CreateView):
+class AddPurchaseView(LoginRequiredMixin, CreateView):
     template_name = 'add_purchase.html'
     form_class = PurchaseRecordForm
     model = PurchaseRecord
@@ -16,7 +17,7 @@ class AddPurchaseView(CreateView):
         return reverse('mainapp:list_purchase', kwargs=dict())
 
 
-class ListPurchaseView(ListView):
+class ListPurchaseView(LoginRequiredMixin, ListView):
     template_name = 'list_purchase.html'
     model = PurchaseRecord
 
@@ -26,7 +27,7 @@ class ListPurchaseView(ListView):
         return context
 
 
-class UpdatePurchaseView(UpdateView):
+class UpdatePurchaseView(LoginRequiredMixin, UpdateView):
     template_name = 'add_purchase.html'
     form_class = PurchaseRecordForm
     model = PurchaseRecord
