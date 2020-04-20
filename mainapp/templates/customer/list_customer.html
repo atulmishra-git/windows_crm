@@ -11,7 +11,14 @@
                     <br/>
                 </p>
             </div>
-            <h1>{{ object_type }}</h1>
+            <br>
+            <button class="btn btn-outline-secondary" onclick="toggleFilter()">{% trans 'Search' %}</button>
+            <div class="filter" id="filter" style="display: none">
+                <form method="get">
+                    {{ filter_form }}
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
             <div class="tasks-list-container compact-list margin-top-35">
                 {% if not object_list %}
                     <div class="task-listing">{% blocktrans %}No {{ object_type }}(s) Found{% endblocktrans %}</div>
@@ -91,4 +98,17 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block script %}
+    <script>
+        function toggleFilter() {
+            let x = document.getElementById("filter");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 {% endblock %}

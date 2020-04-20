@@ -8,7 +8,7 @@ class CustomerForm(LabelAdder, forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['purpose', 'gender', 'first_name', 'surname', 'offer_id', 'invoice_id', 'street',
-                  'postcode', 'place', 'phone', 'mobile', 'email', 'birthday']
+                  'place', 'phone', 'mobile', 'email', 'birthday']
         widgets = {
             'birthday': forms.DateInput(attrs={'type': 'date'})
         }

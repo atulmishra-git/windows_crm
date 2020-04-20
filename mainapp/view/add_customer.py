@@ -4,9 +4,10 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.list import ListView
 
+from mainapp.filters.filters import CustomerFilter
 from mainapp.forms.add_customer import CustomerForm
 from mainapp.models import Customer
-from mainapp.view.mixins import RedirectToHome
+from mainapp.view.mixins import RedirectToHome, FilterListMixin
 
 
 class AddCustomerView(LoginRequiredMixin, CreateView):
@@ -39,8 +40,9 @@ class UpdateCustomerView(LoginRequiredMixin, UpdateView):
         return reverse('mainapp:list_customer', kwargs=dict())
 
 
-class ListCustomerView(LoginRequiredMixin, ListView):
+class ListCustomerView(LoginRequiredMixin, FilterListMixin, ListView):
     template_name = 'customer/list_customer.html'
+    filterset_class = CustomerFilter
     model = Customer
     paginate_by = 10
 
