@@ -21,7 +21,7 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('mainapp:add_customer', kwargs=dict())
+        return reverse('mainapp:list_customer', kwargs=dict())
 
 
 class UpdateCustomerView(LoginRequiredMixin, UpdateView):
@@ -36,12 +36,13 @@ class UpdateCustomerView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self):
-        return reverse('mainapp:add_customer', kwargs=dict())
+        return reverse('mainapp:list_customer', kwargs=dict())
 
 
 class ListCustomerView(LoginRequiredMixin, ListView):
     template_name = 'customer/list_customer.html'
     model = Customer
+    paginate_by = 10
 
 
 class DeleteCustomerView(LoginRequiredMixin, DeleteView):
