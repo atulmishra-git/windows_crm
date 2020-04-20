@@ -20,7 +20,7 @@
         <a href="/task_list/"><i class="fas fa-calendar-check"></i>&nbsp {% trans 'To Do' %}</a>
         <a href=""><i class="fas fa-calendar-alt"></i>&nbsp {% trans 'Calendar' %}</a>
         <div style="margin-top: 50px;"></div>
-        <a href={% url 'mainapp:add_customer' %}><i class="fas fa-plus"></i>&nbsp <span><strong>{% trans 'Customer' %}</strong></span></a>
+        <a href={% url 'mainapp:list_customer' %}><i class="fas fa-plus"></i>&nbsp <span><strong>{% trans 'Customer' %}</strong></span></a>
         <a href="{% url 'mainapp:list_purchase' %}"><i class="fas fa-plus"></i>&nbsp <span><strong>{% trans 'Purchase' %}</strong></span></a>
         {% if user.is_staff %}
             <a href="{% url 'mainapp:add_manager' %}"><i class="fas fa-plus"></i>&nbsp <span><strong>{% trans 'Manager' %}</strong></span></a>

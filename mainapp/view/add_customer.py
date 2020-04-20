@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic.list import ListView
 
 from mainapp.forms.add_customer import CustomerForm
 from mainapp.models import Customer
@@ -9,7 +10,7 @@ from mainapp.view.mixins import RedirectToHome
 
 
 class AddCustomerView(LoginRequiredMixin, CreateView):
-    template_name = 'add_customer.html'
+    template_name = 'customer/add_customer.html'
     form_class = CustomerForm
     model = Customer
 
@@ -17,7 +18,6 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
         context = super(AddCustomerView, self).get_context_data(**kwargs)
         context['operation'] = _("Add New Customer")
         context['fields'] = list(self.form_class.base_fields.keys())
-        context['objects'] = Customer.objects.order_by('-id').values('id', *context['fields'])
         return context
 
     def get_success_url(self):
@@ -25,7 +25,7 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
 
 
 class UpdateCustomerView(LoginRequiredMixin, UpdateView):
-    template_name = 'add_customer.html'
+    template_name = 'customer/add_customer.html'
     form_class = CustomerForm
     model = Customer
 
@@ -33,11 +33,15 @@ class UpdateCustomerView(LoginRequiredMixin, UpdateView):
         context = super(UpdateCustomerView, self).get_context_data(**kwargs)
         context['operation'] = _("Update Customer")
         context['fields'] = list(self.form_class.base_fields.keys())
-        context['objects'] = Customer.objects.values('id', *context['fields'])
         return context
 
     def get_success_url(self):
         return reverse('mainapp:add_customer', kwargs=dict())
+
+
+class ListCustomerView(LoginRequiredMixin, ListView):
+    template_name = 'customer/list_customer.html'
+    model = Customer
 
 
 class DeleteCustomerView(LoginRequiredMixin, DeleteView):

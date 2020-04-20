@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+    <div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+            <div class="row col-md-12">
+                <p>
+                    <a class="button" href="{% url 'mainapp:add_customer' %}">{% blocktrans %}Add Customer{% endblocktrans %}</a>
+                    <br/>
+                </p>
+            </div>
+            <h1>{{ object_type }}</h1>
+            <div class="tasks-list-container compact-list margin-top-35">
+                {% if not object_list %}
+                    <div class="task-listing">{% blocktrans %}No {{ object_type }}(s) Found{% endblocktrans %}</div>
+                {% endif %}
+                    <div class="task-listing">
+                    <!-- Job Listing Details -->
+                        <div class="task-listing-details">
+                            <!-- Details -->
+                            <div class="task-listing-description">
+                                <table class="table" style="border-collapse: collapse">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>{% trans 'ID' %}</th>
+                                            <th>{% trans 'Name' %}</th>
+                                            <th>{% trans 'offer id'  %}</th>
+                                            <th>{% trans 'Invoice ID'  %}</th>
+                                            <th>{% trans 'Street' %}</th>
+                                            <th>{% trans 'Postcode' %}</th>
+                                            <th>{% trans 'Mobile' %}</th>
+                                            <th>{% trans 'Email' %}</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for obj in object_list %}
+                                        <tr>
+                                            <td>{{ obj.id }}</td>
+                                            <td>{{ obj }}</td>
+                                            <td>{{ obj.offer_id }}</td>
+                                            <td>{{ obj.invoice_id }}</td>
+                                            <td>{{ obj.street }}</td>
+
+                                            <td>{{ obj.postcode }}</td>
+                                            <td>{{ obj.mobile }}</td>
+                                            <td>{{ obj.email }}</td>
+                                            <td>
+                                                <a href="{% url 'mainapp:edit_customer' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>{% trans 'Edit' %}</span></a>
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'mainapp:delete_customer' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>{% trans 'Delete' %}</span></a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

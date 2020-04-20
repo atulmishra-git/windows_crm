@@ -13,64 +13,6 @@
                 <br>
                 <button type="submit" class="button">{% trans 'Submit' %}</button>
 			</form>
-            <br/>
-            <h1>{% trans 'Customers' %}</h1>
-            <div class="tasks-list-container compact-list margin-top-35">
-                {% if not objects %}
-                    <div class="task-listing">{% blocktrans %}No {{ object_type }}(s) Found{% endblocktrans %}</div>
-                {% endif %}
-                {% for obj in objects %}
-                    <div class="task-listing">
-                    <!-- Job Listing Details -->
-                        <div class="task-listing-details">
-                            <!-- Details -->
-                            <div class="task-listing-description">
-                                <table class="table">
-                                    <tr>
-                                        <th>{% trans 'Customer ID' %}</th>
-                                        <td>{{ obj.id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{% trans 'Name' %}</th>
-                                        <td>{{ obj.first_name }} {{ obj.surname }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{% trans 'Address' %}</th>
-                                        <td>{{ obj.street }} {{ object.place }} {{ obj.postcode }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{% trans 'Offer ID' %}</th>
-                                        <td>{{ obj.offer_id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{% trans 'Invoice ID' %}</th>
-                                        <td>{{ obj.invoice_id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{% trans 'Phone' %}</th>
-                                        <td>{{ obj.phone}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{% trans 'Mobile' %}</th>
-                                        <td>{{ obj.mobile}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{% trans 'Email' %}</th>
-                                        <td>{{ obj.email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="{% url 'mainapp:edit_customer' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>{% trans 'Edit' %}</span></a>
-                                            <a href="{% url 'mainapp:delete_customer' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>{% trans 'Delete' %}</span></a>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
         </div>
     </div>
 
