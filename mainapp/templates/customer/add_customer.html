@@ -10,6 +10,7 @@
             <form id="id_create_customer" method="POST" class="contact100-form validate-form">
                 {% csrf_token %}
                 {{ form }}
+                <br>
                 <button type="submit" class="button">{% trans 'Submit' %}</button>
 			</form>
             <br/>
