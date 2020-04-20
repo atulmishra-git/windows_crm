@@ -139,7 +139,7 @@ msgstr "Firma"
 
 #: mainapp/models.py:59
 msgid "individual"
-msgstr "Einzel"
+msgstr "Einzelperson"
 
 #: mainapp/models.py:60
 msgid "Family"
@@ -168,7 +168,7 @@ msgstr "Rechnung-Nr."
 
 #: mainapp/models.py:74
 msgid "street"
-msgstr "Straße u. Hsnr."
+msgstr "Straße u. Hausnummer"
 
 #: mainapp/models.py:75
 msgid "postcode"
@@ -276,7 +276,7 @@ msgstr "gesendet am"
 
 #: mainapp/models.py:172
 msgid "project planning created"
-msgstr "Projektplannung erstellt"
+msgstr "Projektierung erstellt"
 
 #: mainapp/models.py:174
 #: mainapp/templates/home/customer_purchase_modal.html:107
@@ -411,12 +411,12 @@ msgstr "Es %(object_type)s(s) wurde nichts gefunden!"
 #: mainapp/templates/customer/list_customer.html:28
 #: mainapp/templates/home/customer_purchase_modal.html:30
 msgid "Name"
-msgstr "Dateiname"
+msgstr "Kundenname"
 
 #: mainapp/templates/customer/list_customer.html:31
 #: mainapp/templates/home/customer_purchase_modal.html:42
 msgid "Street"
-msgstr "Straße u. Hsnr."
+msgstr "Straße u. Hausnummer"
 
 #: mainapp/templates/customer/list_customer.html:32
 #, fuzzy
@@ -492,7 +492,7 @@ msgstr "gesendet am"
 
 #: mainapp/templates/home/customer_purchase_modal.html:103
 msgid "Project Planning Created"
-msgstr "Projektplannung erstellt"
+msgstr "Projektierung erstellt"
 
 #: mainapp/templates/home/customer_purchase_modal.html:122
 #, fuzzy
@@ -607,7 +607,7 @@ msgstr "Erledigt"
 
 #: mainapp/templates/task_list.html:50
 msgid "No"
-msgstr "Nien"
+msgstr "Nein"
 
 #: mainapp/templates/task_list.html:52
 msgid "Mark Complete"
