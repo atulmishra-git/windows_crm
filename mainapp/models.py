@@ -118,7 +118,7 @@ class CallNotes(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='call_notes')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='call_notes')
     notes = models.CharField(_("notes"), max_length=1000)
-    created = models.DateField(null=True)
+    created = models.DateTimeField(null=True)
 
     def save(self, *args, **kwargs):
         self.created = datetime.datetime.now()

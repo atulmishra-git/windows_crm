@@ -54,7 +54,6 @@ def delete_manager(request, manager_id):
         if manager:
             manager.delete()
         return redirect('mainapp:add_manager')
-
     except:
         return redirect('mainapp:add_manager')
 
