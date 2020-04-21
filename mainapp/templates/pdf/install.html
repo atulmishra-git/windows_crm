@@ -172,7 +172,6 @@
         }
         .yellow-bold{
             background-color: yellow;
-            font-weight: bold;
         }
 	</style>
 </head>
@@ -212,8 +211,8 @@
         <div style="height: 15px;"></div>
 		<p style="margin: 0;padding: 0;">Anbei erhalten Sie Ihre persönliche Montagebestätigung.</p>
         <div style="height: 15px;"></div>
-		<p style="margin: 0;padding: 0;" class="yellow-bold">Montagetermin: {{ customer.purchase_record.dc_term|date }}</p>
-        <p style="margin: 0;padding: 0;"><span class="yellow-bold">Die Lieferung der Ware erfolgt einen Tag vor Montage.</span><span style="font-size: 13px;">( Bei Montage Montags/ Lieferung Freitags vorab)</span></span>
+		<p style="margin: 0;padding: 0; font-weight: bold;" class="yellow-bold">Montagetermin: {{ customer.purchase_record.dc_term|date }}</p>
+        <p style="margin: 0;padding: 0;"><span class="yellow-bold">Die Lieferung der Ware erfolgt einen Tag vor Montage.<span style="font-size: 13px;">( Bei Montage Montags/ Lieferung Freitags vorab)</span></span>
         <div style="height: 15px;"></div>
 		<p>Wir gewähren eine sorgfältige Planung und Montage Ihrer Photovoltaikanlage mit unseren leistungsstarken
             und qualitativ hochwertigen Komponenten.</p>

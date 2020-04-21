@@ -42,7 +42,7 @@ def download_offer(request, customer_id):
         template_name = 'pdf/offer2.html'
 
     context = {
-        'mrms': "Mr" if customer.gender == 'Male' else "Ms",
+        'mrms': "Herr" if customer.gender == 'Male' else "Frau",
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
