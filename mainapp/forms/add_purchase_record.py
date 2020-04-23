@@ -16,6 +16,7 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
             'date_sent': forms.DateInput(attrs={'type': 'date'}),
             'dc_term': forms.DateInput(attrs={'type': 'date'}),
             'ac_term': forms.DateInput(attrs={'type': 'date'}),
+            'project_planning_created': forms.Select(choices=((True, _('Yes')), (False, _('No'))))
         }
 
     def __init__(self, *args, **kwargs):
