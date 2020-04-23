@@ -5,6 +5,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from mainapp.forms.call_notes import AddCallNotesForm
 from mainapp.forms.mixins import FormRequestMixin
 from mainapp.models import Customer, CallNotes
+from mainapp.permissions import IsSuperAdmin
 
 
 class CallNotesFormRequestMixin(object):
@@ -53,7 +54,7 @@ class CallNotesUpdateView(LoginRequiredMixin, CallNotesFormRequestMixin, CallNot
         return context
 
 
-class CallNotesDeleteView(LoginRequiredMixin, CallNotesRedirectMixin, DeleteView):
+class CallNotesDeleteView(IsSuperAdmin, CallNotesRedirectMixin, DeleteView):
     model = CallNotes
 
     def get(self, request, *args, **kwargs):
