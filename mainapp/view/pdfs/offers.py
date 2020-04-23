@@ -22,12 +22,17 @@ OPTIONS = {
 }
 
 
-def save_to_attachment(customer, rendered, by):
-    name = f"uploads/{customer.id}offer{int(time.time())}.pdf"
+def save_to_attachment(customer, kind, rendered, by):
+    dt = datetime.now()
+    name = f"uploads/{customer.id}{kind}" \
+           f"{customer.first_name + ' ' + customer.surname}" \
+           f"{dt.year}{dt.month}{dt.day}{dt.hour}{dt.minute}.pdf"
     pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
-    att = Attachments.objects.create(file_name=name.split("/")[-1].split(".")[0],
-                                     uploaded_by=by,
-                                     customer_id=customer.id)
+    att = Attachments.objects.create(
+        file_name=name.split("/")[-1].split(".")[0],
+        uploaded_by=by,
+        customer_id=customer.id
+    )
     att.upload.name = name
     att.save()
 
@@ -52,7 +57,7 @@ def download_offer(request, customer_id):
                                 context,
                                 request=request)
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    save_to_attachment(customer=customer, rendered=rendered, by=request.user)
+    save_to_attachment(customer=customer, kind="offer", rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -76,7 +81,7 @@ def download_offer_confirm(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    save_to_attachment(customer=customer, rendered=rendered, by=request.user)
+    save_to_attachment(customer=customer, kind="offerconfirmation", rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -97,7 +102,7 @@ def download_install(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    save_to_attachment(customer=customer, rendered=rendered, by=request.user)
+    save_to_attachment(customer=customer, kind="install", rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -111,8 +116,8 @@ def download_invoice(request, customer_id):
         'customer': customer,
         'creator': request.user,
         'creation_date': datetime.today(),
-        'dc_term_month':  getattr(customer.purchase_record.dc_term, 'month', None),
-        'dc_term_year':  getattr(customer.purchase_record.dc_term, 'year', None)
+        'dc_term_month': getattr(customer.purchase_record.dc_term, 'month', None),
+        'dc_term_year': getattr(customer.purchase_record.dc_term, 'year', None)
     }
 
     rendered = render_to_string(template_name,
@@ -120,5 +125,5 @@ def download_invoice(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    save_to_attachment(customer=customer, rendered=rendered, by=request.user)
+    save_to_attachment(customer=customer, kind="invoice", rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
