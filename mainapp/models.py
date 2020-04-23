@@ -170,7 +170,7 @@ class PurchaseRecord(models.Model):
     # TECHNICAL DETAILS
     date_sent = models.DateField(_('date sent'), null=True, blank=True)
     project_planning_created = models.BooleanField(_('project planning created'),
-                                                   blank=True, default=True)
+                                                   null=True, blank=True, default=False)
     dc_term = models.DateField(_('DC Term'), blank=True, null=True)
     dc_mechanic = models.CharField(_('DC mechanic'), max_length=255, blank=True, null=True)
     ac_term = models.DateField(_('AC Term'), blank=True, null=True)
