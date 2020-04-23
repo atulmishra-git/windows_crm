@@ -532,7 +532,7 @@
                 <td style="">
                     <span>
                         Am Tag der Verbauung
-                        <span style="margin-left:19em; font-weight: bold">{{ customer.purchase_record.price_without_tax }} €</span>
+                        <span style="margin-left:17em; font-weight: bold">{{ customer.purchase_record.price_without_tax|floatformat:2 }} €</span>
                     </span>
                     <p><strong>(jedoch nicht vor Bewilligung evtl. beantragter Kreditmittel)</strong></p>
                     <p class="p-small">Energiewerke Bayern GmbH verwendet ausschließlich TÜV geprüfte Komponenten,</p>
@@ -547,9 +547,9 @@
                 <td style="margin-top: -30px;width: 80px;"></td>
                 <td style="margin-top: -30px;width: 80px;"></td>
                 <td style="margin-top: -30px; text-align: right">
-                    <span style="text-align: right;margin-right: 30px;"><b>Zwischensumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_without_tax }} €</b></span>
-                    <p style="text-align: right;margin-right: 30px;"><b>MwSt 19% :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.tax }}</b></p>
-                    <span style="text-align: right;margin-right: 30px;"><b>Gesamtsumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_with_tax }} €</b></span>
+                    <span style="text-align: right;margin-right: 30px;"><b>Zwischensumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_without_tax|floatformat:2 }} €</b></span>
+                    <p style="text-align: right;margin-right: 30px;"><b>MwSt 19% :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.tax|floatformat:2 }} €</b></p>
+                    <span style="text-align: right;margin-right: 30px;"><b>Gesamtsumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_with_tax|floatformat:2 }} €</b></span>
                 </td>
             </tr>
         </table>
