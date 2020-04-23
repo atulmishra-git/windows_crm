@@ -226,19 +226,19 @@
             </tr>
             <tr style="height: 97px;">
                 <td style="border: 0.5px solid grey;">Lieferung und Montage der Photovoltaikanlage <br><br>(inkl. Komponenten)</td>
-                <td style="text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.price_without_tax }} €</td>
+                <td style="text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.price_without_tax|floatformat:2 }} €</td>
             </tr>
             <tr>
                 <td style="height:25px; padding-left: 65%;" >Summe netto &nbsp;  </td>
-                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.price_without_tax }} €</td>
+                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.price_without_tax|floatformat:2 }} €</td>
             </tr>
             <tr>
                 <td style="height:25px; padding-left: 65%;" >zzgl. 19% MwSt &nbsp;</td>
-                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.tax }} €</td>
+                <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.tax|floatformat:2 }} €</td>
             </tr>
             <tr>
                 <td style="height:25px; padding-left: 65%;" ><b>Summe brutto &nbsp;</b></td>
-                <td style="height:25px; text-align: center; border: 0.5px solid grey;"><b>{{ customer.purchase_record.price_with_tax }} €</b></td>
+                <td style="height:25px; text-align: center; border: 0.5px solid grey;"><b>{{ customer.purchase_record.price_with_tax|floatformat:2 }} €</b></td>
             </tr>
             </tbody>
         </table>
