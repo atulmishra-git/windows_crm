@@ -57,7 +57,7 @@ def download_offer(request, customer_id):
                                 context,
                                 request=request)
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    save_to_attachment(customer=customer, kind="offer", rendered=rendered, by=request.user)
+    save_to_attachment(customer=customer, kind="AB", rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -81,7 +81,7 @@ def download_offer_confirm(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    save_to_attachment(customer=customer, kind="offerconfirmation", rendered=rendered, by=request.user)
+    save_to_attachment(customer=customer, kind="AG-B", rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -102,7 +102,7 @@ def download_install(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    save_to_attachment(customer=customer, kind="install", rendered=rendered, by=request.user)
+    save_to_attachment(customer=customer, kind="M-B", rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
 
 
@@ -125,5 +125,5 @@ def download_invoice(request, customer_id):
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
-    save_to_attachment(customer=customer, kind="invoice", rendered=rendered, by=request.user)
+    save_to_attachment(customer=customer, kind="RG", rendered=rendered, by=request.user)
     return HttpResponse(pdf, content_type="application/pdf")
