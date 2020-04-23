@@ -1,23 +1,21 @@
 {% extends 'dashboard.html' %}
+{% load i18n %}
 {% block maincontent %}
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
             <div>
-                <h4>Customer - {{ customer.id }} | {{ customer.first_name }} {{ customer.surname }}</h4>
+                <h4>{% trans 'Customer' %} - {{ customer.id }} | {{ customer.first_name }} {{ customer.surname }}</h4>
             </div>
-            <h1>{{ operation|default:'Add New' }} Call Note</h1>
+            <h1>{{ operation }}</h1>
             <br/>
             <form method="POST" id="id_create_callnotes" class="contact100-form validate-form">
                 {% csrf_token %}
                 {{ form }}
-                <button type="submit" class="button">Submit</button>
+                <button type="submit" class="button">{% trans 'Submit' %}</button>
             </form>
 
             {% if object_list %}
             <div class="tasks-list-container compact-list margin-top-35">
-                {% if not object_list %}
-                    <div class="task-listing">No Call Notes</div>
-                {% endif %}
                 {% for note in object_list %}
                     <div class="task-listing">
 					<!-- Job Listing Details -->
@@ -25,12 +23,14 @@
                             <!-- Details -->
                             <div class="task-listing-description">
                                 <h3 class="task-listing-title">{{ note.created|default:"" }}</h3>
-                                <p class="task-listing-title">Creator - {{ note.user.first_name }}</p>
-                                <p class="task-listing-title">Call Notes - <span class="sys-font" style="font-size: 18px">{{ note.notes|title }}</span></p>
-                                <p>
-                                    <a href="{% url 'mainapp:edit_call_notes' customer_id=customer_id pk=note.id %}" class=""><i class="icon-feather-edit"></i> <span>Edit</span></a>
-                                    <a href="{% url 'mainapp:delete_call_notes' customer_id=customer_id pk=note.id %}" class=""><i class="icon-material-outline-delete"></i> <span>Delete</span></a>
-                                </p>
+                                <p class="task-listing-title">{% trans 'Creator' %} - {{ note.user.first_name }}</p>
+                                <p class="task-listing-title">{% trans 'Call Note' %} - <span class="sys-font" style="font-size: 18px">{{ note.notes|title }}</span></p>
+                                {% if request.user.is_superuser %}
+                                    <p>
+                                        <a href="{% url 'mainapp:edit_call_notes' customer_id=customer_id pk=note.id %}" class=""><i class="icon-feather-edit"></i> <span>{% trans 'Edit' %}</span></a>
+                                        <a href="{% url 'mainapp:delete_call_notes' customer_id=customer_id pk=note.id %}" class=""><i class="icon-material-outline-delete"></i> <span>{% trans 'Delete' %}</span></a>
+                                    </p>
+                                {% endif %}
                                 <br/>
                             </div>
                         </div>

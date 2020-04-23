@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.utils.translation import ugettext_lazy as _
 
 from mainapp.forms.call_notes import AddCallNotesForm
 from mainapp.forms.mixins import FormRequestMixin
@@ -33,7 +34,8 @@ class CallNotesCreateView(LoginRequiredMixin, CallNotesFormRequestMixin, CallNot
         context.update(**{
             'customer_id': customer.id,
             'customer': customer,
-            'object_list': call_notes
+            'object_list': call_notes,
+            'operation': _('Add New Call Notice')
         })
         return context
 
@@ -50,7 +52,7 @@ class CallNotesUpdateView(LoginRequiredMixin, CallNotesFormRequestMixin, CallNot
             'customer_id': customer.id,
             'customer': customer,
         })
-        context['operation'] = 'Update'
+        context['operation'] = _('Update Call Notice')
         return context
 
 
