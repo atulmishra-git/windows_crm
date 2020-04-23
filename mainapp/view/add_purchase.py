@@ -3,9 +3,11 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.shortcuts import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from mainapp.filters.filters import PurchaseFilter
 from mainapp.forms.add_purchase_record import PurchaseRecordForm
 from mainapp.models import PurchaseRecord
 from mainapp.permissions import IsSuperAdmin
+from mainapp.view.mixins import FilterListMixin
 
 
 class AddPurchaseView(LoginRequiredMixin, CreateView):
@@ -17,8 +19,9 @@ class AddPurchaseView(LoginRequiredMixin, CreateView):
         return reverse('mainapp:list_purchase', kwargs=dict())
 
 
-class ListPurchaseView(LoginRequiredMixin, ListView):
+class ListPurchaseView(LoginRequiredMixin, FilterListMixin, ListView):
     template_name = 'list_purchase.html'
+    filterset_class = PurchaseFilter
     model = PurchaseRecord
     paginate_by = 10
 
