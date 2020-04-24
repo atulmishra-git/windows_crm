@@ -46,9 +46,9 @@
                     </tr>
                     <tr>
                         <th scope="row">{% trans 'Offer ID' %}</th>
-                        <td>{{ customer.offer_id }}</td>
+                        <td class="input-switch"><span id="offer_id" type="text" class="customer">{{ customer.offer_id }}</span></td>
                         <th scope="row">{% trans 'Invoice ID' %}</th>
-                        <td>{{ customer.invoice_id }}</td>
+                        <td class="input-switch"><span id="invoice_id" type="text" class="customer">{{ customer.invoice_id }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -101,7 +101,7 @@
                         <th scope="row">{% trans 'Date sent' %}</th>
                         <td class="input-switch"><span id="date_sent" type="date">{{ customer.purchase_record.date_sent }}</span></td>
                         <th scope="row">{% trans 'Project Planning Created' %}</th>
-                        <td class="input-switch">{{ customer.purchase_record.project_planning_created }}</td>
+                        <td class="input-switch"><span id="project_planning_created" type="select">{{ customer.purchase_record.project_planning_created }}</span></td>
                     </tr>
                     <tr>
                         <th scope="row">{% trans 'DC Term' %}</th>
@@ -113,7 +113,7 @@
                         <th scope="row">{% trans 'AC Term' %}</th>
                         <td class="input-switch"><span id="ac_term" type="date">{{ customer.purchase_record.ac_term }}</span></td>
                         <th scope="row">{% trans 'AC mechanic' %}</th>
-                        <td class="input-switch"><span id="ac_term" type="text">{{ customer.purchase_record.ac_mechanic }}</span></td>
+                        <td class="input-switch"><span id="ac_mechanic" type="text">{{ customer.purchase_record.ac_mechanic }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -147,12 +147,22 @@
 </div>
 
 <script>
-    function updatePurchase(data) {
-        {% if customer.purchase_record.id %}
-
-        {% else %}
-            alert('{% trans "No Purchase Record" %}!');
-        {% endif %}
+    function patchRequest(obj, cat='purchase') {
+        if (cat === 'customer') {
+            const url = "{% url 'mainapp:patch_customer' pk=customer.id %}";
+            $.post(url , obj, function( data ) {
+                console.log("updated customer!");
+            });
+        } else {
+            {% if customer.purchase_record.id %}
+                const url = "{% url 'mainapp:patch_purchase' pk=customer.purchase_record.id %}";
+                $.post(url , obj, function( data ) {
+                    console.log("updated!");
+                });
+            {% else %}
+                alert('{% trans "No Purchase Record" %}!');
+            {% endif %}
+        }
     }
 
     let switches = $('.input-switch');
@@ -164,30 +174,45 @@
         const id = $(this)[0].attributes.id.nodeValue;
         const type = $(this)[0].attributes.type.nodeValue;
         // append and hide;
-        $(this).after(`<input name=${id} type=${type} />`);
+        if (type === 'select') {
+            $(this).after(`<select name=${id}><option value=${1}>{% trans 'Yes' %}</option><option value=${0}>{% trans 'No' %}</option></select>`);
+        } else {
+            $(this).after(`<input name=${id} type=${type} />`);
+        }
         $(this).siblings().hide();
     }).on('click', function() {
         $(this).hide().siblings().show().focus().select().val($(this).text());
     });
 
     let inputs = switches.find('input');
-    const url = "{% url 'mainapp:patch_purchase' pk=customer.purchase_record.id %}";
     inputs.on('blur', function() {
         $(this).hide().siblings().show().text($(this).siblings().text());
     }).on('keydown', function(e) {
-        if (e.which == 13) {
+        if (e.which === 13) {
             e.preventDefault();
             $(this).hide().siblings().show().text($(this).val());
             // form submit here
             const id = $(this).siblings()[0].attributes.id.nodeValue;
+            const _class = $(this).siblings()[0].className;
             let obj = {};
             obj[id] = $(this).val();
-
             //
-            console.log(obj);
-            $.post(url , obj, function( data ) {
-                console.log("updated!");
-            });
+            patchRequest(obj, _class);
         }
+    });
+
+    let selects = switches.find('select');
+    selects.on('blur', function() {
+        $(this).hide().siblings().show().text($(this).siblings().text());
+    }).on('change', function(e) {
+        e.preventDefault();
+        $(this).hide().siblings().show().text($(this).val() == 1);
+        // form submit here
+        const id = $(this).siblings()[0].attributes.id.nodeValue;
+        let obj = {};
+        obj[id] = $(this).val();
+        //
+        console.log(obj);
+        patchRequest(obj);
     });
 </script>

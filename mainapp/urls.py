@@ -23,6 +23,7 @@ urlpatterns = [
     path('customers/', add_customer.ListCustomerView.as_view(), name='list_customer'),
     path('customer/', add_customer.AddCustomerView.as_view(), name='add_customer'),
     path('customer/<int:pk>/', add_customer.UpdateCustomerView.as_view(), name='edit_customer'),
+    path('update_customer/<int:pk>/', add_customer.update_customer, name='patch_customer'),
     path('delete/customer/<int:pk>/', add_customer.DeleteCustomerView.as_view(), name='delete_customer'),
 
     path('add_purchase/', add_purchase.AddPurchaseView.as_view(), name='add_purchase'),

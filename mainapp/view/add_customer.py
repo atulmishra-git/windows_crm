@@ -1,5 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import reverse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.list import ListView
@@ -8,6 +11,16 @@ from mainapp.filters.filters import CustomerFilter
 from mainapp.forms.add_customer import CustomerForm
 from mainapp.models import Customer
 from mainapp.view.mixins import FilterListMixin
+
+
+@csrf_exempt
+@login_required
+def update_customer(request, pk):
+    if request.method in ['POST', 'PATCH']:
+        # only one pair of k, v is received
+        for k, v in request.POST.items():
+            Customer.objects.update(**{k: v})
+    return JsonResponse(data={}, status=200)
 
 
 class AddCustomerView(LoginRequiredMixin, CreateView):
