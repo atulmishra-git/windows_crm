@@ -1,4 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http.response import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.shortcuts import reverse
 from django.utils.translation import ugettext_lazy as _
@@ -8,6 +11,16 @@ from mainapp.forms.add_purchase_record import PurchaseRecordForm
 from mainapp.models import PurchaseRecord
 from mainapp.permissions import IsSuperAdmin
 from mainapp.view.mixins import FilterListMixin
+
+
+@csrf_exempt
+@login_required
+def update_purchase(request, pk):
+    if request.method in ['POST', 'PATCH']:
+        # only one pair of k, v is received
+        for k, v in request.POST.items():
+            PurchaseRecord.objects.update(**{k: v})
+    return JsonResponse(data={}, status=200)
 
 
 class AddPurchaseView(LoginRequiredMixin, CreateView):

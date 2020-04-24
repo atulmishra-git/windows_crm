@@ -28,6 +28,7 @@ urlpatterns = [
     path('add_purchase/', add_purchase.AddPurchaseView.as_view(), name='add_purchase'),
     path('purchases/', add_purchase.ListPurchaseView.as_view(), name='list_purchase'),
     path('purchases/<int:pk>/', add_purchase.UpdatePurchaseView.as_view(), name='edit_purchase'),
+    path('update_purchase/<int:pk>/', add_purchase.update_purchase, name='patch_purchase'),
     path('delete/purchases/<int:pk>/', add_purchase.DeletePurchaseView.as_view(), name='delete_purchase'),
     
     path('task_list/', task.TasksView.as_view(), name='open_task_list'),

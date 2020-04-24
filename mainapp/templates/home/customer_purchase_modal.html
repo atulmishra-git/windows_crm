@@ -60,11 +60,11 @@
                         <th scope="row">{% trans 'Purchase ID' %}</th>
                         <td>{{ customer.purchase_record.id }}</td>
                         <th scope="row">{% trans 'Watt' %}</th>
-                        <td>{{ customer.purchase_record.watt }}</td>
+                        <td class="input-switch"><span id="watt" type="text">{{ customer.purchase_record.watt }}</span></td>
                     </tr>
                     <tr>
                         <th scope="row">{% trans 'Module Count' %}</th>
-                        <td>{{ customer.purchase_record.module_count }}</td>
+                        <td class="input-switch"><span id="module_count" type="text">{{ customer.purchase_record.module_count }}</span></td>
                         <th colspan="1" scope="row">{% trans 'With Battery' %}</th>
                         <td colspan="1">{{ customer.purchase_record.with_battery }}</td>
                     </tr>
@@ -85,35 +85,35 @@
                     {% endif %}
                     <tr>
                         <th scope="row">{% trans 'Price without tax' %}</th>
-                        <td>{{ customer.purchase_record.price_without_tax }}</td>
+                        <td class="input-switch"><span id="price_without_tax" type="text">{{ customer.purchase_record.price_without_tax }}</span></td>
                         <th scope="row">{% trans 'Offer by' %}</th>
                         <td>{{ customer.purchase_record.offer_by }}</td>
                     </tr>
                     <tr>
                         <th scope="row">{% trans 'Offer Date' %}</th>
-                        <td>{{ customer.purchase_record.offer_date }}</td>
+                        <td class="input-switch"><span id="offer_date" type="date">{{ customer.purchase_record.offer_date }}</span></td>
                         <th scope="row">{% trans 'Reseller Name' %}</th>
-                        <td>{{ customer.purchase_record.reseller_name }}</td>
+                        <td class="input-switch"><span id="reseller_name" type="text">{{ customer.purchase_record.reseller_name }}</span></td>
 {#                        <th scope="row">{% trans 'Declined' %}</th>#}
 {#                        <td>{{ customer.purchase_record.declined }}</td>#}
                     </tr>
                     <tr>
                         <th scope="row">{% trans 'Date sent' %}</th>
-                        <td>{{ customer.purchase_record.date_sent }}</td>
+                        <td class="input-switch"><span id="date_sent" type="date">{{ customer.purchase_record.date_sent }}</span></td>
                         <th scope="row">{% trans 'Project Planning Created' %}</th>
-                        <td>{{ customer.purchase_record.project_planning_created }}</td>
+                        <td class="input-switch">{{ customer.purchase_record.project_planning_created }}</td>
                     </tr>
                     <tr>
                         <th scope="row">{% trans 'DC Term' %}</th>
-                        <td>{{ customer.purchase_record.dc_term }}</td>
+                        <td class="input-switch"><span id="dc_term" type="date">{{ customer.purchase_record.dc_term }}</span></td>
                         <th scope="row">{% trans 'DC mechanic' %}</th>
-                        <td>{{ customer.purchase_record.dc_mechanic }}</td>
+                        <td class="input-switch"><span id="dc_mechanic" type="text">{{ customer.purchase_record.dc_mechanic }}</span></td>
                     </tr>
                     <tr>
                         <th scope="row">{% trans 'AC Term' %}</th>
-                        <td>{{ customer.purchase_record.ac_term }}</td>
+                        <td class="input-switch"><span id="ac_term" type="date">{{ customer.purchase_record.ac_term }}</span></td>
                         <th scope="row">{% trans 'AC mechanic' %}</th>
-                        <td>{{ customer.purchase_record.ac_mechanic }}</td>
+                        <td class="input-switch"><span id="ac_term" type="text">{{ customer.purchase_record.ac_mechanic }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -145,3 +145,49 @@
     </div>
   </div>
 </div>
+
+<script>
+    function updatePurchase(data) {
+        {% if customer.purchase_record.id %}
+
+        {% else %}
+            alert('{% trans "No Purchase Record" %}!');
+        {% endif %}
+    }
+
+    let switches = $('.input-switch');
+
+    let spans = switches.find('span');
+    spans.each(function() {
+        $(this).css('color', 'blue');
+
+        const id = $(this)[0].attributes.id.nodeValue;
+        const type = $(this)[0].attributes.type.nodeValue;
+        // append and hide;
+        $(this).after(`<input name=${id} type=${type} />`);
+        $(this).siblings().hide();
+    }).on('click', function() {
+        $(this).hide().siblings().show().focus().select().val($(this).text());
+    });
+
+    let inputs = switches.find('input');
+    const url = "{% url 'mainapp:patch_purchase' pk=customer.purchase_record.id %}";
+    inputs.on('blur', function() {
+        $(this).hide().siblings().show().text($(this).siblings().text());
+    }).on('keydown', function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+            $(this).hide().siblings().show().text($(this).val());
+            // form submit here
+            const id = $(this).siblings()[0].attributes.id.nodeValue;
+            let obj = {};
+            obj[id] = $(this).val();
+
+            //
+            console.log(obj);
+            $.post(url , obj, function( data ) {
+                console.log("updated!");
+            });
+        }
+    });
+</script>

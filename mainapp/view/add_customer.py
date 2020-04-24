@@ -7,7 +7,7 @@ from django.views.generic.list import ListView
 from mainapp.filters.filters import CustomerFilter
 from mainapp.forms.add_customer import CustomerForm
 from mainapp.models import Customer
-from mainapp.view.mixins import RedirectToHome, FilterListMixin
+from mainapp.view.mixins import FilterListMixin
 
 
 class AddCustomerView(LoginRequiredMixin, CreateView):
