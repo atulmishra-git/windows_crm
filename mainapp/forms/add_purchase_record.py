@@ -23,10 +23,10 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Row(
-                Column('customer', css_class='form-group col-md-12 mb-0'),
-                css_class='form-row'
-            ),
+            # Row(
+            #     Column('customer', css_class='form-group selectpicker col-md-12 mb-0', data_live_search="true"),
+            #     css_class='form-row'
+            # ),
             HTML('<h3>Module</h3>'),
             Row(
                 Column('module_manufacturer', css_class='form-group col-md-6 mb-0'),
