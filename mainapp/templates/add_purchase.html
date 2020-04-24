@@ -27,9 +27,9 @@
                         {% trans 'Customer' %}*
                     </label>
                     <div class="">
-                        <select class="form-control selectpicker" id="id_customer" data-live-search="true" title="Customer">
+                        <select name="customer" class="form-control selectpicker" id="id_customer" data-live-search="true" title="Customer">
                             {% for val, display in  form.fields.customer.choices %}
-                                <option data-tokens="{{ val }} {{ display }}">{{ display }}</option>
+                                <option value="{{ val }}" data-tokens="{{ val }} {{ display }}">{{ display }}</option>
                             {% endfor %}
                         </select>
                     </div>
