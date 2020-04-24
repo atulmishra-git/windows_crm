@@ -24,7 +24,7 @@
                 {% csrf_token %}
                 <div id="div_id_customer" class="form-group">
                     <label for="id_customer" class="">
-                        Customer*
+                        {% trans 'Customer' %}*
                     </label>
                     <div class="">
                         <select class="form-control selectpicker" id="id_customer" data-live-search="true" title="Customer">

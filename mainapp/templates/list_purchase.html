@@ -32,52 +32,38 @@
                                 <table class="table" style="border-collapse: collapse">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>{% trans 'Purchase ID' %}</th>
+                                            <th>{% trans 'ID' %}</th>
                                             <th>{% trans 'Watt'  %}</th>
                                             <th>{% trans 'Count'  %}</th>
                                             <th>{% trans 'KWP' %}</th>
-                                            <th>{% trans 'Battery' %}</th>
-                                            <th>{% trans 'DC Term' %}</th>
-                                            <th>{% trans 'AC Term' %}</th>
+                                            <th>{% trans 'DC-T' %}</th>
+                                            <th>{% trans 'DC-M' %}</th>
+                                            <th>{% trans 'AC-T' %}</th>
+                                            <th>{% trans 'AC-M' %}</th>
+                                            <th>{% trans 'Extra Information' %}</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for obj in object_list %}
-                                        <tr>
-                                            <td>{{ obj.id }}</td>
-                                            <td>{{ obj.watt }}</td>
-                                            <td>{{ obj.module_count }}</td>
-                                            <td>{{ obj.kwp }}</td>
-
-                                            <td>{{ obj.with_battery }}</td>
-                                            <td>{{ obj.dc_term }}</td>
-                                            <td>{{ obj.ac_term }}</td>
-                                            <td>
-                                                <a href="{% url 'mainapp:edit_purchase' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>{% trans 'Edit' %}</span></a>
-                                            </td>
-                                            <td>
-                                                <a href="{% url 'mainapp:delete_purchase' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>{% trans 'Delete' %}</span></a>
-                                            </td>
-                                        </tr>
-                                        {% if obj.with_battery %}
                                             <tr>
-                                                <td>{% trans 'With Battery' %}</td>
-                                                <td colspan="2"><strong>Mf: </strong>{{ obj.manufacturer }}</td>
-                                                <td colspan="6"><strong>KWH: </strong>{{ obj.kwh }}</td>
+                                                <td>{{ obj.id }}</td>
+                                                <td>{{ obj.watt }}</td>
+                                                <td>{{ obj.module_count }}</td>
+                                                <td>{{ obj.kwp }}</td>
+                                                <td>{{ obj.dc_term }}</td>
+                                                <td>{{ obj.dc_mechanic }}</td>
+                                                <td>{{ obj.ac_term }}</td>
+                                                <td>{{ obj.ac_mechanic }}</td>
+                                                <td style="width: 250px;">{{ obj.extra_details }}</td>
+                                                <td>
+                                                    <a href="{% url 'mainapp:edit_purchase' pk=obj.id %}" class=""><i class="icon-feather-edit"></i> <span>{% trans 'Edit' %}</span></a>
+                                                </td>
+                                                <td>
+                                                    <a href="{% url 'mainapp:delete_purchase' pk=obj.id %}" class=""><i class="icon-material-outline-delete"></i> <span>{% trans 'Delete' %}</span></a>
+                                                </td>
                                             </tr>
-                                        {% else %}
-                                            <tr>
-                                                <td>{% trans 'Without Battery' %}</td>
-                                                <td colspan="2"><strong>Mf: </strong>{{ obj.manufacturer2 }}</td>
-                                                <td colspan="6"><strong>KWH: </strong>{{ obj.kwh2 }}</td>
-                                            </tr>
-                                        {% endif %}
-                                        <tr>
-                                            <td style="border-bottom: solid thin">{% trans 'Extra' %}</td>
-                                            <td style="border-bottom: solid thin" colspan="8">{{ obj.extra_details }}</td>
-                                        </tr>
                                         {% endfor %}
                                     <tbody>
                                 </table>
