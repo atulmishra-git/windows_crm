@@ -229,6 +229,9 @@ msgstr "Notizen"
 msgid "Customer"
 msgstr "Kunden"
 
+msgid "Customer Information"
+msgstr "Kundeninformation"
+
 #: mainapp/models.py:151 mainapp/models.py:156
 msgid "manufacturer"
 msgstr "Hersteller"
@@ -522,8 +525,6 @@ msgid "Project Planning Created"
 msgstr "Projektierung erstellt"
 
 #: mainapp/templates/home/customer_purchase_modal.html:122
-#, fuzzy
-#| msgid "Attachment"
 msgid "Attachments"
 msgstr "Dateien und Anlagen"
 
@@ -666,16 +667,12 @@ msgstr "Mitarbeiter hinzufügen"
 
 # mainapp/templates/add_manager.html:8
 #: mainapp/view/add_manager.py:36
-#, fuzzy
-#| msgid "Manager"
 msgid "Update Manager"
-msgstr "Manager"
+msgstr "Manager aktualisieren"
 
 #: mainapp/view/add_purchase.py:41
-#, fuzzy
-#| msgid "Purchase"
 msgid "Update Purchase"
-msgstr "PV-Anlage"
+msgstr "PV-Anlage aktualisieren"
 
 #: mainapp/view/call_notes.py:38
 msgid "Add New Call Notice"
