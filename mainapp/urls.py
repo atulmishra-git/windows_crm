@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from mainapp.view import login, home, add_manager, add_customer, add_purchase, call_notes, attachments, task, \
-    invoices, offer
+from mainapp.view import login, home, add_manager, add_customer, \
+    add_purchase, call_notes, attachments, task, calendars
 from mainapp.view.pdfs import offers
 
 
@@ -46,6 +46,9 @@ urlpatterns = [
     path('<int:customer_id>/attachments/', attachments.AttachmentCreateView.as_view(), name='add_attachments'),
     path('<int:customer_id>/attachments/<int:pk>/', attachments.UpdateAttachmentView.as_view(), name='edit_attachments'),
     path('delete/<int:customer_id>/attachments/<int:pk>/', attachments.DeleteAttachmentView.as_view(), name='delete_attachments'),
+
+    # calendar
+    path('calendar/', calendars.calendar, name='calendar'),
 
     path('offer/<customer_id>/', offers.download_offer, name='pdf_offer'),
     path('offer_confirm/<customer_id>/', offers.download_offer_confirm, name='pdf_offer_confirm'),
