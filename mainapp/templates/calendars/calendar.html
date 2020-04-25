@@ -12,16 +12,15 @@
     <div id="menu">
         <span id="menu-navi">
             <button type="button" onclick="onClickTodayBtn()" class="btn btn-default btn-sm move-day">
-                -Today-
+                -{% trans 'Today' %}-
             </button>
             <button type="button" onclick="moveToNextOrPrevRange(-1)" class="btn btn-default btn-sm move-day" data-action="move-prev">
-                -Previous-
+                -{% trans 'Previous' %}-
             </button>
             <button type="button" onclick="moveToNextOrPrevRange(1)" class="btn btn-default btn-sm move-day" data-action="move-next">
-                -Next-
+                -{% trans 'Next' %}-
             </button>
-            <span id="cal-year"></span>.
-            <span id="cal-month"></span>
+            <span id="cal-month"></span>.<span id="cal-year"></span>
         </span>
         <span id="renderRange" class="render-range"></span>
     </div>
@@ -52,24 +51,13 @@
                     "Saturday"
                 ],
                 startDayOfWeek: 1, // monday
+                visibleScheduleCount: 100,
             },
             taskView: true,
             useCreationPopup: false,
             useDetailPopup: true,
             template: {
-                monthDayname: function(dayname) {
-                    return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
-                },
-                monthGridHeader: function(dayModel) {
-                    var date = parseInt(dayModel.date.split('-')[2], 10);
-                    var classNames = ['tui-full-calendar-weekday-grid-date '];
 
-                    if (dayModel.isToday) {
-                        classNames.push('tui-full-calendar-weekday-grid-date-decorator');
-                    }
-
-                    return '<span class="' + classNames.join(' ') + '">' + date + '</span>';
-                },
             }
         });
 
@@ -83,11 +71,6 @@
                     `{% trans "Place" %} - ${each.customer.place}<br>` +
                     '</p>-------------' +
                     '<p>' +
-    {#                `{% trans "Watt" %} - ${each.purchase.watt}<br>` +#}
-    {#                `{% trans "Count" %} - ${each.purchase.count}<br>` +#}
-    {#                `{% trans "Price" %} - ${each.purchase.price}<br>` +#}
-    {#                `{% trans "Offer Date" %} - ${each.purchase.offer_date}<br>` +#}
-    {#                `{% trans "Reseller" %} - ${each.purchase.reseller}<br>` +#}
                     `{% trans "DC Term" %} - ${each.purchase.dc_term}<br>` +
                     `{% trans "DC Mechanic" %} - ${each.purchase.dc_mechanic}<br>` +
                     '</p>'
@@ -120,6 +103,10 @@
         });
         calendar.createSchedules(cal_objects);
 
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
         function moveToNextOrPrevRange(val) {
             if (val === -1) {
                 calendar.prev();
@@ -127,16 +114,17 @@
                 calendar.next();
             }
             let x = calendar.getDate();
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-              "July", "August", "September", "October", "November", "December"
-            ];
-            console.log(x.getMonth(), x.getFullYear());
+
             $('#cal-year').text(x.getFullYear());
             $('#cal-month').text(monthNames[x.getMonth()]);
         }
 
         function onClickTodayBtn() {
             calendar.today();
+            let x = calendar.getDate();
+            $('#cal-year').text(x.getFullYear());
+            $('#cal-month').text(monthNames[x.getMonth()]);
+
         }
     </script>
 {% endblock %}
