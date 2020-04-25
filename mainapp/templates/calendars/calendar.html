@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
+{% endblock %}
+
+{% block content %}
+    <div id="calendar" style="height: 800px;"></div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.js"></script>
+    <script src="https://uicdn.toast.com/tui.dom/v3.0.0/tui-dom.js"></script>
+    <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
+    <script src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
+
+    <script src=//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.3.10/seedrandom.min.js></script>
+
+    <script>
+        let calendar = new tui.Calendar('#calendar', {
+            defaultView: 'month',
+            isReadOnly: true,
+            month: {
+                daynames: [
+                    "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ],
+                startDayOfWeek: 1, // monday
+            },
+            taskView: true,
+            useCreationPopup: false,
+            useDetailPopup: true,
+            template: {
+                monthDayname: function(dayname) {
+                    return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
+                }
+            }
+        });
+
+        let data = JSON.parse('{{ objects|safe }}');
+        let cal_objects = JSON.parse('{{ objects|safe }}').map(function(each) {
+            let body = '------------<p>' +
+                `{% trans "Purpose" %} - ${each.customer.purpose}<br>` +
+                `{% trans "Email" %} - ${each.customer.email}<br>` +
+                `{% trans "Offer ID" %} - ${each.customer.offer_id}<br>` +
+                `{% trans "Invoice ID" %} - ${each.customer.invoice_id}<br>` +
+                '</p>-------------' +
+                '<p>' +
+                `{% trans "Watt" %} - ${each.purchase.watt}<br>` +
+                `{% trans "Count" %} - ${each.purchase.count}<br>` +
+                `{% trans "Price" %} - ${each.purchase.price}<br>` +
+                `{% trans "Offer Date" %} - ${each.purchase.offer_date}<br>` +
+                `{% trans "Reseller" %} - ${each.purchase.reseller}<br>` +
+                `{% trans "DC Term" %} - ${each.purchase.dc_term}<br>` +
+                `{% trans "DC Mechanic" %} - ${each.purchase.dc_mechanic}<br>` +
+                `{% trans "AC Term" %} - ${each.purchase.ac_term}<br>` +
+                `{% trans "AC Mechanic" %} - ${each.purchase.ac_mechanic}<br>` +
+                '</p>'
+
+            return {
+                id: each.id,
+                calendarId: '1',
+                title: each.name + '-' + each.customer_id,
+                body: body,
+                category: 'time',
+                dueDateClass: '',
+                start: each.dc_term,
+                end: each.dc_term,
+                isAllDay: true,
+                isReadOnly: true,
+                color: '#'+(new Math.seedrandom(each.customer_id)()*0xFFFFFF<<0).toString(16),
+                bgColor: '#ddd'
+            }
+        });
+        calendar.createSchedules(cal_objects);
+    </script>
+{% endblock %}
