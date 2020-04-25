@@ -18,11 +18,9 @@ def calendar(request, year=None, month=None):
             "name": each.customer.first_name + " " + each.customer.surname,
             "dc_term": str(each.dc_term),
             "customer": {
-                "purpose": each.customer.purpose,
-                "email": each.customer.email,
-                "phone": each.customer.phone,
-                "offer_id": each.customer.offer_id or "",
-                "invoice_id": each.customer.invoice_id or "",
+                "street": each.customer.street or "",
+                "postcode": each.customer.postcode or "",
+                "place": each.customer.place or ""
             },
             "purchase": {
                 "watt": each.watt,
@@ -30,17 +28,17 @@ def calendar(request, year=None, month=None):
                 "price": each.price_without_tax or "",
                 "offer_date": str(each.offer_date) or "",
                 "reseller": each.reseller_name or "",
+                "dc": bool(each.dc_term),
                 "dc_term": str(each.dc_term) or "",
                 "dc_mechanic": each.dc_mechanic or "",
                 "ac_term": str(each.ac_term) or "",
                 "ac_mechanic": each.ac_mechanic or "",
             }
         } for each in PurchaseRecord.objects.filter(
-            # Q(
-            #     ac_term__month__gte=month - 2,
-            #     ac_term__year__gte=year - 1,
-            # ) |
             Q(
+                ac_term__month__gte=month - 2,
+                ac_term__year__gte=year - 1,
+            ) | Q(
                 dc_term__month__gte=month - 2,
                 dc_term__year__gte=year - 1,
             )
