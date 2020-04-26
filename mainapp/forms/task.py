@@ -17,6 +17,9 @@ class AddTaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request", None)
         super().__init__(*args, **kwargs)
+        # converting to string because form cannot handle date internationalization
+        if self.instance and self.instance.id:
+            self.initial['todo_date'] = str(self.initial['todo_date'])
         if not self.request.user.is_superuser:
             self.fields['user'].queryset = self.fields['user'].queryset.filter(
                 pk=self.request.user.pk

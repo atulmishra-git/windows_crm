@@ -16,7 +16,7 @@
             <br/>
             <form method="POST" id="id_create_task">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {{ form }}
                 <button type="submit" class="button">{% trans 'Submit' %}</button>
             </form>
             <br/>

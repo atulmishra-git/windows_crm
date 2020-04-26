@@ -21,6 +21,12 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if self.instance and self.instance.id:
+            # forms cannot handle i18n date change
+            self.initial['offer_date'] = str(self.initial['offer_date'])
+            self.initial['date_sent'] = str(self.initial['date_sent'])
+            self.initial['dc_term'] = str(self.initial['dc_term'])
+            self.initial['ac_term'] = str(self.initial['ac_term'])
         self.helper = FormHelper()
         self.helper.layout = Layout(
             # Row(
