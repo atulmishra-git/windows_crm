@@ -10,7 +10,7 @@ class AddTaskForm(forms.ModelForm):
         model = Tasks
         fields = ['user', 'message', 'todo_date', 'todo_time', 'private']
         widgets = {
-            'todo_date': forms.DateTimeInput(attrs={'type': 'date'}),
+            'todo_date': forms.DateInput(attrs={'type': 'date'}),
             'todo_time': forms.TimeInput(attrs={'type': 'time'}),
         }
 

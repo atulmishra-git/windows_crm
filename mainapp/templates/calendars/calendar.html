@@ -6,6 +6,13 @@
     <!-- If you use the default popups, use this. -->
     <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
     <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
+
+    <style>
+    #menu-navi {
+        background-color: rgb(192, 196, 153);
+        padding-top: 10px;
+    }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -13,30 +20,30 @@
         <div id="menu-navi">
             <div class="row">
                 <div class="col-6">
-                    <button type="button" onclick="onClickTodayBtn()" class="btn btn-default btn-sm move-day">
+                    <button type="button" onclick="onClickTodayBtn()" class="btn btn-secondary btn-sm">
                         -{% trans 'Today' %}-
                     </button>
-                    <button type="button" onclick="moveToNextOrPrevRange(-1)" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                    <button type="button" onclick="moveToNextOrPrevRange(-1)" class="btn btn-secondary btn-sm move-day" data-action="move-prev">
                         -{% trans 'Previous' %}-
                     </button>
-                    <button type="button" onclick="moveToNextOrPrevRange(1)" class="btn btn-default btn-sm move-day" data-action="move-next">
+                    <button type="button" onclick="moveToNextOrPrevRange(1)" class="btn btn-secondary btn-sm move-day" data-action="move-next">
                         -{% trans 'Next' %}-
-                    </button>
+                    </button>&nbsp;&nbsp;&nbsp;
                     <span id="cal-month"></span>.<span id="cal-year"></span>
                 </div>
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
+                            {% trans 'Purchase' %}
                             <input type="radio" id="cal_purchase" checked name="calType" onclick="showPurchase()" />
-                            <label for="cal_purchase">Purchase</label>
                         </div>
                         <div class="col-4">
+                            {% trans 'All Tasks' %}
                             <input type="radio" id="cal_tasks" name="calType" onclick="showTasks()" />
-                            <label for="cal_tasks">All Tasks</label>
                         </div>
                         <div class="col-4">
+                            {% trans 'Private Tasks' %}
                             <input type="radio" id="cal_private" name="calType" onclick="showPrivateTasks()" />
-                            <label for="cal_private">Private Tasks</label>
                         </div>
                     </div>
                 </div>
@@ -213,5 +220,10 @@
             $('#cal-month').text(monthNames[x.getMonth()]);
 
         }
+
+{#        make purchase radio buton selected by default #}
+        $(document).ready(function () {
+            $('#cal_purchase').attr('checked', true);
+        });
     </script>
 {% endblock %}
