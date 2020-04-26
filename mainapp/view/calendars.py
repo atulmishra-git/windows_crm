@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime
 
 from django.template.response import TemplateResponse
@@ -60,33 +61,35 @@ def calendar(request, year=None, month=None):
     ]
     tasks = [
         {
-            "id": str(each.id),
+            "id": each.id,
             "creator": str(each.creator),
             "date": str(each.todo_date),
             "time": str(each.todo_time),
-            "message": str(each.message),
+            "message": re.sub('\s+', ' ', each.message),
             "user": str(each.user),
             "private": each.private
         }
         for each in Tasks.objects.filter(
             todo_date__month__gte=month - 5,
             todo_date__year__gte=year,
+            completed=False
         ) if not each.private or (each.private and each.user == request.user)
         # if not private or if private, should be created by self
     ]
     private_tasks = [
         {
-            "id": str(each.id),
+            "id": each.id,
             "creator": str(each.creator),
             "date": str(each.todo_date),
             "time": str(each.todo_time),
-            "message": str(each.message),
+            "message": re.sub('\s+', ' ', each.message),
             "user": str(each.user)
         }
         for each in Tasks.objects.filter(
             todo_date__month__gte=month - 5,
             todo_date__year__gte=year,
-            private=True
+            private=True,
+            completed=False
         ) if each.user == request.user
     ]
     context = dict(
