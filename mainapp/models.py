@@ -334,6 +334,8 @@ class Tasks(models.Model):
                                 null=True, related_name='created_tasks')
     created = models.DateField(null=True)
 
+    private = models.BooleanField(_('private'), default=False)
+
     @property
     def complete_before(self):
         return datetime.datetime.combine(self.todo_date, self.todo_time)

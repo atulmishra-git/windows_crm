@@ -10,21 +10,41 @@
 
 {% block content %}
     <div id="menu">
-        <span id="menu-navi">
-            <button type="button" onclick="onClickTodayBtn()" class="btn btn-default btn-sm move-day">
-                -{% trans 'Today' %}-
-            </button>
-            <button type="button" onclick="moveToNextOrPrevRange(-1)" class="btn btn-default btn-sm move-day" data-action="move-prev">
-                -{% trans 'Previous' %}-
-            </button>
-            <button type="button" onclick="moveToNextOrPrevRange(1)" class="btn btn-default btn-sm move-day" data-action="move-next">
-                -{% trans 'Next' %}-
-            </button>
-            <span id="cal-month"></span>.<span id="cal-year"></span>
-        </span>
+        <div id="menu-navi">
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" onclick="onClickTodayBtn()" class="btn btn-default btn-sm move-day">
+                        -{% trans 'Today' %}-
+                    </button>
+                    <button type="button" onclick="moveToNextOrPrevRange(-1)" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                        -{% trans 'Previous' %}-
+                    </button>
+                    <button type="button" onclick="moveToNextOrPrevRange(1)" class="btn btn-default btn-sm move-day" data-action="move-next">
+                        -{% trans 'Next' %}-
+                    </button>
+                    <span id="cal-month"></span>.<span id="cal-year"></span>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="radio" id="cal_purchase" checked name="calType" onclick="showPurchase()" />
+                            <label for="cal_purchase">Purchase</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="radio" id="cal_tasks" name="calType" onclick="showTasks()" />
+                            <label for="cal_tasks">All Tasks</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="radio" id="cal_private" name="calType" onclick="showPrivateTasks()" />
+                            <label for="cal_private">Private Tasks</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <span id="renderRange" class="render-range"></span>
     </div>
-    <div id="calendar" style="height: 800px;"></div>
+    <div id="calendar"></div>
 {% endblock %}
 
 {% block script %}
@@ -61,7 +81,7 @@
             }
         });
 
-        let cal_objects = JSON.parse('{{ objects|safe }}').map(function(each) {
+        let purchases = JSON.parse('{{ purchases|safe }}').map(function(each) {
             let body;
 
             if (each.purchase.dc) {
@@ -101,12 +121,79 @@
                 bgColor: '#ddd'
             }
         });
-        calendar.createSchedules(cal_objects);
+
+        let tasks = JSON.parse('{{ tasks|safe }}').map(function(each) {
+            let body = '<p>' +
+                `{% trans "Message" %} - ${each.message}<br>` +
+                `{% trans "Time" %} - ${each.time}<br>` +
+                `{% trans "Creator" %} - ${each.creator}<br>` +
+                '</p>';
+            const prefix = each.private ? '(P) ' : '';
+
+            return {
+                id: each.id,
+                calendarId: '1',
+                title: prefix + each.user,
+                body: body,
+                category: 'time',
+                dueDateClass: '',
+                start: each.date,
+                end: each.date,
+                isAllDay: true,
+                isReadOnly: true,
+                color: '#'+(new Math.seedrandom(each.user)()*0xFFFFFF<<0).toString(16),
+                bgColor: '#ddd'
+            }
+        });
+
+        let private_tasks = JSON.parse('{{ private_tasks|safe }}').map(function(each) {
+            let body = '<p>' +
+                `{% trans "Message" %} - ${each.message}<br>` +
+                `{% trans "Time" %} - ${each.time}<br>` +
+                `{% trans "Creator" %} - ${each.creator}<br>` +
+                '</p>';
+
+            return {
+                id: each.id,
+                calendarId: '1',
+                title: '(P) ' + each.user,
+                body: body,
+                category: 'time',
+                dueDateClass: '',
+                start: each.date,
+                end: each.date,
+                isAllDay: true,
+                isReadOnly: true,
+                color: '#'+(new Math.seedrandom(each.user)()*0xFFFFFF<<0).toString(16),
+                bgColor: '#ddd'
+            }
+        });
+
+        calendar.createSchedules(purchases);
+
+        function showPurchase() {
+            calendar.clear();
+            calendar.createSchedules(purchases, true);
+            calendar.render();
+        }
+
+        function showTasks() {
+            calendar.clear();
+            calendar.createSchedules(tasks, true);
+            calendar.render();
+        }
+
+        function showPrivateTasks() {
+            calendar.clear();
+            calendar.createSchedules(private_tasks, true);
+            calendar.render();
+        }
 
         const monthNames = [
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
         ];
+
         function moveToNextOrPrevRange(val) {
             if (val === -1) {
                 calendar.prev();

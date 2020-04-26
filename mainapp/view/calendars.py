@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.template.response import TemplateResponse
 
-from mainapp.models import PurchaseRecord
+from mainapp.models import PurchaseRecord, Tasks
 
 
 def calendar(request, year=None, month=None):
@@ -58,7 +58,40 @@ def calendar(request, year=None, month=None):
             ac_term__year__gte=year-1,
         )
     ]
+    tasks = [
+        {
+            "id": str(each.id),
+            "creator": str(each.creator),
+            "date": str(each.todo_date),
+            "time": str(each.todo_time),
+            "message": str(each.message),
+            "user": str(each.user),
+            "private": each.private
+        }
+        for each in Tasks.objects.filter(
+            todo_date__month__gte=month - 5,
+            todo_date__year__gte=year,
+        ) if not each.private or (each.private and each.user == request.user)
+        # if not private or if private, should be created by self
+    ]
+    private_tasks = [
+        {
+            "id": str(each.id),
+            "creator": str(each.creator),
+            "date": str(each.todo_date),
+            "time": str(each.todo_time),
+            "message": str(each.message),
+            "user": str(each.user)
+        }
+        for each in Tasks.objects.filter(
+            todo_date__month__gte=month - 5,
+            todo_date__year__gte=year,
+            private=True
+        ) if each.user == request.user
+    ]
     context = dict(
-        objects=json.dumps(purchases_dc + purchases_ac)
+        purchases=json.dumps(purchases_dc + purchases_ac),
+        tasks=json.dumps(tasks),
+        private_tasks=json.dumps(private_tasks)
     )
     return TemplateResponse(request, 'calendars/calendar.html', context)

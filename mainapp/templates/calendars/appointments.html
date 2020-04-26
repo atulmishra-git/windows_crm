@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
+    <!-- If you use the default popups, use this. -->
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
+{% endblock %}
+
+{% block content %}
+    <div id="menu">
+        <span id="menu-navi">
+            <button type="button" onclick="onClickTodayBtn()" class="btn btn-default btn-sm move-day">
+                -{% trans 'Today' %}-
+            </button>
+            <button type="button" onclick="moveToNextOrPrevRange(-1)" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                -{% trans 'Previous' %}-
+            </button>
+            <button type="button" onclick="moveToNextOrPrevRange(1)" class="btn btn-default btn-sm move-day" data-action="move-next">
+                -{% trans 'Next' %}-
+            </button>
+            <span id="cal-month"></span>.<span id="cal-year"></span>
+        </span>
+        <span id="renderRange" class="render-range"></span>
+    </div>
+    <div id="calendar" style="height: 800px;"></div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.js"></script>
+    <script src="https://uicdn.toast.com/tui.dom/v3.0.0/tui-dom.js"></script>
+    <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
+    <script src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
+
+    <script src=//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.3.10/seedrandom.min.js></script>
+
+    <script>
+        let calendar = new tui.Calendar('#calendar', {
+            defaultView: 'month',
+            isReadOnly: true,
+            month: {
+                daynames: [
+                    "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ],
+                startDayOfWeek: 1, // monday
+                visibleScheduleCount: 100,
+            },
+            taskView: true,
+            useCreationPopup: false,
+            useDetailPopup: true,
+            template: {
+
+            }
+        });
+
+        let objects;
+        console.log('{{ purchases }}');
+        objects = JSON.parse('{{ purchases|safe }}');
+        console.log(objects);
+
+        let cal_objects = objects.map(function(each) {
+            let body = '<p>' +
+                `{% trans "Message" %} - ${each.message}<br>` +
+                `{% trans "Time" %} - ${each.time}<br>` +
+                `{% trans "Creator" %} - ${each.creator}<br>` +
+                '</p>';
+
+            return {
+                id: each.id,
+                calendarId: '1',
+                title: each.user,
+                body: body,
+                category: 'time',
+                dueDateClass: '',
+                start: each.date,
+                end: each.date,
+                isAllDay: true,
+                isReadOnly: true,
+                color: '#'+(new Math.seedrandom(each.user)()*0xFFFFFF<<0).toString(16),
+                bgColor: '#ddd'
+            }
+        });
+        calendar.createSchedules(cal_objects);
+
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        function moveToNextOrPrevRange(val) {
+            if (val === -1) {
+                calendar.prev();
+            } else if (val === 1) {
+                calendar.next();
+            }
+            let x = calendar.getDate();
+
+            $('#cal-year').text(x.getFullYear());
+            $('#cal-month').text(monthNames[x.getMonth()]);
+        }
+
+        function onClickTodayBtn() {
+            calendar.today();
+            let x = calendar.getDate();
+            $('#cal-year').text(x.getFullYear());
+            $('#cal-month').text(monthNames[x.getMonth()]);
+
+        }
+    </script>
+{% endblock %}
