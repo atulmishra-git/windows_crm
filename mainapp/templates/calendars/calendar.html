@@ -24,21 +24,21 @@
                         -{% trans 'Today' %}-
                     </button>
                     <button type="button" onclick="moveToNextOrPrevRange(-1)" class="btn btn-secondary btn-sm move-day" data-action="move-prev">
-                        -{% trans 'Previous' %}-
+                        <--
                     </button>
                     <button type="button" onclick="moveToNextOrPrevRange(1)" class="btn btn-secondary btn-sm move-day" data-action="move-next">
-                        -{% trans 'Next' %}-
+                        -->
                     </button>&nbsp;&nbsp;&nbsp;
                     <span id="cal-month"></span>.<span id="cal-year"></span>
                 </div>
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
-                            {% trans 'Purchase' %}
+                            DC/AC
                             <input type="radio" id="cal_purchase" checked name="calType" onclick="showPurchase()" />
                         </div>
                         <div class="col-4">
-                            {% trans 'All Tasks' %}
+                            {% trans 'Public Tasks' %}
                             <input type="radio" id="cal_tasks" name="calType" onclick="showTasks()" />
                         </div>
                         <div class="col-4">
@@ -66,27 +66,74 @@
     <script>
         let calendar = new tui.Calendar('#calendar', {
             defaultView: 'month',
-            isReadOnly: true,
+{#            isReadOnly: true,#}
             month: {
                 daynames: [
-                    "Sunday",
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday"
+                    "Sonntag",
+                    "Montag",
+                    "Dienstag",
+                    "Mittwoch",
+                    "Donnerstag",
+                    "Freitag",
+                    "Samstag"
                 ],
                 startDayOfWeek: 1, // monday
                 visibleScheduleCount: 100,
             },
             taskView: true,
             useCreationPopup: false,
-            useDetailPopup: true,
+            useDetailPopup: false,
             template: {
 
             }
         });
+
+{#        calendar.on({#}
+{#            'clickSchedule': function(e) {#}
+{#                console.log('clickSchedule', e);#}
+{#                /* step1. open custom detail popup */#}
+{#                const willModify = confirm(`title: ${e.schedule.title}\nwhen: ${yyyymmdd(new Date(e.schedule.start))} \nWill you update schedule?`);#}
+{##}
+{#                if (willModify) { // step1-1. open edit popup */#}
+{#                    e.schedule.title = prompt('Schedule', e.schedule.title);#}
+{#                    calendar.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);#}
+{#                }#}
+{#            },#}
+{#            'beforeCreateSchedule': function(e) {#}
+{#                console.log('beforeCreateSchedule', e);#}
+{#                /* step1. open custom edit popup */#}
+{#                const title = prompt('Schedule', '@suvrity\'s birthday');#}
+{#                var schedule = {#}
+{#                    id: +new Date(),#}
+{#                    title: title,#}
+{#                    isAllDay: true,#}
+{#                    start: e.start,#}
+{#                    end: e.end,#}
+{#                    category:  'allday'#}
+{#                };#}
+{#                /* step2. save schedule */#}
+{#                calendar.createSchedules([schedule]);#}
+{#                /* step3. clear guide element */#}
+{#                e.guide.clearGuideElement();#}
+{#            },#}
+{#            'beforeUpdateSchedule': function(e) {#}
+{#                console.log('beforeUpdateSchedule', e);#}
+{#                e.schedule.start = e.start;#}
+{#                e.schedule.end = e.end;#}
+{#                calendar.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);#}
+{#            },#}
+{#            'beforeDeleteSchedule': function(e) {#}
+{#                console.log('beforeDeleteSchedule', e);#}
+{#                calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);#}
+{#            }#}
+{#        });#}
+
+        function yyyymmdd(dateIn) {
+            var yyyy = dateIn.getFullYear();
+            var mm = dateIn.getMonth()+1; // getMonth() is zero-based
+            var dd  = dateIn.getDate();
+            return String(10000*yyyy + 100*mm + dd); // Leading zeros for mm and dd
+        }
 
         let purchases = JSON.parse('{{ purchases|safe }}').map(function(each) {
             let body;
@@ -197,8 +244,8 @@
         }
 
         const monthNames = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
+            "Januar", "Februar", "März", "April", "Mai", "Juni",
+            "Juli", "August", "September", "Oktober", "November", "Dezember"
         ];
 
         function moveToNextOrPrevRange(val) {

@@ -456,12 +456,12 @@ msgid "Purchase"
 msgstr "PV-Anlage"
 
 #: mainapp/templates/calendars/calendar.html:41
-msgid "All Tasks"
-msgstr "Aufgaben"
+msgid "Public Tasks"
+msgstr "Öffentlich"
 
 #: mainapp/templates/calendars/calendar.html:45
 msgid "Private Tasks"
-msgstr "Aufgabe hinzufügen"
+msgstr "Privat"
 
 #: mainapp/templates/calendars/calendar.html:96
 #: mainapp/templates/calendars/calendar.html:106
