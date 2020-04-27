@@ -66,7 +66,7 @@
                         <th scope="row">{% trans 'Module Count' %}</th>
                         <td class="input-switch"><span id="module_count" type="text">{{ customer.purchase_record.module_count|default:'n.a' }}</span></td>
                         <th colspan="1" scope="row">{% trans 'With Battery' %}</th>
-                        <td colspan="1">{{ customer.purchase_record.with_battery|default:'n.a' }}</td>
+                        <td colspan="1">{% if customer.purchase_record.with_battery %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}|default:'n.a' }}</td>
                     </tr>
                     {% if customer.with_battery %}
                         <tr>
