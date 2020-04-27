@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-24 10:50+0000\n"
+"POT-Creation-Date: 2020-04-27 15:08+0000\n"
 "PO-Revision-Date: 2014-01-04 00:10+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,8 +38,6 @@ msgid "Go Back"
 msgstr "zum Chatmenü"
 
 #: chat/templates/chat/room.html:36
-#, fuzzy
-#| msgid "message"
 msgid "Type a message"
 msgstr "Nachricht"
 
@@ -52,46 +50,51 @@ msgid "Filetype not supported."
 msgstr "Dateityp wird nicht unterstützt."
 
 #: mainapp/forms/add_purchase_record.py:19
+#: mainapp/templates/home/customer_purchase_modal.html:104
+#: mainapp/templates/home/customer_purchase_modal.html:178
 msgid "Yes"
 msgstr "Ja"
 
-#: mainapp/forms/add_purchase_record.py:19 mainapp/templates/task_list.html:50
+#: mainapp/forms/add_purchase_record.py:19
+#: mainapp/templates/home/customer_purchase_modal.html:104
+#: mainapp/templates/home/customer_purchase_modal.html:178
+#: mainapp/templates/task_list.html:49
 msgid "No"
 msgstr "Nein"
 
-#: mainapp/forms/add_purchase_record.py:44
+#: mainapp/forms/add_purchase_record.py:50
 msgid "Choose if there is battery system or not"
 msgstr "Bitte auswählen ob Speicher gewählt wurde"
 
-#: mainapp/forms/add_purchase_record.py:52
+#: mainapp/forms/add_purchase_record.py:58
 msgid "WR - Without Battery"
 msgstr "Wechselrichter"
 
-#: mainapp/forms/add_purchase_record.py:58
+#: mainapp/forms/add_purchase_record.py:64
 msgid "Price"
 msgstr "Preis"
 
-#: mainapp/forms/add_purchase_record.py:60
+#: mainapp/forms/add_purchase_record.py:66
 msgid "Tax"
 msgstr "MwSt."
 
-#: mainapp/forms/add_purchase_record.py:62
+#: mainapp/forms/add_purchase_record.py:68
 msgid "Offer Details"
 msgstr "Angebotsdetails"
 
-#: mainapp/forms/add_purchase_record.py:69
+#: mainapp/forms/add_purchase_record.py:75
 msgid "Technical Details"
 msgstr "sonstige Kundenwünsche"
 
-#: mainapp/forms/add_purchase_record.py:85
+#: mainapp/forms/add_purchase_record.py:91
 msgid "Information of the Roof"
 msgstr "Informationen zum Dach"
 
-#: mainapp/forms/add_purchase_record.py:97
+#: mainapp/forms/add_purchase_record.py:103
 msgid "Total Area of all modules"
 msgstr "Gesamtfläche aller Module"
 
-#: mainapp/forms/add_purchase_record.py:103
+#: mainapp/forms/add_purchase_record.py:109
 #: mainapp/templates/add_manager.html:14 mainapp/templates/attachments.html:20
 #: mainapp/templates/call_notes.html:14
 #: mainapp/templates/customer/add_customer.html:14
@@ -99,6 +102,27 @@ msgstr "Gesamtfläche aller Module"
 #: mainapp/templates/list_purchase.html:20 mainapp/templates/task_list.html:20
 msgid "Submit"
 msgstr "Erstellen"
+
+#: mainapp/forms/login.py:9
+#, fuzzy
+#| msgid "Username"
+msgid "username"
+msgstr "Benutzername"
+
+#: mainapp/forms/login.py:15 mainapp/models.py:19
+#: mainapp/templates/add_manager.html:31
+msgid "Username"
+msgstr "Benutzername"
+
+#: mainapp/forms/login.py:19
+msgid "password"
+msgstr "Passwort"
+
+#: mainapp/forms/login.py:25
+#, fuzzy
+#| msgid "password"
+msgid "Password"
+msgstr "Passwort"
 
 #: mainapp/models.py:16 mainapp/templates/add_manager.html:28
 msgid "First Name"
@@ -113,10 +137,6 @@ msgstr "Nachname"
 #: mainapp/templates/home/customer_purchase_modal.html:36
 msgid "Phone"
 msgstr "Telefonnummer"
-
-#: mainapp/models.py:19 mainapp/templates/add_manager.html:31
-msgid "Username"
-msgstr "Benutzername"
 
 #: mainapp/models.py:20 mainapp/models.py:80
 #: mainapp/templates/add_manager.html:32
@@ -223,14 +243,11 @@ msgstr "Anrede"
 msgid "notes"
 msgstr "Notizen"
 
-#: mainapp/models.py:149 mainapp/templates/home/customer_purchase_modal.html:10
-#: mainapp/templates/home/customer_purchase_modal.html:17
+#: mainapp/models.py:149 mainapp/templates/add_purchase.html:27
+#: mainapp/templates/home/customer_purchase_modal.html:10
 #: mainapp/templates/navsection.html:23
 msgid "Customer"
 msgstr "Kunden"
-
-msgid "Customer Information"
-msgstr "Kundeninformation"
 
 #: mainapp/models.py:151 mainapp/models.py:156
 msgid "manufacturer"
@@ -293,7 +310,7 @@ msgstr "gesendet am"
 msgid "project planning created"
 msgstr "Projektierung erstellt"
 
-#: mainapp/models.py:174
+#: mainapp/models.py:174 mainapp/templates/calendars/calendar.html:101
 #: mainapp/templates/home/customer_purchase_modal.html:107
 msgid "DC Term"
 msgstr "DC - Termin"
@@ -303,7 +320,7 @@ msgstr "DC - Termin"
 msgid "DC mechanic"
 msgstr "DC - Monteur"
 
-#: mainapp/models.py:176
+#: mainapp/models.py:176 mainapp/templates/calendars/calendar.html:111
 #: mainapp/templates/home/customer_purchase_modal.html:113
 msgid "AC Term"
 msgstr "AC - Termin"
@@ -350,8 +367,6 @@ msgid "Upload"
 msgstr "Hochladen"
 
 #: mainapp/models.py:327
-#, fuzzy
-#| msgid "Username"
 msgid "User"
 msgstr "Benutzername"
 
@@ -359,13 +374,17 @@ msgstr "Benutzername"
 msgid "message"
 msgstr "Nachricht"
 
-#: mainapp/models.py:329 mainapp/templates/task_list.html:38
+#: mainapp/models.py:329 mainapp/templates/task_list.html:37
 msgid "Complete Before"
 msgstr "Zu erledigen bis:"
 
 #: mainapp/models.py:331
 msgid "completed"
 msgstr "erledigt"
+
+#: mainapp/models.py:337
+msgid "private"
+msgstr ""
 
 #: mainapp/templates/add_manager.html:8
 #, fuzzy, python-format
@@ -385,14 +404,14 @@ msgstr "es wurde kein Manager gefunden"
 #: mainapp/templates/add_manager.html:33 mainapp/templates/attachments.html:32
 #: mainapp/templates/call_notes.html:30
 #: mainapp/templates/customer/list_customer.html:59
-#: mainapp/templates/list_purchase.html:61 mainapp/templates/task_list.html:68
+#: mainapp/templates/list_purchase.html:61 mainapp/templates/task_list.html:67
 msgid "Edit"
 msgstr "bearbeiten"
 
 #: mainapp/templates/add_manager.html:34 mainapp/templates/attachments.html:33
 #: mainapp/templates/call_notes.html:31
 #: mainapp/templates/customer/list_customer.html:62
-#: mainapp/templates/list_purchase.html:64 mainapp/templates/task_list.html:69
+#: mainapp/templates/list_purchase.html:64 mainapp/templates/task_list.html:68
 #, fuzzy
 #| msgid "Deleted"
 msgid "Delete"
@@ -417,16 +436,82 @@ msgstr "Anlagen hinzufügen"
 msgid "Download"
 msgstr "Herunterladen"
 
+#: mainapp/templates/calendars/calendar.html:24
+msgid "Today"
+msgstr ""
+
+#: mainapp/templates/calendars/calendar.html:27
+msgid "Previous"
+msgstr ""
+
+#: mainapp/templates/calendars/calendar.html:30
+msgid "Next"
+msgstr ""
+
+#: mainapp/templates/calendars/calendar.html:37
+#: mainapp/templates/home/customer_purchase_modal.html:10
+#: mainapp/templates/home/customer_purchase_modal.html:55
+#: mainapp/templates/navsection.html:24 mainapp/view/add_purchase.py:43
+msgid "Purchase"
+msgstr "PV-Anlage"
+
+#: mainapp/templates/calendars/calendar.html:41
+msgid "All Tasks"
+msgstr "Aufgaben"
+
+#: mainapp/templates/calendars/calendar.html:45
+msgid "Private Tasks"
+msgstr "Aufgabe hinzufügen"
+
+#: mainapp/templates/calendars/calendar.html:96
+#: mainapp/templates/calendars/calendar.html:106
+#: mainapp/templates/customer/list_customer.html:38
+#: mainapp/templates/home/customer_purchase_modal.html:42
+msgid "Street"
+msgstr "Straße u. Hausnummer"
+
+#: mainapp/templates/calendars/calendar.html:97
+#: mainapp/templates/calendars/calendar.html:107
+#: mainapp/templates/customer/list_customer.html:39
+msgid "Postcode"
+msgstr "Postleitzahl"
+
+#: mainapp/templates/calendars/calendar.html:98
+#: mainapp/templates/calendars/calendar.html:108
+#: mainapp/templates/home/customer_purchase_modal.html:44
+msgid "Place"
+msgstr "Ort"
+
+#: mainapp/templates/calendars/calendar.html:102
+msgid "DC Mechanic"
+msgstr "DC - Monteur"
+
+#: mainapp/templates/calendars/calendar.html:112
+msgid "AC Mechanic"
+msgstr "AC - Monteur"
+
+#: mainapp/templates/calendars/calendar.html:134
+#: mainapp/templates/calendars/calendar.html:158
+msgid "Message"
+msgstr "Nachricht"
+
+#: mainapp/templates/calendars/calendar.html:135
+#: mainapp/templates/calendars/calendar.html:159
+msgid "Time"
+msgstr ""
+
+#: mainapp/templates/calendars/calendar.html:136
+#: mainapp/templates/calendars/calendar.html:160
+#: mainapp/templates/call_notes.html:26
+#: mainapp/templates/home/customer_purchase_modal.html:130
+#: mainapp/templates/task_list.html:56
+msgid "Creator"
+msgstr "Autor"
+
 #: mainapp/templates/call_notes.html:7
 #: mainapp/templates/home/customer_purchase_modal.html:24
 msgid "Customer ID"
 msgstr "Kunden-ID"
-
-#: mainapp/templates/call_notes.html:26
-#: mainapp/templates/home/customer_purchase_modal.html:130
-#: mainapp/templates/task_list.html:57
-msgid "Creator"
-msgstr "Autor"
 
 #: mainapp/templates/call_notes.html:27
 msgid "Call Note"
@@ -448,30 +533,13 @@ msgstr ""
 msgid "Name"
 msgstr "Kundenname"
 
-#: mainapp/templates/customer/list_customer.html:38
-#: mainapp/templates/home/customer_purchase_modal.html:42
-msgid "Street"
-msgstr "Straße u. Hausnummer"
-
-#: mainapp/templates/customer/list_customer.html:39
-#, fuzzy
-#| msgid "postcode"
-msgid "Postcode"
-msgstr "Postleitzahl"
-
-#: mainapp/templates/home/customer_purchase_modal.html:10
-#: mainapp/templates/home/customer_purchase_modal.html:55
-#: mainapp/templates/navsection.html:24 mainapp/view/add_purchase.py:30
-msgid "Purchase"
-msgstr "PV-Anlage"
+#: mainapp/templates/home/customer_purchase_modal.html:17
+msgid "Customer Information"
+msgstr "Kundeninformation"
 
 #: mainapp/templates/home/customer_purchase_modal.html:26
 msgid "Purpose"
 msgstr "Anrede"
-
-#: mainapp/templates/home/customer_purchase_modal.html:44
-msgid "Place"
-msgstr "Ort"
 
 #: mainapp/templates/home/customer_purchase_modal.html:48
 msgid "Offer ID"
@@ -491,7 +559,6 @@ msgid "Module Count"
 msgstr "Anzahl der Module"
 
 #: mainapp/templates/home/customer_purchase_modal.html:68
-#: mainapp/templates/list_purchase.html:69
 msgid "With Battery"
 msgstr "mit Speicher"
 
@@ -527,6 +594,12 @@ msgstr "Projektierung erstellt"
 #: mainapp/templates/home/customer_purchase_modal.html:122
 msgid "Attachments"
 msgstr "Dateien und Anlagen"
+
+#: mainapp/templates/home/customer_purchase_modal.html:163
+#, fuzzy
+#| msgid "Purchase ID"
+msgid "No Purchase Record"
+msgstr "Anlagen-ID"
 
 #: mainapp/templates/home/home.html:36 mainapp/templates/home/home.html:41
 msgid "Offer"
@@ -588,15 +661,13 @@ msgstr ""
 msgid "Extra Information"
 msgstr "Sonstige Angaben"
 
-#: mainapp/templates/list_purchase.html:75
-#, fuzzy
-#| msgid "with battery"
-msgid "Without Battery"
-msgstr "mit Speicher"
+#: mainapp/templates/login/login.html:9
+msgid "LogIn Here"
+msgstr "Hier anmelden"
 
-#: mainapp/templates/list_purchase.html:81
-msgid "Extra"
-msgstr "weitere Informationen"
+#: mainapp/templates/login/login.html:61
+msgid "Login"
+msgstr "Anmeldung"
 
 #: mainapp/templates/navsection.html:16
 msgid "Dashboard"
@@ -611,7 +682,7 @@ msgid "Calendar"
 msgstr "Kalender"
 
 # mainapp/templates/add_manager.html:8
-#: mainapp/templates/navsection.html:26 mainapp/templates/task_list.html:43
+#: mainapp/templates/navsection.html:26 mainapp/templates/task_list.html:42
 msgid "Manager"
 msgstr "Manager"
 
@@ -623,40 +694,40 @@ msgstr "Ausloggen"
 msgid "Support"
 msgstr "Support"
 
-#: mainapp/templates/task_list.html:10
+#: mainapp/templates/task_list.html:11
 msgid "Create Task"
 msgstr "Aufgabe hinzufügen"
 
 # mainapp/templates/add_manager.html:8
-#: mainapp/templates/task_list.html:12
+#: mainapp/templates/task_list.html:13
 msgid "Update Task"
 msgstr "Aufgabe aktualisieren"
 
-#: mainapp/templates/task_list.html:24
+#: mainapp/templates/task_list.html:23
 msgid "Tasks"
 msgstr "Aufgaben"
 
-#: mainapp/templates/task_list.html:27
+#: mainapp/templates/task_list.html:26
 msgid "No Tasks Found"
 msgstr "es wurden keine Aufgaben gefunden"
 
-#: mainapp/templates/task_list.html:48 mainapp/templates/task_list.html:80
+#: mainapp/templates/task_list.html:47 mainapp/templates/task_list.html:79
 msgid "Completed"
 msgstr "Erledigt"
 
-#: mainapp/templates/task_list.html:52
+#: mainapp/templates/task_list.html:51
 msgid "Mark Complete"
 msgstr "Erledigt"
 
-#: mainapp/templates/task_list.html:61
+#: mainapp/templates/task_list.html:60
 msgid "Todo"
 msgstr "Aufgaben"
 
-#: mainapp/view/add_customer.py:20
+#: mainapp/view/add_customer.py:33
 msgid "Add New Customer"
 msgstr "Kunden hinzufügen"
 
-#: mainapp/view/add_customer.py:35
+#: mainapp/view/add_customer.py:48
 msgid "Update Customer"
 msgstr "Kunden aktualisieren"
 
@@ -670,7 +741,7 @@ msgstr "Mitarbeiter hinzufügen"
 msgid "Update Manager"
 msgstr "Manager aktualisieren"
 
-#: mainapp/view/add_purchase.py:41
+#: mainapp/view/add_purchase.py:54
 msgid "Update Purchase"
 msgstr "PV-Anlage aktualisieren"
 
@@ -693,6 +764,14 @@ msgstr "English"
 #: windows_crm/settings.py:133
 msgid "German"
 msgstr "Deutsch"
+
+#, fuzzy
+#~| msgid "with battery"
+#~ msgid "Without Battery"
+#~ msgstr "mit Speicher"
+
+#~ msgid "Extra"
+#~ msgstr "weitere Informationen"
 
 #~ msgid "Battery"
 #~ msgstr "Speicher"

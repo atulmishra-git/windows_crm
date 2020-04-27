@@ -1,11 +1,12 @@
 {% load static %}
+{% load i18n %}
 <html lang="en-US">
 <head>
     <!-- =============== Meta =============== -->
     <meta charset="UTF-8">
 
     <!-- =============== Title =============== -->
-    <title>LogIn Here</title>
+    <title>{% trans 'LogIn Here' %}</title>
 
     <!-- =============== Favicon =============== -->
     <link href="{% static '/assets/img/favicon.ico' %}" rel="shortcut icon"/>
@@ -57,7 +58,7 @@
                         {% csrf_token %}
                         {{ login_form }}
                         <br/>
-                        <button type="submit" class="btn btn-primary btn-block form-group">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block form-group">{% trans 'Login' %}</button>
                         <h4>{{ error_message }}</h4>
                         <p id="validator" style="display: none !important;"
                            class="p-1 px-3 rounded bg-soft-danger text-center align-items-center justify-content-center s-alert">

@@ -1,25 +1,28 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 from mainapp.models import User
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(required=True,
+    username = forms.CharField(label=_('username'),
+                               required=True,
                                max_length=255,
                                widget=forms.TextInput(
                                    attrs={
                                        'class': 'form-control',
-                                       'placeholder': 'Username'
+                                       'placeholder': _('Username')
                                    }
                                ))
 
-    password = forms.CharField(required=True,
+    password = forms.CharField(label=_('password'),
+                               required=True,
                                max_length=255,
                                widget=forms.PasswordInput(
                                    attrs={
                                        'class': 'form-control',
-                                       'placeholder': 'Password'
+                                       'placeholder': _('Password')
                                    }
                                ))
 
