@@ -16,6 +16,15 @@ class IsCreatorMixin(object):
         return super().dispatch(request, *args, **kwargs)
 
 
+class IsCreatorOrSuperAdminMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        if request.user == self.get_object().creator:
+            return super().dispatch(request, *args, **kwargs)
+        return JsonResponse({'message': _('You are not permitted to perform the action.')})
+
+
 class TasksView(LoginRequiredMixin, FormRequestMixin, CreateView):
     template_name = 'task_list.html'
     form_class = AddTaskForm
@@ -52,7 +61,7 @@ class TaskUpdateView(IsCreatorMixin, FormRequestMixin, UpdateView):
         return reverse('mainapp:open_task_list', kwargs=dict())
 
 
-class DeleteTaskView(IsCreatorMixin, DeleteView):
+class DeleteTaskView(IsCreatorOrSuperAdminMixin, DeleteView):
     model = Tasks
 
     def get(self, request, *args, **kwargs):
@@ -67,8 +76,7 @@ def mark_completed(request, pk):
     try:
         user = request.user
         # check for superuser
-        if user == task.creator or user == task.user:
-
+        if user == task.creator or user == task.user or user.is_superuser:
             task.completed = True
             task.save()
         else:
