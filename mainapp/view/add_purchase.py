@@ -19,7 +19,7 @@ def update_purchase(request, pk):
     if request.method in ['POST', 'PATCH']:
         # only one pair of k, v is received
         for k, v in request.POST.items():
-            PurchaseRecord.objects.update(**{k: v})
+            PurchaseRecord.objects.filter(pk=pk).update(**{k: v})
     return JsonResponse(data={}, status=200)
 
 

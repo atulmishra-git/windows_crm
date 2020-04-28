@@ -19,7 +19,7 @@ def update_customer(request, pk):
     if request.method in ['POST', 'PATCH']:
         # only one pair of k, v is received
         for k, v in request.POST.items():
-            Customer.objects.update(**{k: v})
+            Customer.objects.filter(pk=pk).update(**{k: v})
     return JsonResponse(data={}, status=200)
 
 
