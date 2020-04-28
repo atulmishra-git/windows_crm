@@ -66,7 +66,7 @@
     <script>
         let calendar = new tui.Calendar('#calendar', {
             defaultView: 'month',
-{#            isReadOnly: true,#}
+            // isReadOnly: true,
             month: {
                 daynames: [
                     "Sonntag",
@@ -103,18 +103,30 @@
                 console.log('beforeCreateSchedule', e);
                 /* step1. open custom edit popup */
                 const title = prompt('Create new task');
-                var schedule = {
-                    id: +new Date(),
-                    title: title,
-                    isAllDay: true,
-                    start: e.start,
-                    end: e.end,
-                    category:  'allday'
-                };
-                /* step2. save schedule */
-                calendar.createSchedules([schedule]);
-                /* step3. clear guide element */
-                e.guide.clearGuideElement();
+                if (title) {
+                    let schedule = {
+                        id: +new Date(),
+                        title: title,
+                        isAllDay: true,
+                        start: e.start,
+                        end: e.end,
+                        category: 'time'
+                    };
+                    console.log(e.start, e.end, new Date(), title);
+                    const obj = {
+                        message: title,
+                        todo_date: `${e.start.getFullYear()}-${e.start.getMonth()+1}-${e.start.getDate()}`
+                    };
+                    console.log(obj);
+                    const url = "{% url 'mainapp:create_calendar_task' %}";
+                    $.post(url , obj, function( data ) {
+                        console.log("created!");
+                    });
+                    /* step2. save schedule */
+                    calendar.createSchedules([schedule]);
+                    /* step3. clear guide element */
+                    e.guide.clearGuideElement();
+                }
             },
 {#            'beforeUpdateSchedule': function(e) {#}
 {#                console.log('beforeUpdateSchedule', e);#}

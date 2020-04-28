@@ -1,6 +1,6 @@
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.template.response import TemplateResponse
 
@@ -70,8 +70,7 @@ def calendar(request, year=None, month=None):
             "private": each.private
         }
         for each in Tasks.objects.filter(
-            todo_date__month__gte=month - 5,
-            todo_date__year__gte=year,
+            todo_date__gte=now-timedelta(days=90),
             completed=False
         ) if not each.private or (each.private and each.user == request.user)
         # if not private or if private, should be created by self
@@ -86,8 +85,7 @@ def calendar(request, year=None, month=None):
             "user": str(each.user)
         }
         for each in Tasks.objects.filter(
-            todo_date__month__gte=month - 5,
-            todo_date__year__gte=year,
+            todo_date__gte=now-timedelta(days=90),
             private=True,
             completed=False
         ) if each.user == request.user
@@ -97,4 +95,5 @@ def calendar(request, year=None, month=None):
         tasks=json.dumps(tasks),
         private_tasks=json.dumps(private_tasks)
     )
+    print(tasks)
     return TemplateResponse(request, 'calendars/calendar.html', context)

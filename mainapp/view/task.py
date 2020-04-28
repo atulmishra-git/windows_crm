@@ -1,5 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.utils.translation import ugettext_lazy as _
 
@@ -85,3 +87,18 @@ def mark_completed(request, pk):
     except:
         pass
     return redirect('mainapp:open_task_list')
+
+
+@csrf_exempt
+@login_required
+def create_task(request):
+    if request.method in ['POST', 'PATCH']:
+        data = {}
+        for k, v in request.POST.items():
+            data.update({k: v})
+        Tasks.objects.create(
+            **data,
+            user=request.user,
+            creator=request.user,
+        )
+    return JsonResponse(data={}, status=200)

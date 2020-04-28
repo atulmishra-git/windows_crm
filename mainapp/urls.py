@@ -36,6 +36,7 @@ urlpatterns = [
     path('task/<int:pk>/', task.TaskUpdateView.as_view(), name='edit_task'),
     path('delete/task/<int:pk>/', task.DeleteTaskView.as_view(), name='delete_task'),
     path('mark_complete/<int:pk>/', task.mark_completed, name='mark_completed'),
+    path('create_calendar_task/', task.create_task, name='create_calendar_task'),
 
     path('call_notes/<customer_id>/', call_notes.CallNotesCreateView.as_view(), name='add_call_notes'),
     path('call_notes/<customer_id>/<int:pk>/', call_notes.CallNotesUpdateView.as_view(), name='edit_call_notes'),
