@@ -95,5 +95,4 @@ def calendar(request, year=None, month=None):
         tasks=json.dumps(tasks),
         private_tasks=json.dumps(private_tasks)
     )
-    print(tasks)
     return TemplateResponse(request, 'calendars/calendar.html', context)

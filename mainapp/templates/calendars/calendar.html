@@ -35,15 +35,15 @@
                     <div class="row">
                         <div class="col-4">
                             DC/AC
-                            <input type="radio" id="cal_purchase" checked name="calType" onclick="showPurchase()" />
+                            <input type="radio" id="cal_purchase" value="purchase" checked name="calType" onclick="showPurchase()" />
                         </div>
                         <div class="col-4">
                             {% trans 'Public Tasks' %}
-                            <input type="radio" id="cal_tasks" name="calType" onclick="showTasks()" />
+                            <input type="radio" id="cal_tasks" value="public" name="calType" onclick="showTasks()" />
                         </div>
                         <div class="col-4">
                             {% trans 'Private Tasks' %}
-                            <input type="radio" id="cal_private" name="calType" onclick="showPrivateTasks()" />
+                            <input type="radio" id="cal_private" value="private" name="calType" onclick="showPrivateTasks()" />
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                 if (title) {
                     let schedule = {
                         id: +new Date(),
-                        title: title,
+                        title: '(P)' + title,
                         isAllDay: true,
                         start: e.start,
                         end: e.end,
@@ -115,7 +115,8 @@
                     console.log(e.start, e.end, new Date(), title);
                     const obj = {
                         message: title,
-                        todo_date: `${e.start.getFullYear()}-${e.start.getMonth()+1}-${e.start.getDate()}`
+                        todo_date: `${e.start.getFullYear()}-${e.start.getMonth()+1}-${e.start.getDate()}`,
+                        'private': $('input[name=calType]:checked').val() === 'private'
                     };
                     console.log(obj);
                     const url = "{% url 'mainapp:create_calendar_task' %}";

@@ -96,6 +96,8 @@ def create_task(request):
         data = {}
         for k, v in request.POST.items():
             data.update({k: v})
+        data['private'] = data['private'] == 'true'
+        print(data)
         Tasks.objects.create(
             **data,
             user=request.user,
