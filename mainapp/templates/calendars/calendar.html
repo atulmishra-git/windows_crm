@@ -103,22 +103,26 @@
                 console.log('beforeCreateSchedule', e);
                 /* step1. open custom edit popup */
                 const title = prompt('Create new task');
+                const is_private = $('input[name=calType]:checked').val() === 'private';
                 if (title) {
                     let schedule = {
                         id: +new Date(),
-                        title: '(P)' + title,
+                        title: (is_private ? '(P)' : '') + title,
                         isAllDay: true,
                         start: e.start,
                         end: e.end,
                         category: 'time'
                     };
-                    console.log(e.start, e.end, new Date(), title);
                     const obj = {
                         message: title,
                         todo_date: `${e.start.getFullYear()}-${e.start.getMonth()+1}-${e.start.getDate()}`,
-                        'private': $('input[name=calType]:checked').val() === 'private'
+                        'private': is_private
                     };
-                    console.log(obj);
+                    if (obj.private) {
+                        private_tasks.push(schedule);
+                    } else {
+                        tasks.push(schedule);
+                    }
                     const url = "{% url 'mainapp:create_calendar_task' %}";
                     $.post(url , obj, function( data ) {
                         console.log("created!");
