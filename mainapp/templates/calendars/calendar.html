@@ -190,7 +190,7 @@
 
         let tasks = JSON.parse('{{ tasks|safe }}').map(function(each) {
             let body = '<p>' +
-                `{% trans "Message" %} - ${each.message}<br>` +
+                `{% trans "Manager" %} - ${each.user}<br>` +
                 `{% trans "Time" %} - ${each.time}<br>` +
                 `{% trans "Creator" %} - ${each.creator}<br>` +
                 '</p>';
@@ -199,7 +199,7 @@
             return {
                 id: each.id,
                 calendarId: '1',
-                title: prefix + each.user,
+                title: prefix + each.message,
                 body: body,
                 category: 'time',
                 dueDateClass: '',
