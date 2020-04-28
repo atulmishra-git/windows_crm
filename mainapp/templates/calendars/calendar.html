@@ -82,13 +82,13 @@
             },
             taskView: true,
             useCreationPopup: false,
-            useDetailPopup: false,
+            useDetailPopup: true,
             template: {
 
             }
         });
 
-{#        calendar.on({#}
+        calendar.on({
 {#            'clickSchedule': function(e) {#}
 {#                console.log('clickSchedule', e);#}
 {#                /* step1. open custom detail popup */#}
@@ -99,23 +99,23 @@
 {#                    calendar.updateSchedule(e.schedule.id, e.schedule.calendarId, e.schedule);#}
 {#                }#}
 {#            },#}
-{#            'beforeCreateSchedule': function(e) {#}
-{#                console.log('beforeCreateSchedule', e);#}
-{#                /* step1. open custom edit popup */#}
-{#                const title = prompt('Schedule', '@suvrity\'s birthday');#}
-{#                var schedule = {#}
-{#                    id: +new Date(),#}
-{#                    title: title,#}
-{#                    isAllDay: true,#}
-{#                    start: e.start,#}
-{#                    end: e.end,#}
-{#                    category:  'allday'#}
-{#                };#}
-{#                /* step2. save schedule */#}
-{#                calendar.createSchedules([schedule]);#}
-{#                /* step3. clear guide element */#}
-{#                e.guide.clearGuideElement();#}
-{#            },#}
+            'beforeCreateSchedule': function(e) {
+                console.log('beforeCreateSchedule', e);
+                /* step1. open custom edit popup */
+                const title = prompt('Create new task');
+                var schedule = {
+                    id: +new Date(),
+                    title: title,
+                    isAllDay: true,
+                    start: e.start,
+                    end: e.end,
+                    category:  'allday'
+                };
+                /* step2. save schedule */
+                calendar.createSchedules([schedule]);
+                /* step3. clear guide element */
+                e.guide.clearGuideElement();
+            },
 {#            'beforeUpdateSchedule': function(e) {#}
 {#                console.log('beforeUpdateSchedule', e);#}
 {#                e.schedule.start = e.start;#}
@@ -126,7 +126,7 @@
 {#                console.log('beforeDeleteSchedule', e);#}
 {#                calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);#}
 {#            }#}
-{#        });#}
+        });
 
         function yyyymmdd(dateIn) {
             var yyyy = dateIn.getFullYear();
