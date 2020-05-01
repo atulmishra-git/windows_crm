@@ -3,12 +3,14 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import EmailMultiAlternatives
-from django.views.generic import CreateView, UpdateView, DeleteView
-from mainapp.forms.attachments import AttachmentForm
+from django.views import View
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
+
+from mainapp.forms.attachments import AttachmentForm, AttachmentTemplateForm
 from django.shortcuts import render, reverse, redirect
 
 from mainapp.forms.mixins import FormRequestMixin
-from mainapp.models import Customer, Attachments
+from mainapp.models import Customer, Attachments, AttachmentTemplate
 
 
 class CustomerFormKwargMixin:
@@ -66,7 +68,6 @@ class DeleteAttachmentView(LoginRequiredMixin, DeleteView):
 def email_attachment(request, customer_id, pk):
     attachment = Attachments.objects.get(customer_id=customer_id, pk=pk)
     to = attachment.customer.email
-    to = 'ann.shress@gmail.com'
     subject, from_email = '', settings.EMAIL_HOST_USER
     text_content = 'This is an important message.'
     html_content = '<p>This is an <strong>important</strong> message.</p>'
@@ -75,3 +76,16 @@ def email_attachment(request, customer_id, pk):
     msg.attach_file(os.path.join(settings.MEDIA_ROOT, attachment.upload.name))
     msg.send()
     return redirect(reverse('mainapp:home'))
+
+
+class UpdateAttachmentTemplateView(LoginRequiredMixin, View):
+    template_name = 'attachment_type.html'
+    form_class = AttachmentTemplateForm
+    model = AttachmentTemplate
+
+    def get(self, request, *args, **kwargs):
+        objects = AttachmentTemplate.objects.all()
+        context = {
+            'objects': objects
+        }
+        return render(request, self.template_name, context=context)

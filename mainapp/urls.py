@@ -49,6 +49,9 @@ urlpatterns = [
     path('delete/<int:customer_id>/attachments/<int:pk>/', attachments.DeleteAttachmentView.as_view(), name='delete_attachments'),
     path('email/<int:customer_id>/attachment/<int:pk>/', attachments.email_attachment, name='email_attachment'),
 
+    # attachment type settings
+    path('attachment_type/', attachments.UpdateAttachmentTemplateView.as_view(), name='attachment_type'),
+
     # calendar
     path('calendar/', calendars.calendar, name='calendar'),
 
