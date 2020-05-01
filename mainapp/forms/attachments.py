@@ -24,4 +24,4 @@ class AttachmentForm(forms.ModelForm):
 class AttachmentTemplateForm(forms.ModelForm):
     class Meta:
         model = AttachmentTemplate
-        fields = ['kind', 'subject', 'body']
+        fields = ['subject', 'body']

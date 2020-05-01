@@ -5,31 +5,78 @@
 {% block maincontent %}
     <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
-            Here
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home">{% trans 'Offer' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">{% trans 'Offer Confirmation' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">{% trans 'Install' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">{% trans 'Invoice' %}</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <form method="POST" id="id_offer" class="contact100-form validate-form">
+                        {% csrf_token %}
+                        {{ offer_form|crispy }}
+                        <button id="offer" type="button" class="button">{% trans 'Submit' %}</button>
+                    </form>
+                </div>
+                <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <form method="POST" id="id_offer_confirmation" class="contact100-form validate-form">
+                        {% csrf_token %}
+                        {{ offer_confirmation_form|crispy }}
+                        <button id="offer_confirmation" type="button" class="button">{% trans 'Submit' %}</button>
+                    </form>
+                </div>
+                <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                    <form method="POST" id="id_install" class="contact100-form validate-form">
+                        {% csrf_token %}
+                        {{ install_form|crispy }}
+                        <button id="install" type="button" class="button">{% trans 'Submit' %}</button>
+                    </form>
+                </div>
+                <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                    <form method="POST" id="id_invoice" class="contact100-form validate-form">
+                        {% csrf_token %}
+                        {{ invoice_form|crispy }}
+                        <button id="invoice" type="button" class="button">{% trans 'Submit' %}</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        $('#myTab a').on('click', function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            $(this).attr('aria-selected', true);
+        });
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            // e.target // newly activated tab
+            e.relatedTarget.attr('aria-selected', false); // previous active tab
+        });
+        $('.button').on('click', function(e) {
+            let btnId = $(this).attr('id');
+            let formData = $(this).parent().serialize() + '&kind=' + btnId;
+            console.log(formData);
+            $.ajax({
+                url: "{% url 'mainapp:attachment_type' %}",
+                type: 'post',
+                dataType: 'json',
+                data: formData,
+                success: function(data) {}
+            })
+        })
     </script>
 
 {% endblock %}
-
-{#<div class="task-listing">#}
-{#                        <!-- Job Listing Details -->#}
-{#                            <div class="task-listing-details">#}
-{#                                <!-- Details -->#}
-{#                                <div class="task-listing-description">#}
-{#                                    <div class="row">#}
-{#                                            <span>{{ attachment.uploaded_by }}&nbsp</span><br/>#}
-{#                                            <span> (<i>{{ attachment.created_at }}</i>).&nbsp</span>#}
-{#                                    </div>#}
-{#                                    <div class="row">#}
-{#                                            <span class="task-listing-title"><a target="_blank" href="{{ MEDIA_URL }}{{ attachment.upload.url }}">{{ attachment.file_name }}.{{ attachment.file_type }}</a></span>#}
-{#                                            <a style="text-decoration: none" href="{% url 'mainapp:edit_attachments' customer_id=customer_id pk=attachment.id %}" class="">&nbsp &nbsp<i class="icon-feather-edit"></i><span> Edit</span></a>#}
-{#                                            <a style="text-decoration: none" href="{% url 'mainapp:delete_attachments' customer_id=customer_id pk=attachment.id %}" class="">&nbsp &nbsp<i class="icon-material-outline-delete"></i><span class="danger"> Delete</span></a>#}
-{#                                        </p>#}
-{#                                    </div>#}
-{#                                    <br/>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}

@@ -84,8 +84,21 @@ class UpdateAttachmentTemplateView(LoginRequiredMixin, View):
     model = AttachmentTemplate
 
     def get(self, request, *args, **kwargs):
-        objects = AttachmentTemplate.objects.all()
+        templates = AttachmentTemplate.objects.get
         context = {
-            'objects': objects
+            'offer_form': self.form_class(instance=templates(kind='offer')),
+            'offer_confirmation_form': self.form_class(instance=templates(kind='offer confirmation')),
+            'install_form': self.form_class(instance=templates(kind='install')),
+            'invoice_form': self.form_class(instance=templates(kind='invoice')),
         }
         return render(request, self.template_name, context=context)
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST.copy()
+        kind = data.pop('kind')[0]
+        form = self.form_class(instance=AttachmentTemplate.objects.get(kind=kind), data=data)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('mainapp:attachment_type'))
+        else:
+            return redirect(reverse('mainapp:attachment_type'))
