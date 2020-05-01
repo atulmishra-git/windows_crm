@@ -63,7 +63,7 @@ OFFER_CHOICES = (
     ('Email', _('Via Email')),
     ('Letter', _('Via Letter')),
 )
-ATTACHMENT_TYPE = (
+ATTACHMENT_TYPE_CHOICES = (
     ('offer', _('offer')),
     ('offer confirmation', _('offer confirmation')),
     ('install', _('install')),
@@ -331,7 +331,7 @@ class Attachments(models.Model):
 
 class AttachmentTemplate(models.Model):
     kind = models.CharField(_('type'), max_length=32,
-                            choices=ATTACHMENT_TYPE,
+                            choices=ATTACHMENT_TYPE_CHOICES,
                             unique=True)
     subject = models.CharField(_('subject'), max_length=256)
     body = models.TextField()
