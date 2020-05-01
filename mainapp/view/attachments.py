@@ -77,8 +77,7 @@ def email_attachment(request, customer_id, pk):
     except KeyError:
         subject = ''
         text_content = ''
-    # to = attachment.customer.email
-    to = 'ann.shress@gmail.com'
+    to = attachment.customer.email
     from_email = settings.EMAIL_HOST_USER
     # html_content = '<p>This is an <strong>important</strong> message.</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
