@@ -169,3 +169,20 @@ USE_THOUSAND_SEPARATOR = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
+
+# EMAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+FROM_EMAIL = 'energiewerke.bayern@gmail.com'
+FROM_EMAIL_PASSWORD = 'bugs@123'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = FROM_EMAIL
+EMAIL_HOST_PASSWORD = FROM_EMAIL_PASSWORD
+EMAIL_USE_TLS = True
+# use_ssl: EMAIL_USE_SSL
+# timeout: EMAIL_TIMEOUT
+# ssl_keyfile: EMAIL_SSL_KEYFILE
+# ssl_certfile: EMAIL_SSL_CERTFILE

@@ -63,6 +63,12 @@ OFFER_CHOICES = (
     ('Email', _('Via Email')),
     ('Letter', _('Via Letter')),
 )
+ATTACHMENT_TYPE = (
+    ('offer', _('offer')),
+    ('offer confirmation', _('offer confirmation')),
+    ('install', _('install')),
+    ('invoice', _('invoice'))
+)
 
 
 class Customer(models.Model):
@@ -321,6 +327,14 @@ class Attachments(models.Model):
         except Exception as e:
             print("Exception occurs while creating Attachments. Error: {}".format(str(e)))
             return None
+
+
+class AttachmentTemplate(models.Model):
+    kind = models.CharField(_('type'), max_length=32,
+                            choices=ATTACHMENT_TYPE,
+                            unique=True)
+    subject = models.CharField(_('subject'), max_length=256)
+    body = models.TextField()
 
 
 class Tasks(models.Model):

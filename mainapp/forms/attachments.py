@@ -1,6 +1,6 @@
 from django import forms
 
-from mainapp.models import Attachments
+from mainapp.models import Attachments, AttachmentTemplate
 
 
 class AttachmentForm(forms.ModelForm):
@@ -19,3 +19,9 @@ class AttachmentForm(forms.ModelForm):
         if self.request:
             instance.uploaded_by = self.request.user
         instance.save()
+
+
+class AttachmentTemplateForm(forms.ModelForm):
+    class Meta:
+        model = AttachmentTemplate
+        fields = ['kind', 'subject', 'body']

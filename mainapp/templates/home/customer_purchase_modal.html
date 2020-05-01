@@ -133,6 +133,11 @@
                                href="{{ MEDIA_URL }}{{ attachment.upload.url }}">[ <i class="icon-feather-download"></i><span> {% trans 'Download' %} ]</span>
                             </a>
                         </td>
+                        <td>
+                            <a style="text-decoration: none"
+                               href="{% url 'mainapp:email_attachment' customer_id=customer.id pk=attachment.pk %}">[ <i class="icon-feather-mail"></i><span> {% trans 'Email' %} ]</span>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
