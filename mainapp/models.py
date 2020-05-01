@@ -284,6 +284,8 @@ class PurchaseRecord(models.Model):
 class Attachments(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='attachments')
     file_name = models.CharField(_("File Name"), max_length=255)
+    kind = models.CharField(_('kind'), max_length=16,
+                            default='custom')
     upload = ContentTypeRestrictedFileField(_("Upload"), upload_to='uploads/', null=True,
                                             content_types=['application/pdf', 'image/jpg', 'image/png', 'image/gif',
                                                            'image/jpeg', 'image/bmp', 'text/plain', 'text/csv',

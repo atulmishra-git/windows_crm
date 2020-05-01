@@ -68,13 +68,17 @@
         $('.button').on('click', function(e) {
             let btnId = $(this).attr('id');
             let formData = $(this).parent().serialize() + '&kind=' + btnId;
-            console.log(formData);
             $.ajax({
                 url: "{% url 'mainapp:attachment_type' %}",
                 type: 'post',
                 dataType: 'json',
                 data: formData,
-                success: function(data) {}
+                success: function(data) {
+                    alert("{% trans 'Success' %}");
+                },
+                error: function(data) {
+                    alert("{% trans 'Error' %}");
+                }
             })
         })
     </script>

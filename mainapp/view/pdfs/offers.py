@@ -30,6 +30,7 @@ def save_to_attachment(customer, kind, rendered, by):
     pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
     att = Attachments.objects.create(
         file_name=name.split("/")[-1].split(".")[0],
+        kind=kind,
         uploaded_by=by,
         customer_id=customer.id
     )
