@@ -186,3 +186,13 @@ EMAIL_USE_TLS = True
 # timeout: EMAIL_TIMEOUT
 # ssl_keyfile: EMAIL_SSL_KEYFILE
 # ssl_certfile: EMAIL_SSL_CERTFILE
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'windows-crm',
+        'OPTIONS': {
+            'server_max_value_length': 1024 * 1024 * 2,  # 2 MB
+        }
+    }
+}
