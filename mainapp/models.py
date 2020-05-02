@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from mainapp.fields import ContentTypeRestrictedFileField
+from mainapp.view.constants import CALL_NOTE_PRIORITY
 from .usermanager import UserManager
 
 
@@ -69,6 +70,11 @@ ATTACHMENT_TYPE_CHOICES = (
     ('install', _('install')),
     ('invoice', _('invoice'))
 )
+CALL_NOTE_PRIORITY_CHOICES = (
+    (CALL_NOTE_PRIORITY.high, _('high')),
+    (CALL_NOTE_PRIORITY.medium, _('medium')),
+    (CALL_NOTE_PRIORITY.low, _('low')),
+)
 
 
 class Customer(models.Model):
@@ -124,6 +130,8 @@ class CallNotes(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='call_notes')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='call_notes')
     notes = models.CharField(_("notes"), max_length=1000)
+    status = models.PositiveSmallIntegerField(choices=CALL_NOTE_PRIORITY_CHOICES,
+                                              default=CALL_NOTE_PRIORITY.medium)
     created = models.DateTimeField(null=True)
 
     def save(self, *args, **kwargs):

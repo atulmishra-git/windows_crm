@@ -7,7 +7,7 @@ from mainapp.models import CallNotes
 class AddCallNotesForm(LabelAdder, forms.ModelForm):
     class Meta:
         model = CallNotes
-        fields = ['notes']
+        fields = ['notes', 'status']
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request", None)

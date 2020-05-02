@@ -11,7 +11,9 @@
             <form method="POST" id="id_create_callnotes" class="contact100-form validate-form">
                 {% csrf_token %}
                 {{ form }}
+                <br>
                 <button type="submit" class="button">{% trans 'Submit' %}</button>
+                <hr>
             </form>
 
             {% if object_list %}
@@ -19,7 +21,13 @@
                 {% for note in object_list %}
                     <div class="task-listing">
 					<!-- Job Listing Details -->
-                        <div class="task-listing-details">
+                        {% if note.status == 2 %}
+                            <div class="task-listing-details" style="background-color: #f4e671">
+                        {% elif note.status == 0 %}
+                            <div class="task-listing-details" style="background-color: #f46d68">
+                        {% else %}
+                            <div class="task-listing-details" style="background-color: #BFF4A7">
+                        {% endif %}
                             <!-- Details -->
                             <div class="task-listing-description">
                                 <h3 class="task-listing-title">{{ note.created|default:"" }}</h3>
