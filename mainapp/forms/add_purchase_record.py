@@ -22,6 +22,8 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance and self.instance.id:
+            # customer is not required
+            self.fields['customer'].required = False
             # forms cannot handle i18n date change
             self.initial['offer_date'] = str(self.initial['offer_date'])
             self.initial['date_sent'] = str(self.initial['date_sent'])
@@ -108,3 +110,10 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
             'extra_details',
             Submit('submit', _('Submit'))
         )
+
+    def clean(self):
+        result = super(PurchaseRecordForm, self).clean()
+        # if customer is not being updated from the front
+        if not result.get('customer') and self.instance and self.instance.id:
+            result['customer'] = self.instance.customer
+        return result

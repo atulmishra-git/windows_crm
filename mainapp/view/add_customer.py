@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
@@ -35,6 +36,8 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
         return context
 
     def get_success_url(self):
+        messages.success(self.request,
+                         _("Customer added successfully."))
         return reverse('mainapp:list_customer', kwargs=dict())
 
 
@@ -50,6 +53,8 @@ class UpdateCustomerView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self):
+        messages.success(self.request,
+                         _("Customer updated successfully."))
         return reverse('mainapp:list_customer', kwargs=dict())
 
 

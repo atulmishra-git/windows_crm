@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import JsonResponse
@@ -29,6 +30,8 @@ class AddPurchaseView(LoginRequiredMixin, CreateView):
     model = PurchaseRecord
 
     def get_success_url(self):
+        messages.success(self.request,
+                         _("Purchase added successfully."))
         return reverse('mainapp:list_purchase', kwargs=dict())
 
 
@@ -55,6 +58,9 @@ class UpdatePurchaseView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self):
+        messages.add_message(self.request,
+                             messages.SUCCESS,
+                             _("Purchase updated successfully."))
         return reverse('mainapp:list_purchase', kwargs=dict())
 
 

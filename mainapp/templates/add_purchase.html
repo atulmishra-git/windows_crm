@@ -24,11 +24,11 @@
                 {% csrf_token %}
                 <div id="div_id_customer" class="form-group">
                     <label for="id_customer" class="">
-                        {% trans 'Customer' %}*
+                        {% trans 'Customer' %}* {% if form.instance %}: <b>{{ form.instance.customer }}</b> {% endif %}
                     </label>
                     <div class="">
                         <select name="customer" class="form-control selectpicker" id="id_customer" data-live-search="true" title="Customer">
-                            {% for val, display in  form.fields.customer.choices %}
+                            {% for val, display in form.fields.customer.choices %}
                                 <option value="{{ val }}" data-tokens="{{ val }} {{ display }}">{{ display }}</option>
                             {% endfor %}
                         </select>
