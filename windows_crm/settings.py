@@ -189,8 +189,8 @@ EMAIL_USE_TLS = True
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'windows-crm',
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
         'OPTIONS': {
             'server_max_value_length': 1024 * 1024 * 2,  # 2 MB
         }

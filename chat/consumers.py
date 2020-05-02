@@ -116,7 +116,8 @@ class ChatConsumer(WebsocketConsumer):
         room = ChatRoom.objects.get(name=room_name)
         message = Message.objects.create(room=room, sender=sender, message=message)
         # cache the last message in the room name
-        cache.set(room_name, message, 15)
+        # cache.set(room_name, message, 15)
+        # print('cache is set for ', message.message)
 
     def schedule_notification(self, event):
         # schedule a notification if message remains unread
@@ -126,7 +127,7 @@ class ChatConsumer(WebsocketConsumer):
         # message has been read
         reader = event['reader']
         room_name = event['room_name']
-        last_message = cache.get(room_name, None)
-        if not last_message:
-            last_message = ChatRoom.objects.get(name=room_name).room_messages.last()
+        # last_message = cache.get(room_name, None)
+        # if not last_message:
+        last_message = ChatRoom.objects.get(name=room_name).room_messages.last()
         last_message.read_by.add(reader)
