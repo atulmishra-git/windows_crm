@@ -81,6 +81,15 @@
             hist_div.scrollTop = hist_div.scrollHeight;
         };
 
+        // make the last message read
+        room_name = [{{ request.user.id }}, roomName].sort().join('_');
+        chatSocket.onopen = function(e) {
+            chatSocket.send(JSON.stringify({
+                'type': 'read',
+                'room_name': room_name
+            }));
+        };
+
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
         };

@@ -131,3 +131,54 @@ class ChatConsumer(WebsocketConsumer):
         # if not last_message:
         last_message = ChatRoom.objects.get(name=room_name).room_messages.last()
         last_message.read_by.add(reader)
+
+
+class NotificationConsumer(WebsocketConsumer):
+    def connect(self):
+        pass
+
+    def disconnect(self, close_code):
+        # Leave room group
+        async_to_sync(self.channel_layer.group_discard)(
+            self.room_group_name,
+            self.channel_name
+        )
+
+    # Receive message from WebSocket
+    def receive(self, text_data=None, bytes_data=None):
+        text_data_json = json.loads(text_data)
+        msg_type = text_data_json['type']
+        if msg_type == 'message':
+            message = text_data_json['message']
+            # save it
+            async_to_sync(self.channel_layer.send)(
+                self.channel_name,
+                {
+                    'type': 'save_message',
+                    'message': message
+                }
+            )
+
+            # Send message to room group
+            async_to_sync(self.channel_layer.group_send)(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'message': message,
+                    'sender': self.scope['user'].id
+                }
+            )
+        elif msg_type == 'read':
+            # update the message read_by field
+            async_to_sync(self.channel_layer.send)(
+                self.channel_name,
+                {
+                    'type': 'read_message',
+                    'room_name': text_data_json['room_name'],
+                    'reader': self.scope['user'].id
+                }
+            )
+
+    def schedule_notification(self, event):
+        # schedule a notification if message remains unread
+        pass

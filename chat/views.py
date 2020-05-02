@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models.expressions import F, Q, Value, Subquery, OuterRef
 from django.db.models.functions import Concat
+from django.http import JsonResponse
 from django.shortcuts import render
 
 from chat.consumers import get_room
@@ -52,4 +53,11 @@ def room(request, user):
     return render(request, 'chat/room.html', {
         'room_name': user,
         'messages': list(Message.objects.filter(room__name=room_name).order_by('-id'))[:50][::-1]
+    })
+
+
+@login_required
+def unread_chat_rooms(request):
+    return JsonResponse(data={
+        'count': ChatRoom.unread_chat_rooms(request.user)
     })

@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('unread_rooms/', views.unread_chat_rooms, name='unread_rooms'),
     path('<str:user>/', views.room, name='room'),
+    path('', views.index, name='index'),
 ]
