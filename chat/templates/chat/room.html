@@ -108,6 +108,10 @@
                 'type': 'message',
                 'message': message
             }));
+            notificationSocket.send(JSON.stringify({
+                'type': 'notification',
+                'for': roomName
+            }));
             messageInputDom.value = '';
         };
 

@@ -12,7 +12,6 @@ class ChatRoom(models.Model):
             not room.get_last_message().is_read(user)
             for room in user.chat_rooms.all()
         ]
-        print(reads)
         return sum(reads)
 
     def get_last_message(self):

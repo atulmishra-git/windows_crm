@@ -119,10 +119,6 @@ class ChatConsumer(WebsocketConsumer):
         # cache.set(room_name, message, 15)
         # print('cache is set for ', message.message)
 
-    def schedule_notification(self, event):
-        # schedule a notification if message remains unread
-        pass
-
     def read_message(self, event):
         # message has been read
         reader = event['reader']
@@ -134,51 +130,43 @@ class ChatConsumer(WebsocketConsumer):
 
 
 class NotificationConsumer(WebsocketConsumer):
+    public = "public"
+
     def connect(self):
-        pass
+        if not self.scope['user'].is_authenticated:
+            # not accepting
+            return
+        # Join room group
+        async_to_sync(self.channel_layer.group_add)(
+            self.public,
+            self.channel_name
+        )
+        self.accept()
 
     def disconnect(self, close_code):
         # Leave room group
         async_to_sync(self.channel_layer.group_discard)(
-            self.room_group_name,
+            self.public,
             self.channel_name
         )
 
     # Receive message from WebSocket
+    # and broadcast to everyone
     def receive(self, text_data=None, bytes_data=None):
         text_data_json = json.loads(text_data)
-        msg_type = text_data_json['type']
-        if msg_type == 'message':
-            message = text_data_json['message']
-            # save it
-            async_to_sync(self.channel_layer.send)(
-                self.channel_name,
-                {
-                    'type': 'save_message',
-                    'message': message
-                }
-            )
+        print(text_data_json)
+        # Send message to room group
+        async_to_sync(self.channel_layer.group_send)(
+            self.public,
+            {
+                'type': 'notify',
+                'for': text_data_json['for'],
+            }
+        )
 
-            # Send message to room group
-            async_to_sync(self.channel_layer.group_send)(
-                self.room_group_name,
-                {
-                    'type': 'chat_message',
-                    'message': message,
-                    'sender': self.scope['user'].id
-                }
-            )
-        elif msg_type == 'read':
-            # update the message read_by field
-            async_to_sync(self.channel_layer.send)(
-                self.channel_name,
-                {
-                    'type': 'read_message',
-                    'room_name': text_data_json['room_name'],
-                    'reader': self.scope['user'].id
-                }
-            )
-
-    def schedule_notification(self, event):
-        # schedule a notification if message remains unread
-        pass
+    # Receive message from room group
+    def notify(self, event):
+        # Send message to WebSocket
+        self.send(text_data=json.dumps({
+            'for': event['for'],
+        }))

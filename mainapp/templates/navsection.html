@@ -97,5 +97,19 @@
                 $('.chat_badge').html(data.count);
             }
         }
-    })
+    });
+
+    const notificationSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/chat/notification/'
+    );
+
+    notificationSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        console.log({{ request.user.id }}, data.for);
+        if ({{ request.user.id }} == data.for) {
+            $('.chat_badge').html('New');
+        }
+    };
 </script>
