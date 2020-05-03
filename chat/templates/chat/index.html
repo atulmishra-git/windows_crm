@@ -29,9 +29,11 @@
                       {% if user.last_sender == request.user.first_name %}
                         {% trans 'You' %}:
                       {% else %}
+                          {% if not user.last_message.is_read_by_receiver %}
+                              <span style="background-color: red; font-size: 12px; border-radius: 5px; width: 15px; display: inline-block; text-align:center">!!!</span>
+                          {% endif %}
                         {{ user.last_sender|default:"" }}:
                       {% endif %} <span id="last_message_{{ user.id }}">{{ user.last_message|default:"" }}</span>
-{#                      {% if not user.last_message. %}#}
                   </div>
                 </div>
               </div>
