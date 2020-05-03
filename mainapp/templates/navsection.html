@@ -16,7 +16,7 @@
         <a href="/"><i class="fas fa-home"></i>&nbsp {% trans 'Dashboard' %}</a>
 {#        <a href=""><i class="fas fa-user">&nbsp {{ customer.first_name }} {{ customer.surname }}</i></a>#}
 {#        <a href=""><i class="fas fa-envelope">&nbsp {{ customer.email }}</i></a>#}
-        <a href="/chat/"><i class="fas fa-comment"></i>&nbsp {% trans 'Chat' %} <span class="chat_badge" style="background-color: red; font-size: 10px; border-radius: 5px; width: 20px; display: inline-block; text-align:center"></span></a>
+        <a href="/chat/"><i class="fas fa-comment"></i>&nbsp {% trans 'Chat' %} <span class="chat_badge" style="background-color: red; font-size: 12px; border-radius: 5px; width: 27px; display: inline-block; text-align:center"></span></a>
         <a href="/task_list/"><i class="fas fa-calendar-check"></i>&nbsp {% trans 'To Do' %}</a>
         <a href="{% url 'mainapp:calendar' %}"><i class="fas fa-calendar-alt"></i>&nbsp {% trans 'Calendar' %}</a>
         <a href="{% url 'mainapp:attachment_type' %}"><i class="fas fa-cog"></i>&nbsp {% trans 'Settings' %}</a>
@@ -107,7 +107,6 @@
 
     notificationSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
-        console.log({{ request.user.id }}, data.for);
         if ({{ request.user.id }} == data.for) {
             $('.chat_badge').html('New');
         }

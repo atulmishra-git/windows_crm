@@ -25,11 +25,14 @@
                 </div>
                 <div class="chat_ib">
                   <h4>{{ user }} <span class="chat_date"></span></h4>
-                  <h5>{% if user.last_sender == request.user.first_name %}
-                      {% trans 'You' %}:
+                  <div>
+                      {% if user.last_sender == request.user.first_name %}
+                        {% trans 'You' %}:
                       {% else %}
-                      {{ user.last_sender|default:"" }}:
-                      {% endif %} {{ user.last_message|default:"" }}</h5>
+                        {{ user.last_sender|default:"" }}:
+                      {% endif %} <span id="last_message_{{ user.id }}">{{ user.last_message|default:"" }}</span>
+{#                      {% if not user.last_message. %}#}
+                  </div>
                 </div>
               </div>
             </div>
@@ -38,4 +41,19 @@
           </div>
         </div>
     </div>
+
+    <script>
+    // notificationSocket set in navsection.html
+    notificationSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        if ({{ request.user.id }} == data.for) {
+            $('.chat_badge').html('New');
+            const element = $(`span#last_message_${data.sender}`);
+            element.text(data.message);
+
+            const ele = `<span class="chat_badge" style="background-color: red; font-size: 12px; border-radius: 5px; width: 25px; display: inline-block; text-align:center">New</span>`
+            element.parent().append(ele);
+        }
+    };
+    </script>
 {% endblock %}

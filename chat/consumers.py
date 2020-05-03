@@ -154,13 +154,14 @@ class NotificationConsumer(WebsocketConsumer):
     # and broadcast to everyone
     def receive(self, text_data=None, bytes_data=None):
         text_data_json = json.loads(text_data)
-        print(text_data_json)
         # Send message to room group
         async_to_sync(self.channel_layer.group_send)(
             self.public,
             {
                 'type': 'notify',
                 'for': text_data_json['for'],
+                'message': text_data_json['message'],
+                'sender': self.scope['user'].id
             }
         )
 
@@ -169,4 +170,6 @@ class NotificationConsumer(WebsocketConsumer):
         # Send message to WebSocket
         self.send(text_data=json.dumps({
             'for': event['for'],
+            'message': event['message'],
+            'sender': event['sender'],
         }))
