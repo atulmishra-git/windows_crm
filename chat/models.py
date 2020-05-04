@@ -37,6 +37,11 @@ class Message(models.Model):
             return by in self.read_by.all()
         return True
 
+    @property
+    def is_read_by_receiver(self):
+        receiver = self.room.users.exclude(id=self.sender_id).first()
+        return receiver in self.read_by.all()
+
     def save(self, *args, **kwargs):
         if self.sender not in self.room.users.all():
             raise PermissionError("Not part of the group.")
