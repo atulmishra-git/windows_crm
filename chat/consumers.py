@@ -126,7 +126,8 @@ class ChatConsumer(WebsocketConsumer):
         # last_message = cache.get(room_name, None)
         # if not last_message:
         last_message = ChatRoom.objects.get(name=room_name).room_messages.last()
-        last_message.read_by.add(reader)
+        if last_message:
+            last_message.read_by.add(reader)
 
 
 class NotificationConsumer(WebsocketConsumer):

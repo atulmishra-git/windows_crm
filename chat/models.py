@@ -10,12 +10,15 @@ class ChatRoom(models.Model):
     def unread_chat_rooms(cls, user):
         reads = [
             not room.get_last_message().is_read(user)
-            for room in user.chat_rooms.all()
+            for room in user.chat_rooms.all() if room.get_last_message() is not None
         ]
         return sum(reads)
 
     def get_last_message(self):
-        return self.room_messages.latest('timestamp')
+        try:
+            return self.room_messages.latest('timestamp')
+        except Message.DoesNotExist:
+            return None
 
 
 class Message(models.Model):
