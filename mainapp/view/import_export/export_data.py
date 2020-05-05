@@ -1,4 +1,5 @@
 import xlwt
+from datetime import date
 from django.http import HttpResponse
 
 from mainapp.models import Customer
@@ -42,10 +43,26 @@ def export_xls(request):
     ]
 
     font_style = xlwt.XFStyle()
+    ####
+    bg_red = xlwt.XFStyle()
+    pattern = xlwt.Pattern()
+    pattern.pattern = xlwt.Pattern.SOLID_PATTERN
+    pattern.pattern_fore_colour = xlwt.Style.colour_map['red']
+    bg_red.pattern = pattern
+
+    bg_yellow = xlwt.XFStyle()
+    pattern = xlwt.Pattern()
+    pattern.pattern = xlwt.Pattern.SOLID_PATTERN
+    pattern.pattern_fore_colour = xlwt.Style.colour_map['yellow']
+    bg_yellow.pattern = pattern
+
+    ####
     font_style.font.bold = True
+    date_style = xlwt.easyxf(num_format_str='DD-MM-YYYY')
 
     for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num][0], font_style)
+        style = bg_yellow
+        ws.write(row_num, col_num, columns[col_num][0], style)
         # set column width
         ws.col(col_num).width = columns[col_num][1]
 
@@ -65,7 +82,7 @@ def export_xls(request):
             obj.email,
             obj.phone,
             obj.birthday,
-            "",
+            "*****",
         ]
         if purchase is not None:
             row += [
@@ -77,7 +94,7 @@ def export_xls(request):
                 getattr(purchase, "kwp", None),
                 getattr(purchase, "extra_details", None),
                 "Yes" if getattr(purchase, "project_planning_created", None) else "No",
-                getattr(purchase, "price_with_tax", None),
+                "€{}".format(getattr(purchase, "price_with_tax", None)) if getattr(purchase, "price_with_tax", None) else "",
                 getattr(purchase, "date_sent", None),
                 getattr(purchase, "dc_term", None),
                 getattr(purchase, "dc_mechanic", None),
@@ -85,7 +102,18 @@ def export_xls(request):
                 getattr(purchase, "ac_mechanic", None),
             ]
         for col_num in range(len(row)):
-            ws.write(row_num, col_num, row[col_num], font_style)
+            style = font_style
+            val = row[col_num]
+            if isinstance(val, date):
+                style = date_style
+            elif row[col_num] == "*****":
+                style = bg_red
+                val = ""
+            ws.write(row_num, col_num, val, style)
 
     wb.save(response)
     return response
+
+
+def import_xls(request):
+    pass
