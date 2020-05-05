@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from mainapp.view import login, home, add_manager, add_customer, \
     add_purchase, call_notes, attachments, task, calendars
+from mainapp.view.import_export.export_data import export_xls
 from mainapp.view.pdfs import offers
 
 
@@ -54,6 +55,9 @@ urlpatterns = [
 
     # calendar
     path('calendar/', calendars.calendar, name='calendar'),
+
+    # export and import urls
+    path('export_data/', export_xls, name='export_xls'),
 
     path('offer/<customer_id>/', offers.download_offer, name='pdf_offer'),
     path('offer_confirm/<customer_id>/', offers.download_offer_confirm, name='pdf_offer_confirm'),
