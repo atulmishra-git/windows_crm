@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models.aggregates import Count
 from django.db.models.expressions import F, Q, Value, Subquery, OuterRef
 from django.db.models.functions import Concat
 from django.http import JsonResponse
@@ -15,6 +16,9 @@ def index(request):
     last_message = Subquery(Message.objects.filter(
         room_id=OuterRef('chat_room')
     ).order_by('-id').values('message')[:1])
+    last_message_read_by = Subquery(Message.objects.filter(
+        room_id=OuterRef('chat_room')
+    ).order_by('-id').annotate(count=Count('read_by__id')).values('count')[:1])
     last_sender = Subquery(Message.objects.filter(
         room_id=OuterRef('chat_room')
     ).order_by('-id').values('sender__first_name')[:1])
@@ -34,6 +38,7 @@ def index(request):
 
     users_with_chat_room_messages = users_with_chat_room.annotate(
         last_message=last_message,
+        last_message_read_by=last_message_read_by,
         last_sender=last_sender,
     )
     context = {

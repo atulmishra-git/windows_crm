@@ -29,7 +29,7 @@
                       {% if user.last_sender == request.user.first_name %}
                         {% trans 'You' %}:
                       {% else %}
-                          {% if not user.last_message.is_read_by_receiver %}
+                          {% if user.last_message_read_by < 2 %}
                               <span style="background-color: #89ff3e; font-size: 15px; border-radius: 50%; width: 25px; display: inline-block; vertical-align: middle; text-align:center">&#9055;</span>
                           {% endif %}
                         {{ user.last_sender|default:"" }}:
