@@ -30,7 +30,7 @@
                         {% trans 'You' %}:
                       {% else %}
                           {% if not user.last_message.is_read_by_receiver %}
-                              <span style="background-color: red; font-size: 12px; border-radius: 5px; width: 15px; display: inline-block; text-align:center">!!!</span>
+                              <span style="background-color: #89ff3e; font-size: 15px; border-radius: 50%; width: 25px; display: inline-block; vertical-align: middle; text-align:center">&#9055;</span>
                           {% endif %}
                         {{ user.last_sender|default:"" }}:
                       {% endif %} <span id="last_message_{{ user.id }}">{{ user.last_message|default:"" }}</span>
@@ -49,12 +49,16 @@
     notificationSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
         if ({{ request.user.id }} == data.for) {
-            $('.chat_badge').html('New');
+            $('.chat_badge').html('Nachricht vorhanden');
             const element = $(`span#last_message_${data.sender}`);
+            element.attr('style', 'background-color: #C2FF34;');
             element.text(data.message);
 
-            const ele = `<span class="chat_badge" style="background-color: red; font-size: 12px; border-radius: 5px; width: 25px; display: inline-block; text-align:center">New</span>`
-            element.parent().append(ele);
+{#            const ele = `<span class="chat_badge">Nachricht vorhanden</span>`;#}
+{#            console.log(element.parent());#}
+{#            if (element.parent()) {#}
+{#                element.parent().append(ele)#}
+{#            }#}
         }
     };
     </script>

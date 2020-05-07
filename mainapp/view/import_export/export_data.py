@@ -9,7 +9,7 @@ def export_xls(request):
     customers = Customer.objects.all()
 
     response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename=data_dump.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=data_dump.xls'
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet("Data")
 
