@@ -24,8 +24,9 @@
                     <img src="https://picsum.photos/seed/{{ user.id }}/200/200" class="img-fluid mx-auto rounded-circle"  alt="">
                 </div>
                 <div class="chat_ib">
-                  <h4>{{ user }} <span class="chat_date"></span></h4>
+                  <h4 id="sender_{{ user.id }}">{{ user }}</h4>
                   <div>
+                  <span id="last_sender">
                       {% if user.last_sender == request.user.first_name %}
                         {% trans 'You' %}:
                       {% else %}
@@ -33,7 +34,9 @@
                               <span style="background-color: #89ff3e; font-size: 15px; border-radius: 50%; width: 25px; display: inline-block; vertical-align: middle; text-align:center">&#9055;</span>
                           {% endif %}
                         {{ user.last_sender|default:"" }}:
-                      {% endif %} <span id="last_message_{{ user.id }}">{{ user.last_message|default:"" }}</span>
+                      {% endif %}
+                  </span>&nbsp;
+                  <span id="last_message_{{ user.id }}">{{ user.last_message|default:"" }}</span>
                   </div>
                 </div>
               </div>
@@ -53,6 +56,9 @@
             const element = $(`span#last_message_${data.sender}`);
             element.attr('style', 'background-color: #C2FF34;');
             element.text(data.message);
+
+            let sender = $(`#sender_${data.sender}`).text();
+            $('#last_sender').text(sender + ':');
 
 {#            const ele = `<span class="chat_badge">Nachricht vorhanden</span>`;#}
 {#            console.log(element.parent());#}
