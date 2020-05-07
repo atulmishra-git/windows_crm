@@ -43,7 +43,7 @@ def calendar(request, year=None, month=None):
             "id": each.id,
             "customer_id": each.customer_id,
             "name": each.customer.first_name + " " + each.customer.surname,
-            "dc_term": str(each.dc_term),
+            "dc_term": str(each.ac_term),
             "customer": {
                 "street": each.customer.street or "",
                 "postcode": each.customer.postcode or "",
