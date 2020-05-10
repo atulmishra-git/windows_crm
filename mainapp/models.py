@@ -88,7 +88,7 @@ class Customer(models.Model):
     place = models.CharField(_("place"), max_length=255)
     surname = models.CharField(_("surname"), max_length=255)
     phone = models.CharField(_("Phone"), max_length=20, unique=True)
-    mobile = models.CharField(_("Mobile"), max_length=20, unique=True, null=True, blank=True)
+    mobile = models.CharField(_("Mobile"), max_length=20, null=True, blank=True)
     email = models.EmailField(_("Email"), null=True, blank=True)
     birthday = models.DateField(_("Birthday"), null=True, blank=True)
     is_active = models.BooleanField(_('active'), default=True)

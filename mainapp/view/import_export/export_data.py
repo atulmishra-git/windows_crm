@@ -1,8 +1,14 @@
-import xlwt
 from datetime import date
-from django.http import HttpResponse
 
-from mainapp.models import Customer
+import xlwt
+import xlrd
+from django.contrib import messages
+from django.core.files.storage import default_storage
+from django.http import HttpResponse
+from django.http.response import JsonResponse
+from django.shortcuts import redirect
+
+from mainapp.models import Customer, PurchaseRecord
 
 
 def export_xls(request):
@@ -116,4 +122,110 @@ def export_xls(request):
 
 
 def import_xls(request):
-    pass
+    file = request.FILES['xls_file']
+    default_storage.save(file.name, file)
+
+    wb = xlrd.open_workbook('media/' + file.name)
+    # take the first sheet
+    sheet = wb.sheet_by_index(0)
+
+    customer_keys = [
+        'first_name',
+        'surname',
+        'street',
+        'postcode',
+        'place',
+        'email',
+        'phone',
+        'birthday',
+        '_'
+    ]
+    purchase_keys = [
+        'offer_date',
+        'reseller_name',
+        'module_count',
+        'watt',
+        'with_battery',  # if true 'kwh' else 'kwh2'
+        'kwp',
+        'extra_details',
+        'project_planning_created',  # yes/no
+        'price_with_tax',  # price with tax
+        'date_sent',
+        'dc_term',
+        'dc_mechanic',
+        'ac_term',
+        'ac_mechanic',
+    ]
+
+    all_keys = customer_keys + purchase_keys
+    for row in range(1, sheet.nrows):
+        d = {}
+        for col in range(1, len(all_keys) + 1):
+            d[all_keys[col - 1]] = sheet.cell_value(row, col)
+        customer_data = {}
+        purchase_data = {}
+
+        if not d['phone']:
+            messages.error(request, 'Phone Missing.')
+            return redirect('mainapp:list_customer')
+        customer_data['phone'] = d['phone']
+
+        customer_data['email'] = d['email']
+        customer_data['first_name'] = d['first_name']
+        customer_data['surname'] = d['surname']
+        customer_data['street'] = d['street']
+        customer_data['postcode'] = d['postcode']
+        customer_data['place'] = d['place']
+
+        # check if customer exists
+        customer = Customer(**customer_data)
+        if Customer.objects.filter(phone=d['phone']).exists():
+            customer = Customer.objects.get(phone=d['phone'])
+            # delete the existing purchase record
+            if getattr(customer, 'purchase_record', None):
+                customer.purchase_record.delete()
+            for k, v in customer_data.items():
+                setattr(customer, k, v)
+
+        if d['birthday']:
+            customer.birthday = xlrd.xldate.xldate_as_datetime(d['birthday'], wb.datemode)
+        customer.save()
+
+        # purchase
+        if d['offer_date']:
+            purchase_data['offer_date'] = xlrd.xldate.xldate_as_datetime(d['offer_date'], wb.datemode)
+        purchase_data['reseller_name'] = d['reseller_name']
+        if d['module_count']:
+            purchase_data['module_count'] = float(d['module_count'])
+        if d['watt']:
+            purchase_data['watt'] = float(d['watt'])
+
+        if d['with_battery']:
+            with_battery_data, kwh_data = d['with_battery'].split(' ')
+            if with_battery_data == 'Yes':
+                with_battery = True
+                key = 'kwh'
+            else:
+                with_battery = False
+                key = 'kwh2'
+            purchase_data['with_battery'] = with_battery
+            purchase_data[key] = kwh_data
+
+        # purchase_data['kwp'] = d['kwp']
+        purchase_data['extra_details'] = d['extra_details']
+        purchase_data['project_planning_created'] = d['project_planning_created'] == 'Yes'
+        if d['price_with_tax']:
+            purchase_data['price_without_tax'] = float(d['price_with_tax'][1:]) / 1.19
+        if d['date_sent']:
+            purchase_data['date_sent'] = xlrd.xldate.xldate_as_datetime(d['date_sent'], wb.datemode)
+        if d['dc_term']:
+            purchase_data['dc_term'] = xlrd.xldate.xldate_as_datetime(d['dc_term'], wb.datemode)
+        purchase_data['dc_mechanic'] = d['dc_mechanic']
+        if d['ac_term']:
+            purchase_data['ac_term'] = xlrd.xldate.xldate_as_datetime(d['ac_term'], wb.datemode)
+        purchase_data['ac_mechanic'] = d['ac_mechanic']
+
+        if any([purchase_data.get('module_count'), purchase_data.get('dc_term'), purchase_data.get('ac_term'),
+                purchase_data.get('date_sent'), purchase_data.get('watt')]):
+            PurchaseRecord.objects.create(customer=customer, **purchase_data)
+    return redirect('mainapp:list_customer')

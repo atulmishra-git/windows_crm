@@ -9,9 +9,18 @@
                 <p>
                     <a class="button" href="{% url 'mainapp:add_customer' %}">{% blocktrans %}Add Customer{% endblocktrans %}</a>&nbsp;&nbsp;
                     <a class="button" target="_blank" href="{% url 'mainapp:export_xls' %}">{% blocktrans %}Export{% endblocktrans %}</a>&nbsp;&nbsp;
-                    <a class="button" target="_blank" href="{% url 'mainapp:import_xls' %}">{% blocktrans %}Import{% endblocktrans %}</a>&nbsp;&nbsp;
-                    <br/>
                 </p>
+                <form action="{% url 'mainapp:import_xls' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="file" name="xls_file" title="Import" />&nbsp;&nbsp;
+                        </div>
+                        <div class="col-6">
+                            <button class="button" type="submit" >{% blocktrans %}Import{% endblocktrans %}</button>&nbsp;&nbsp;
+                        </div>
+                    </div>
+                </form>
             </div>
             <br>
             <button class="btn btn-outline-secondary" onclick="toggleFilter()">{% trans 'Search' %}</button>
