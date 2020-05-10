@@ -180,7 +180,7 @@
             return {
                 id: each.id,
                 calendarId: '1',
-                title: each.name + '-' + each.customer_id,
+                title: (each.purchase.dc ? '[DC] ' : '[AC] ') + each.name + '-' + each.customer_id,
                 body: body,
                 category: 'time',
                 dueDateClass: '',
