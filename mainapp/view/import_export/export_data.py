@@ -126,6 +126,8 @@ def import_xls(request):
     default_storage.save(file.name, file)
 
     wb = xlrd.open_workbook('media/' + file.name)
+    import os
+    os.remove('media/' + file.name)
     # take the first sheet
     sheet = wb.sheet_by_index(0)
 
