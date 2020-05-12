@@ -5,7 +5,6 @@ import xlrd
 from django.contrib import messages
 from django.core.files.storage import default_storage
 from django.http import HttpResponse
-from django.http.response import JsonResponse
 from django.shortcuts import redirect
 
 from mainapp.models import Customer, PurchaseRecord
@@ -194,8 +193,6 @@ def import_xls(request):
         customer.save()
 
         # purchase
-        if d['offer_date']:
-            purchase_data['offer_date'] = xlrd.xldate.xldate_as_datetime(d['offer_date'], wb.datemode)
         purchase_data['reseller_name'] = d['reseller_name']
         if d['module_count']:
             purchase_data['module_count'] = float(d['module_count'])
@@ -217,14 +214,22 @@ def import_xls(request):
         purchase_data['extra_details'] = d['extra_details']
         purchase_data['project_planning_created'] = d['project_planning_created'] == 'Yes'
         if d['price_with_tax']:
-            purchase_data['price_without_tax'] = float(d['price_with_tax'][1:]) / 1.19
-        if d['date_sent']:
-            purchase_data['date_sent'] = xlrd.xldate.xldate_as_datetime(d['date_sent'], wb.datemode)
-        if d['dc_term']:
-            purchase_data['dc_term'] = xlrd.xldate.xldate_as_datetime(d['dc_term'], wb.datemode)
+            if not isinstance(d['price_with_tax'], float):
+                purchase_data['price_without_tax'] = float(d['price_with_tax'][1:]) / 1.19
+            else:
+                purchase_data['price_without_tax'] = d['price_with_tax'] / 1.19
+        try:
+            if d['offer_date']:
+                purchase_data['offer_date'] = xlrd.xldate.xldate_as_datetime(d['offer_date'], wb.datemode)
+            if d['date_sent']:
+                purchase_data['date_sent'] = xlrd.xldate.xldate_as_datetime(d['date_sent'], wb.datemode)
+            if d['dc_term']:
+                purchase_data['dc_term'] = xlrd.xldate.xldate_as_datetime(d['dc_term'], wb.datemode)
+            if d['ac_term']:
+                purchase_data['ac_term'] = xlrd.xldate.xldate_as_datetime(d['ac_term'], wb.datemode)
+        except:
+            pass
         purchase_data['dc_mechanic'] = d['dc_mechanic']
-        if d['ac_term']:
-            purchase_data['ac_term'] = xlrd.xldate.xldate_as_datetime(d['ac_term'], wb.datemode)
         purchase_data['ac_mechanic'] = d['ac_mechanic']
 
         if any([purchase_data.get('module_count'), purchase_data.get('dc_term'), purchase_data.get('ac_term'),
