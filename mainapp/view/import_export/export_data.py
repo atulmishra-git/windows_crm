@@ -158,6 +158,8 @@ def import_xls(request):
         'ac_mechanic',
     ]
 
+    created_customer = 0
+
     all_keys = customer_keys + purchase_keys
     for row in range(1, sheet.nrows):
         d = {}
@@ -182,6 +184,7 @@ def import_xls(request):
         customer = Customer(**customer_data)
         if Customer.objects.filter(phone=d['phone']).exists():
             customer = Customer.objects.get(phone=d['phone'])
+            created_customer += 1
             # delete the existing purchase record
             if getattr(customer, 'purchase_record', None):
                 customer.purchase_record.delete()
@@ -235,4 +238,5 @@ def import_xls(request):
         if any([purchase_data.get('module_count'), purchase_data.get('dc_term'), purchase_data.get('ac_term'),
                 purchase_data.get('date_sent'), purchase_data.get('watt')]):
             PurchaseRecord.objects.create(customer=customer, **purchase_data)
+    messages.success(request, '{} neue kunden'.format(created_customer))
     return redirect('mainapp:list_customer')
