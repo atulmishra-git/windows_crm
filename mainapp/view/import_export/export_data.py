@@ -184,12 +184,13 @@ def import_xls(request):
         customer = Customer(**customer_data)
         if Customer.objects.filter(phone=d['phone']).exists():
             customer = Customer.objects.get(phone=d['phone'])
-            created_customer += 1
             # delete the existing purchase record
             if getattr(customer, 'purchase_record', None):
                 customer.purchase_record.delete()
             for k, v in customer_data.items():
                 setattr(customer, k, v)
+        else:
+            created_customer += 1
 
         if d['birthday']:
             customer.birthday = xlrd.xldate.xldate_as_datetime(d['birthday'], wb.datemode)
