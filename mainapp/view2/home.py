@@ -9,7 +9,7 @@ from random import randrange
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'admin/index.html'
+    template_name = 'dashboard/index.html'
 
     def get(self, request, customer_id=None, *args, **kwargs):
         search_form = SearchForm()

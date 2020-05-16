@@ -1,11 +1,77 @@
-/*================================================================================
-	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-	Version: 2.0
-	Author: PIXINVENT
-	Author URL: http://www.themeforest.net/user/pixinvent
-================================================================================
+/*------------------------------------------------------------------
+	[Master Stylesheet]
+	
+	Project:    Project Name
+	Version:    1.0
+	Last change:    24/03/17 [fixed Float bug, vf]
+	Author Name: Author Name
+	Primary use:    Project Type
+-------------------------------------------------------------------*/
 
-NOTE:
-------
-PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
-WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+/*------------------------------------------------------------------
+	[Table of contents]
+	
+	1. Body
+	2.
+-------------------------------------------------------------------*/
+
+/*
+	==========================================
+    Reset Css
+	==========================================
+*/
+ul {
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+/* login-bg */
+.login-bg{
+	background:url('../img/login_bg.jpg');
+	background-size:cover;
+	background-position:bottom;
+	background-repeat:no-repeat;
+	height:100vh;
+}
+
+.login-form-area {
+	padding: 100px 13px;
+}
+
+.logo {
+	text-align: center;
+	margin-top: 50px;
+}
+.login-form-area a {
+	margin: -20px;
+	display: block;
+}
+.login-bottom-area{
+	padding: 0px 13px;
+}
+.login-bottom-area h6{
+	margin: 5px 0px;
+	color:#575252;
+	font-size: 17px;
+}
+.login-bottom-area a {
+    font-size: 18px;
+    margin: 3px 0px;
+    display: block;
+}
+.errorlist {
+	color: red
+}

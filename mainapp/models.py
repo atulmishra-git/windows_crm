@@ -87,9 +87,12 @@ class Customer(models.Model):
     postcode = models.CharField(_("postcode"), max_length=255)
     place = models.CharField(_("place"), max_length=255)
     surname = models.CharField(_("surname"), max_length=255)
-    phone = models.CharField(_("Phone"), max_length=20, unique=True)
-    mobile = models.CharField(_("Mobile"), max_length=20, null=True, blank=True)
-    email = models.EmailField(_("Email"), null=True, blank=True)
+    phone = models.CharField(_("Phone"), max_length=20, unique=True,
+                             default='N.A')
+    mobile = models.CharField(_("Mobile"), max_length=20, null=True, blank=True,
+                              default='N.A')
+    email = models.CharField(_("Email"), max_length=120, null=True, blank=True,
+                             default='N.A')
     birthday = models.DateField(_("Birthday"), null=True, blank=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_deleted = models.BooleanField(_('deleted'), default=False)
