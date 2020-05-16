@@ -11,10 +11,16 @@ from random import randrange
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/index.html'
 
-    def get(self, request, customer_id=None, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         search_form = SearchForm()
         add_manager_form = AddManagerForm()
         customer = Customer.objects.last()
+        customer_id = request.GET.get('customer', 0)
+        try:
+            if customer_id:
+                customer = Customer.objects.get(id=customer_id)
+        except Customer.DoesNotExist:
+            pass
         context = {
             'search_form': search_form,
             'add_manage_form': add_manager_form,
@@ -23,65 +29,15 @@ class HomeView(LoginRequiredMixin, TemplateView):
         }
         return render(request, self.template_name, context=context)
 
-    def post(self, request):
-        query = request.POST.get('name')
-        try:
-            int_query = int(query)
-        except ValueError:
-            int_query = 0
 
-        customer_list = {}
-        if int_query > 0:
-            customer_list = Customer.objects.filter(id=int_query)
-        elif query:
-            customer_list = Customer.objects.filter(
-                Q(first_name__icontains=query) |
-                Q(surname__icontains=query) | Q(email__icontains=query) |
-                Q(phone__icontains=query) | Q(mobile__icontains=query)
-            )
+class SearchCustomerView(LoginRequiredMixin, TemplateView):
+    template_name = 'search/index.html'
 
+    def get(self, request, *args, **kwargs):
         context = {
-            'customers': customer_list
-        }
-        return render(request, 'home/search_customers.html', context=context)
-
-
-class NewHomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'home/home.html'
-
-    def get(self, request, customer_id=None, *args, **kwargs):
-        search_form = SearchForm()
-        add_manager_form = AddManagerForm()
-        customer = Customer.objects.last()
-        context = {
-            'search_form': search_form,
-            'add_manage_form': add_manager_form,
-            'customer': customer,
-            'attachments': customer.attachments.order_by('-id')[:5],
+            'customers': Customer.objects.all().order_by('-id')
         }
         return render(request, self.template_name, context=context)
-
-    def post(self, request):
-        query = request.POST.get('name')
-        try:
-            int_query = int(query)
-        except ValueError:
-            int_query = 0
-
-        customer_list = {}
-        if int_query > 0:
-            customer_list = Customer.objects.filter(id=int_query)
-        elif query:
-            customer_list = Customer.objects.filter(
-                Q(first_name__icontains=query) |
-                Q(surname__icontains=query) | Q(email__icontains=query) |
-                Q(phone__icontains=query) | Q(mobile__icontains=query)
-            )
-
-        context = {
-            'customers': customer_list
-        }
-        return render(request, 'home/search_customers.html', context=context)
 
 
 class CustomerHomeView(LoginRequiredMixin, TemplateView):

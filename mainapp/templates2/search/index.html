@@ -1,0 +1,79 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/datatables.min.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/pages/data-list-view.css' %}">
+    <!-- END: Page CSS-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-body">
+            <!-- Data list view starts -->
+            <section id="data-list-view" class="data-list-view-header">
+
+                <!-- DataTable starts -->
+                <div class="table-responsive">
+                    <table class="table data-list-view">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>{% trans 'NAME' %}</th>
+                                <th>{% trans 'EMAIL' %}</th>
+                                <th>{% trans 'PHONE' %}</th>
+                                <th>{% trans 'PLACE' %}</th>
+                                <th>{% trans 'ACTION' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for customer in customers %}
+                            <tr>
+                                <td class="product-name">{{ customer.id }}</td>
+                                <td class="product-name"><a href="{% url 'mainapp:new:home' %}?customer={{ customer.id }}">{{ customer }}</a></td>
+                                <td class="product-category">{{ customer.email }}</td>
+                                <td class="product-price">{{ customer.phone }}</td>
+                                <td class="product-price">{{ customer.place }}</td>
+                                <td class="product-action">
+                                    <span class="action-edit"><i class="feather icon-edit"></i></span>
+                                    <span class="action-delete"><i class="feather icon-trash"></i></span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- DataTable ends -->
+            </section>
+            <!-- Data list view end -->
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.min.js' %}"></script>
+{#    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.buttons.min.js' %}"></script>#}
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js' %}"></script>
+    <!-- END: Page Vendor JS-->
+{% endblock %}
+
+{% block pagejs %}
+    <script src="{% static 'app-assets/js/scripts/ui/data-list-view.js' %}"></script>
+{% endblock %}

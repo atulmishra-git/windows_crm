@@ -6,8 +6,6 @@ from mainapp.view2 import login, home, add_manager, add_customer, \
 from mainapp.view2.import_export.export_data import export_xls, import_xls
 from mainapp.view2.pdfs import offers
 
-app_name = 'mainapp-new'
-
 urlpatterns = [
     path('heartbeat/', login.heartbeat, name='heartbeat'),
     path('', login.LoginView.as_view(), name='login'),
@@ -15,7 +13,7 @@ urlpatterns = [
 
     # Home
     path('home/', home.HomeView.as_view(), name='home'),
-    path('home/customer/<customer_id>/', home.CustomerHomeView.as_view(), name='customer_home'),
+    path('search/', home.SearchCustomerView.as_view(), name='search'),
 
     path('manager/', add_manager.CreateManagerView.as_view(), name='add_manager'),
     path('manager/<int:pk>/', add_manager.UpdateManagerView.as_view(), name='edit_manager'),
