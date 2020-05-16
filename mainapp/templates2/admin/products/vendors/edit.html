@@ -1,0 +1,126 @@
+{% extends 'base/index.html' %}
+{# SOURCE exam/static/html-template_tbd/html/ltr/vertical-menu-template-semi-dark/form-validation.html #}
+
+{% load static %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/plugins/forms/validation/form-validation.css' %}">
+    <!-- DROPZONE-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/plugins/file-uploaders/dropzone.css' %}">
+    <!-- END: Page CSS-->
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-left mb-0">Edit Vendor</h2>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'users:home' %}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="{% url 'products:vendors:list' %}">Vendors </a>
+                                </li>
+                                <li class="breadcrumb-item active"> {{ object.name }}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                <div class="form-group breadcrum-right">
+                    <div class="dropdown">
+                        <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
+                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <!-- Basic Horizontal form layout section start -->
+            <section id="basic-horizontal-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{{ object.name }}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form class="form form-horizontal" action="{% url 'products:vendors:edit' pk=object.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                {% for field in form %}
+                                                    <div class="col-12">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-4">
+                                                                <span>{{ field.label }}</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                {{ field }}
+                                                                {% if field.errors %}
+                                                                    <div class="help-block">
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in field.errors %}
+                                                                                <li>{{ error }}</li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    </div>
+                                                                {% endif %}
+                                                                {% if field.help_text %}
+                                                                    <div class="help-block">
+                                                                        <ul>
+                                                                            <li>{{ field.help_text|safe }}</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+{#                                                <div class="col-12 data-field-col data-list-upload">#}
+{#                                                    <div class="dropzone dropzone-area" id="idIcon">#}
+{#                                                        <div class="dz-message">Upload Icon</div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+                                                <div class="col-md-8 offset-md-4">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                                    <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- // Basic Horizontal form layout section end -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+    <script src="{% static 'app-assets/vendors/js/forms/validation/jqBootstrapValidation.js' %}"></script>
+    {#    for dropzone #}
+    <script src="{% static 'app-assets/vendors/js/extensions/dropzone.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/ui/prism.min.js' %}"></script>
+{% endblock %}
+
+{% block pagejs %}
+    <script src="{% static 'app-assets/js/scripts/forms/validation/form-validation.js' %}"></script>
+{% endblock %}

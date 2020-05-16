@@ -69,7 +69,10 @@ ROOT_URLCONF = 'windows_crm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'mainapp', 'templates'),
+            os.path.join(BASE_DIR, 'mainapp', 'templates2')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,9 +156,10 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, "static2"),
     os.path.join(PROJECT_ROOT, "static"),
-      'windows_crm/static/'
-    )
+    'windows_crm/static/'
+)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
