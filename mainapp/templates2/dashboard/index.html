@@ -54,6 +54,10 @@
                     <div class="col-lg-2 col-md-0 col-sm-0"></div>
                 </div>
             <div class="row">
+                {% include 'dashboard/file_buttons.html' %}
+                {% include 'dashboard/attachments.html' %}
+            </div>
+            <div class="row">
                 <div class="col-md-6 col-12">
                     <div class="card">
                         <div class="card-content">
@@ -438,7 +442,7 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="{% static 'app-assets/vendors/js/charts/apexcharts.min.js' %}"></script>
     <script src="{% static 'app-assets/vendors/js/extensions/tether.min.js' %}"></script>
-    <script src="{% static 'app-assets/vendors/js/extensions/shepherd.min.js' %}"></script>
+{#    <script src="{% static 'app-assets/vendors/js/extensions/shepherd.min.js' %}"></script>#}
     <!-- END: Page Vendor JS-->
 {% endblock %}
 

@@ -754,10 +754,10 @@ body.fixed-footer footer.footer-dark {
 }
 .main-menu .navbar-header .navbar-brand .brand-text {
   color : #7367F0;
-  padding-left : 1rem;
+  /*padding-left : 1rem;*/
   font-weight : 600;
   letter-spacing : 0.01rem;
-  font-size : 1.57rem;
+  font-size : 1.25rem;
   -webkit-animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
           animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
 }
