@@ -4,6 +4,8 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from django.db.models.aggregates import Sum, Count
+from django.db.models.functions import Extract
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
@@ -87,9 +89,12 @@ class Customer(models.Model):
     postcode = models.CharField(_("postcode"), max_length=255)
     place = models.CharField(_("place"), max_length=255)
     surname = models.CharField(_("surname"), max_length=255)
-    phone = models.CharField(_("Phone"), max_length=20, unique=True)
-    mobile = models.CharField(_("Mobile"), max_length=20, null=True, blank=True)
-    email = models.EmailField(_("Email"), null=True, blank=True)
+    phone = models.CharField(_("Phone"), max_length=20, unique=True,
+                             default='N.A')
+    mobile = models.CharField(_("Mobile"), max_length=20, null=True, blank=True,
+                              default='N.A')
+    email = models.CharField(_("Email"), max_length=120, null=True, blank=True,
+                             default='N.A')
     birthday = models.DateField(_("Birthday"), null=True, blank=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_deleted = models.BooleanField(_('deleted'), default=False)
@@ -214,6 +219,46 @@ class PurchaseRecord(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
+
+    @classmethod
+    def purchases_last_seven_days(cls):
+        return cls.objects.filter(
+            created_at__gte=datetime.datetime.now() - datetime.timedelta(days=7)
+        ).values('watt').annotate(total=Sum('price_without_tax')).values('watt', 'total')
+
+    @classmethod
+    def installations_last_six_months(cls):
+        month_counts = cls.objects.filter(
+            created_at__gte=datetime.datetime.now() - datetime.timedelta(days=6*30)
+        ).annotate(month=Extract('ac_term', 'month')).values('month').annotate(
+            count=Count('month')
+        )
+        month_mapping = {
+            1: 'Jan',
+            2: 'Feb',
+            3: 'Mar',
+            4: 'Apr',
+            5: 'Mäi',
+            6: 'Jun',
+            7: 'Jul',
+            8: 'Aug',
+            9: 'Sep',
+            10: 'Okt',
+            11: 'Nov',
+            12: 'Dez',
+        }
+        curr_month = datetime.datetime.now().month
+        result = {}
+        for i in range(6):
+            month = curr_month - i
+            if month < 1:
+                month += 12
+            if month_counts.filter(month=month).exists():
+                count = month_counts.get(month=month)['count']
+            else:
+                count = 0
+            result[month_mapping[month]] = count
+        return result
 
     @property
     def tax(self):
