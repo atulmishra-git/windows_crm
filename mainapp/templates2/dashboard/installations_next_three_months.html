@@ -1,0 +1,62 @@
+{% load static %}
+{% load i18n %}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-start">
+        <div>
+            <h4 class="card-title">{% trans 'Installation stats' %}</h4>
+            <p class="text-muted mt-25 mb-0">{% trans 'Last 6 months' %}</p>
+        </div>
+    </div>
+    <div class="card-content">
+        <div class="card-body px-0">
+            <div id="installation-chart"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    counts = [];
+    months = [];
+    {% for month, count in installations_last_six_months.items %}
+        counts.push({{ count }});
+        months.push("{{ month }}");
+    {% endfor %}
+
+    var options = {
+        chart: {
+            type: 'radar'
+        },
+        series: [
+            {
+                name: "DC/AC Dates",
+                data: counts
+            },
+        ],
+        labels: months,
+        fill: {
+            opacity: 0.5,
+            colors: ['#1A73E8', '#B32824']
+        },
+        yaxis: {
+            show: false,
+        },
+        dataLabels: {
+            enabled: true,
+            background: {
+                enabled: true,
+                borderRadius:2,
+            }
+        },
+        stroke: {
+            show: false,
+        },
+        markers: {
+            size: 0
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#installation-chart"), options);
+
+    chart.render();
+</script>

@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from mainapp.forms.add_manager import ManagerForm as AddManagerForm
 from mainapp.forms.search_user import SearchForm
 from django.shortcuts import render, redirect, reverse
-from mainapp.models import Customer
+from mainapp.models import Customer, PurchaseRecord
 from random import randrange
 
 
@@ -26,6 +26,8 @@ class HomeView(LoginRequiredMixin, TemplateView):
             'add_manage_form': add_manager_form,
             'customer': customer,
             'attachments': customer.attachments.order_by('-id')[:5],
+            'purchases_last_seven_days': PurchaseRecord.purchases_last_seven_days(),
+            'installations_last_six_months': PurchaseRecord.installations_last_six_months()
         }
         return render(request, self.template_name, context=context)
 
