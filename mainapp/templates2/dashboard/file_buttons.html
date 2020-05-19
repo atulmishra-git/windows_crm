@@ -13,7 +13,11 @@
                             <i class="feather icon-check font-medium-2 align-middle"></i>
                         </div>
                         <div class="timeline-info">
-                            <a href="#">
+                            {% if customer.purchase_record %}
+                                <a target="_blank" href="{% url 'mainapp:pdf_offer' customer_id=customer.id %}">
+                            {% else %}
+                                <a href="#">
+                            {% endif %}
                                 <p class="font-weight-bold mb-0">{% trans 'Offer' %}</p>
                                 <span class="font-small-3">{% trans 'Create a new offer document' %}</span>
                             </a>
@@ -25,7 +29,11 @@
                             <i class="feather icon-check font-medium-2 align-middle"></i>
                         </div>
                         <div class="timeline-info">
-                            <a href="#">
+                            {% if customer.purchase_record %}
+                                <a target="_blank" href="{% url 'mainapp:pdf_offer_confirm' customer_id=customer.id %}">
+                            {% else %}
+                                <a href="#">
+                            {% endif %}
                                 <p class="font-weight-bold mb-0">{% trans 'Offer Confirmation' %}</p>
                                 <span class="font-small-3">{% trans 'Create a new offer confirmation document' %}</span>
                             </a>
@@ -37,7 +45,11 @@
                             <i class="feather icon-check font-medium-2 align-middle"></i>
                         </div>
                         <div class="timeline-info">
-                            <a href="#">
+                            {% if customer.purchase_record %}
+                                <a target="_blank" href="{% url 'mainapp:pdf_install' customer_id=customer.id %}">
+                            {% else %}
+                                <a href="#">
+                            {% endif %}
                                 <p class="font-weight-bold mb-0">{% trans 'Installation' %}</p>
                                 <span class="font-small-3">{% trans 'Create a new installaion document' %}</span>
                             </a>
@@ -49,7 +61,11 @@
                             <i class="feather icon-check font-medium-2 align-middle"></i>
                         </div>
                         <div class="timeline-info">
-                            <a href="#">
+                            {% if customer.purchase_record %}
+                                <a target="_blank" href="{% url 'mainapp:pdf_invoice' customer_id=customer.id %}">
+                            {% else %}
+                                <a href="#">
+                            {% endif %}
                                 <p class="font-weight-bold mb-0">{% trans 'Invoice' %}</p>
                                 <span class="font-small-3">{% trans 'Create a new invoice document' %}</span>
                             </a>
