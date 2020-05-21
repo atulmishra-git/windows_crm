@@ -29,16 +29,10 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
     form_class = CustomerForm
     model = Customer
 
-    def get_context_data(self, **kwargs):
-        context = super(AddCustomerView, self).get_context_data(**kwargs)
-        context['operation'] = _("Add New Customer")
-        context['fields'] = list(self.form_class.base_fields.keys())
-        return context
-
     def get_success_url(self):
         messages.success(self.request,
                          _("Customer added successfully."))
-        return reverse('mainapp:list_customer', kwargs=dict())
+        return reverse('mainapp:new:search')
 
 
 class UpdateCustomerView(LoginRequiredMixin, UpdateView):

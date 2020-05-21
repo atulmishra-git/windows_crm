@@ -1,0 +1,94 @@
+{% load i18n %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{% trans 'Purchase Details' %} </h4>
+                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
+                        <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
+{#                        <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li>#}
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">{% trans 'Purchase ID' %}</th>
+                                            <td>{{ customer.purchase_record.id }}</td>
+                                            <th scope="row">{% trans 'Watt' %}</th>
+                                            <td class="input-switch"><span id="watt" type="text">{{ customer.purchase_record.watt|default:'n.a' }}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{% trans 'Module Count' %}</th>
+                                            <td class="input-switch"><span id="module_count" type="text">{{ customer.purchase_record.module_count|default:'n.a' }}</span></td>
+                                            <th colspan="1" scope="row">{% trans 'With Battery' %}</th>
+                                            <td colspan="1">{% if customer.purchase_record.with_battery %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
+                                        </tr>
+                                        {% if customer.with_battery %}
+                                            <tr>
+                                                <th scope="row">{% trans 'Manufacturer' %}</th>
+                                                <td>{{ customer.purchase_record.manufacturer|default:'n.a' }}</td>
+                                                <th scope="row">{% trans 'KW/H' %}</th>
+                                                <td>{{ customer.purchase_record.kwh|default:'n.a' }}</td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <th scope="row">{% trans 'Manufacturer' %}</th>
+                                                <td>{{ customer.purchase_record.manufacturer2|default:'n.a' }}</td>
+                                                <th scope="row">{% trans 'KW/H' %}</th>
+                                                <td>{{ customer.purchase_record.kwh2|default:'n.a' }}</td>
+                                            </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <th scope="row">{% trans 'Price without tax' %}</th>
+                                            <td class="input-switch"><span id="price_without_tax" type="text">{{ customer.purchase_record.price_without_tax|default:'n.a' }}</span></td>
+                                            <th scope="row">{% trans 'Offer by' %}</th>
+                                            <td>{{ customer.purchase_record.get_offer_by_display|default:'n.a' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{% trans 'Offer Date' %}</th>
+                                            <td class="input-switch"><span id="offer_date" type="date">{{ customer.purchase_record.offer_date|default:'n.a' }}</span></td>
+                                            <th scope="row">{% trans 'Reseller Name' %}</th>
+                                            <td class="input-switch"><span id="reseller_name" type="text">{{ customer.purchase_record.reseller_name|default:'n.a' }}</span></td>
+                    {#                        <th scope="row">{% trans 'Declined' %}</th>#}
+                    {#                        <td>{{ customer.purchase_record.declined|default:'n.a' }}</td>#}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{% trans 'Date sent' %}</th>
+                                            <td class="input-switch"><span id="date_sent" type="date">{{ customer.purchase_record.date_sent|default:'n.a' }}</span></td>
+                                            <th scope="row">{% trans 'Project Planning Created' %}</th>
+                                            <td class="input-switch"><span id="project_planning_created" type="select">{% if customer.purchase_record.project_planning_created %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{% trans 'DC Term' %}</th>
+                                            <td class="input-switch"><span id="dc_term" type="date">{{ customer.purchase_record.dc_term|default:'n.a' }}</span></td>
+                                            <th scope="row">{% trans 'DC mechanic' %}</th>
+                                            <td class="input-switch"><span id="dc_mechanic" type="text">{{ customer.purchase_record.dc_mechanic|default:'n.a' }}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{% trans 'AC Term' %}</th>
+                                            <td class="input-switch"><span id="ac_term" type="date">{{ customer.purchase_record.ac_term|default:'n.a' }}</span></td>
+                                            <th scope="row">{% trans 'AC mechanic' %}</th>
+                                            <td class="input-switch"><span id="ac_mechanic" type="text">{{ customer.purchase_record.ac_mechanic|default:'n.a' }}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

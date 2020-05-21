@@ -7,6 +7,8 @@
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/datatables.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/file-uploaders/dropzone.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css' %}">
     <!-- END: Vendor CSS-->
 {% endblock %}
 
@@ -15,6 +17,7 @@
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/plugins/file-uploaders/dropzone.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/pages/data-list-view.css' %}">
     <!-- END: Page CSS-->
 
@@ -49,7 +52,7 @@
                                 <td class="product-price">{{ customer.place }}</td>
                                 <td class="product-action">
                                     <span class="action-edit"><i class="feather icon-edit"></i></span>
-                                    <span class="action-delete"><i class="feather icon-trash"></i></span>
+{#                                    <span class="action-delete"><i class="feather icon-trash"></i></span>#}
                                 </td>
                             </tr>
                         {% endfor %}
@@ -57,6 +60,47 @@
                     </table>
                 </div>
                 <!-- DataTable ends -->
+
+                <!-- add new sidebar starts -->
+                <form action="{% url 'mainapp:new:add_customer' %}" method="post">
+                    {% csrf_token %}
+                    <div class="add-new-data-sidebar">
+                    <div class="overlay-bg"></div>
+                    <div class="add-new-data">
+                        <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
+                            <div>
+                                <h4 class="text-uppercase">{% trans 'Add New Customer' %}</h4>
+                            </div>
+                            <div class="hide-data-sidebar">
+                                <i class="feather icon-x"></i>
+                            </div>
+                        </div>
+                        <div class="data-items pb-3">
+                            <div class="data-fields px-2 mt-3">
+                                <div class="row">
+                                    {% for field in customer_form %}
+                                        <div class="col-sm-12 data-field-col">
+                                            <label>{{ field.label }}</label>
+                                            {{ field }}
+                                            {% if field.errors %}
+                                                Error: {{ field.errors }}
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
+                            <div class="add-data-btn">
+                                <button class="btn btn-primary">{% trans 'Submit' %}</button>
+                            </div>
+                            <div class="cancel-data-btn">
+                                <button class="btn btn-outline-danger">{% trans 'Cancel' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
             </section>
             <!-- Data list view end -->
 
@@ -66,11 +110,12 @@
 
 {% block pagevendorjs %}
     <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static 'app-assets/vendors/js/extensions/dropzone.min.js' %}"></script>
     <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.min.js' %}"></script>
-    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.min.js' %}"></script>
-{#    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.buttons.min.js' %}"></script>#}
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.buttons.min.js' %}"></script>
     <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/dataTables.select.min.js' %}"></script>
     <!-- END: Page Vendor JS-->
 {% endblock %}
 

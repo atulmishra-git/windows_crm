@@ -37,12 +37,14 @@
                         <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100" style="width:50%"></div>
                     </div>
                 </div>
-                <div class="col-12">
-                    <p class="mb-0">{{ purchases_last_seven_days.1.watt }} {% trans 'watt' %}: € {{ purchases_last_seven_days.1.total|floatformat:2 }}</p>
-                    <div class="progress progress-bar-danger mt-25">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="70" aria-valuemax="100" style="width:70%"></div>
+                {% if purchases_last_seven_days.1.watt %}
+                    <div class="col-12">
+                        <p class="mb-0">{{ purchases_last_seven_days.1.watt }} {% trans 'watt' %}: € {{ purchases_last_seven_days.1.total|floatformat:2 }}</p>
+                        <div class="progress progress-bar-danger mt-25">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="70" aria-valuemax="100" style="width:70%"></div>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </div>
     </div>
