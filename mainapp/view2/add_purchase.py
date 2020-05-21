@@ -36,10 +36,10 @@ class AddPurchaseView(LoginRequiredMixin, CreateView):
 
 
 class ListPurchaseView(LoginRequiredMixin, FilterListMixin, ListView):
-    template_name = 'list_purchase.html'
+    template_name = 'purchases/list_purchases.html'
     filterset_class = PurchaseFilter
     model = PurchaseRecord
-    paginate_by = 10
+    # paginate_by = 10
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)

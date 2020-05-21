@@ -1,0 +1,119 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/datatables.min.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <!-- END: Page CSS-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- Column selectors with Export Options and print table -->
+            <section id="column-selectors">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans 'Purchase' %}</h4>
+                                <div class="dt-buttons btn-group"><button class="btn btn-outline-primary" tabindex="0"><span><i class="feather icon-plus"></i> {% trans 'Add New' %}</span></button> </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped dataex-html5-selectors">
+                                            <thead>
+                                                <tr>
+                                                    <th>{% trans 'ID' %}</th>
+                                                    <th>{% trans 'Watt'  %}</th>
+                                                    <th>{% trans 'Count'  %}</th>
+                                                    <th>{% trans 'KWP' %}</th>
+                                                    <th>{% trans 'DC-T' %}</th>
+                                                    <th>{% trans 'DC-M' %}</th>
+                                                    <th>{% trans 'AC-T' %}</th>
+                                                    <th>{% trans 'AC-M' %}</th>
+                                                    <th>{% trans 'Extra Information' %}</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for obj in object_list %}
+                                                    <tr>
+                                                        <td>{{ obj.id }}</td>
+                                                        <td>{{ obj.watt }}</td>
+                                                        <td>{{ obj.module_count }}</td>
+                                                        <td>{{ obj.kwp }}</td>
+                                                        <td>{{ obj.dc_term }}</td>
+                                                        <td>{{ obj.dc_mechanic }}</td>
+                                                        <td>{{ obj.ac_term }}</td>
+                                                        <td>{{ obj.ac_mechanic }}</td>
+                                                        <td style="width: 250px;">{{ obj.extra_details }}</td>
+                                                        <td>
+                                                            <a href="{% url 'mainapp:edit_purchase' pk=obj.id %}" class=""><i class="feather icon-edit-1"></i> <span> </span></a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{% url 'mainapp:delete_purchase' pk=obj.id %}" class=""><i class="feather icon-trash-2 danger"></i> <span> </span></a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>{% trans 'ID' %}</th>
+                                                    <th>{% trans 'Watt'  %}</th>
+                                                    <th>{% trans 'Count'  %}</th>
+                                                    <th>{% trans 'KWP' %}</th>
+                                                    <th>{% trans 'DC-T' %}</th>
+                                                    <th>{% trans 'DC-M' %}</th>
+                                                    <th>{% trans 'AC-T' %}</th>
+                                                    <th>{% trans 'AC-M' %}</th>
+                                                    <th>{% trans 'Extra Information' %}</th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Column selectors with Export Options and print table -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/pdfmake.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/vfs_fonts.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.buttons.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/buttons.print.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js' %}"></script>
+{% endblock %}
+
+{% block pagejs %}
+    <script src="{% static 'app-assets/js/scripts/datatables/datatable.js' %}"></script>
+{% endblock %}
+
+{% block customjs %}
+{% endblock %}
