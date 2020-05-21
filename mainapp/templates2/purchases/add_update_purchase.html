@@ -1,0 +1,594 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/forms/select/select2.min.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'app-assets/css/plugins/forms/validation/form-validation.css' %}">
+    <!-- END: Page CSS-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-left mb-0">
+                            {% if operation %} {{ operation }} {% else %} {% trans 'Add Purchase' %} {% endif %}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <!-- Input Validation start -->
+            <section class="input-validation">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form class="form-horizontal" method="POST" novalidate>
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="id_customer" class="">
+                                                        {% trans 'Customer' %}* {% if form.instance %}:
+                                                        <b>{{ form.instance.customer }}</b> {% endif %}
+                                                    </label>
+                                                    <div class="controls">
+                                                        <select name="customer" class="select2 form-control"
+                                                                id="id_customer">
+                                                            {% for val, display in form.fields.customer.choices %}
+                                                                <option value="{{ val }}">{{ val }}. {{ display }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <div class="help-block">
+                                                            {% if form.subject.errors %}
+                                                                <ul role="alert" class="danger">
+                                                                    {% for error in form.customer.errors %}
+                                                                        <li><strong>{{ error|escape }}</strong></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ form.module_manufacturer.label }}</label>
+                                                    <div class="controls">
+                                                        {{ form.module_manufacturer }}
+                                                        <div class="help-block">
+                                                            {% if form.module_manufacturer.errors %}
+                                                                <ul role="alert" class="danger">
+                                                                    {% for error in form.module_manufacturer.errors %}
+                                                                        <li><strong>{{ error|escape }}</strong></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.watt.label }}</label>
+                                                            <div class="controls">
+                                                                <select name="watt" class="form-control"
+                                                                        id="id_watt">
+                                                                    <option value=310>310</option>
+                                                                    <option value=335>335</option>
+                                                                </select>
+                                                                <div class="help-block">
+                                                                    {% if form.watt.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.watt.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.module_count.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.module_count }}
+                                                                <div class="help-block">
+                                                                    {% if form.module_count.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.module_count.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <strong>KWP:</strong>
+                                                    <div id="id_kwp"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ form.with_battery.label }}</label>
+                                                    <div class="controls">
+                                                        {{ form.with_battery }}
+                                                        <div class="help-block">
+                                                            {% if form.with_battery.errors %}
+                                                                <ul role="alert" class="danger">
+                                                                    {% for error in form.with_battery.errors %}
+                                                                        <li><strong>{{ error|escape }}</strong></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <span>{% trans 'With Battery' %}</span>
+                                                    <hr/>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.manufacturer.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.manufacturer }}
+                                                                <div class="help-block">
+                                                                    {% if form.manufacturer.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.manufacturer.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.kwh.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.kwh }}
+                                                                <div class="help-block">
+                                                                    {% if form.kwh.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.kwh.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <span>{% trans 'Without Battery' %}</span>
+                                                    <hr/>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.manufacturer2.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.manufacturer2 }}
+                                                                <div class="help-block">
+                                                                    {% if form.manufacturer2.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.manufacturer2.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.kwh2.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.kwh2 }}
+                                                                <div class="help-block">
+                                                                    {% if form.kwh2.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.kwh2.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label>{{ form.price_without_tax.label }}</label>
+                                                            <div class="controls">
+                                                                <input type="number" id="id_price_without_tax"
+                                                                       value="{{ form.price_without_tax.value|safe }}"
+                                                                       name="price_without_tax" class="form-control"
+                                                                       placeholder="{% trans 'Price without tax' %}">
+                                                                <div class="help-block">
+                                                                    {% if form.price_without_tax.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.price_without_tax.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <strong>{% trans 'Tax: 19%' %}</strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{% trans 'Offer Details' %}</label>
+                                                    <div class="controls">
+                                                    </div>
+                                                    <hr/>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.offer_by.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.offer_by }}
+                                                                <div class="help-block">
+                                                                    {% if form.offer_by.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.offer_by.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.offer_date.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.offer_date }}
+                                                                <div class="help-block">
+                                                                    {% if form.offer_date.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.offer_date.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label>{{ form.reseller_name.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.reseller_name }}
+                                                                <div class="help-block">
+                                                                    {% if form.reseller_name.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.reseller_name.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>{{ form.declined.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.declined }}
+                                                                <div class="help-block">
+                                                                    {% if form.declined.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.declined.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{% trans 'Technical Details' %}</label>
+                                                    <hr/>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.date_sent.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.date_sent }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.project_planning_created.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.project_planning_created }}
+                                                                <div class="help-block">
+                                                                    {% if form.project_planning_created.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.project_planning_created.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.dc_term.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.dc_term }}
+                                                                <div class="help-block">
+                                                                    {% if form.dc_term.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.dc_term.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.dc_mechanic.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.dc_mechanic }}
+                                                                <div class="help-block">
+                                                                    {% if form.dc_mechanic.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.dc_mechanic.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.ac_term.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.ac_term }}
+                                                                <div class="help-block">
+                                                                    {% if form.ac_term.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.ac_term.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ form.ac_mechanic.label }}</label>
+                                                            <div class="controls">
+                                                                {{ form.ac_mechanic }}
+                                                                <div class="help-block">
+                                                                    {% if form.ac_mechanic.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.ac_mechanic.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <strong>{% trans "Information of the Roof" %}</strong>
+                                                    <hr/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ form.roof_type.label }}</label>
+                                                    <div class="controls">
+                                                        {{ form.roof_type }}
+                                                        <div class="help-block">
+                                                            {% if form.roof_type.errors %}
+                                                                <ul role="alert" class="danger">
+                                                                    {% for error in form.roof_type.errors %}
+                                                                        <li><strong>{{ error|escape }}</strong></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ form.roof_tilt.label }}</label>
+                                                    <div class="controls">
+                                                        <input type="number" id="id_roof_tilt"
+                                                               value="{{ form.roof_tilt.value|safe }}"
+                                                               name="roof_tilt" class="form-control"
+                                                               placeholder="{% trans 'Roof Tilt' %}">
+                                                        <div class="help-block">
+                                                            {% if form.roof_tilt.errors %}
+                                                                <ul role="alert" class="danger">
+                                                                    {% for error in form.roof_tilt.errors %}
+                                                                        <li><strong>{{ error|escape }}</strong></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <strong>-</strong>
+                                                    <hr/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ form.alignment.label }}</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="id_alignment"
+                                                               value="{{ form.alignment.value }}"
+                                                               name="alignment" class="form-control"
+                                                               placeholder="{% trans 'Alignment' %}">
+                                                        <div class="help-block">
+                                                            {% if form.alignment.errors %}
+                                                                <ul role="alert" class="danger">
+                                                                    {% for error in form.alignment.errors %}
+                                                                        <li><strong>{{ error|escape }}</strong></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <label>{{ form.module_area.label }}</label>
+                                                            <div class="controls">
+                                                                <input type="number" id="id_module_area"
+                                                                       value="{{ form.module_area.value|safe }}"
+                                                                       name="module_area" class="form-control"
+                                                                       placeholder="{% trans 'Alignment' %}">
+                                                                <div class="help-block">
+                                                                    {% if form.module_area.errors %}
+                                                                        <ul role="alert" class="danger">
+                                                                            {% for error in form.module_area.errors %}
+                                                                                <li><strong>{{ error|escape }}</strong>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <strong>{% trans 'Total Area' %}:</strong>
+                                                            <span id="total_area"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label></label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Input Validation end -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+    <script src="{% static 'app-assets/vendors/js/forms/validation/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/forms/select/select2.full.min.js' %}"></script>
+{% endblock %}
+
+{% block pagejs %}
+    <script src="{% static 'app-assets/js/scripts/forms/validation/form-validation.js' %}"></script>
+    <script src="{% static 'app-assets/js/scripts/forms/select/form-select2.js' %}"></script>
+{% endblock %}
+
+{% block customjs %}
+    <script>
+        $('#id_module_area').change(function () {
+            $('#total_area').html($('#id_module_area').val() * $('#id_module_count').val());
+        });
+        $('#id_watt').change(function () {
+            $('#id_kwp').html($('#id_watt').val() * $('#id_module_count').val() / 1000);
+        });
+        $('#id_module_count').change(function () {
+            $('#id_kwp').html($('#id_watt').val() * $('#id_module_count').val() / 1000);
+            $('#total_area').html($('#id_module_area').val() * $('#id_module_count').val());
+        });
+    </script>
+{% endblock %}

@@ -21,6 +21,8 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            self.fields[name].widget.attrs['class'] = 'form-control'
         if self.instance and self.instance.id:
             # customer is not required
             self.fields['customer'].required = False
@@ -37,13 +39,15 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
             # ),
             HTML('<h3>Module</h3>'),
             Row(
-                Column('module_manufacturer', css_class='form-group col-md-6 mb-0'),
+                Column('module_manufacturer', css_class='form-group col-md-12 mb-0'),
                 css_class='form-row'
             ),
             Row(
-                Column('watt', css_class='form-group col-md-4 mb-0'),
+                Column('watt', css_class='form-group col-md-3 mb-0'),
+                HTML('<div class="col-md-1 mb-0"></div>'),
                 Column('module_count', css_class='form-group col-md-4 mb-0'),
-                HTML('<p>'
+                HTML('<div class="col-md-2 mb-0"></div>'
+                     '<p>'
                      'KWP:  <strong><div id="id_kwp"></div></strong>'
                      '</p>'
                      '<br/>'),
@@ -108,7 +112,6 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                 css_class='form-row'
             ),
             'extra_details',
-            Submit('submit', _('Submit'))
         )
 
     def clean(self):

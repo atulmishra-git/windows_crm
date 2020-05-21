@@ -25,14 +25,18 @@ def update_purchase(request, pk):
 
 
 class AddPurchaseView(LoginRequiredMixin, CreateView):
-    template_name = 'add_purchase.html'
+    template_name = 'purchases/add_update_purchase.html'
     form_class = PurchaseRecordForm
     model = PurchaseRecord
+
+    def form_invalid(self, form):
+        response = super(AddPurchaseView, self).form_invalid(form)
+        return response
 
     def get_success_url(self):
         messages.success(self.request,
                          _("Purchase added successfully."))
-        return reverse('mainapp:list_purchase', kwargs=dict())
+        return reverse('mainapp:new:list_purchase', kwargs=dict())
 
 
 class ListPurchaseView(LoginRequiredMixin, FilterListMixin, ListView):
@@ -48,7 +52,7 @@ class ListPurchaseView(LoginRequiredMixin, FilterListMixin, ListView):
 
 
 class UpdatePurchaseView(LoginRequiredMixin, UpdateView):
-    template_name = 'add_purchase.html'
+    template_name = 'purchases/add_update_purchase.html'
     form_class = PurchaseRecordForm
     model = PurchaseRecord
 
@@ -61,7 +65,7 @@ class UpdatePurchaseView(LoginRequiredMixin, UpdateView):
         messages.add_message(self.request,
                              messages.SUCCESS,
                              _("Purchase updated successfully."))
-        return reverse('mainapp:list_purchase', kwargs=dict())
+        return reverse('mainapp:new:list_purchase', kwargs=dict())
 
 
 class DeletePurchaseView(IsSuperAdmin, DeleteView):

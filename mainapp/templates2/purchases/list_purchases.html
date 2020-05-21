@@ -31,7 +31,11 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">{% trans 'Purchase' %}</h4>
-                                <div class="dt-buttons btn-group"><button class="btn btn-outline-primary" tabindex="0"><span><i class="feather icon-plus"></i> {% trans 'Add New' %}</span></button> </div>
+                                <div class="dt-buttons btn-group">
+                                    <a href="{% url 'mainapp:new:add_purchase' %}">
+                                        <button class="btn btn-outline-primary" tabindex="0"><span><i class="feather icon-plus"></i> {% trans 'Add New' %}</span></button>
+                                    </a>
+                                </div>
                             </div>
                             <div class="card-content">
                                 <div class="card-body card-dashboard">
@@ -65,7 +69,7 @@
                                                         <td>{{ obj.ac_mechanic }}</td>
                                                         <td style="width: 250px;">{{ obj.extra_details }}</td>
                                                         <td>
-                                                            <a href="{% url 'mainapp:edit_purchase' pk=obj.id %}" class=""><i class="feather icon-edit-1"></i> <span> </span></a>
+                                                            <a href="{% url 'mainapp:new:edit_purchase' pk=obj.id %}" class=""><i class="feather icon-edit-1"></i> <span> </span></a>
                                                         </td>
                                                         <td>
                                                             <a href="{% url 'mainapp:delete_purchase' pk=obj.id %}" class=""><i class="feather icon-trash-2 danger"></i> <span> </span></a>
