@@ -33,6 +33,16 @@
                         <h2 class="content-header-title float-left mb-0">
                             {{ operation }}
                         </h2>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'mainapp:new:home' %}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="{% url 'mainapp:new:search' %}">{% trans 'Customers' %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{{ operation }}
+                                </li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,8 +83,8 @@
 
 {% block customjs %}
     <script>
-    $('#id_form_btn').on('click', function(){
-        $('#id_form').submit()
-    })
+        $('#id_form_btn').on('click', function () {
+            $('#id_form').submit()
+        })
     </script>
 {% endblock %}

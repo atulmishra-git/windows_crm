@@ -29,8 +29,19 @@
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
                         <h2 class="content-header-title float-left mb-0">
-                            {% if operation %} {{ operation }} {% else %} {% trans 'Add Purchase' %} {% endif %}
+                            {{ operation }}
                         </h2>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'mainapp:new:home' %}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a
+                                        href="{% url 'mainapp:new:list_purchase' %}">{% trans 'Purchase' %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{{ operation }}
+                                </li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>

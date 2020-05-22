@@ -29,6 +29,11 @@ class AddPurchaseView(LoginRequiredMixin, CreateView):
     form_class = PurchaseRecordForm
     model = PurchaseRecord
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['operation'] = _("Add Purchase")
+        return context
+
     def form_invalid(self, form):
         response = super(AddPurchaseView, self).form_invalid(form)
         return response
