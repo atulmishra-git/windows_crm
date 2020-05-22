@@ -51,7 +51,7 @@
                                 <td class="product-price">{{ customer.phone }}</td>
                                 <td class="product-price">{{ customer.place }}</td>
                                 <td class="product-action">
-                                    <span class="action-edit"><i class="feather icon-edit"></i></span>
+                                    <a href="{% url 'mainapp:new:edit_customer' pk=customer.id %}"><span><i class="feather icon-edit"></i></span></a>
 {#                                    <span class="action-delete"><i class="feather icon-trash"></i></span>#}
                                 </td>
                             </tr>

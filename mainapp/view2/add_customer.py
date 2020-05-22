@@ -36,7 +36,7 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
 
 
 class UpdateCustomerView(LoginRequiredMixin, UpdateView):
-    template_name = 'customer/add_customer.html'
+    template_name = 'customers/update_customer.html'
     form_class = CustomerForm
     model = Customer
 
@@ -47,9 +47,7 @@ class UpdateCustomerView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self):
-        messages.success(self.request,
-                         _("Customer updated successfully."))
-        return reverse('mainapp:list_customer', kwargs=dict())
+        return reverse('mainapp:new:search')
 
 
 class ListCustomerView(LoginRequiredMixin, FilterListMixin, ListView):
