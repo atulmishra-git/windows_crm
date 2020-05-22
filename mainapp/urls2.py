@@ -16,8 +16,9 @@ urlpatterns = [
     path('search/', home.SearchCustomerView.as_view(), name='search'),
 
     path('manager/', add_manager.CreateManagerView.as_view(), name='add_manager'),
+    path('managers/', add_manager.ListManagerView.as_view(), name='list_manager'),
     path('manager/<int:pk>/', add_manager.UpdateManagerView.as_view(), name='edit_manager'),
-    path('delete_manager/<manager_id>', add_manager.delete_manager, name='delete_manager'),
+    path('delete_manager/<int:pk>/', add_manager.delete_manager, name='delete_manager'),
 
     path('customers/', add_customer.ListCustomerView.as_view(), name='list_customer'),
     path('customer/', add_customer.AddCustomerView.as_view(), name='add_customer'),

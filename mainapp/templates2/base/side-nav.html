@@ -25,7 +25,14 @@
             </li>
             <li><a href="{% url 'mainapp:new:search' %}"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Customer">{% trans 'Customer' %}</span></a>
             </li>
-            <li><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Manager">{% trans 'Manager' %}</span></a>
+            <li>
+                {% if user.is_staff %}
+                    <a href="{% url 'mainapp:new:list_manager' %}">
+                {% else %}
+                    <a href="#">
+                {% endif %}
+                    <i class="feather icon-user"></i><span class="menu-title" data-i18n="Manager">{% trans 'Manager' %}</span>
+                </a>
             </li>
 
             <li class=" navigation-header"><span>Apps</span>

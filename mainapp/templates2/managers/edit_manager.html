@@ -31,7 +31,7 @@
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
                         <h2 class="content-header-title float-left mb-0">
-                            {{ operation }}
+                            {{ operation }} - {{ manager }}
                         </h2>
                     </div>
                 </div>
@@ -73,8 +73,5 @@
 
 {% block customjs %}
     <script>
-    $('#id_form_btn').on('click', function(){
-        $('#id_form').submit()
-    })
     </script>
 {% endblock %}

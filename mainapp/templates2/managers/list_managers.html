@@ -1,0 +1,131 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'app-assets/vendors/css/tables/datatable/datatables.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/file-uploaders/dropzone.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/plugins/file-uploaders/dropzone.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/pages/data-list-view.css' %}">
+    <!-- END: Page CSS-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-body">
+            <!-- Data list view starts -->
+            <section id="data-list-view" class="data-list-view-header">
+
+                <!-- DataTable starts -->
+                <div class="table-responsive">
+                    <table class="table data-list-view">
+                        <thead>
+                        <tr>
+                            <th>{% trans 'ID' %}</th>
+                            <th>{% trans 'Name' %}</th>
+                            <th>{% trans 'Phone' %}</th>
+                            <th>{% trans 'Username' %}</th>
+                            <th>{% trans 'Email' %}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for obj in object_list %}
+                            <tr>
+                                <td>{{ obj.id }}</td>
+                                <td>{{ obj.first_name }} {{ obj.surname }}</td>
+                                <td>{{ obj.phone }}</td>
+                                <td>{{ obj.username }}</td>
+                                <td>{{ obj.email }}</td>
+                                <td>
+                                    <a href="{% url 'mainapp:new:edit_manager' pk=obj.id %}"
+                                       class=""><i class="feather icon-edit-1"></i>
+                                        <span> </span></a>
+                                    &nbsp;
+                                    <a href="{% url 'mainapp:new:delete_manager' pk=obj.id %}"
+                                       class=""><i class="feather icon-trash-2 danger"></i>
+                                        <span> </span></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- DataTable ends -->
+
+                <!-- add new sidebar starts -->
+                <form action="{% url 'mainapp:new:add_manager' %}" method="post">
+                    {% csrf_token %}
+                    <div class="add-new-data-sidebar">
+                        <div class="overlay-bg"></div>
+                        <div class="add-new-data">
+                            <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
+                                <div>
+                                    <h4 class="text-uppercase">{% trans 'Add New Customer' %}</h4>
+                                </div>
+                                <div class="hide-data-sidebar">
+                                    <i class="feather icon-x"></i>
+                                </div>
+                            </div>
+                            <div class="data-items pb-3">
+                                <div class="data-fields px-2 mt-3">
+                                    <div class="row">
+                                        {% for field in form %}
+                                            <div class="col-sm-12 data-field-col">
+                                                <label>{{ field.label }}</label>
+                                                {{ field }}
+                                                {% if field.errors %}
+                                                    Error: {{ field.errors }}
+                                                {% endif %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
+                                <div class="add-data-btn">
+                                    <button class="btn btn-primary">{% trans 'Submit' %}</button>
+                                </div>
+                                <div class="cancel-data-btn">
+                                    <button class="btn btn-outline-danger">{% trans 'Cancel' %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <!-- Data list view end -->
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static 'app-assets/vendors/js/extensions/dropzone.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.buttons.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/dataTables.select.min.js' %}"></script>
+    <!-- END: Page Vendor JS-->
+{% endblock %}
+
+{% block pagejs %}
+    <script src="{% static 'app-assets/js/scripts/ui/data-list-view.js' %}"></script>
+{% endblock %}

@@ -52,9 +52,7 @@ class UpdateCustomerView(LoginRequiredMixin, UpdateView):
 
 class ListCustomerView(LoginRequiredMixin, FilterListMixin, ListView):
     template_name = 'customer/list_customer.html'
-    filterset_class = CustomerFilter
     model = Customer
-    paginate_by = 10
 
 
 class DeleteCustomerView(LoginRequiredMixin, DeleteView):
