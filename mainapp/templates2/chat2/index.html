@@ -261,11 +261,11 @@
         }
 
         function appendChatBody(messages) {
-            console.log('called');
+            $('#id_user_chats').html("");
             let html_data = "";
             let last = null;
             messages.forEach(function (msg, idx) {
-                {#                let html = '<div class="chat-content">' + "<p>" + msg.message + "</p>" + "</div>";#}
+                let html = '<div class="chat-content">' + "<p>" + msg.message + "</p>" + "</div>";
                 {#                if (last === msg.sender) {#}
                 {#                    $(".chat:last-child .chat-body").append(html);#}
                 {#                } else {#}
@@ -276,12 +276,12 @@
                     html_data += appendOthersMessage(msg.sender, msg.message);
                     last = msg.sender
                 }
-                {#                }#}
                 {#                $('#id_user_chats').append(html_data);#}
+                {#                }#}
             });
             {#"<span class=\"time_date\">" + msg.timestamp + "</span><br/>\n"+#}
             $('#id_user_chats').html(html_data);
-            setTimeout(function() {
+            setTimeout(function () {
                 $(".user-chats").scrollTop($(".user-chats > .chats").height());
             }, 350)
         }
@@ -304,7 +304,6 @@
                         alert("Error");
                     }
                 });
-                $(".user-chats").scrollTop($(".user-chats > .chats").height());
             }
         }
 
@@ -333,6 +332,7 @@
                         'room_name': roomName
                     }));
                 }
+                $(".user-chats").scrollTop(10000);
             };
 
             // make the last message read
@@ -348,6 +348,8 @@
             };
         }
 
+        let hist_div;
+
         function onMessage() {
             let message = $(".message").val();
             console.log(message);
@@ -362,7 +364,7 @@
                     'message': message
                 }));
                 $(".message").val("");
-                $(".user-chats").scrollTop($(".user-chats > .chats").height());
+                $(".user-chats").scrollTop(10000);
             }
         }
     </script>
