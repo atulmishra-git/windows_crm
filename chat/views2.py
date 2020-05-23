@@ -52,13 +52,28 @@ def index(request):
 
 
 @login_required
-def room(request, user):
+def room(request):
+    user = request.GET['user']
     ids = [str(request.user.id), user]
+    other = User.objects.get(id=user)
     room_name = get_room(ids)
-    return render(request, 'chat/room.html', {
-        'room_name': user,
-        'messages': list(Message.objects.filter(room__name=room_name).order_by('-id'))[:50][::-1]
-    })
+    messages = (Message.objects.filter(room__name=room_name).order_by('-id'))[:50][::-1]
+    return JsonResponse(
+        data=dict(
+            room_name=room_name,
+            other_id=other.id,
+            other=str(other),
+            messages=[{
+                'sender': msg.sender.id, 
+                'message': msg.message,
+                'timestamp': msg.timestamp
+            } for msg in messages]
+        )
+    )
+    # return render(request, 'chat/room.html', {
+    #     'room_name': user,
+    #     'messages': list(Message.objects.filter(room__name=room_name).order_by('-id'))[:50][::-1]
+    # })
 
 
 @login_required

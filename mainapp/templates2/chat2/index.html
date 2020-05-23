@@ -101,7 +101,7 @@
                         <h3 class="primary p-1 mb-0">{% trans 'Chats' %}</h3>
                         <ul class="chat-users-list-wrapper media-list">
                             {% for user in users %}
-                                <li>
+                                <li onclick="fetchRoomMessages('{{ user.id }}')">
                                     <div class="pr-1">
                                             <span class="avatar m-0 avatar-md"><img class="media-object rounded-circle"
                                                                                     src="https://picsum.photos/seed/{{ user.id }}/200/200"
@@ -141,154 +141,22 @@
                     <section class="chat-app-window">
                         <div class="start-chat-area">
                             <span class="mb-1 start-chat-icon feather icon-message-square"></span>
-                            <h4 class="py-50 px-1 sidebar-toggle start-chat-text">Start Conversation</h4>
+                            <h4 class="py-50 px-1 sidebar-toggle start-chat-text">{% trans 'Start Conversation' %}</h4>
                         </div>
                         <div class="active-chat d-none">
-                            <div class="chat_navbar">
-                                <header class="chat_header d-flex justify-content-between align-items-center p-1">
-                                    <div class="vs-con-items d-flex align-items-center">
-                                        <div class="sidebar-toggle d-block d-lg-none mr-1"><i
-                                                class="feather icon-menu font-large-1"></i></div>
-                                        <div class="avatar user-profile-toggle m-0 m-0 mr-1">
-                                            <img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg" alt=""
-                                                 height="40" width="40"/>
-                                            <span class="avatar-status-busy"></span>
-                                        </div>
-                                        <h6 class="mb-0">Felecia Rower</h6>
-                                    </div>
-                                    <span class="favorite"><i class="feather icon-star font-medium-5"></i></span>
-                                </header>
+                            <div class="chat_navbar" id="id_chat_navbar">
+                                {#                                header will be appended from js #}
                             </div>
-                            <div class="user-chats">
-                                <div class="chats">
-                                    <div class="chat">
-                                        <div class="chat-avatar">
-                                            <a class="avatar m-0" data-toggle="tooltip" href="#" data-placement="right"
-                                               title="" data-original-title="">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg"
-                                                     alt="avatar" height="40" width="40"/>
-                                            </a>
-                                        </div>
-                                        <div class="chat-body">
-                                            <div class="chat-content">
-                                                <p>How can we help? We're here for you!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chat chat-left">
-                                        <div class="chat-avatar">
-                                            <a class="avatar m-0" data-toggle="tooltip" href="#" data-placement="left"
-                                               title="" data-original-title="">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg"
-                                                     alt="avatar" height="40" width="40"/>
-                                            </a>
-                                        </div>
-                                        <div class="chat-body">
-                                            <div class="chat-content">
-                                                <p>Hey John, I am looking for the best admin template.</p>
-                                                <p>Could you please help me to find it out?</p>
-                                            </div>
-                                            <div class="chat-content">
-                                                <p>It should be Bootstrap 4 compatible.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="divider">
-                                        <div class="divider-text">Yesterday</div>
-                                    </div>
-                                    <div class="chat">
-                                        <div class="chat-avatar">
-                                            <a class="avatar m-0" data-toggle="tooltip" href="#" data-placement="right"
-                                               title="" data-original-title="">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg"
-                                                     alt="avatar" height="40" width="40"/>
-                                            </a>
-                                        </div>
-                                        <div class="chat-body">
-                                            <div class="chat-content">
-                                                <p>Absolutely!</p>
-                                            </div>
-                                            <div class="chat-content">
-                                                <p>Vuexy admin is the responsive bootstrap 4 admin template.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chat chat-left">
-                                        <div class="chat-avatar">
-                                            <a class="avatar m-0" data-toggle="tooltip" href="#" data-placement="left"
-                                               title="" data-original-title="">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg"
-                                                     alt="avatar" height="40" width="40"/>
-                                            </a>
-                                        </div>
-                                        <div class="chat-body">
-                                            <div class="chat-content">
-                                                <p>Looks clean and fresh UI.</p>
-                                            </div>
-                                            <div class="chat-content">
-                                                <p>It's perfect for my next project.</p>
-                                            </div>
-                                            <div class="chat-content">
-                                                <p>How can I purchase it?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chat">
-                                        <div class="chat-avatar">
-                                            <a class="avatar m-0" data-toggle="tooltip" href="#" data-placement="right"
-                                               title="" data-original-title="">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg"
-                                                     alt="avatar" height="40" width="40"/>
-                                            </a>
-                                        </div>
-                                        <div class="chat-body">
-                                            <div class="chat-content">
-                                                <p>Thanks, from ThemeForest.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chat chat-left">
-                                        <div class="chat-avatar">
-                                            <a class="avatar m-0" data-toggle="tooltip" href="#" data-placement="left"
-                                               title="" data-original-title="">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg"
-                                                     alt="avatar" height="40" width="40"/>
-                                            </a>
-                                        </div>
-                                        <div class="chat-body">
-                                            <div class="chat-content">
-                                                <p>I will purchase it for sure.</p>
-                                            </div>
-                                            <div class="chat-content">
-                                                <p>Thanks.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chat">
-                                        <div class="chat-avatar">
-                                            <a class="avatar m-0" data-toggle="tooltip" href="#" data-placement="right"
-                                               title="" data-original-title="">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg"
-                                                     alt="avatar" height="40" width="40"/>
-                                            </a>
-                                        </div>
-                                        <div class="chat-body">
-                                            <div class="chat-content">
-                                                <p>Great, Feel free to get in touch on</p>
-                                            </div>
-                                            <div class="chat-content">
-                                                <p>https://pixinvent.ticksy.com/</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="user-chats" id="id_user_chats">
+                                {#                                chats will be appended from js as well #}
                             </div>
                             <div class="chat-app-form">
-                                <form class="chat-app-input d-flex" onsubmit="enter_chat();"
+                                <form class="chat-app-input d-flex" onsubmit="onMessage();"
                                       action="javascript:void(0);">
                                     <input type="text" class="form-control message mr-1 ml-50" id="iconLeft4-1"
                                            placeholder="Type your message">
-                                    <button type="button" class="btn btn-primary send" onclick="enter_chat();"><i
+                                    <button type="button" class="btn btn-primary send"
+                                            onclick="onMessage();"><i
                                             class="fa fa-paper-plane-o d-lg-none"></i> <span class="d-none d-lg-block">Send</span>
                                     </button>
                                 </form>
@@ -296,26 +164,7 @@
                         </div>
                     </section>
                     <!-- User Chat profile right area -->
-                    <div class="user-profile-sidebar">
-                        <header class="user-profile-header">
-                                <span class="close-icon">
-                                    <i class="feather icon-x"></i>
-                                </span>
-                            <div class="header-profile-sidebar">
-                                <div class="avatar">
-                                    <img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg"
-                                         alt="user_avatar" height="70" width="70">
-                                    <span class="avatar-status-busy avatar-status-lg"></span>
-                                </div>
-                                <h4 class="chat-user-name">Felecia Rower</h4>
-                            </div>
-                        </header>
-                        <div class="user-profile-sidebar-area p-2">
-                            <h6>About</h6>
-                            <p>Toffee caramels jelly-o tart gummi bears cake I love ice cream lollipop. Sweet liquorice
-                                croissant candy danish dessert icing. Cake macaroon gingerbread toffee sweet.</p>
-                        </div>
-                    </div>
+
                     <!--/ User Chat profile right area -->
 
                 </div>
@@ -340,7 +189,9 @@
         // notificationSocket set in navsection.html
         notificationSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
-            if ({{ request.user.id }} == data.for) {
+            if ({{ request.user.id }} == data.for
+        )
+            {
                 $('.chat-badge').html('Nachricht');
                 const element = $(`#last_message_${data.sender}`);
                 element.text(data.message);
@@ -348,7 +199,171 @@
                 $(`#sender_${data.sender}`).text('Nachricht');
             }
         };
+
+        function appendHeader(other, other_id) {
+            html_data = "<header class=\"chat_header d-flex justify-content-between align-items-center p-1\">\n" +
+                "                                    <div class=\"vs-con-items d-flex align-items-center\">\n" +
+                "                                        <div class=\"sidebar-toggle d-block d-lg-none mr-1\"><i\n" +
+                "                                                class=\"feather icon-menu font-large-1\"></i></div>\n" +
+                "                                        <div class=\"avatar m-0 m-0 mr-1\">\n" +
+                "                                            <img src=\"https://picsum.photos/seed/" + other_id + "/200/200\" alt=\"\"\n" +
+                "                                                 height=\"40\" width=\"40\"/>\n" +
+                {#                "                                            <span class=\"avatar-status-busy\"></span>\n" +#}
+                "                                        </div>\n" +
+                "                                        <h6 class=\"mb-0\">" + other + "</h6>\n" +
+                "                                    </div>\n" +
+                "                                    <span class=\"favorite\"><i class=\"feather icon-star font-medium-5\"></i></span>\n" +
+                "                                </header>";
+            $('#id_chat_navbar').html(html_data)
+        }
+
+        function appendMyMessage(sender, message) {
+            return "<div class=\"chats\">\n" +
+                "                                            <div class=\"chat\">\n" +
+                "                                                <div class=\"chat-avatar\">\n" +
+                "                                                    <a class=\"avatar m-0\" data-toggle=\"tooltip\" href=\"#\" data-placement=\"right\"\n"
+                +
+                "                                                       title=\"\" data-original-title=\"\">\n" +
+                "                                                        <img src=\"https://picsum.photos/seed/" + sender + "/200/200\"\n"
+                +
+                "                                                             alt=\"avatar\" height=\"40\" width=\"40\"/>\n"
+                +
+                "                                                    </a>\n" +
+                "                                                </div>\n" +
+                "                                                <div class=\"chat-body\">\n" +
+                "                                                    <div class=\"chat-content\">\n" +
+                "                                                        <p>" + message + "</p>\n" +
+                "                                                    </div>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n";
+        }
+
+        function appendOthersMessage(sender, message) {
+            return "<div class=\"chats\">\n" +
+                "                                            <div class=\"chat chat-left\">\n" +
+                "                                                <div class=\"chat-avatar\">\n" +
+                "                                                    <a class=\"avatar m-0\" data-toggle=\"tooltip\" href=\"#\" data-placement=\"left\"\n"
+                +
+                "                                                       title=\"\" data-original-title=\"\">\n" +
+                "                                                        <img src=\"https://picsum.photos/seed/" + sender + "/200/200\"\n"
+                +
+                "                                                             alt=\"avatar\" height=\"40\" width=\"40\"/>\n"
+                +
+                "                                                    </a>\n" +
+                "                                                </div>\n" +
+                "                                                <div class=\"chat-body\">\n" +
+                "                                                    <div class=\"chat-content\">\n" +
+                "                                                        <p>" + message + "</p>\n" +
+                "                                                    </div>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n"
+
+        }
+
+        function appendChatBody(messages) {
+            console.log('called');
+            let html_data = "";
+            let last = null;
+            messages.forEach(function (msg, idx) {
+                {#                let html = '<div class="chat-content">' + "<p>" + msg.message + "</p>" + "</div>";#}
+                {#                if (last === msg.sender) {#}
+                {#                    $(".chat:last-child .chat-body").append(html);#}
+                {#                } else {#}
+                if (msg.sender == {{ request.user.id }}) {
+                    html_data += appendMyMessage(msg.sender, msg.message);
+                    last = msg.sender;
+                } else {
+                    html_data += appendOthersMessage(msg.sender, msg.message);
+                    last = msg.sender
+                }
+                {#                }#}
+                {#                $('#id_user_chats').append(html_data);#}
+            });
+            {#"<span class=\"time_date\">" + msg.timestamp + "</span><br/>\n"+#}
+            $('#id_user_chats').html(html_data);
+            setTimeout(function() {
+                $(".user-chats").scrollTop($(".user-chats > .chats").height());
+            }, 350)
+        }
+
+        let room_name = null;
+
+        function fetchRoomMessages(user_id) {
+            if (user_id.length > 0) {
+                // roomUrl = 
+                $.ajax({
+                    url: "{% url 'mainapp:new:chat:room' %}" + "?user=" + user_id,
+                    type: 'get',
+                    success: function (data) {
+                        room_name = data.room_name;
+                        appendHeader(data.other, data.other_id);
+                        appendChatBody(data.messages);
+                        initChatSocket(data.other_id, data.room_name);
+                    },
+                    error: function (data) {
+                        alert("Error");
+                    }
+                });
+                $(".user-chats").scrollTop($(".user-chats > .chats").height());
+            }
+        }
+
+        let chatSocket;
+
+        function initChatSocket(other_id, roomName) {
+            room_name = roomName;
+            chatSocket = new WebSocket(
+                'ws://'
+                + window.location.host
+                + '/ws/chat/'
+                + other_id
+                + '/'
+            );
+
+            chatSocket.onmessage = function (e) {
+                const data = JSON.parse(e.data);
+                if (data.sender == {{ request.user.id}}) {
+                    $('#id_user_chats').append(appendMyMessage(data.sender, data.message))
+                } else {
+                    $('#id_user_chats').append(appendOthersMessage(data.sender, data.message))
+                    // if I am the receiver of the message
+                    // send the "I read the message" socket message
+                    chatSocket.send(JSON.stringify({
+                        'type': 'read',
+                        'room_name': roomName
+                    }));
+                }
+            };
+
+            // make the last message read
+            chatSocket.onopen = function (e) {
+                chatSocket.send(JSON.stringify({
+                    'type': 'read',
+                    'room_name': roomName
+                }));
+            };
+
+            chatSocket.onclose = function (e) {
+                console.error('Chat socket closed unexpectedly');
+            };
+        }
+
+        function onMessage() {
+            let message = $(".message").val();
+            console.log(message);
+            if (message != '') {
+                chatSocket.send(JSON.stringify({
+                    'type': 'message',
+                    'message': message
+                }));
+                notificationSocket.send(JSON.stringify({
+                    'type': 'notification',
+                    'for': room_name,
+                    'message': message
+                }));
+                $(".message").val("");
+                $(".user-chats").scrollTop($(".user-chats > .chats").height());
+            }
+        }
     </script>
 {% endblock %}
-
-
