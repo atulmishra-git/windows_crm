@@ -44,7 +44,7 @@ urlpatterns = [
     path('delete/call_notes/<customer_id>/<int:pk>/', call_notes.CallNotesDeleteView.as_view(),
        name='delete_call_notes'),
 
-    path('chat/', include(('chat.urls', 'chat'), 'chat')),
+    path('chat/', include(('chat.urls2', 'chat'), 'chat')),
 
     path('<int:customer_id>/attachments/', attachments.AttachmentCreateView.as_view(),
        name='add_attachments'),
