@@ -94,13 +94,13 @@
                 return null;
             }
             if (cat === 'customer') {
-                const url = "{% url 'mainapp:patch_customer' pk=customer.id %}";
+                const url = "/update_customer/" + {{customer.id}} + "/";
                 $.post(url , obj, function( data ) {
                     console.log("updated customer!");
                 });
             } else {
                 {% if customer.purchase_record.id %}
-                    const url = "{% url 'mainapp:patch_purchase' pk=customer.purchase_record.id %}";
+                    const url = "/update_purchase/" + {{customer.id}} + "/";
                     $.post(url , obj, function( data ) {
                         console.log("updated!");
                     });
