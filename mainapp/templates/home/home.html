@@ -32,7 +32,7 @@
             <div class="col-md-6 col-lg-6">
                 <div class="list-area home-card">
                     <ul>
-                        {% if customer.purchase_record %}
+                        {% if customer and customer.purchase_record %}
                             <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_offer' customer_id=customer.id %}">{% trans "Offer" %}</a></li>
                             <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_offer_confirm' customer_id=customer.id %}">{% trans "Offer Confirmation" %}</a></li>
                             <li><a target="_blank" role="button" class="btn btn-primary btn-block" href="{% url 'mainapp:pdf_install' customer_id=customer.id %}">{% trans "Installation" %}</a></li>
@@ -55,9 +55,15 @@
                         </a>
                     </div>
                     <div class="card">
-                        <a href="{% url 'mainapp:add_call_notes' customer_id=customer.id %}">
-                            <span>{% trans 'Call Notice' %}</span>
-                        </a>
+                        {% if customer %}
+                            <a href="{% url 'mainapp:add_call_notes' customer_id=customer.id %}">
+                                <span>{% trans 'Call Notice' %}</span>
+                            </a>
+                        {% else %}
+                            <a href="#">
+                                <span>{% trans 'Call Notice' %}</span>
+                            </a>
+                        {% endif %}
                     </div>
                     <div class="card">
                         <a href="{% url 'mainapp:open_task_list' %}">
@@ -65,9 +71,15 @@
                         </a>
                     </div>
                     <div class="card">
-                        <a href="{% url 'mainapp:add_attachments' customer_id=customer.id %}">
-                            <span>{% trans 'Attachment' %}</span>
-                        </a>
+                        {% if customer %}
+                            <a href="{% url 'mainapp:add_attachments' customer_id=customer.id %}">
+                                <span>{% trans 'Attachment' %}</span>
+                            </a>
+                        {% else %}
+                            <a href="#">
+                                <span>{% trans 'Attachment' %}</span>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -75,7 +87,9 @@
     </div>
 
     <!-- start modal section -->
-    {% include 'home/customer_purchase_modal.html' %}
+    {% if customer %}
+        {% include 'home/customer_purchase_modal.html' %}
+    {% endif %}
 
 {% endblock %}
 
