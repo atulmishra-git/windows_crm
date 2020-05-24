@@ -88,7 +88,9 @@
 {% block customjs %}
     <script>
         function patchRequest(obj, cat='purchase') {
+            console.log("bla")
             if (!{{customer}}) {
+                console.log("blaa2")
                 return null;
             }
             if (cat === 'customer') {
