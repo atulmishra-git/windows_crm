@@ -66,8 +66,9 @@
                     {% include 'dashboard/installations_next_three_months.html' %}
                 </div>
             </div>
-
-            {% include 'dashboard/purchase_detail.html' %}
+            {% if customer %}
+                {% include 'dashboard/purchase_detail.html' %}
+            {% endif %}
         </section>
         <!-- Dashboard Analytics end -->
         </div>
