@@ -15,12 +15,20 @@ class HomeView(LoginRequiredMixin, TemplateView):
         search_form = SearchForm()
         add_manager_form = AddManagerForm()
         customer = Customer.objects.last()
-        context = {
-            'search_form': search_form,
-            'add_manage_form': add_manager_form,
-            'customer': customer,
-            'attachments': customer.attachments.order_by('-id')[:5],
-        }
+        if customer:
+            context = {
+                'search_form': search_form,
+                'add_manage_form': add_manager_form,
+                'customer': customer,
+                'attachments': customer.attachments.order_by('-id')[:5],
+            }
+        else:
+            context = {
+                'search_form': search_form,
+                'add_manage_form': add_manager_form,
+                'customer': dict(),
+                'attachments': list(),
+            }
         return render(request, self.template_name, context=context)
 
     def post(self, request):
