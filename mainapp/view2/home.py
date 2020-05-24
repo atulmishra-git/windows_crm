@@ -23,14 +23,24 @@ class HomeView(LoginRequiredMixin, TemplateView):
                 customer = Customer.objects.get(id=customer_id)
         except Customer.DoesNotExist:
             pass
-        context = {
-            'search_form': search_form,
-            'add_manage_form': add_manager_form,
-            'customer': customer,
-            'attachments': customer.attachments.order_by('-id')[:5],
-            'purchases_last_seven_days': PurchaseRecord.purchases_last_seven_days(),
-            'installations_last_six_months': PurchaseRecord.installations_last_six_months()
-        }
+        if not customer:
+            context = {
+                'search_form': search_form,
+                'add_manage_form': add_manager_form,
+                'customer': dict(),
+                'attachments': list(),
+                'purchases_last_seven_days': PurchaseRecord.purchases_last_seven_days(),
+                'installations_last_six_months': PurchaseRecord.installations_last_six_months()
+            }
+        else:
+            context = {
+                'search_form': search_form,
+                'add_manage_form': add_manager_form,
+                'customer': customer,
+                'attachments': customer.attachments.order_by('-id')[:5],
+                'purchases_last_seven_days': PurchaseRecord.purchases_last_seven_days(),
+                'installations_last_six_months': PurchaseRecord.installations_last_six_months()
+            }
         return render(request, self.template_name, context=context)
 
 
