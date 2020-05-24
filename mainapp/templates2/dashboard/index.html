@@ -88,6 +88,9 @@
 {% block customjs %}
     <script>
         function patchRequest(obj, cat='purchase') {
+            if (!{{customer}}) {
+                return null;
+            }
             if (cat === 'customer') {
                 const url = "{% url 'mainapp:patch_customer' pk=customer.id %}";
                 $.post(url , obj, function( data ) {
