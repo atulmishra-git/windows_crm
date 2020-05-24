@@ -1,0 +1,371 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block vendorcss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets//vendors/css/vendors.min.css' %}">
+{% endblock %}
+
+{% block pagecss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/pages/app-chat.css' %}">
+{% endblock %}
+
+{% block body_start %}
+    <body class="vertical-layout vertical-menu-modern semi-dark-layout content-left-sidebar chat-application navbar-floating footer-static  "
+          data-open="click" data-menu="vertical-menu-modern" data-col="content-left-sidebar"
+          data-layout="semi-dark-layout">
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/pages/app-chat.css' %}">
+
+    <div class="content-area-wrapper">
+        <div class="sidebar-left">
+            <div class="sidebar">
+                <!-- User Chat profile area -->
+                <div class="chat-profile-sidebar">
+                    <header class="chat-profile-header">
+                            <span class="close-icon">
+                                <i class="feather icon-x"></i>
+                            </span>
+                        <div class="header-profile-sidebar">
+                            <div class="avatar">
+                                <img src="https://picsum.photos/seed/{{ request.user.id }}/200/200" alt="user_avatar"
+                                     height="70" width="70">
+                                <span class="avatar-status-online avatar-status-lg"></span>
+                            </div>
+                            <h4 class="chat-user-name">{{ request.user }}</h4>
+                        </div>
+                    </header>
+                    <div class="profile-sidebar-area">
+                        <div class="scroll-area">
+                            <h6 class="mt-3">{% trans 'Status' %}</h6>
+                            <ul class="list-unstyled user-status mb-0">
+                                <li class="pb-50">
+                                    <fieldset>
+                                        <div class="vs-radio-con vs-radio-success">
+                                            <input type="radio" name="userStatus" value="online" checked="checked">
+                                            <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                            <span class="">{% trans 'Active' %}</span>
+                                        </div>
+                                    </fieldset>
+                                </li>
+                                <li class="pb-50">
+                                    <fieldset>
+                                        <div class="vs-radio-con vs-radio-secondary">
+                                            <input type="radio" name="userStatus" value="offline">
+                                            <span class="vs-radio">
+                                                    <span class="vs-radio--border"></span>
+                                                    <span class="vs-radio--circle"></span>
+                                                </span>
+                                            <span class="">{% trans 'Inactive' %}</span>
+                                        </div>
+                                    </fieldset>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--/ User Chat profile area -->
+                <!-- Chat Sidebar area -->
+                <div class="sidebar-content card">
+                        <span class="sidebar-close-icon">
+                            <i class="feather icon-x"></i>
+                        </span>
+                    <div class="chat-fixed-search">
+                        <div class="d-flex align-items-center">
+                            <div class="sidebar-profile-toggle position-relative d-inline-flex">
+                                <div class="avatar">
+                                    <img src="https://picsum.photos/seed/{{ user.id }}/200/200" alt="user_avatar"
+                                         height="40" width="40">
+                                    <span class="avatar-status-online"></span>
+                                </div>
+                                <div class="bullet-success bullet-sm position-absolute"></div>
+                            </div>
+                            <fieldset class="form-group position-relative has-icon-left mx-1 my-0 w-100">
+                                <input type="text" class="form-control round" id="chat-search"
+                                       placeholder="Search or start a new chat">
+                                <div class="form-control-position">
+                                    <i class="feather icon-search"></i>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="users-list" class="chat-user-list list-group position-relative">
+                        <h3 class="primary p-1 mb-0">{% trans 'Chats' %}</h3>
+                        <ul class="chat-users-list-wrapper media-list">
+                            {% for user in users %}
+                                <li onclick="fetchRoomMessages('{{ user.id }}')">
+                                    <div class="pr-1">
+                                            <span class="avatar m-0 avatar-md"><img class="media-object rounded-circle"
+                                                                                    src="https://picsum.photos/seed/{{ user.id }}/200/200"
+                                                                                    height="42" width="42"
+                                                                                    alt="Generic placeholder image">
+                                                <i></i>
+                                            </span>
+                                    </div>
+                                    <div class="user-chat-info">
+                                        <div class="contact-info">
+                                            <h5 class="font-weight-bold mb-0">{{ user }}</h5>
+                                            <p class="truncate"
+                                               id="last_message_{{ user.id }}">{{ user.last_message|default:"" }}</p>
+                                        </div>
+                                        <div class="contact-meta">
+                                            <span class="float-right mb-25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span id="sender_{{ user.id }}"
+                                                  class="badge badge-primary badge-pill float-right">{% if user.last_message_read_by < 2 %}
+                                                #{% endif %}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!--/ Chat Sidebar area -->
+
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <div class="chat-overlay"></div>
+                    <section class="chat-app-window">
+                        <div class="start-chat-area">
+                            <span class="mb-1 start-chat-icon feather icon-message-square"></span>
+                            <h4 class="py-50 px-1 sidebar-toggle start-chat-text">{% trans 'Start Conversation' %}</h4>
+                        </div>
+                        <div class="active-chat d-none">
+                            <div class="chat_navbar" id="id_chat_navbar">
+                                {#                                header will be appended from js #}
+                            </div>
+                            <div class="user-chats" id="id_user_chats">
+                                {#                                chats will be appended from js as well #}
+                            </div>
+                            <div class="chat-app-form">
+                                <form class="chat-app-input d-flex" onsubmit="onMessage();"
+                                      action="javascript:void(0);">
+                                    <input type="text" class="form-control message mr-1 ml-50" id="iconLeft4-1"
+                                           placeholder="Type your message">
+                                    <button type="button" class="btn btn-primary send"
+                                            onclick="onMessage();"><i
+                                            class="fa fa-paper-plane-o d-lg-none"></i> <span class="d-none d-lg-block">Send</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- User Chat profile right area -->
+
+                    <!--/ User Chat profile right area -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<!-- BEGIN: Page Vendor JS-->
+{% block pagevendorjs %}
+{% endblock %}
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Page JS-->
+{% block pagejs %}
+    <script src="{% static 'app-assets/js/scripts/pages/app-chat.js' %}"></script>
+{% endblock %}
+<!-- END: Page JS-->
+
+{% block customjs %}
+    <script>
+        // notificationSocket set in navsection.html
+        notificationSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            if ({{ request.user.id }} == data.for
+        )
+            {
+                $('.chat-badge').html('Nachricht');
+                const element = $(`#last_message_${data.sender}`);
+                element.text(data.message);
+
+                $(`#sender_${data.sender}`).text('Nachricht');
+            }
+        };
+
+        function appendHeader(other, other_id) {
+            html_data = "<header class=\"chat_header d-flex justify-content-between align-items-center p-1\">\n" +
+                "                                    <div class=\"vs-con-items d-flex align-items-center\">\n" +
+                "                                        <div class=\"sidebar-toggle d-block d-lg-none mr-1\"><i\n" +
+                "                                                class=\"feather icon-menu font-large-1\"></i></div>\n" +
+                "                                        <div class=\"avatar m-0 m-0 mr-1\">\n" +
+                "                                            <img src=\"https://picsum.photos/seed/" + other_id + "/200/200\" alt=\"\"\n" +
+                "                                                 height=\"40\" width=\"40\"/>\n" +
+                {#                "                                            <span class=\"avatar-status-busy\"></span>\n" +#}
+                "                                        </div>\n" +
+                "                                        <h6 class=\"mb-0\">" + other + "</h6>\n" +
+                "                                    </div>\n" +
+                "                                    <span class=\"favorite\"><i class=\"feather icon-star font-medium-5\"></i></span>\n" +
+                "                                </header>";
+            $('#id_chat_navbar').html(html_data)
+        }
+
+        function appendMyMessage(sender, message) {
+            return "<div class=\"chats\">\n" +
+                "                                            <div class=\"chat\">\n" +
+                "                                                <div class=\"chat-avatar\">\n" +
+                "                                                    <a class=\"avatar m-0\" data-toggle=\"tooltip\" href=\"#\" data-placement=\"right\"\n"
+                +
+                "                                                       title=\"\" data-original-title=\"\">\n" +
+                "                                                        <img src=\"https://picsum.photos/seed/" + sender + "/200/200\"\n"
+                +
+                "                                                             alt=\"avatar\" height=\"40\" width=\"40\"/>\n"
+                +
+                "                                                    </a>\n" +
+                "                                                </div>\n" +
+                "                                                <div class=\"chat-body\">\n" +
+                "                                                    <div class=\"chat-content\">\n" +
+                "                                                        <p>" + message + "</p>\n" +
+                "                                                    </div>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n";
+        }
+
+        function appendOthersMessage(sender, message) {
+            return "<div class=\"chats\">\n" +
+                "                                            <div class=\"chat chat-left\">\n" +
+                "                                                <div class=\"chat-avatar\">\n" +
+                "                                                    <a class=\"avatar m-0\" data-toggle=\"tooltip\" href=\"#\" data-placement=\"left\"\n"
+                +
+                "                                                       title=\"\" data-original-title=\"\">\n" +
+                "                                                        <img src=\"https://picsum.photos/seed/" + sender + "/200/200\"\n"
+                +
+                "                                                             alt=\"avatar\" height=\"40\" width=\"40\"/>\n"
+                +
+                "                                                    </a>\n" +
+                "                                                </div>\n" +
+                "                                                <div class=\"chat-body\">\n" +
+                "                                                    <div class=\"chat-content\">\n" +
+                "                                                        <p>" + message + "</p>\n" +
+                "                                                    </div>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n"
+
+        }
+
+        function appendChatBody(messages) {
+            $('#id_user_chats').html("");
+            let html_data = "";
+            let last = null;
+            messages.forEach(function (msg, idx) {
+                let html = '<div class="chat-content">' + "<p>" + msg.message + "</p>" + "</div>";
+                {#                if (last === msg.sender) {#}
+                {#                    $(".chat:last-child .chat-body").append(html);#}
+                {#                } else {#}
+                if (msg.sender == {{ request.user.id }}) {
+                    html_data += appendMyMessage(msg.sender, msg.message);
+                    last = msg.sender;
+                } else {
+                    html_data += appendOthersMessage(msg.sender, msg.message);
+                    last = msg.sender
+                }
+                {#                $('#id_user_chats').append(html_data);#}
+                {#                }#}
+            });
+            {#"<span class=\"time_date\">" + msg.timestamp + "</span><br/>\n"+#}
+            $('#id_user_chats').html(html_data);
+            setTimeout(function () {
+                $(".user-chats").scrollTop($(".user-chats > .chats").height());
+            }, 350)
+        }
+
+        let room_name = null;
+
+        function fetchRoomMessages(user_id) {
+            if (user_id.length > 0) {
+                // roomUrl = 
+                $.ajax({
+                    url: "{% url 'mainapp:new:chat:room' %}" + "?user=" + user_id,
+                    type: 'get',
+                    success: function (data) {
+                        room_name = data.room_name;
+                        appendHeader(data.other, data.other_id);
+                        appendChatBody(data.messages);
+                        initChatSocket(data.other_id, data.room_name);
+                    },
+                    error: function (data) {
+                        alert("Error");
+                    }
+                });
+            }
+        }
+
+        let chatSocket;
+
+        function initChatSocket(other_id, roomName) {
+            room_name = roomName;
+            chatSocket = new WebSocket(
+                'ws://'
+                + window.location.host
+                + '/ws/chat/'
+                + other_id
+                + '/'
+            );
+
+            chatSocket.onmessage = function (e) {
+                const data = JSON.parse(e.data);
+                if (data.sender == {{ request.user.id}}) {
+                    $('#id_user_chats').append(appendMyMessage(data.sender, data.message))
+                } else {
+                    $('#id_user_chats').append(appendOthersMessage(data.sender, data.message))
+                    // if I am the receiver of the message
+                    // send the "I read the message" socket message
+                    chatSocket.send(JSON.stringify({
+                        'type': 'read',
+                        'room_name': roomName
+                    }));
+                }
+                $(".user-chats").scrollTop(10000);
+            };
+
+            // make the last message read
+            chatSocket.onopen = function (e) {
+                chatSocket.send(JSON.stringify({
+                    'type': 'read',
+                    'room_name': roomName
+                }));
+            };
+
+            chatSocket.onclose = function (e) {
+                console.error('Chat socket closed unexpectedly');
+            };
+        }
+
+        let hist_div;
+
+        function onMessage() {
+            let message = $(".message").val();
+            console.log(message);
+            if (message != '') {
+                chatSocket.send(JSON.stringify({
+                    'type': 'message',
+                    'message': message
+                }));
+                notificationSocket.send(JSON.stringify({
+                    'type': 'notification',
+                    'for': room_name,
+                    'message': message
+                }));
+                $(".message").val("");
+                $(".user-chats").scrollTop(10000);
+            }
+        }
+    </script>
+{% endblock %}

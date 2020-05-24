@@ -13,65 +13,145 @@
     {% include 'base/core-css.html' %}
 
     {% block pagecss %}
-{#        css specific to the particular page #}
+        {#        css specific to the particular page #}
     {% endblock %}
 </head>
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
+{% block body_start %}
+    <body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-floating footer-static  "
+          data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
+{% endblock %}
+{% include 'base/header.html' %}
 
-    {% include 'base/header.html' %}
+{% include 'base/side-nav.html' %}
 
-    {% include 'base/side-nav.html' %}
-
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        {% block content %}
-        {% endblock %}
-    </div>
-    <!-- END: Content-->
-
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
-
-    <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light">
-        <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; {% now "Y" %}<a class="text-bold-800 grey darken-2" href="#" target="_blank">Energiewerke Bayern,</a>All rights Reserved</span><span class="float-md-right d-none d-md-block">Made with<i class="feather icon-heart pink"></i></span>
-            <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
-        </p>
-    </footer>
-    <!-- END: Footer-->
-
-    <!-- Custom added -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
-    {% include 'base/core-vendor.html' %}
-
-    <!-- BEGIN: Page Vendor JS-->
-    {% block pagevendorjs %}
+<!-- BEGIN: Content-->
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    {% block content %}
     {% endblock %}
-    <!-- END: Page Vendor JS-->
+</div>
+<!-- END: Content-->
 
-    {% include 'base/core-theme.html' %}
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
 
-    <!-- BEGIN: Page JS-->
-    {% block pagejs %}
-    {% endblock %}
-    <!-- END: Page JS-->
+<!-- BEGIN: Footer-->
+<footer class="footer footer-static footer-light">
+    <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; {% now "Y" %}<a
+            class="text-bold-800 grey darken-2" href="#"
+            target="_blank">Energiewerke Bayern,</a>All rights Reserved</span><span
+            class="float-md-right d-none d-md-block">Made with<i class="feather icon-heart pink"></i></span>
+        <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
+    </p>
+</footer>
+<!-- END: Footer-->
 
-    {% block customjs %}
-    {% endblock %}
+<!-- Custom added -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
-    <script>
-        function poll() {
-          setTimeout(function(){ $.get('/heartbeat/'); poll(); }, 60 * 1000);
+{% include 'base/core-vendor.html' %}
+
+<script src="{% static 'app-assets/vendors/js/extensions/toastr.min.js' %}"></script>
+
+<!-- BEGIN: Page Vendor JS-->
+{% block pagevendorjs %}
+{% endblock %}
+<!-- END: Page Vendor JS-->
+
+{% include 'base/core-theme.html' %}
+
+<!-- BEGIN: Page JS-->
+{% block pagejs %}
+{% endblock %}
+<!-- END: Page JS-->
+
+<script src="{% static 'app-assets/js/scripts/extensions/toastr.js' %}"></script>
+
+<script>
+    function poll() {
+        setTimeout(function () {
+            $.get('/heartbeat/');
+            poll();
+        }, 60 * 1000);
+    }
+
+    poll();
+
+    $.ajax({
+        url: "{% url 'mainapp:chat:unread_rooms' %}",
+        type: 'get',
+        success: function (data) {
+            if (data.count) {
+                $('.chat-badge').html(data.count);
+            }
         }
-        poll();
-    </script>
+    });
+
+    const notificationSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/chat/notification/'
+    );
+
+    notificationSocket.onmessage = function (e) {
+        const data = JSON.parse(e.data);
+        if ({{ request.user.id }} == data.for) {
+            $('.chat-badge').html('Nachricht');
+            console.log(data.message);
+            let message = `<h5>${data.message}</h5>`;
+            toastr.success('', message, {timeOut: 5000, closeButton: true, positionClass: "toast-top-right"});
+        }
+    };
+
+    $('#showtoast').click(function () {
+        toastr['success'](
+            '',
+            '<h5>Timeout</h5>',
+            {timeOut: 5000, closeButton: true, positionClass: "toast-top-right"}
+        );
+{#        toastr.success('', 'Turtle Bay Resort', {timeOut: 5000})#}
+        {##}
+        {#            let msg = 'New message';#}
+        {#            let title = 'title';#}
+        {#            let showDuration = 200;#}
+        {#            let hideDuration = 200;#}
+        {#            let timeOut = 500;#}
+        {#            let extendedTimeOut = 1000;#}
+        {#            let showEasing = 'swing';#}
+        {#            let hideEasing = 'linear';#}
+        {#            let showMethod = 'fadein';#}
+        {#            let hideMethod = 'fadeout';#}
+        {#            let addClear = true;#}
+        {##}
+        {#            toastr.options = {#}
+        {#                closeButton: true,#}
+        {#                newestOnTop: true,#}
+        {#                progressBar: false,#}
+        {#                positionClass: 'toast-top-right',#}
+        {#                preventDuplicates: true,#}
+        {#                onclick: null,#}
+        {#                showDuration: showDuration,#}
+        {#                hideDuration: hideDuration,#}
+        {#                timeOut: addClear ? 0 : timeOut,#}
+        {#                extendedTimeOut: addClear ? 0 : extendedTimeOut,#}
+        {#                showEasing: showEasing,#}
+        {#                hideEasing: hideEasing,#}
+        {#                showMethod: showMethod,#}
+        {#                hideMethod: hideMethod,#}
+        {#            };#}
+    })
+
+</script>
+
+{% block customjs %}
+{% endblock %}
+
 </body>
 <!-- END: Body-->
 

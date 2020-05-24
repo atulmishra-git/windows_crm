@@ -54,7 +54,6 @@
         if ({{ request.user.id }} == data.for) {
             $('.chat_badge').html('Nachricht vorhanden');
             const element = $(`span#last_message_${data.sender}`);
-            element.attr('style', 'background-color: #C2FF34;');
             element.text(data.message);
 
             let sender = $(`#sender_${data.sender}`).text();
