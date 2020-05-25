@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.views.generic import TemplateView
 
-from mainapp.forms.add_customer import CustomerForm
+from mainapp.forms.add_customer import CustomerForm, CustomerAddForm
 from mainapp.forms.add_manager import ManagerForm as AddManagerForm
 from mainapp.forms.search_user import SearchForm
 from django.shortcuts import render, redirect, reverse
@@ -50,7 +50,7 @@ class SearchCustomerView(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         context = {
             'customers': Customer.objects.all().order_by('-id'),
-            'customer_form': CustomerForm()
+            'customer_form': CustomerAddForm()
         }
         return render(request, self.template_name, context=context)
 

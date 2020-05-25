@@ -1,0 +1,96 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <!-- END: Page CSS-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-body">
+            <!-- Content types section start -->
+            <section id="content-types">
+                <div class="row match-height">
+                    <div class="col-xl-8 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h4 class="card-title">{% trans 'Call Note' %}</h4>
+                                    <p class="card-text">{% trans 'Call Notes of ' %} <strong>{{ customer|title }}</strong></p>
+                                </div>
+                                <table class="list-group list-group-flush">
+                                    {% for object in object_list %}
+                                        <tr class="list-group-item">
+                                            <td>
+                                                <strong>[ {{ object.user }} ] </strong>{{ object.notes|title }}
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-pill {% if object.status == 2 %}bg-warning{% elif object.status == 0 %}bg-danger{% else %}bg-success{% endif %} float-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'mainapp:new:edit_call_notes' customer_id=customer_id pk=object.id %}">&nbsp;&nbsp;&nbsp;<i class="feather icon-edit"></i> <span></span></a>
+                                                <a href="{% url 'mainapp:new:delete_call_notes' customer_id=customer_id pk=object.id %}">&nbsp;&nbsp;&nbsp;<i class="feather icon-trash-2"></i> <span></span></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ operation }}</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form" method="POST">
+                                        <div class="form-body">
+                                        {% csrf_token %}
+                                            {% for field in form %}
+                                                <div class="form-group">
+                                                    <label for="feedback1" class="sr-only">{{ field.label }}</label>
+                                                    {{ field }}
+                                                    {% if field.errors %}
+                                                        Error: {{ field.errors }}
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn btn-primary mr-1">Submit</button>
+                                            <button type="reset" class="btn btn-outline-warning">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Content types section end -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+    <!-- BEGIN: Page Vendor JS-->
+    <!-- END: Page Vendor JS-->
+{% endblock %}
+
+{% block pagejs %}
+{% endblock %}

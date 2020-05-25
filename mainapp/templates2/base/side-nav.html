@@ -43,10 +43,11 @@
                     <span class="badge badge badge-primary badge-pill float-right mr-2 chat-badge"></span>
                 </a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Tasks">{% trans 'Tasks' %}</span></a>
+            <li class=" nav-item"><a href="{% url 'mainapp:new:open_task_list' %}"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Tasks">{% trans 'Tasks' %}</span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Call Notice">{% trans 'Call Notice' %}</span></a>
-            </li>
+            {% if customer %}
+                <li class=" nav-item"><a href="{% url 'mainapp:new:add_call_notes' customer_id=customer.id %}"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Call Notice">{% trans 'Call Notice' %}</span></a></li>
+            {% endif %}
             <li class=" nav-item"><a href="#"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">{% trans 'Calendar' %}</span></a>
             </li>
             <li class=" nav-item"><a href="#"><i class="feather icon-settings"></i><span class="menu-title" data-i18n="Settings">{% trans 'Settings' %}</span></a>

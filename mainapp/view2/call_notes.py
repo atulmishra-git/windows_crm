@@ -19,11 +19,11 @@ class CallNotesFormRequestMixin(object):
 
 class CallNotesRedirectMixin:
     def get_success_url(self):
-        return reverse('mainapp:add_call_notes', kwargs=dict(customer_id=self.kwargs['customer_id']))
+        return reverse('mainapp:new:add_call_notes', kwargs=dict(customer_id=self.kwargs['customer_id']))
 
 
 class CallNotesCreateView(LoginRequiredMixin, CallNotesFormRequestMixin, CallNotesRedirectMixin, CreateView):
-    template_name = 'call_notes.html'
+    template_name = 'call_notes/list.html'
     form_class = AddCallNotesForm
     model = CallNotes
 
@@ -41,16 +41,18 @@ class CallNotesCreateView(LoginRequiredMixin, CallNotesFormRequestMixin, CallNot
 
 
 class CallNotesUpdateView(LoginRequiredMixin, CallNotesFormRequestMixin, CallNotesRedirectMixin, UpdateView):
-    template_name = 'call_notes.html'
+    template_name = 'call_notes/list.html'
     form_class = AddCallNotesForm
     model = CallNotes
 
     def get_context_data(self, **kwargs):
         context = super(CallNotesUpdateView, self).get_context_data(**kwargs)
         customer = Customer.fetch(customer_id=self.kwargs['customer_id'])
+        call_notes = CallNotes.fetch(customer_id=customer).order_by('-id')
         context.update(**{
             'customer_id': customer.id,
             'customer': customer,
+            'object_list': call_notes,
         })
         context['operation'] = _('Update Call Notice')
         return context

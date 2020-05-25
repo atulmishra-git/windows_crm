@@ -34,25 +34,39 @@
             <section id="dashboard-analytics">
                 <div class="row">
                     <div class="col-lg-2 col-md-0 col-sm-0"></div>
-                    <div class="col-lg-8 col-md-12 col-sm-12">
-                            <div class="card bg-analytics text-white">
-                                <div class="card-content">
-                                    <div class="card-body text-center">
-                                        <div class="avatar avatar-xl bg-primary shadow mt-0">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-award white font-large-1"></i>
-                                            </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <div class="card bg-analytics text-white">
+                            <div class="card-content">
+                                <div class="card-body text-center">
+                                    <div class="avatar avatar-xl bg-primary shadow mt-0">
+                                        <div class="avatar-content">
+                                            <i class="feather icon-award white font-large-1"></i>
                                         </div>
-                                        <div class="text-center">
-                                            <h1 class="mb-2 text-white">{{ customer }}</h1>
-                                            <p class="m-auto w-75">{{ customer.email }} <strong>{{ customer.mobile }}</strong></p>
-                                            <p class="m-auto w-75">{{ customer.street }} {{ customer.place }} {{ customer.postcode }}</p>
-                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <h1 class="mb-2 text-white">{{ customer }}</h1>
+                                        <p class="m-auto w-75">{{ customer.email }} <strong>{{ customer.mobile }}</strong></p>
+                                        <p class="m-auto w-75">{{ customer.street }} {{ customer.place }} {{ customer.postcode }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <div class="col-lg-2 col-md-0 col-sm-0"></div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-0">
+                        <a style="text-decoration: none;" href="{% url 'mainapp:new:add_call_notes' customer_id=customer.id %}">
+                            <div class="card">
+                                <div class="card-content">
+                                    <img class="card-img-top img-fluid" src="{% static 'app-assets/images/pages/content-img-3.jpg' %}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            {% trans 'Call Notice' %}
+                                        </h4>
+                                        <p class="card-text">{% trans 'Add Call Note For Customer' %}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             <div class="row">
                 {% include 'dashboard/file_buttons.html' %}

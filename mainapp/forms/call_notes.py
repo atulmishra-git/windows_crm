@@ -15,6 +15,8 @@ class AddCallNotesForm(LabelAdder, forms.ModelForm):
         if not self.request or not self.customer_id:
             raise AttributeError("request missing")
         super().__init__(*args, **kwargs)
+        for field_name in self.fields.keys():
+            self.fields[field_name].widget.attrs['class'] = 'form-control'
 
     def save(self, commit=True):
         instance = super(AddCallNotesForm, self).save(commit=False)

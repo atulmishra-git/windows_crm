@@ -395,8 +395,8 @@ class AttachmentTemplate(models.Model):
 class Tasks(models.Model):
     user = models.ForeignKey(User, verbose_name=_("User"), on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
     message = models.TextField(_("message"), blank=False)
-    todo_date = models.DateField(_('Complete Before'), blank=True, null=True)
-    todo_time = models.TimeField('', blank=True, default=datetime.time(16, 0))
+    todo_date = models.DateField(_('Complete Before'), null=True)
+    todo_time = models.TimeField('', default=datetime.time(16, 0))
     completed = models.BooleanField(_('completed'), default=False)
 
     creator = models.ForeignKey('User', on_delete=models.SET_NULL,

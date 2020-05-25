@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.list import ListView
 
 from mainapp.filters.filters import CustomerFilter
-from mainapp.forms.add_customer import CustomerForm
+from mainapp.forms.add_customer import CustomerForm, CustomerUpdateForm
 from mainapp.models import Customer
 from mainapp.view.mixins import FilterListMixin
 
@@ -37,7 +37,7 @@ class AddCustomerView(LoginRequiredMixin, CreateView):
 
 class UpdateCustomerView(LoginRequiredMixin, UpdateView):
     template_name = 'customers/update_customer.html'
-    form_class = CustomerForm
+    form_class = CustomerUpdateForm
     model = Customer
 
     def get_context_data(self, **kwargs):

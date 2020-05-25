@@ -33,6 +33,7 @@ urlpatterns = [
     path('delete/purchases/<int:pk>/', add_purchase.DeletePurchaseView.as_view(), name='delete_purchase'),
 
     path('task_list/', task.TasksView.as_view(), name='open_task_list'),
+    path('task_create/', task.TaskCreateView.as_view(), name='add_task'),
     path('task/<int:pk>/', task.TaskUpdateView.as_view(), name='edit_task'),
     path('delete/task/<int:pk>/', task.DeleteTaskView.as_view(), name='delete_task'),
     path('mark_complete/<int:pk>/', task.mark_completed, name='mark_completed'),
