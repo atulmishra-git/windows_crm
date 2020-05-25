@@ -53,7 +53,11 @@
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4 col-sm-0">
+                        {% if customer %}
                         <a style="text-decoration: none;" href="{% url 'mainapp:new:add_call_notes' customer_id=customer.id %}">
+                        {% else %}
+                        <a style="text-decoration: none;" href="#">
+                        {% endif %}
                             <div class="card">
                                 <div class="card-content">
                                     <img class="card-img-top img-fluid" src="{% static 'app-assets/images/pages/content-img-3.jpg' %}" alt="Card image cap">
