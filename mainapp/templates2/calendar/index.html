@@ -1,0 +1,431 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/calendars/fullcalendar.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'app-assets/vendors/css/calendars/extensions/daygrid.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'app-assets/vendors/css/calendars/extensions/timegrid.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/pickers/pickadate/pickadate.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/plugins/calendars/fullcalendar.css' %}">
+    <!-- END: Page CSS-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- Full calendar start -->
+            <section id="basic-examples">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="cal-category-bullets d-none">
+                                        <div class="bullets-group-1 mt-2">
+                                            <div class="category-business mr-1">
+                                                <span class="bullet bullet-primary bullet-sm mr-25"></span>
+                                                DC
+                                            </div>
+                                            <div class="category-business mr-1">
+                                                <span class="bullet bullet-warning bullet-sm mr-25"></span>
+                                                AC
+                                            </div>
+                                            <div class="category-work mr-1">
+                                                <span class="bullet bullet-success bullet-sm mr-25"></span>
+                                                {% trans 'Public Tasks' %}
+                                            </div>
+                                            <div class="category-personal mr-1">
+                                                <span class="bullet bullet-danger bullet-sm mr-25"></span>
+                                                {% trans 'Private Tasks' %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {# Calendar mount point #}
+                                    <div id='fc-default'></div>
+                                    {# Calendar mount point #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- calendar Modal starts-->
+                <div class="modal fade text-left modal-calendar" tabindex="-1" role="dialog" aria-labelledby="cal-modal"
+                     aria-modal="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title text-text-bold-600" id="cal-modal">Veranstaltung</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <form action="#">
+                                <div class="modal-body">
+                                    <div class="d-flex justify-content-between align-items-center add-category">
+                                        <div class="chip-wrapper"></div>
+                                        <div class="label-icon pt-1 pb-2 dropdown calendar-dropdown">
+                                            <i class="feather icon-tag dropdown-toggle" id="cal-event-category"
+                                               data-toggle="dropdown"></i>
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="cal-event-category">
+                                                    <span class="dropdown-item business" data-color="success">
+                                                        <span class="bullet bullet-success bullet-sm mr-25"></span>
+                                                        Business
+                                                    </span>
+                                                <span class="dropdown-item work" data-color="warning">
+                                                        <span class="bullet bullet-warning bullet-sm mr-25"></span>
+                                                        Work
+                                                    </span>
+                                                <span class="dropdown-item personal" data-color="danger">
+                                                        <span class="bullet bullet-danger bullet-sm mr-25"></span>
+                                                        Personal
+                                                    </span>
+                                                <span class="dropdown-item others" data-color="primary">
+                                                        <span class="bullet bullet-primary bullet-sm mr-25"></span>
+                                                        Others
+                                                    </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <fieldset class="form-label-group">
+                                        <input type="text" class="form-control" id="cal-event-title"
+                                               placeholder="{% trans 'Title' %}">
+                                        <label for="cal-event-title">{% trans 'Title' %}</label>
+                                    </fieldset>
+                                    <fieldset class="form-label-group">
+                                        <input type="text" class="form-control pickadate" id="cal-start-date"
+                                               placeholder="{% trans 'Start Date' %}">
+                                        <label for="cal-start-date">{% trans 'Start Date' %}</label>
+                                    </fieldset>
+                                    <fieldset class="form-label-group">
+                                        <input type="text" class="form-control pickadate" id="cal-end-date"
+                                               placeholder="{% trans 'End Date' %}">
+                                        <label for="cal-end-date">{% trans 'End Date' %}</label>
+                                    </fieldset>
+                                    <fieldset class="form-label-group">
+                                        <textarea class="form-control" id="cal-description" rows="5"
+                                                  placeholder="{% trans 'Description' %}"></textarea>
+                                        <label for="cal-description">{% trans 'Description' %}</label>
+                                    </fieldset>
+                                </div>
+{#                                <div class="modal-footer">#}
+{#                                    <button type="button" class="btn btn-primary cal-add-event waves-effect waves-light"#}
+{#                                            disabled>#}
+{#                                        Add Event#}
+{#                                    </button>#}
+{#                                    <button type="button"#}
+{#                                            class="btn btn-primary d-none cal-submit-event waves-effect waves-light"#}
+{#                                            disabled>submit#}
+{#                                    </button>#}
+{#                                    <button type="button"#}
+{#                                            class="btn btn-flat-danger cancel-event waves-effect waves-light"#}
+{#                                            data-dismiss="modal">Cancel#}
+{#                                    </button>#}
+{#                                    <button type="button"#}
+{#                                            class="btn btn-flat-danger remove-event d-none waves-effect waves-light"#}
+{#                                            data-dismiss="modal">Remove#}
+{#                                    </button>#}
+{#                                </div>#}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- calendar Modal ends-->
+            </section>
+            <!-- // Full calendar end -->
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static 'app-assets/vendors/js/extensions/moment.min.js' %}"></script>
+    {#    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>#}
+    <script src="{% static 'app-assets/vendors/js/calendar/fullcalendar.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/calendar/extensions/daygrid.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/calendar/extensions/timegrid.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/calendar/extensions/interactions.min.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/pickers/pickadate/picker.js' %}"></script>
+    <script src="{% static 'app-assets/vendors/js/pickers/pickadate/picker.date.js' %}"></script>
+    <!-- END: Page Vendor JS-->
+{% endblock %}
+
+{% block pagejs %}
+    {#    <script src="{% static 'app-assets/js/scripts/extensions/fullcalendar.js' %}"></script>#}
+{% endblock %}
+
+{% block customjs %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // color object for different event types
+            var colors = {
+                primary: "#7367f0",
+                success: "#28c76f",
+                danger: "#ea5455",
+                warning: "#ff9f43"
+            };
+
+            // chip text object for different event types
+            var categoryText = {
+                primary: "DC",
+                success: "{% trans 'Public' %}",
+                danger: "{% trans 'Private' %}",
+                warning: "AC"
+            };
+            var categoryBullets = $(".cal-category-bullets").html(),
+                evtColor = "",
+                eventColor = "";
+
+            // calendar init
+            var calendarEl = document.getElementById('fc-default');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ["dayGrid", "timeGrid", "interaction"],
+                customButtons: {
+                    addNew: {
+                        text: ' Add',
+                        click: function () {
+                            var calDate = new Date,
+                                todaysDate = calDate.toISOString().slice(0, 10);
+                            $(".modal-calendar").modal("show");
+                            $(".modal-calendar .cal-submit-event").addClass("d-none");
+                            $(".modal-calendar .remove-event").addClass("d-none");
+                            $(".modal-calendar .cal-add-event").removeClass("d-none")
+                            $(".modal-calendar .cancel-event").removeClass("d-none")
+                            $(".modal-calendar .add-category .chip").remove();
+                            $("#cal-start-date").val(todaysDate);
+                            $("#cal-end-date").val(todaysDate);
+                            $(".modal-calendar #cal-start-date").attr("disabled", false);
+                        }
+                    }
+                },
+                header: {
+{#                    left: "addNew",#}
+                    center: "dayGridMonth,timeGridWeek",
+                    right: "prev,title,next"
+                },
+                displayEventTime: false,
+                navLinks: true,
+                editable: false,
+                allDay: true,
+                navLinkDayClick: function (date) {
+{#                    $(".modal-calendar").modal("show");#}
+                },
+                dateClick: function (info) {
+{#                    $(".modal-calendar #cal-start-date").val(info.dateStr).attr("disabled", true);#}
+{#                    $(".modal-calendar #cal-end-date").val(info.dateStr);#}
+                },
+                // displays saved event values on click
+                eventClick: function (info) {
+                    $(".modal-calendar").modal("show");
+                    $(".modal-calendar #cal-event-title").val(info.event.title);
+                    $(".modal-calendar #cal-start-date").val(moment(info.event.start).format('YYYY-MM-DD'));
+                    $(".modal-calendar #cal-end-date").val(moment(info.event.end).format('YYYY-MM-DD'));
+                    $(".modal-calendar #cal-description").val(info.event.extendedProps.description);
+{#                    $(".modal-calendar .cal-submit-event").removeClass("d-none");#}
+{#                    $(".modal-calendar .remove-event").removeClass("d-none");#}
+                    $(".modal-calendar .cal-add-event").addClass("d-none");
+                    $(".modal-calendar .cancel-event").addClass("d-none");
+                    $(".calendar-dropdown .dropdown-menu").find(".selected").removeClass("selected");
+                    var eventCategory = info.event.extendedProps.dataEventColor;
+                    var eventText = categoryText[eventCategory]
+                    $(".modal-calendar .chip-wrapper .chip").remove();
+                    $(".modal-calendar .chip-wrapper").append($("<div class='chip chip-" + eventCategory + "'>" +
+                        "<div class='chip-body'>" +
+                        "<span class='chip-text'> " + eventText + " </span>" +
+                        "</div>" +
+                        "</div>"));
+                },
+            });
+
+            // render calendar
+            calendar.render();
+
+            // appends bullets to left class of header
+            $("#basic-examples .fc-right").append(categoryBullets);
+
+            // Close modal on submit button
+            $(".modal-calendar .cal-submit-event").on("click", function () {
+                $(".modal-calendar").modal("hide");
+            });
+
+            // Remove Event
+            $(".remove-event").on("click", function () {
+                var removeEvent = calendar.getEventById('newEvent');
+                removeEvent.remove();
+            });
+
+
+            // reset input element's value for new event
+            if ($("td:not(.fc-event-container)").length > 0) {
+                $(".modal-calendar").on('hidden.bs.modal', function (e) {
+                    $('.modal-calendar .form-control').val('');
+                })
+            }
+
+            // remove disabled attr from button after entering info
+            $(".modal-calendar .form-control").on("keyup", function () {
+                if ($(".modal-calendar #cal-event-title").val().length >= 1) {
+                    $(".modal-calendar .modal-footer .btn").removeAttr("disabled");
+                }
+                else {
+                    $(".modal-calendar .modal-footer .btn").attr("disabled", true);
+                }
+            });
+
+            // open add event modal on click of day
+{#            $(document).on("click", ".fc-day", function () {#}
+{#                $(".modal-calendar").modal("show");#}
+{#                $(".calendar-dropdown .dropdown-menu").find(".selected").removeClass("selected");#}
+{#                $(".modal-calendar .cal-submit-event").addClass("d-none");#}
+{#                $(".modal-calendar .remove-event").addClass("d-none");#}
+{#                $(".modal-calendar .cal-add-event").removeClass("d-none");#}
+{#                $(".modal-calendar .cancel-event").removeClass("d-none");#}
+{#                $(".modal-calendar .add-category .chip").remove();#}
+{#                $(".modal-calendar .modal-footer .btn").attr("disabled", true);#}
+{#                evtColor = colors.primary;#}
+{#                eventColor = "primary";#}
+{#            });#}
+
+            // change chip's and event's color according to event type
+            $(".calendar-dropdown .dropdown-menu .dropdown-item").on("click", function () {
+                var selectedColor = $(this).data("color");
+                evtColor = colors[selectedColor];
+                eventTag = categoryText[selectedColor];
+                eventColor = selectedColor;
+
+                // changes event color after selecting category
+                $(".cal-add-event").on("click", function () {
+                    calendar.addEvent({
+                        color: evtColor,
+                        dataEventColor: eventColor,
+                        className: eventColor
+                    });
+                })
+
+                $(".calendar-dropdown .dropdown-menu").find(".selected").removeClass("selected");
+                $(this).addClass("selected");
+
+                // add chip according to category
+                $(".modal-calendar .chip-wrapper .chip").remove();
+                $(".modal-calendar .chip-wrapper").append($("<div class='chip chip-" + selectedColor + "'>" +
+                    "<div class='chip-body'>" +
+                    "<span class='chip-text'> " + eventTag + " </span>" +
+                    "</div>" +
+                    "</div>"));
+            });
+
+            // calendar add event
+            $(".cal-add-event").on("click", function () {
+                $(".modal-calendar").modal("hide");
+                var eventTitle = $("#cal-event-title").val(),
+                    startDate = $("#cal-start-date").val(),
+                    endDate = $("#cal-end-date").val(),
+                    eventDescription = $("#cal-description").val(),
+                    correctEndDate = new Date(endDate);
+                calendar.addEvent({
+                    id: "newEvent",
+                    title: eventTitle,
+                    start: startDate,
+                    end: correctEndDate,
+                    description: eventDescription,
+                    color: evtColor,
+                    dataEventColor: eventColor,
+                    allDay: true
+                });
+            });
+
+            // date picker
+            $(".pickadate").pickadate({
+                format: 'yyyy-mm-dd'
+            });
+
+            JSON.parse('{{ purchases_ac|safe }}').map(function (each) {
+                calendar.addEvent({
+                    id: each.purchase.id,
+                    title: '[AC] ' + each.name + '-' + each.customer_id,
+                    start: each.ac_term,
+                    end: each.ac_term,
+                    description: `{% trans "Street" %} - ${each.customer.street}\n` +
+                    `{% trans "Postcode" %} - ${each.customer.postcode}\n` +
+                    `{% trans "Place" %} - ${each.customer.place}\n\n` +
+                    `{% trans "AC Term" %} - ${each.purchase.ac_term}\n` +
+                    `{% trans "AC Mechanic" %} - ${each.purchase.ac_mechanic}`,
+                    color: colors.warning,
+                    dataEventColor: colors.warning,
+                    allDay: false
+                });
+            });
+
+            JSON.parse('{{ purchases_dc|safe }}').map(function (each) {
+                calendar.addEvent({
+                    id: each.purchase.id,
+                    title: '[DC] ' + each.name + '-' + each.customer_id,
+                    start: each.dc_term,
+                    end: each.dc_term,
+                    description: `{% trans "Street" %} - ${each.customer.street}\n` +
+                    `{% trans "Postcode" %} - ${each.customer.postcode}\n` +
+                    `{% trans "Place" %} - ${each.customer.place}\n\n` +
+                    `{% trans "DC Term" %} - ${each.purchase.dc_term}\n` +
+                    `{% trans "DC Mechanic" %} - ${each.purchase.dc_mechanic}`,
+                    color: colors.primary,
+                    dataEventColor: colors.primary,
+                    allDay: false
+                });
+            });
+
+            JSON.parse('{{ public_tasks|safe }}').map(function (each) {
+                console.log(each);
+                calendar.addEvent({
+                    id: each.id,
+                    title: each.private ? '(P) ' : '' + each.message,
+                    start: each.date,
+                    end: each.date,
+                    description: `{% trans "Manager" %} - ${each.user}\n` +
+                    `{% trans "Time" %} - ${each.time}\n` +
+                    `{% trans "Creator" %} - ${each.creator}\n`,
+                    color: colors.success,
+                    dataEventColor: colors.success,
+                    allDay: false
+                });
+            });
+
+            JSON.parse('{{ private_tasks|safe }}').map(function (each) {
+                console.log(each);
+                calendar.addEvent({
+                    id: each.id,
+                    title: each.private ? '(P) ' : '' + each.message,
+                    start: each.date,
+                    end: each.date,
+                    description: `{% trans "Manager" %} - ${each.user}\n` +
+                    `{% trans "Time" %} - ${each.time}\n` +
+                    `{% trans "Creator" %} - ${each.creator}\n`,
+                    color: colors.danger,
+                    dataEventColor: colors.danger,
+                    allDay: false
+                });
+            });
+
+        });
+
+    </script>
+{% endblock %}

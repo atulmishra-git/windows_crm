@@ -43,7 +43,7 @@ def calendar(request, year=None, month=None):
             "id": each.id,
             "customer_id": each.customer_id,
             "name": each.customer.first_name + " " + each.customer.surname,
-            "dc_term": str(each.ac_term),
+            "ac_term": str(each.ac_term),
             "customer": {
                 "street": each.customer.street or "",
                 "postcode": each.customer.postcode or "",
@@ -59,7 +59,7 @@ def calendar(request, year=None, month=None):
             ac_term__year__gte=year-1,
         )
     ]
-    tasks = [
+    public_tasks = [
         {
             "id": each.id,
             "creator": str(each.creator),
@@ -71,6 +71,7 @@ def calendar(request, year=None, month=None):
         }
         for each in Tasks.objects.filter(
             todo_date__gte=now-timedelta(days=90),
+            private=False,
             completed=False
         ) if not each.private or (each.private and each.user == request.user)
         # if not private or if private, should be created by self
@@ -91,8 +92,10 @@ def calendar(request, year=None, month=None):
         ) if each.user == request.user
     ]
     context = dict(
-        purchases=json.dumps(purchases_dc + purchases_ac),
-        tasks=json.dumps(tasks),
+        purchases_ac=json.dumps(purchases_ac),
+        purchases_dc=json.dumps(purchases_dc),
+        tasks=json.dumps(public_tasks),  # old compatible
+        public_tasks=json.dumps(public_tasks),
         private_tasks=json.dumps(private_tasks)
     )
-    return TemplateResponse(request, 'calendars/calendar.html', context)
+    return TemplateResponse(request, 'calendar/index.html', context)
