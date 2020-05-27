@@ -39,19 +39,19 @@
                                 <div class="card-body">
                                     <div class="cal-category-bullets d-none">
                                         <div class="bullets-group-1 mt-2">
-                                            <div class="category-business mr-1">
+                                            <div class="category-business mr-1" onclick="showEvents('dc')">
                                                 <span class="bullet bullet-primary bullet-sm mr-25"></span>
                                                 DC
                                             </div>
-                                            <div class="category-business mr-1">
+                                            <div class="category-business mr-1" onclick="showEvents('ac')">
                                                 <span class="bullet bullet-warning bullet-sm mr-25"></span>
                                                 AC
                                             </div>
-                                            <div class="category-work mr-1">
+                                            <div class="category-work mr-1" onclick="showEvents('public')">
                                                 <span class="bullet bullet-success bullet-sm mr-25"></span>
                                                 {% trans 'Public Tasks' %}
                                             </div>
-                                            <div class="category-personal mr-1">
+                                            <div class="category-personal mr-1" onclick="showEvents('private')">
                                                 <span class="bullet bullet-danger bullet-sm mr-25"></span>
                                                 {% trans 'Private Tasks' %}
                                             </div>
@@ -78,32 +78,6 @@
                             </div>
                             <form action="#">
                                 <div class="modal-body">
-                                    <div class="d-flex justify-content-between align-items-center add-category">
-                                        <div class="chip-wrapper"></div>
-                                        <div class="label-icon pt-1 pb-2 dropdown calendar-dropdown">
-                                            <i class="feather icon-tag dropdown-toggle" id="cal-event-category"
-                                               data-toggle="dropdown"></i>
-                                            <div class="dropdown-menu dropdown-menu-right"
-                                                 aria-labelledby="cal-event-category">
-                                                    <span class="dropdown-item business" data-color="success">
-                                                        <span class="bullet bullet-success bullet-sm mr-25"></span>
-                                                        Business
-                                                    </span>
-                                                <span class="dropdown-item work" data-color="warning">
-                                                        <span class="bullet bullet-warning bullet-sm mr-25"></span>
-                                                        Work
-                                                    </span>
-                                                <span class="dropdown-item personal" data-color="danger">
-                                                        <span class="bullet bullet-danger bullet-sm mr-25"></span>
-                                                        Personal
-                                                    </span>
-                                                <span class="dropdown-item others" data-color="primary">
-                                                        <span class="bullet bullet-primary bullet-sm mr-25"></span>
-                                                        Others
-                                                    </span>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <fieldset class="form-label-group">
                                         <input type="text" class="form-control" id="cal-event-title"
                                                placeholder="{% trans 'Title' %}">
@@ -148,6 +122,52 @@
                     </div>
                 </div>
                 <!-- calendar Modal ends-->
+
+                <!-- calendar Task Modal starts-->
+                <div class="modal fade text-left modal-calendar-task" tabindex="-1" role="dialog" aria-labelledby="cal-modal"
+                     aria-modal="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title text-text-bold-600" id="cal-modal">{% trans 'Task' %}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <form action="#" id="task-form">
+                                <div class="modal-body">
+                                    <fieldset class="form-label-group">
+                                        <label for="task-private">{% trans 'Private' %}</label>
+                                        <select class="form-control" id="cal-task-private" title="{% trans 'Private Tasks' %}">
+                                            <option value=true>Ja</option>
+                                            <option value=false>Nien</option>
+                                        </select>
+                                    </fieldset>
+                                    <fieldset class="form-label-group">
+                                        <input type="text" class="form-control pickadate" id="cal-task-date"
+                                               placeholder="{% trans 'Start Date' %}">
+                                        <label for="cal-start-date">{% trans 'Date' %}</label>
+                                    </fieldset>
+                                    <fieldset class="form-label-group">
+                                        <textarea class="form-control" id="cal-task-title" rows="5"
+                                                  placeholder="{% trans 'Task' %}" required></textarea>
+                                        <label for="cal-description">{% trans 'Task' %}</label>
+                                    </fieldset>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary cal-add-event waves-effect waves-light">
+                                        {% trans 'submit' %}
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-flat-danger cancel-event waves-effect waves-light"
+                                            data-dismiss="modal">{% trans 'cancel' %}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- calendar Task Modal ends-->
             </section>
             <!-- // Full calendar end -->
 
@@ -174,23 +194,105 @@
 
 {% block customjs %}
     <script>
+        var calendar;
+
+        var colors = {
+            primary: "#7367f0",
+            success: "#28c76f",
+            danger: "#ea5455",
+            warning: "#ff9f43"
+        };
+
+        // chip text object for different event types
+        var categoryText = {
+            primary: "DC",
+            success: "{% trans 'Public' %}",
+            danger: "{% trans 'Private' %}",
+            warning: "AC"
+        };
+
+        let purchases_ac = JSON.parse('{{ purchases_ac|safe }}');
+        let purchases_dc = JSON.parse('{{ purchases_dc|safe }}');
+        let public_tasks = JSON.parse('{{ public_tasks|safe }}');
+        let private_tasks = JSON.parse('{{ private_tasks|safe }}');
+
+        function showEvents(category) {
+            calendar.removeAllEvents();
+
+            if (!category || category === 'ac') {
+                purchases_ac.map(function (each) {
+                    calendar.addEvent({
+                    id: each.purchase.id,
+                    title: '[AC] ' + each.name + '-' + each.customer_id,
+                    start: each.ac_term,
+                    end: each.ac_term,
+                    description: `{% trans "Street" %} - ${each.customer.street}\n` +
+                    `{% trans "Postcode" %} - ${each.customer.postcode}\n` +
+                    `{% trans "Place" %} - ${each.customer.place}\n\n` +
+                    `{% trans "AC Term" %} - ${each.purchase.ac_term}\n` +
+                    `{% trans "AC Mechanic" %} - ${each.purchase.ac_mechanic}`,
+                    color: colors.warning,
+                    dataEventColor: colors.warning,
+                    allDay: false
+                });
+                });
+            }
+            if (!category || category === 'dc') {
+                purchases_dc.map(function (each) {
+                    calendar.addEvent({
+                        id: each.purchase.id,
+                        title: '[DC] ' + each.name + '-' + each.customer_id,
+                        start: each.dc_term,
+                        end: each.dc_term,
+                        description: `{% trans "Street" %} - ${each.customer.street}\n` +
+                        `{% trans "Postcode" %} - ${each.customer.postcode}\n` +
+                        `{% trans "Place" %} - ${each.customer.place}\n\n` +
+                        `{% trans "DC Term" %} - ${each.purchase.dc_term}\n` +
+                        `{% trans "DC Mechanic" %} - ${each.purchase.dc_mechanic}`,
+                        color: colors.primary,
+                        dataEventColor: colors.primary,
+                        allDay: false
+                    })
+                });
+            }
+            if (!category || category === 'public') {
+                public_tasks.map(function (each) {
+                    calendar.addEvent({
+                        id: each.id,
+                        title: each.private ? '(P) ' : '' + each.message,
+                        start: each.date,
+                        end: each.date,
+                        description: `{% trans "Manager" %} - ${each.user}\n` +
+                        `{% trans "Time" %} - ${each.time}\n` +
+                        `{% trans "Creator" %} - ${each.creator}\n`,
+                        color: colors.success,
+                        dataEventColor: colors.success,
+                        allDay: false
+                    });
+                });
+            }
+            if (!category || category === 'private') {
+                private_tasks.map(function (each) {
+                    calendar.addEvent({
+                        id: each.id,
+                        title: each.message,
+                        start: each.date,
+                        end: each.date,
+                        description: `{% trans "Manager" %} - ${each.user}\n` +
+                        `{% trans "Time" %} - ${each.time}\n` +
+                        `{% trans "Creator" %} - ${each.creator}\n`,
+                        color: colors.danger,
+                        dataEventColor: colors.danger,
+                        allDay: false
+                    });
+                });
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
 
             // color object for different event types
-            var colors = {
-                primary: "#7367f0",
-                success: "#28c76f",
-                danger: "#ea5455",
-                warning: "#ff9f43"
-            };
 
-            // chip text object for different event types
-            var categoryText = {
-                primary: "DC",
-                success: "{% trans 'Public' %}",
-                danger: "{% trans 'Private' %}",
-                warning: "AC"
-            };
             var categoryBullets = $(".cal-category-bullets").html(),
                 evtColor = "",
                 eventColor = "";
@@ -198,14 +300,15 @@
             // calendar init
             var calendarEl = document.getElementById('fc-default');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'de',
                 plugins: ["dayGrid", "timeGrid", "interaction"],
                 customButtons: {
                     addNew: {
                         text: ' Add',
                         click: function () {
                             var calDate = new Date,
-                                todaysDate = calDate.toISOString().slice(0, 10);
+                            todaysDate = calDate.toISOString().slice(0, 10);
                             $(".modal-calendar").modal("show");
                             $(".modal-calendar .cal-submit-event").addClass("d-none");
                             $(".modal-calendar .remove-event").addClass("d-none");
@@ -231,7 +334,7 @@
 {#                    $(".modal-calendar").modal("show");#}
                 },
                 dateClick: function (info) {
-{#                    $(".modal-calendar #cal-start-date").val(info.dateStr).attr("disabled", true);#}
+                    $(".modal-calendar-task #cal-task-date").val(info.dateStr).attr("disabled", true);
 {#                    $(".modal-calendar #cal-end-date").val(info.dateStr);#}
                 },
                 // displays saved event values on click
@@ -293,18 +396,16 @@
             });
 
             // open add event modal on click of day
-{#            $(document).on("click", ".fc-day", function () {#}
-{#                $(".modal-calendar").modal("show");#}
-{#                $(".calendar-dropdown .dropdown-menu").find(".selected").removeClass("selected");#}
-{#                $(".modal-calendar .cal-submit-event").addClass("d-none");#}
-{#                $(".modal-calendar .remove-event").addClass("d-none");#}
-{#                $(".modal-calendar .cal-add-event").removeClass("d-none");#}
-{#                $(".modal-calendar .cancel-event").removeClass("d-none");#}
-{#                $(".modal-calendar .add-category .chip").remove();#}
-{#                $(".modal-calendar .modal-footer .btn").attr("disabled", true);#}
-{#                evtColor = colors.primary;#}
-{#                eventColor = "primary";#}
-{#            });#}
+            $(document).on("click", ".fc-day", function () {
+                $(".modal-calendar-task").modal("show");
+                $(".calendar-dropdown .dropdown-menu").find(".selected").removeClass("selected");
+                $(".modal-calendar-task .cal-submit-event").addClass("d-none");
+                $(".modal-calendar-task .cancel-event").removeClass("d-none");
+                $(".modal-calendar-task .add-category .chip").remove();
+{#                $(".modal-calendar-task .modal-footer .btn").attr("disabled", true);#}
+                evtColor = colors.primary;
+                eventColor = "primary";
+            });
 
             // change chip's and event's color according to event type
             $(".calendar-dropdown .dropdown-menu .dropdown-item").on("click", function () {
@@ -336,22 +437,36 @@
 
             // calendar add event
             $(".cal-add-event").on("click", function () {
-                $(".modal-calendar").modal("hide");
-                var eventTitle = $("#cal-event-title").val(),
-                    startDate = $("#cal-start-date").val(),
-                    endDate = $("#cal-end-date").val(),
-                    eventDescription = $("#cal-description").val(),
-                    correctEndDate = new Date(endDate);
+                $(".modal-calendar-task").modal("hide");
+                let eventTitle = $("#cal-task-title").val();
+                let startDate = $("#cal-task-date").val();
+                let isPrivate = $("#cal-task-private").val() == 'true';
+                let correctEndDate = new Date(startDate);
+                const obj = {
+                    message: eventTitle,
+                    todo_date: startDate,
+                    'private': isPrivate
+                };
                 calendar.addEvent({
-                    id: "newEvent",
-                    title: eventTitle,
-                    start: startDate,
-                    end: correctEndDate,
-                    description: eventDescription,
-                    color: evtColor,
-                    dataEventColor: eventColor,
-                    allDay: true
+                    id: obj.message + '123',
+                    title: obj.message,
+                    start: obj.todo_date,
+                    end: obj.todo_date,
+                    description: obj.message,
+                    color: isPrivate ? colors.danger : colors.success,
+                    dataEventColor: isPrivate ? colors.danger : colors.success,
+                    allDay: false
                 });
+                const url = "{% url 'mainapp:create_calendar_task' %}";
+                $.post(url , obj, function( data ) {
+                    console.log("created!");
+                });
+                obj.date = obj.todo_date;
+                if (obj.private) {
+                    private_tasks.push(obj);
+                } else {
+                    public_tasks.push(obj);
+                }
             });
 
             // date picker
@@ -359,71 +474,7 @@
                 format: 'yyyy-mm-dd'
             });
 
-            JSON.parse('{{ purchases_ac|safe }}').map(function (each) {
-                calendar.addEvent({
-                    id: each.purchase.id,
-                    title: '[AC] ' + each.name + '-' + each.customer_id,
-                    start: each.ac_term,
-                    end: each.ac_term,
-                    description: `{% trans "Street" %} - ${each.customer.street}\n` +
-                    `{% trans "Postcode" %} - ${each.customer.postcode}\n` +
-                    `{% trans "Place" %} - ${each.customer.place}\n\n` +
-                    `{% trans "AC Term" %} - ${each.purchase.ac_term}\n` +
-                    `{% trans "AC Mechanic" %} - ${each.purchase.ac_mechanic}`,
-                    color: colors.warning,
-                    dataEventColor: colors.warning,
-                    allDay: false
-                });
-            });
-
-            JSON.parse('{{ purchases_dc|safe }}').map(function (each) {
-                calendar.addEvent({
-                    id: each.purchase.id,
-                    title: '[DC] ' + each.name + '-' + each.customer_id,
-                    start: each.dc_term,
-                    end: each.dc_term,
-                    description: `{% trans "Street" %} - ${each.customer.street}\n` +
-                    `{% trans "Postcode" %} - ${each.customer.postcode}\n` +
-                    `{% trans "Place" %} - ${each.customer.place}\n\n` +
-                    `{% trans "DC Term" %} - ${each.purchase.dc_term}\n` +
-                    `{% trans "DC Mechanic" %} - ${each.purchase.dc_mechanic}`,
-                    color: colors.primary,
-                    dataEventColor: colors.primary,
-                    allDay: false
-                });
-            });
-
-            JSON.parse('{{ public_tasks|safe }}').map(function (each) {
-                console.log(each);
-                calendar.addEvent({
-                    id: each.id,
-                    title: each.private ? '(P) ' : '' + each.message,
-                    start: each.date,
-                    end: each.date,
-                    description: `{% trans "Manager" %} - ${each.user}\n` +
-                    `{% trans "Time" %} - ${each.time}\n` +
-                    `{% trans "Creator" %} - ${each.creator}\n`,
-                    color: colors.success,
-                    dataEventColor: colors.success,
-                    allDay: false
-                });
-            });
-
-            JSON.parse('{{ private_tasks|safe }}').map(function (each) {
-                console.log(each);
-                calendar.addEvent({
-                    id: each.id,
-                    title: each.private ? '(P) ' : '' + each.message,
-                    start: each.date,
-                    end: each.date,
-                    description: `{% trans "Manager" %} - ${each.user}\n` +
-                    `{% trans "Time" %} - ${each.time}\n` +
-                    `{% trans "Creator" %} - ${each.creator}\n`,
-                    color: colors.danger,
-                    dataEventColor: colors.danger,
-                    allDay: false
-                });
-            });
+            showEvents(null);
 
         });
 
