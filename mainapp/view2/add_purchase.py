@@ -17,11 +17,12 @@ from mainapp.view.mixins import FilterListMixin
 @csrf_exempt
 @login_required
 def update_purchase(request, pk):
+    count = 0
     if request.method in ['POST', 'PATCH']:
         # only one pair of k, v is received
         for k, v in request.POST.items():
-            PurchaseRecord.objects.filter(pk=pk).update(**{k: v})
-    return JsonResponse(data={}, status=200)
+            count = PurchaseRecord.objects.filter(pk=pk).update(**{k: v})
+    return JsonResponse(data={'message': f'{count} purchases updated'}, status=200)
 
 
 class AddPurchaseView(LoginRequiredMixin, CreateView):

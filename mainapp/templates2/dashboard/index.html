@@ -52,38 +52,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-sm-0">
-                        {% if customer %}
-                        <a style="text-decoration: none;" href="{% url 'mainapp:new:add_call_notes' customer_id=customer.id %}">
-                        {% else %}
-                        <a style="text-decoration: none;" href="#">
-                        {% endif %}
-                            <div class="card">
-                                <div class="card-content">
-                                    <img class="card-img-top img-fluid" src="{% static 'app-assets/images/pages/content-img-3.jpg' %}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            {% trans 'Call Notice' %}
-                                        </h4>
-                                        <p class="card-text">{% trans 'Add Call Note For Customer' %}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    <div class="col-lg-2 col-md-0 col-sm-0"></div>
                 </div>
             <div class="row">
                 {% include 'dashboard/file_buttons.html' %}
                 {% include 'dashboard/attachments.html' %}
             </div>
-            <div class="row">
-                <div class="col-md-6 col-12">
-                    {% include 'dashboard/last_seven_days_purchases.html' %}
-                </div>
-                <div class="col-md-6 col-12">
-                    {% include 'dashboard/installations_next_three_months.html' %}
-                </div>
-            </div>
+{#            <div class="row">#}
+{#                <div class="col-md-6 col-12">#}
+{#                    {% include 'dashboard/last_seven_days_purchases.html' %}#}
+{#                </div>#}
+{#                <div class="col-md-6 col-12">#}
+{#                    {% include 'dashboard/installations_next_three_months.html' %}#}
+{#                </div>#}
+{#            </div>#}
             {% if customer %}
                 {% include 'dashboard/purchase_detail.html' %}
             {% endif %}
@@ -107,19 +89,19 @@
 {% block customjs %}
     <script>
         function patchRequest(obj, cat='purchase') {
-            console.log("bla")
-            if (!{{customer}}) {
-                console.log("blaa2")
+            console.log("bla", );
+            if (!"{{ customer|safe }}") {
+                console.log("no customer");
                 return null;
             }
             if (cat === 'customer') {
-                const url = "/update_customer/" + {{customer.id}} + "/";
+                const url = "new/update_customer/" + {{customer.id}} + "/";
                 $.post(url , obj, function( data ) {
                     console.log("updated customer!");
                 });
             } else {
                 {% if customer.purchase_record.id %}
-                    const url = "/update_purchase/" + {{customer.id}} + "/";
+                    const url = "{% url 'mainapp:new:patch_purchase' pk=customer.purchase_record.id %}";
                     $.post(url , obj, function( data ) {
                         console.log("updated!");
                     });
