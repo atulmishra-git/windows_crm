@@ -189,7 +189,7 @@
 			<p>{{ mrms|title|default:"-" }}</p>
             <div class="info-link"><a href="info@energiewerke-bayern.de">info@energiewerke-bayern.de</a></div>
 			<p>{{ customer|title }}</p>
-			<p>{{ customer.street|title|default:"-" }}</p>
+			<p>{{ customer.street|title|truncatechars:10|default:"-" }}</p>
 			<p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
 		</div>
 		<div class="Germering-area" style="float: right;">
@@ -294,7 +294,7 @@
         <div class="customer-info-box">
             <p>{{ mrms|title|default:"-" }}</p>
             <p>{{ customer|title }}</p>
-            <p>{{ customer.street|title|default:"-" }}</p>
+            <p>{{ customer.street|title|truncatechars:10|default:"-" }}</p>
             <p>{{ customer.postcode|upper|default:"-" }}</p>
         </div>
 
