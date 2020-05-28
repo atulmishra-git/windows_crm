@@ -14,7 +14,7 @@
                         </div>
                         <div class="timeline-info">
                             {% if customer.purchase_record %}
-                                <a target="_blank" href="{% url 'mainapp:pdf_offer' customer_id=customer.id %}">
+                                <a target="_blank" href="{% url 'mainapp:new:pdf_offer' customer_id=customer.id %}">
                             {% else %}
                                 <a href="#">
                             {% endif %}
@@ -30,7 +30,7 @@
                         </div>
                         <div class="timeline-info">
                             {% if customer.purchase_record %}
-                                <a target="_blank" href="{% url 'mainapp:pdf_offer_confirm' customer_id=customer.id %}">
+                                <a target="_blank" href="{% url 'mainapp:new:pdf_offer_confirm' customer_id=customer.id %}">
                             {% else %}
                                 <a href="#">
                             {% endif %}
@@ -46,7 +46,7 @@
                         </div>
                         <div class="timeline-info">
                             {% if customer.purchase_record %}
-                                <a target="_blank" href="{% url 'mainapp:pdf_install' customer_id=customer.id %}">
+                                <a target="_blank" href="{% url 'mainapp:new:pdf_install' customer_id=customer.id %}">
                             {% else %}
                                 <a href="#">
                             {% endif %}
@@ -62,7 +62,7 @@
                         </div>
                         <div class="timeline-info">
                             {% if customer.purchase_record %}
-                                <a target="_blank" href="{% url 'mainapp:pdf_invoice' customer_id=customer.id %}">
+                                <a target="_blank" href="{% url 'mainapp:new:pdf_invoice' customer_id=customer.id %}">
                             {% else %}
                                 <a href="#">
                             {% endif %}
