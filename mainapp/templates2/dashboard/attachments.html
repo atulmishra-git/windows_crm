@@ -48,7 +48,7 @@
                             </td>
                             <td>
                                 <a style="text-decoration: none"
-                                   href="{% url 'mainapp:email_attachment' customer_id=customer.id pk=attachment.pk %}">[ <i class="feather icon-mail"></i><span> {% trans 'Email' %} ]</span>
+                                   href="{% url 'mainapp:new:email_attachment' customer_id=customer.id pk=attachment.pk %}">[ <i class="feather icon-mail"></i><span> {% trans 'Email' %} ]</span>
                                 </a>
                             </td>
                         </tr>
