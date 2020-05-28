@@ -84,7 +84,7 @@ def email_attachment(request, customer_id, pk):
     # msg.attach_alternative(html_content, "text/html")
     msg.attach_file(os.path.join(settings.MEDIA_ROOT, attachment.upload.name))
     msg.send()
-    return redirect(reverse('mainapp:home'))
+    return redirect(reverse('mainapp:new:home'))
 
 
 class UpdateAttachmentTemplateView(LoginRequiredMixin, View):
