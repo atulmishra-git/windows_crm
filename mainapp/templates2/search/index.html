@@ -28,27 +28,29 @@
 {% block content %}
     <div class="content-wrapper">
         <div class="content-body">
-            <form action="{% url 'mainapp:new:import_xls' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-lg-7 col-md-12">
-                        <a href="{% url 'mainapp:new:export_xls' %}">
-                            <button class="btn btn-primary">{% trans 'Export' %}</button>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-12">
+            <div class="row">
+                <div class="col-lg-7 col-md-12">
+                    <a href="{% url 'mainapp:new:export_xls' %}">
+                        <button class="btn btn-primary">{% trans 'Export' %}</button>
+                    </a>
+                </div>
+                <div class="col-lg-5 col-md-12">
+                    <form action="{% url 'mainapp:new:import_xls' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <fieldset class="form-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="xls_file">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            <div class="row">
+                                <div class="custom-file col-lg-8">
+                                    <input type="file" class="custom-file-input" name="xls_file" required>
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button class="btn btn-primary">{% trans 'Import' %}</button>
+                                </div>
                             </div>
                         </fieldset>
-                    </div>
-                    <div class="col-lg-2 col-md-12">
-                        <button class="btn btn-primary">{% trans 'Import' %}</button>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
             <!-- Data list view starts -->
             <section id="data-list-view" class="data-list-view-header">
 
