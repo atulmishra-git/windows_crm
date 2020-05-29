@@ -6,9 +6,11 @@
 {% block vendorcss %}
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/datatables.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'app-assets/vendors/css/tables/datatable/datatables.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/file-uploaders/dropzone.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css' %}">
     <!-- END: Vendor CSS-->
 {% endblock %}
 
@@ -26,6 +28,27 @@
 {% block content %}
     <div class="content-wrapper">
         <div class="content-body">
+            <form action="{% url 'mainapp:new:import_xls' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-7 col-md-12">
+                        <a href="{% url 'mainapp:new:export_xls' %}">
+                            <button class="btn btn-primary">{% trans 'Export' %}</button>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-12">
+                        <fieldset class="form-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="xls_file">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-2 col-md-12">
+                        <button class="btn btn-primary">{% trans 'Import' %}</button>
+                    </div>
+                </div>
+            </form>
             <!-- Data list view starts -->
             <section id="data-list-view" class="data-list-view-header">
 
@@ -33,26 +56,29 @@
                 <div class="table-responsive">
                     <table class="table data-list-view">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>{% trans 'NAME' %}</th>
-                                <th>{% trans 'EMAIL' %}</th>
-                                <th>{% trans 'PHONE' %}</th>
-                                <th>{% trans 'PLACE' %}</th>
-                                <th>{% trans 'ACTION' %}</th>
-                            </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>{% trans 'NAME' %}</th>
+                            <th>{% trans 'EMAIL' %}</th>
+                            <th>{% trans 'PHONE' %}</th>
+                            <th>{% trans 'PLACE' %}</th>
+                            <th>{% trans 'ACTION' %}</th>
+                        </tr>
                         </thead>
                         <tbody>
                         {% for customer in customers %}
                             <tr>
                                 <td class="product-name">{{ customer.id }}</td>
-                                <td class="product-name"><a href="{% url 'mainapp:new:home' %}?customer={{ customer.id }}">{{ customer }}</a></td>
+                                <td class="product-name"><a
+                                        href="{% url 'mainapp:new:home' %}?customer={{ customer.id }}">{{ customer }}</a>
+                                </td>
                                 <td class="product-category">{{ customer.email }}</td>
                                 <td class="product-price">{{ customer.phone }}</td>
                                 <td class="product-price">{{ customer.place }}</td>
                                 <td class="product-action">
-                                    <a href="{% url 'mainapp:new:edit_customer' pk=customer.id %}"><span><i class="feather icon-edit"></i></span></a>
-{#                                    <span class="action-delete"><i class="feather icon-trash"></i></span>#}
+                                    <a href="{% url 'mainapp:new:edit_customer' pk=customer.id %}"><span><i
+                                            class="feather icon-edit"></i></span></a>
+                                    {#                                    <span class="action-delete"><i class="feather icon-trash"></i></span>#}
                                 </td>
                             </tr>
                         {% endfor %}
@@ -65,41 +91,41 @@
                 <form action="{% url 'mainapp:new:add_customer' %}" method="post">
                     {% csrf_token %}
                     <div class="add-new-data-sidebar">
-                    <div class="overlay-bg"></div>
-                    <div class="add-new-data">
-                        <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
-                            <div>
-                                <h4 class="text-uppercase">{% trans 'Add New Customer' %}</h4>
+                        <div class="overlay-bg"></div>
+                        <div class="add-new-data">
+                            <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
+                                <div>
+                                    <h4 class="text-uppercase">{% trans 'Add New Customer' %}</h4>
+                                </div>
+                                <div class="hide-data-sidebar">
+                                    <i class="feather icon-x"></i>
+                                </div>
                             </div>
-                            <div class="hide-data-sidebar">
-                                <i class="feather icon-x"></i>
+                            <div class="data-items pb-3">
+                                <div class="data-fields px-2 mt-3">
+                                    <div class="row">
+                                        {% for field in customer_form %}
+                                            <div class="col-sm-12 data-field-col">
+                                                <label>{{ field.label }}</label>
+                                                {{ field }}
+                                                {% if field.errors %}
+                                                    Error: {{ field.errors }}
+                                                {% endif %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="data-items pb-3">
-                            <div class="data-fields px-2 mt-3">
-                                <div class="row">
-                                    {% for field in customer_form %}
-                                        <div class="col-sm-12 data-field-col">
-                                            <label>{{ field.label }}</label>
-                                            {{ field }}
-                                            {% if field.errors %}
-                                                Error: {{ field.errors }}
-                                            {% endif %}
-                                        </div>
-                                    {% endfor %}
+                            <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
+                                <div class="add-data-btn">
+                                    <button class="btn btn-primary">{% trans 'Submit' %}</button>
+                                </div>
+                                <div class="cancel-data-btn">
+                                    <button class="btn btn-outline-danger">{% trans 'Cancel' %}</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
-                            <div class="add-data-btn">
-                                <button class="btn btn-primary">{% trans 'Submit' %}</button>
-                            </div>
-                            <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger">{% trans 'Cancel' %}</button>
-                            </div>
-                        </div>
                     </div>
-                </div>
                 </form>
             </section>
             <!-- Data list view end -->

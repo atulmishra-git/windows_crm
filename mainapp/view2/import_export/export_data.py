@@ -170,7 +170,7 @@ def import_xls(request):
 
         if not d['phone']:
             messages.error(request, 'Phone Missing.')
-            return redirect('mainapp:list_customer')
+            return redirect('mainapp:new:search')
         customer_data['phone'] = d['phone']
 
         customer_data['email'] = d['email']
@@ -240,4 +240,4 @@ def import_xls(request):
                 purchase_data.get('date_sent'), purchase_data.get('watt')]):
             PurchaseRecord.objects.create(customer=customer, **purchase_data)
     messages.success(request, '{} neue kunden'.format(created_customer))
-    return redirect('mainapp:list_customer')
+    return redirect('mainapp:new:search')
