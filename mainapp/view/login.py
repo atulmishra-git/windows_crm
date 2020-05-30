@@ -31,7 +31,7 @@ class LoginView(TemplateView):
 
         user = User.objects.get(username__iexact=login_form.cleaned_data['username'])
         login(request, user)
-        return redirect('mainapp:home')
+        return redirect('mainapp:new:home')
 
 
 def logout_view(request):

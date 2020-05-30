@@ -18,7 +18,7 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a href="/new/home/"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+            <li class=" nav-item"><a href="{% url 'mainapp:new:home' %}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             <li class=" navigation-header"><span><hr/></span>
             </li>
             <li><a href="{% url 'mainapp:new:list_purchase' %}"><i class="feather icon-briefcase"></i><span class="menu-item" data-i18n="Purchase">{% trans 'Purchase' %}</span></a>

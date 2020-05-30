@@ -9,7 +9,7 @@ from mainapp.view.pdfs import offers
 
 app_name = 'mainapp'
 urlpatterns = [
-    path('new/', include(('mainapp.urls2', 'mainapp'), namespace='new')),
+    path('', include(('mainapp.urls2', 'mainapp'), namespace='new')),
 
     path('heartbeat/', login.heartbeat, name='heartbeat'),
     path('', login.LoginView.as_view(), name='login'),
