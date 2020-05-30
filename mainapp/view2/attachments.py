@@ -88,7 +88,7 @@ def email_attachment(request, customer_id, pk):
 
 
 class UpdateAttachmentTemplateView(LoginRequiredMixin, View):
-    template_name = 'attachment_type.html'
+    template_name = 'attachment_settings/index.html'
     form_class = AttachmentTemplateForm
     model = AttachmentTemplate
 
@@ -96,7 +96,7 @@ class UpdateAttachmentTemplateView(LoginRequiredMixin, View):
         templates = AttachmentTemplate.objects.get
         context = {
             'offer_form': self.form_class(instance=templates(kind='offer')),
-            'offer_confirmation_form': self.form_class(instance=templates(kind='offer confirmation')),
+            'offer_confirmation_form': self.form_class(instance=templates(kind='offer_confirmation')),
             'install_form': self.form_class(instance=templates(kind='install')),
             'invoice_form': self.form_class(instance=templates(kind='invoice')),
         }

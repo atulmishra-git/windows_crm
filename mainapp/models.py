@@ -68,7 +68,7 @@ OFFER_CHOICES = (
 )
 ATTACHMENT_TYPE_CHOICES = (
     ('offer', _('offer')),
-    ('offer confirmation', _('offer confirmation')),
+    ('offer_confirmation', _('offer confirmation')),
     ('install', _('install')),
     ('invoice', _('invoice'))
 )

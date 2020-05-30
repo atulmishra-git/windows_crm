@@ -7,6 +7,7 @@ class Command(BaseCommand):
     help = 'Initializes database'
 
     def handle(self, *args, **options):
+        AttachmentTemplate.objects.all().delete()
         for att_type in ATTACHMENT_TYPE_CHOICES:
             if not AttachmentTemplate.objects.filter(kind=att_type[0]).exists():
                 AttachmentTemplate.objects.create(kind=att_type[0],

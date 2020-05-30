@@ -53,7 +53,7 @@ urlpatterns = [
     path('email/<int:customer_id>/attachment/<int:pk>/', attachments.email_attachment, name='email_attachment'),
 
     # attachment type settings
-    path('attachment_type/', attachments.UpdateAttachmentTemplateView.as_view(), name='attachment_type'),
+    path('old/lol/attachment_type/', attachments.UpdateAttachmentTemplateView.as_view(), name='attachment_type'),
 
     # calendar
     path('calendar/', calendars.calendar, name='calendar'),
