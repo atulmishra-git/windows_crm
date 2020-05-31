@@ -4,7 +4,7 @@
 <div class="col-lg-8 col-12">
     <div class="card">
         <div class="card-header">
-            <h4 class="mb-0">{% trans 'Past Documents' %}</h4>
+            <h4 class="mb-0">{% trans 'Past Documents' %} <a class="btn btn-outline-primary" href="{% url 'mainapp:new:add_attachments' customer_id=customer.id %}">{% trans 'Attachments' %}</a></h4>
         </div>
         <div class="card-content">
             <div class="table-responsive mt-1">

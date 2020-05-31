@@ -16,7 +16,7 @@ urlpatterns = [
     path('logout', login.logout_view, name='logout'),
 
     # Home
-    path('home/', home.HomeView.as_view(), name='home'),
+    path('old/home/', home.HomeView.as_view(), name='home'),
     path('home/customer/<customer_id>/', home.CustomerHomeView.as_view(), name='customer_home'),
 
     path('manager/', add_manager.CreateManagerView.as_view(), name='add_manager'),
@@ -53,7 +53,7 @@ urlpatterns = [
     path('email/<int:customer_id>/attachment/<int:pk>/', attachments.email_attachment, name='email_attachment'),
 
     # attachment type settings
-    path('old/lol/attachment_type/', attachments.UpdateAttachmentTemplateView.as_view(), name='attachment_type'),
+    path('attachment_type/', attachments.UpdateAttachmentTemplateView.as_view(), name='attachment_type'),
 
     # calendar
     path('calendar/', calendars.calendar, name='calendar'),

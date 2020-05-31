@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 
 from mainapp.forms.add_customer import CustomerForm, CustomerAddForm
 from mainapp.forms.add_manager import ManagerForm as AddManagerForm
+from mainapp.forms.attachments import AttachmentForm
 from mainapp.forms.search_user import SearchForm
 from django.shortcuts import render, redirect, reverse
 from mainapp.models import Customer, PurchaseRecord
@@ -37,9 +38,14 @@ class HomeView(LoginRequiredMixin, TemplateView):
                 'search_form': search_form,
                 'add_manage_form': add_manager_form,
                 'customer': customer,
-                'attachments': customer.attachments.order_by('-id')[:5],
+                'attachments': customer.attachments.order_by('-id')[:10],
                 'purchases_last_seven_days': PurchaseRecord.purchases_last_seven_days(),
-                'installations_last_six_months': PurchaseRecord.installations_last_six_months()
+                'installations_last_six_months': PurchaseRecord.installations_last_six_months(),
+                'all_attachments': customer.attachments.order_by('-id'),
+                'attachment_form': AttachmentForm(
+                    customer_id=customer.id,
+                    request=request
+                )
             }
         return render(request, self.template_name, context=context)
 

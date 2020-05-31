@@ -1,0 +1,111 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <!-- END: Page CSS-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-body">
+            <!-- Content types section start -->
+            <section id="content-types">
+                <div class="row match-height">
+                    <div class="col-xl-8 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h4 class="card-title">{% trans 'Attachment' %}</h4>
+                                    <p class="card-text"><strong>{{ customer|title }}</strong></p>
+                                </div>
+                                <table class="table table-hover-animation mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>{% trans 'FILE NAME' %}</th>
+                                        <th>{% trans 'CREATOR' %}</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for attachment in object_list %}
+                                        <tr>
+                                            <td>{{ attachment.file_name }}.{{ attachment.file_type }}&nbsp;&nbsp;</td>
+                                            <td>
+                                                <img class="media-object rounded-circle"
+                                                     src="https://picsum.photos/seed/{{ attachment.uploaded_by.id }}/200/200"
+                                                     alt="Avatar" height="30" width="30">&nbsp;
+                                                {{ attachment.uploaded_by }}
+                                            </td>
+                                            <td>
+                                                <a style="text-decoration: none" target="_blank"
+                                                   href="{{ MEDIA_URL }}{{ attachment.upload.url }}">[ <i
+                                                        class="feather icon-download"></i><span> {% trans 'Download' %} ]</span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="text-decoration: none"
+                                                   href="{% url 'mainapp:new:email_attachment' customer_id=customer_id pk=attachment.pk %}"
+                                                >[ <i class="feather icon-mail"></i><span> {% trans 'Email' %} ]</span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="text-decoration: none" class="danger"
+                                                   href="{% url 'mainapp:new:delete_attachments' customer_id=customer_id pk=attachment.pk %}"
+                                                >[ <i class="feather icon-trash danger"></i><span> {% trans 'Delete' %} ]</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ operation }}</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form" method="POST" enctype="multipart/form-data"
+                                          action="{% url 'mainapp:new:add_attachments' customer_id=customer_id %}">
+                                        <div class="form-body">
+                                            {% crispy form %}
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Content types section end -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+    <!-- BEGIN: Page Vendor JS-->
+    <!-- END: Page Vendor JS-->
+{% endblock %}
+
+{% block pagejs %}
+{% endblock %}

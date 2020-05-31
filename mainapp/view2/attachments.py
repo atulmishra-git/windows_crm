@@ -23,9 +23,12 @@ class CustomerFormKwargMixin:
 
 
 class AttachmentCreateView(CustomerFormKwargMixin, FormRequestMixin, LoginRequiredMixin, CreateView):
-    template_name = 'attachments.html'
+    template_name = 'attachments/list.html'
     model = Attachments
     form_class = AttachmentForm
+
+    def get_form_kwargs(self):
+        return super().get_form_kwargs()
 
     def get_context_data(self, **kwargs):
         customer_id = self.kwargs['customer_id']
@@ -38,7 +41,7 @@ class AttachmentCreateView(CustomerFormKwargMixin, FormRequestMixin, LoginRequir
         return cxt
 
     def get_success_url(self):
-        return reverse('mainapp:add_attachments', kwargs=dict(customer_id=self.kwargs['customer_id']))
+        return reverse('mainapp:new:add_attachments', kwargs=dict(customer_id=self.kwargs['customer_id']))
 
 
 class UpdateAttachmentView(CustomerFormKwargMixin, LoginRequiredMixin, UpdateView):
@@ -53,7 +56,7 @@ class UpdateAttachmentView(CustomerFormKwargMixin, LoginRequiredMixin, UpdateVie
         return context
 
     def get_success_url(self):
-        return reverse('mainapp:add_attachments', kwargs=dict(customer_id=self.kwargs['customer_id']))
+        return reverse('mainapp:new:add_attachments', kwargs=dict(customer_id=self.kwargs['customer_id']))
 
 
 class DeleteAttachmentView(LoginRequiredMixin, DeleteView):
@@ -63,7 +66,7 @@ class DeleteAttachmentView(LoginRequiredMixin, DeleteView):
         return self.delete(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('mainapp:add_attachments', kwargs=dict(customer_id=self.kwargs['customer_id']))
+        return reverse('mainapp:new:add_attachments', kwargs=dict(customer_id=self.kwargs['customer_id']))
 
 
 @login_required
