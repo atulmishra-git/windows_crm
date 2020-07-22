@@ -64,26 +64,26 @@
                                             <tbody>
                                                 {% for obj in object_list %}
                                                     <tr>
-                                                        <td>{{ obj.offer_date }}</td>
-                                                        <td>{{ obj.reseller_name }}</td>
-                                                        <td>{{ obj.module_count }}</td>
-                                                        <td>{{ obj.watt }}</td>
+                                                        <td>{{ obj.offer_date|default:"-" }}</td>
+                                                        <td>{{ obj.reseller_name|default:"-" }}</td>
+                                                        <td>{{ obj.module_count|default:"-" }}</td>
+                                                        <td>{{ obj.watt|default:"-" }}</td>
                                                         <td>
                                                             {% if obj.with_battery %}
-                                                                Ja + {{ obj.kwh }}
+                                                                Ja + {{ obj.kwh|default:"-" }}
                                                             {% else %}
-                                                                Nein + {{ obj.kwh2 }}
+                                                                Nein + {{ obj.kwh2|default:"-" }}
                                                             {% endif %}
                                                         </td>
-                                                        <td>{{ obj.kwp }}</td>
-                                                        <td style="width: 250px;">{{ obj.extra_details }}</td>
-                                                        <td>{{ obj.created_at|date }}</td>
-                                                        <td>{{ obj.price_with_tax }}</td>
-{#                                                        <td>{{ obj.delivery_date }}</td>#}
-                                                        <td>{{ obj.dc_term }}</td>
-                                                        <td>{{ obj.dc_mechanic }}</td>
-                                                        <td>{{ obj.ac_term }}</td>
-                                                        <td>{{ obj.ac_mechanic }}</td>
+                                                        <td>{{ obj.kwp|default:"-" }}</td>
+                                                        <td style="width: 250px;">{{ obj.extra_details|default:"-" }}</td>
+                                                        <td>{{ obj.created_at|date|default:"-" }}</td>
+                                                        <td>{{ obj.price_with_tax|default:"-" }}</td>
+{#                                                        <td>{{ obj.delivery_date|default:"-" }}</td>#}
+                                                        <td>{{ obj.dc_term|default:"-" }}</td>
+                                                        <td>{{ obj.dc_mechanic|default:"-" }}</td>
+                                                        <td>{{ obj.ac_term|default:"-" }}</td>
+                                                        <td>{{ obj.ac_mechanic|default:"-" }}</td>
                                                         <td>
                                                             <a href="{% url 'mainapp:new:edit_purchase' pk=obj.id %}" class=""><i class="feather icon-edit-1"></i> <span> </span></a>
                                                         </td>
