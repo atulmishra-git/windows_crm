@@ -60,10 +60,14 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>{% trans 'NAME' %}</th>
+                            <th>{% trans 'FIRST NAME' %}</th>
+                            <th>{% trans 'LAST NAME' %}</th>
+                            <th>{% trans 'STREET' %}</th>
+                            <th>{% trans 'POSTCODE' %}</th>
+                            <th>{% trans 'PLACE' %}</th>
                             <th>{% trans 'EMAIL' %}</th>
                             <th>{% trans 'PHONE' %}</th>
-                            <th>{% trans 'PLACE' %}</th>
+                            <th>{% trans 'BIRTHDAY' %}</th>
                             <th>{% trans 'ACTION' %}</th>
                         </tr>
                         </thead>
@@ -72,11 +76,17 @@
                             <tr>
                                 <td class="product-name">{{ customer.id }}</td>
                                 <td class="product-name"><a
-                                        href="{% url 'mainapp:new:home' %}?customer={{ customer.id }}">{{ customer }}</a>
+                                        href="{% url 'mainapp:new:home' %}?customer={{ customer.id }}">{{ customer.first_name }}</a>
                                 </td>
-                                <td class="product-category">{{ customer.email }}</td>
-                                <td class="product-price">{{ customer.phone }}</td>
-                                <td class="product-price">{{ customer.place }}</td>
+                                <td class="product-name"><a
+                                        href="{% url 'mainapp:new:home' %}?customer={{ customer.id }}">{{ customer.surname|default:"-" }}</a>
+                                </td>
+                                <td class="product-category">{{ customer.street|default:"-" }}</td>
+                                <td class="product-category">{{ customer.postcode|default:"-" }}</td>
+                                <td class="product-category">{{ customer.place|default:"-" }}</td>
+                                <td class="product-category">{{ customer.email|default:"-" }}</td>
+                                <td class="product-price">{{ customer.phone|default:"-" }}</td>
+                                <td class="product-price">{{ customer.birthday|default:"-" }}</td>
                                 <td class="product-action">
                                     <a href="{% url 'mainapp:new:edit_customer' pk=customer.id %}"><span><i
                                             class="feather icon-edit"></i></span></a>
