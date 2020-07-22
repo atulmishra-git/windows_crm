@@ -43,15 +43,20 @@
                                         <table class="table table-striped dataex-html5-selectors">
                                             <thead>
                                                 <tr>
-                                                    <th>{% trans 'ID' %}</th>
-                                                    <th>{% trans 'Watt'  %}</th>
-                                                    <th>{% trans 'Count'  %}</th>
+                                                    <th>{% trans 'OFFER DATE' %}</th>
+                                                    <th>{% trans 'RESELLER'  %}</th>
+                                                    <th>{% trans 'MODULE COUNT'  %}</th>
+                                                    <th>{% trans 'WATT' %}</th>
+                                                    <th>{% trans 'WITH BATTERY' %} + KW/H</th>
                                                     <th>{% trans 'KWP' %}</th>
+                                                    <th>{% trans 'EXTRA DETAILS' %}</th>
+                                                    <th>{% trans 'CREATED' %}</th>
+                                                    <th>{% trans 'PRICE' %}</th>
+{#                                                    <th>{% trans 'DELIVERY DATE' %}</th>#}
                                                     <th>{% trans 'DC-T' %}</th>
                                                     <th>{% trans 'DC-M' %}</th>
                                                     <th>{% trans 'AC-T' %}</th>
                                                     <th>{% trans 'AC-M' %}</th>
-                                                    <th>{% trans 'Extra Information' %}</th>
                                                     <th></th>
                                                     <th></th>
                                                 </tr>
@@ -59,15 +64,26 @@
                                             <tbody>
                                                 {% for obj in object_list %}
                                                     <tr>
-                                                        <td>{{ obj.id }}</td>
-                                                        <td>{{ obj.watt }}</td>
+                                                        <td>{{ obj.offer_date }}</td>
+                                                        <td>{{ obj.reseller_name }}</td>
                                                         <td>{{ obj.module_count }}</td>
+                                                        <td>{{ obj.watt }}</td>
+                                                        <td>
+                                                            {% if obj.with_battery %}
+                                                                Ja + {{ obj.kwh }}
+                                                            {% else %}
+                                                                Nein + {{ obj.kwh2 }}
+                                                            {% endif %}
+                                                        </td>
                                                         <td>{{ obj.kwp }}</td>
+                                                        <td style="width: 250px;">{{ obj.extra_details }}</td>
+                                                        <td>{{ obj.created_at|date }}</td>
+                                                        <td>{{ obj.price_with_tax }}</td>
+{#                                                        <td>{{ obj.delivery_date }}</td>#}
                                                         <td>{{ obj.dc_term }}</td>
                                                         <td>{{ obj.dc_mechanic }}</td>
                                                         <td>{{ obj.ac_term }}</td>
                                                         <td>{{ obj.ac_mechanic }}</td>
-                                                        <td style="width: 250px;">{{ obj.extra_details }}</td>
                                                         <td>
                                                             <a href="{% url 'mainapp:new:edit_purchase' pk=obj.id %}" class=""><i class="feather icon-edit-1"></i> <span> </span></a>
                                                         </td>
@@ -79,15 +95,21 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>{% trans 'ID' %}</th>
-                                                    <th>{% trans 'Watt'  %}</th>
-                                                    <th>{% trans 'Count'  %}</th>
+                                                    <th>{% trans 'OFFER DATE' %}</th>
+                                                    <th>{% trans 'RESELLER'  %}</th>
+                                                    <th>{% trans 'MODULE COUNT'  %}</th>
+                                                    <th>{% trans 'WATT' %}</th>
+                                                    <th>{% trans 'WITH BATTERY' %} + KW/H</th>
                                                     <th>{% trans 'KWP' %}</th>
+                                                    <th>{% trans 'EXTRA DETAILS' %}</th>
+                                                    <th>{% trans 'CREATED' %}</th>
+                                                    <th>{% trans 'PRICE' %}</th>
+{#                                                    <th>{% trans 'DELIVERY DATE' %}</th>#}
                                                     <th>{% trans 'DC-T' %}</th>
                                                     <th>{% trans 'DC-M' %}</th>
                                                     <th>{% trans 'AC-T' %}</th>
                                                     <th>{% trans 'AC-M' %}</th>
-                                                    <th>{% trans 'Extra Information' %}</th>
+                                                    <th></th>
                                                     <th></th>
                                                 </tr>
                                             </tfoot>
