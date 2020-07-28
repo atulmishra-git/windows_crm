@@ -73,9 +73,9 @@ ATTACHMENT_TYPE_CHOICES = (
     ('invoice', _('invoice'))
 )
 CALL_NOTE_PRIORITY_CHOICES = (
-    (CALL_NOTE_PRIORITY.high, _('high')),
-    (CALL_NOTE_PRIORITY.medium, _('medium')),
-    (CALL_NOTE_PRIORITY.low, _('low')),
+    (CALL_NOTE_PRIORITY.high, _('Not started')),
+    (CALL_NOTE_PRIORITY.medium, _('Pending In Work')),
+    (CALL_NOTE_PRIORITY.low, _('Finished')),
 )
 
 

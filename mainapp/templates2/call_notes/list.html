@@ -38,7 +38,7 @@
                                                 <strong>[ {{ object.user }} ] </strong>{{ object.notes|title }}
                                             </td>
                                             <td>
-                                                <span class="badge badge-pill {% if object.status == 2 %}bg-warning{% elif object.status == 0 %}bg-danger{% else %}bg-success{% endif %} float-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <span class="badge badge-pill {% if object.status == 2 %}bg-success{% elif object.status == 0 %}bg-danger{% else %}bg-warning{% endif %} float-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                             </td>
                                             <td>
                                                 <a href="{% url 'mainapp:new:edit_call_notes' customer_id=customer_id pk=object.id %}">&nbsp;&nbsp;&nbsp;<i class="feather icon-edit"></i> <span></span></a>
