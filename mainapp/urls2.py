@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from mainapp.view2 import login, home, add_manager, add_customer, \
-    add_purchase, call_notes, attachments, task, calendars
+    add_purchase, call_notes, attachments, task, calendars, mechanic
 from mainapp.view2.import_export.export_data import export_xls, import_xls
 from mainapp.view2.pdfs import offers
 
@@ -19,6 +19,11 @@ urlpatterns = [
     path('managers/', add_manager.ListManagerView.as_view(), name='list_manager'),
     path('manager/<int:pk>/', add_manager.UpdateManagerView.as_view(), name='edit_manager'),
     path('delete_manager/<int:pk>/', add_manager.delete_manager, name='delete_manager'),
+
+    path('mechanic/', mechanic.CreateObjectView.as_view(), name='add_mechanic'),
+    path('mechanics/', mechanic.ListObjectsView.as_view(), name='list_mechanic'),
+    path('mechanic/<int:pk>/', mechanic.UpdateObjectView.as_view(), name='edit_mechanic'),
+    path('delete_mechanic/<int:pk>/', mechanic.delete, name='delete_mechanic'),
 
     path('customers/', add_customer.ListCustomerView.as_view(), name='list_customer'),
     path('customer/', add_customer.AddCustomerView.as_view(), name='add_customer'),

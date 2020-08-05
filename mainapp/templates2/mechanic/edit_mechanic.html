@@ -37,7 +37,7 @@
                             <li class="breadcrumb-item"><a href="{% url 'mainapp:new:home' %}">Home</a>
                             </li>
                             <li class="breadcrumb-item"><a
-                                    href="{% url 'mainapp:new:list_manager' %}">{% trans 'Manager' %}</a>
+                                    href="{% url 'mainapp:new:list_mechanic' %}">{% trans 'Mechanic' %}</a>
                             </li>
                             <li class="breadcrumb-item active">{{ operation }}
                             </li>
@@ -57,7 +57,6 @@
                             <div class="card-content">
                                 <div class="card-body">
                                     <form id="id_form" class="form-horizontal" method="POST">
-                                        {% csrf_token %}
                                         <div class="row">
                                             {% crispy form %}
                                         </div>

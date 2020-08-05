@@ -436,7 +436,7 @@ class Tasks(models.Model):
 
 
 class Reseller(models.Model):
-    company_name = models.TextField(_('company'))
+    company_name = models.CharField(_('company'), max_length=500)
     name = models.CharField(_('name'), max_length=256)
     surname = models.CharField(_('surname'), max_length=256)
     street = models.CharField(_("street"), max_length=500)
@@ -447,7 +447,7 @@ class Reseller(models.Model):
 
 
 class Mechanic(models.Model):
-    company_name = models.TextField(_('company'))
+    company_name = models.CharField(_('company'), max_length=500)
     name = models.CharField(_('name'), max_length=256)
     surname = models.CharField(_('surname'), max_length=256)
     street = models.CharField(_("street"), max_length=500)
