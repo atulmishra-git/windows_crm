@@ -30,10 +30,10 @@ class PurchaseFilter(django_filters.FilterSet):
         fields = {
             'customer__id': ['exact'],
             'dc_term': ['gte', 'lt'],
-            'dc_mechanic': ['iexact'],
+            'dc_mechanic': ['exact'],
             'ac_term': ['gte', 'lt'],
-            'ac_mechanic': ['iexact'],
-            'reseller_name': ['iexact']
+            'ac_mechanic': ['exact'],
+            'reseller_name': ['exact']
         }
         filter_overrides = {
             models.DateField: {
