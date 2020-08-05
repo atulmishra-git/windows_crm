@@ -3,18 +3,24 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Row, Column
 
 from mainapp.forms.mixins import LabelAdder
-from mainapp.models import Mechanic
+from mainapp.models import Reseller
 
 
-class MechanicForm(LabelAdder, forms.ModelForm):
+class ResellerForm(LabelAdder, forms.ModelForm):
     class Meta:
-        model = Mechanic
-        fields = ["name", "surname", "company_name", "phone", "street", "postcode", "place"]
+        model = Reseller
+        fields = ["name", "surname", "company_name", "phone", "street", "postcode", "place", "birthday"]
+        widgets = {
+            'birthday': forms.DateInput(attrs={'type': 'date'})
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name in self.fields.keys():
             self.fields[field_name].widget.attrs['class'] = 'form-control'
+        # converting to string because form cannot handle date internationalization
+        if self.instance and self.instance.id:
+            self.initial['birthday'] = str(self.initial['birthday'])
 
         self.helper = FormHelper()
         self.helper.layout = Layout(

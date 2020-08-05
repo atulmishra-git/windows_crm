@@ -1,0 +1,88 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <!-- END: Page CSS-->
+    <style>
+        .form-row {
+            display: block;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-left mb-0">
+                            {{ operation }}
+                        </h2>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'mainapp:new:home' %}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item"><a
+                                    href="{% url 'mainapp:new:list_mechanic' %}">{% trans 'Mechanic' %}</a>
+                            </li>
+                            <li class="breadcrumb-item active">{{ operation }}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <!-- Input Validation start -->
+            <section class="input-validation">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form id="id_form" class="form-horizontal" method="POST">
+                                        <div class="row">
+                                            {% crispy form %}
+                                        </div>
+                                        <button id="id_form_btn" type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Input Validation end -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block pagevendorjs %}
+{% endblock %}
+
+{% block pagejs %}
+{% endblock %}
+
+{% block customjs %}
+    <script>
+        $('#id_form_btn').on('click', function () {
+            $('#id_form').submit()
+        })
+    </script>
+{% endblock %}

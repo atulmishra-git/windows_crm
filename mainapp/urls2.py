@@ -2,7 +2,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from mainapp.view2 import login, home, add_manager, add_customer, \
-    add_purchase, call_notes, attachments, task, calendars, mechanic
+    add_purchase, call_notes, attachments, task, calendars, mechanic, \
+    reseller
 from mainapp.view2.import_export.export_data import export_xls, import_xls
 from mainapp.view2.pdfs import offers
 
@@ -24,6 +25,11 @@ urlpatterns = [
     path('mechanics/', mechanic.ListObjectsView.as_view(), name='list_mechanic'),
     path('mechanic/<int:pk>/', mechanic.UpdateObjectView.as_view(), name='edit_mechanic'),
     path('delete_mechanic/<int:pk>/', mechanic.delete, name='delete_mechanic'),
+
+    path('reseller/', reseller.CreateObjectView.as_view(), name='add_reseller'),
+    path('resellers/', reseller.ListObjectsView.as_view(), name='list_reseller'),
+    path('reseller/<int:pk>/', reseller.UpdateObjectView.as_view(), name='edit_reseller'),
+    path('delete_reseller/<int:pk>/', reseller.delete, name='delete_reseller'),
 
     path('customers/', add_customer.ListCustomerView.as_view(), name='list_customer'),
     path('customer/', add_customer.AddCustomerView.as_view(), name='add_customer'),
