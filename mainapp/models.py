@@ -433,3 +433,25 @@ class Tasks(models.Model):
         except Exception as e:
             print("Exception occurs while creating task. Error: {}".format(str(e)))
             return None
+
+
+class Reseller(models.Model):
+    company_name = models.TextField(_('company'))
+    name = models.CharField(_('name'), max_length=256)
+    surname = models.CharField(_('surname'), max_length=256)
+    street = models.CharField(_("street"), max_length=500)
+    postcode = models.CharField(_("postcode"), max_length=255)
+    place = models.CharField(_("place"), max_length=255)
+    phone = models.CharField(_("Phone"), max_length=20, unique=True)
+    birthday = models.DateField(_("Birthday"), null=True, blank=True)
+
+
+class Mechanic(models.Model):
+    company_name = models.TextField(_('company'))
+    name = models.CharField(_('name'), max_length=256)
+    surname = models.CharField(_('surname'), max_length=256)
+    street = models.CharField(_("street"), max_length=500)
+    postcode = models.CharField(_("postcode"), max_length=255)
+    place = models.CharField(_("place"), max_length=255)
+    phone = models.CharField(_("Phone"), max_length=20, unique=True)
+    birthday = models.DateField(_("Birthday"), null=True, blank=True)
