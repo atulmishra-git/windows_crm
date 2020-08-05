@@ -326,9 +326,19 @@
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="form-group">
-                                                            <label>{{ form.reseller_name.label }}</label>
+                                                            <label>
+                                                                {{ form.reseller_name.label }}
+                                                                {% if form.instance and form.instance.id %}:
+                                                                    <b>{{ form.instance.reseller_name }}</b>
+                                                                {% endif %}
+                                                            </label>
                                                             <div class="controls">
-                                                                {{ form.reseller_name }}
+                                                                <select name="reseller_name" class="select2 form-control"
+                                                                        id="id_reseller_name">
+                                                                    {% for val, display in form.fields.reseller_name.choices %}
+                                                                        <option value="{{ val }}">{{ val }}. {{ display }}</option>
+                                                                    {% endfor %}
+                                                                </select>
                                                                 <div class="help-block">
                                                                     {% if form.reseller_name.errors %}
                                                                         <ul role="alert" class="danger">
@@ -414,9 +424,19 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>{{ form.dc_mechanic.label }}</label>
+                                                            <label>
+                                                                {{ form.dc_mechanic.label }}
+                                                                {% if form.instance and form.instance.id %}:
+                                                                    <b>{{ form.instance.dc_mechanic }}</b>
+                                                                {% endif %}
+                                                            </label>
                                                             <div class="controls">
-                                                                {{ form.dc_mechanic }}
+                                                                <select name="dc_mechanic" class="select2 form-control"
+                                                                        id="id_dc_mechanic">
+                                                                    {% for val, display in form.fields.dc_mechanic.choices %}
+                                                                        <option value="{{ val }}">{{ val }}. {{ display }}</option>
+                                                                    {% endfor %}
+                                                                </select>
                                                                 <div class="help-block">
                                                                     {% if form.dc_mechanic.errors %}
                                                                         <ul role="alert" class="danger">
@@ -452,9 +472,19 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>{{ form.ac_mechanic.label }}</label>
+                                                            <label>
+                                                                {{ form.ac_mechanic.label }}
+                                                                {% if form.instance and form.instance.id %}:
+                                                                    <b>{{ form.instance.ac_mechanic }}</b>
+                                                                {% endif %}
+                                                            </label>
                                                             <div class="controls">
-                                                                {{ form.ac_mechanic }}
+                                                                <select name="ac_mechanic" class="select2 form-control"
+                                                                        id="id_ac_mechanic">
+                                                                    {% for val, display in form.fields.ac_mechanic.choices %}
+                                                                        <option value="{{ val }}">{{ val }}. {{ display }}</option>
+                                                                    {% endfor %}
+                                                                </select>
                                                                 <div class="help-block">
                                                                     {% if form.ac_mechanic.errors %}
                                                                         <ul role="alert" class="danger">

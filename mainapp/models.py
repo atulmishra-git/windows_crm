@@ -448,6 +448,9 @@ class Reseller(models.Model):
     phone = models.CharField(_("Phone"), max_length=20)
     birthday = models.DateField(_("Birthday"), null=True, blank=True)
 
+    def __str__(self):
+        return "{} {}".format(self.name, self.surname)
+
 
 class Mechanic(models.Model):
     company_name = models.CharField(_('company'), max_length=500, null=True, blank=True)
@@ -457,3 +460,6 @@ class Mechanic(models.Model):
     postcode = models.CharField(_("postcode"), max_length=255, null=True, blank=True)
     place = models.CharField(_("place"), max_length=255, null=True, blank=True)
     phone = models.CharField(_("Phone"), max_length=20)
+
+    def __str__(self):
+        return "{} {}".format(self.name, self.surname)

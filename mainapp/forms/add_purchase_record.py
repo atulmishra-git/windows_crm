@@ -26,6 +26,9 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
         if self.instance and self.instance.id:
             # customer is not required
             self.fields['customer'].required = False
+            self.fields['reseller_name'].required = False
+            self.fields['ac_mechanic'].required = False
+            self.fields['dc_mechanic'].required = False
             # forms cannot handle i18n date change
             self.initial['offer_date'] = str(self.initial['offer_date'])
             self.initial['date_sent'] = str(self.initial['date_sent'])
