@@ -43,6 +43,7 @@
                                         <table class="table table-striped dataex-html5-selectors">
                                             <thead>
                                                 <tr>
+                                                    <th>{% trans 'Customer' %}</th>
                                                     <th>{% trans 'OFFER DATE' %}</th>
                                                     <th>{% trans 'RESELLER'  %}</th>
                                                     <th>{% trans 'MODULE COUNT'  %}</th>
@@ -64,6 +65,7 @@
                                             <tbody>
                                                 {% for obj in object_list %}
                                                     <tr>
+                                                        <td>{{ obj.customer|default:"-" }}</td>
                                                         <td>{{ obj.offer_date|default:"-" }}</td>
                                                         <td>{{ obj.reseller_name|default:"-" }}</td>
                                                         <td>{{ obj.module_count|default:"-" }}</td>
@@ -95,6 +97,7 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
+                                                    <th>{% trans 'Customer' %}</th>
                                                     <th>{% trans 'OFFER DATE' %}</th>
                                                     <th>{% trans 'RESELLER'  %}</th>
                                                     <th>{% trans 'MODULE COUNT'  %}</th>
