@@ -65,7 +65,7 @@
                                             <tbody>
                                                 {% for obj in object_list %}
                                                     <tr>
-                                                        <td>{{ obj.customer|default:"-" }}</td>
+                                                        <td>{{ obj.customer|default:"-" }} ({{ obj.customer.id }})</td>
                                                         <td>{{ obj.offer_date|default:"-" }}</td>
                                                         <td>{{ obj.reseller_name|default:"-" }}</td>
                                                         <td>{{ obj.module_count|default:"-" }}</td>
