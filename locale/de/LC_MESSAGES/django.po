@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -107,7 +107,7 @@ msgid "Total Area of all modules"
 msgstr "Gesamtfläche aller Module"
 
 #: mainapp/forms/login.py:9
-#, fuzzy
+
 #| msgid "Username"
 msgid "username"
 msgstr "Benutzername"
@@ -123,7 +123,7 @@ msgid "password"
 msgstr "Passwort"
 
 #: mainapp/forms/login.py:25
-#, fuzzy
+
 #| msgid "password"
 msgid "Password"
 msgstr "Passwort"
@@ -197,28 +197,28 @@ msgid "Via Letter"
 msgstr "per Post"
 
 #: mainapp/models.py:70
-#, fuzzy
+
 #| msgid "Offer"
 msgid "offer"
-msgstr "Angebot erstellen"
+msgstr "Angebot"
 
 #: mainapp/models.py:71
-#, fuzzy
+
 #| msgid "Offer Confirmation"
 msgid "offer confirmation"
-msgstr "Auftragsbestätigung erstellen"
+msgstr "Auftragsbestätigung"
 
 #: mainapp/models.py:72
-#, fuzzy
+
 #| msgid "Installation"
 msgid "install"
-msgstr "Montagebestätigung erstellen"
+msgstr "Montagebestätigung"
 
 #: mainapp/models.py:73
-#, fuzzy
+
 #| msgid "Invoice"
 msgid "invoice"
-msgstr "Rechnung erstellen"
+msgstr "Rechnung"
 
 #: mainapp/models.py:76
 msgid "Not started"
@@ -418,10 +418,8 @@ msgid "Upload"
 msgstr "Hochladen"
 
 #: mainapp/models.py:391
-#, fuzzy
-#| msgid "roof type"
 msgid "type"
-msgstr "Dachart"
+msgstr "Typ"
 
 #: mainapp/models.py:394
 msgid "subject"
@@ -451,22 +449,13 @@ msgstr "Privat"
 #: mainapp/models.py:442 mainapp/models.py:456
 #: mainapp/templates2/mechanic/list_mechanic.html:44
 #: mainapp/templates2/reseller/list_reseller.html:45
-#, fuzzy
-#| msgid "Company"
+
 msgid "company"
 msgstr "Firma"
 
 #: mainapp/models.py:443 mainapp/models.py:457
-#, fuzzy
-#| msgid "Surname"
 msgid "name"
 msgstr "Nachname"
-
-#: mainapp/templates/add_manager.html:8
-#, fuzzy, python-format
-#| msgid "%(operation)s Manager "
-msgid "%(operation)s "
-msgstr "%(operation)s Manager "
 
 #: mainapp/templates/add_manager.html:14
 #: mainapp/templates/attachment_type.html:30
@@ -516,8 +505,6 @@ msgstr "bearbeiten"
 #: mainapp/templates/customer/list_customer.html:73
 #: mainapp/templates/list_purchase.html:63 mainapp/templates/task_list.html:68
 #: mainapp/templates2/attachments/list.html:70
-#, fuzzy
-#| msgid "Deleted"
 msgid "Delete"
 msgstr "gelöscht"
 
@@ -672,15 +659,11 @@ msgstr "Gesprächsnotiz"
 
 #: mainapp/templates/customer/list_customer.html:11
 #: mainapp/templates2/search/index.html:34
-#, fuzzy
-#| msgid "Support"
 msgid "Export"
 msgstr "Exportieren"
 
 #: mainapp/templates/customer/list_customer.html:20
 #: mainapp/templates2/search/index.html:47
-#, fuzzy
-#| msgid "Support"
 msgid "Import"
 msgstr "Importieren"
 
@@ -805,10 +788,8 @@ msgstr "Dateien und Anlagen"
 
 #: mainapp/templates/home/customer_purchase_modal.html:168
 #: mainapp/templates2/dashboard/index.html:109
-#, fuzzy
-#| msgid "Purchase ID"
 msgid "No Purchase Record"
-msgstr "Anlagen-ID"
+msgstr "keine PV-Anlage vorhanden"
 
 #: mainapp/templates/home/home.html:54 mainapp/templates/navsection.html:19
 #: mainapp/templates2/base/header.html:27
@@ -959,15 +940,11 @@ msgstr "Online"
 #: mainapp/templates2/mechanic/edit_mechanic.html:40
 #: mainapp/templates2/mechanic/list_mechanic.html:34
 #: mainapp/templates2/reseller/edit_reseller.html:40
-#, fuzzy
-#| msgid "DC Mechanic"
 msgid "Mechanic"
-msgstr "DC - Monteur"
+msgstr "Monteure"
 
 #: mainapp/templates2/base/side-nav.html:39
 #: mainapp/templates2/reseller/list_reseller.html:34
-#, fuzzy
-#| msgid "Reseller Name"
 msgid "Reseller"
 msgstr "Verkäufer"
 
@@ -979,10 +956,8 @@ msgstr "Titel"
 #: mainapp/templates2/calendar/index.html:88
 #: mainapp/templates2/calendar/index.html:89
 #: mainapp/templates2/calendar/index.html:148
-#, fuzzy
-#| msgid "Offer Date"
 msgid "Start Date"
-msgstr "Angebotsdatum"
+msgstr "Anfangsdatum"
 
 #: mainapp/templates2/calendar/index.html:93
 #: mainapp/templates2/calendar/index.html:94
@@ -998,27 +973,19 @@ msgstr "Beschreibung"
 #: mainapp/templates2/calendar/index.html:153
 #: mainapp/templates2/calendar/index.html:154
 #: mainapp/templates2/tasks/update.html:34
-#, fuzzy
-#| msgid "Tasks"
 msgid "Task"
 msgstr "Aufgaben"
 
 #: mainapp/templates2/calendar/index.html:140
 #: mainapp/templates2/calendar/index.html:210
-#, fuzzy
-#| msgid "Private Tasks"
 msgid "Private"
 msgstr "Privat"
 
 #: mainapp/templates2/calendar/index.html:149
-#, fuzzy
-#| msgid "Date sent"
 msgid "Date"
-msgstr "gesendet am"
+msgstr "Datum"
 
 #: mainapp/templates2/calendar/index.html:159
-#, fuzzy
-#| msgid "Submit"
 msgid "submit"
 msgstr "Erstellen"
 
@@ -1027,36 +994,26 @@ msgid "cancel"
 msgstr "abbrechen"
 
 #: mainapp/templates2/calendar/index.html:209
-#, fuzzy
-#| msgid "Public Tasks"
 msgid "Public"
 msgstr "Öffentlich"
 
 #: mainapp/templates2/call_notes/list.html:32
-#, fuzzy
-#| msgid "Call Note"
 msgid "Call Notes of "
-msgstr "Gesprächsnotiz"
+msgstr "Gesprächsnotiz von"
 
 #: mainapp/templates2/chat2/index.html:45
 msgid "Status"
 msgstr "Status"
 
 #: mainapp/templates2/chat2/index.html:67
-#, fuzzy
-#| msgid "active"
 msgid "Inactive"
-msgstr "Aktiv"
+msgstr "Offline"
 
 #: mainapp/templates2/chat2/index.html:101
-#, fuzzy
-#| msgid "Chat"
 msgid "Chats"
-msgstr "Chat"
+msgstr "Meine Chats"
 
 #: mainapp/templates2/chat2/index.html:144
-#, fuzzy
-#| msgid "Offer Confirmation"
 msgid "Start Conversation"
 msgstr "Konversation starten"
 
@@ -1089,30 +1046,24 @@ msgid "Create a new invoice document"
 msgstr "neue Rechnung erstellen"
 
 #: mainapp/templates2/dashboard/installations_next_three_months.html:7
-#, fuzzy
-#| msgid "Installation"
 msgid "Installation stats"
-msgstr "Montagebestätigung erstellen"
+msgstr "Installation"
 
 #: mainapp/templates2/dashboard/installations_next_three_months.html:8
 msgid "Last 6 months"
 msgstr "Letzte 6 Monate"
 
 #: mainapp/templates2/dashboard/last_seven_days_purchases.html:11
-#, fuzzy
-#| msgid "Purchase"
 msgid "Purchases"
-msgstr "PV-Anlage"
+msgstr "PV-Anlagen"
 
 #: mainapp/templates2/dashboard/last_seven_days_purchases.html:13
 msgid "last 7 days"
 msgstr "letze 7 Tage"
 
 #: mainapp/templates2/dashboard/last_seven_days_purchases.html:16
-#, fuzzy
-#| msgid "Offer Details"
 msgid "View Details "
-msgstr "Angebotsdetails"
+msgstr "Details ansehen"
 
 #: mainapp/templates2/dashboard/purchase_detail.html:7
 msgid "Purchase Details"
@@ -1132,10 +1083,8 @@ msgid "Cancel"
 msgstr "abbrechen"
 
 #: mainapp/templates2/mechanic/list_mechanic.html:83
-#, fuzzy
-#| msgid "AC Mechanic"
 msgid "Add New Mechanic"
-msgstr "AC - Monteur"
+msgstr "Monteur hinzufügen"
 
 #: mainapp/templates2/purchases/add_update_purchase.html:272
 #, python-format
@@ -1143,15 +1092,11 @@ msgid "Tax: 19%%"
 msgstr "Mwst. 19%%"
 
 #: mainapp/templates2/purchases/add_update_purchase.html:531
-#, fuzzy
-#| msgid "roof tilt"
 msgid "Roof Tilt"
 msgstr "Dachneigung"
 
 #: mainapp/templates2/purchases/add_update_purchase.html:555
 #: mainapp/templates2/purchases/add_update_purchase.html:575
-#, fuzzy
-#| msgid "alignment"
 msgid "Alignment"
 msgstr "Dachausrichtung"
 
@@ -1343,7 +1288,7 @@ msgstr "Deutsch"
 #~ msgid "Message"
 #~ msgstr "Nachricht"
 
-#, fuzzy
+
 #~| msgid "with battery"
 #~ msgid "Without Battery"
 #~ msgstr "mit Speicher"
