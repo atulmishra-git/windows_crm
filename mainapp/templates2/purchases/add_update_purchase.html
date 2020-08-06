@@ -592,6 +592,27 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <strong>{% trans "Extra Details" %}</strong>
+                                                    <hr/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ form.extra_details.label }}</label>
+                                                    <div class="controls">
+                                                        {{ form.extra_details }}
+                                                        <div class="help-block">
+                                                            {% if form.extra_details.errors %}
+                                                                <ul role="alert" class="danger">
+                                                                    {% for error in form.extra_details.errors %}
+                                                                        <li><strong>{{ error|escape }}</strong></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label></label>
                                             </div>
