@@ -1196,10 +1196,8 @@ msgstr "zusätzliche Infos"
 
 #: mainapp/templates2/purchases/list_purchases.html:53
 #: mainapp/templates2/purchases/list_purchases.html:105
-#, fuzzy
-#| msgid "CREATOR"
 msgid "CREATED"
-msgstr "Erstellt von"
+msgstr "Erstellt am"
 
 #: mainapp/templates2/purchases/list_purchases.html:54
 #: mainapp/templates2/purchases/list_purchases.html:106
@@ -1207,28 +1205,21 @@ msgid "PRICE"
 msgstr "Preis"
 
 #: mainapp/templates2/reseller/list_reseller.html:48
-#, fuzzy
 #| msgid "Birthday"
 msgid "birthday"
 msgstr "Geburtsdatum"
 
 #: mainapp/templates2/reseller/list_reseller.html:86
-#, fuzzy
-#| msgid "Add New Customer"
 msgid "Add New Reseller"
-msgstr "Kunden hinzufügen"
+msgstr "Verkäufer hinzufügen"
 
 #: mainapp/templates2/search/index.html:63
-#, fuzzy
-#| msgid "FILE NAME"
 msgid "FIRST NAME"
-msgstr "Dateiname"
+msgstr "Vorname"
 
 #: mainapp/templates2/search/index.html:64
-#, fuzzy
-#| msgid "FILE NAME"
 msgid "LAST NAME"
-msgstr "Dateiname"
+msgstr "Name"
 
 #: mainapp/templates2/search/index.html:65
 msgid "STREET"
@@ -1260,8 +1251,6 @@ msgstr "Ausführung"
 
 # mainapp/templates/add_manager.html:8
 #: mainapp/templates2/tasks/list.html:129
-#, fuzzy
-#| msgid "Add New"
 msgid "Add New Task"
 msgstr "Aufgabe hinzufügen"
 
@@ -1313,28 +1302,20 @@ msgid "You are not permitted to perform the action."
 msgstr "Sie haben keine Berechtigung für diese Aktion!"
 
 #: mainapp/view2/mechanic.py:27
-#, fuzzy
-#| msgid "AC Mechanic"
 msgid "Add Mechanic"
-msgstr "AC - Monteur"
+msgstr "Monteur hinzufügen"
 
 #: mainapp/view2/mechanic.py:42
-#, fuzzy
-#| msgid "DC Mechanic"
 msgid "Update Mechanic"
-msgstr "DC - Monteur"
+msgstr "Monteur bearbeiten"
 
 #: mainapp/view2/reseller.py:27
-#, fuzzy
-#| msgid "Reseller Name"
 msgid "Add Reseller"
-msgstr "Verkäufer"
+msgstr "Verkäufer hinzufügen"
 
 #: mainapp/view2/reseller.py:42
-#, fuzzy
-#| msgid "Update Customer"
 msgid "Update Reseller"
-msgstr "Kunden aktualisieren"
+msgstr "Verkäufer bearbeiten"
 
 #: windows_crm/settings.py:135
 msgid "English"
@@ -1377,7 +1358,6 @@ msgstr "Deutsch"
 #~ msgstr "Adresse"
 
 # mainapp/templates/add_manager.html:8
-#, fuzzy
 #~| msgid "update"
 #~ msgid "Update"
 #~ msgstr "bearbeiten"
