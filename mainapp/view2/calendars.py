@@ -31,7 +31,7 @@ def calendar(request, year=None, month=None):
                 # "reseller": each.reseller_name or "",
                 "dc": True,
                 "dc_term": str(each.dc_term) or "",
-                "dc_mechanic": each.dc_mechanic or "",
+                "dc_mechanic": str(each.dc_mechanic or ""),
             }
         } for each in PurchaseRecord.objects.filter(
             dc_term__month__gte=month-5,
@@ -52,7 +52,7 @@ def calendar(request, year=None, month=None):
             "purchase": {
                 "dc": False,
                 "ac_term": str(each.ac_term) or "",
-                "ac_mechanic": each.ac_mechanic or "",
+                "ac_mechanic": str(each.ac_mechanic or ""),
             }
         } for each in PurchaseRecord.objects.filter(
             ac_term__month__gte=month-5,
