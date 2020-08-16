@@ -101,8 +101,10 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+		'read_default_file': '/home/windows_crm/my.cnf'
+	}
     }
 }
 
@@ -153,11 +155,10 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
-
+STATICT_ROOT = '/home/windows_crm/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'mainapp', "static2"),
-    os.path.join(BASE_DIR, 'mainapp', "static"),
-    'windows_crm/static/'
+    os.path.join(BASE_DIR, "cdn", "static2"),
+    os.path.join(BASE_DIR, "cdn", "static"),
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
