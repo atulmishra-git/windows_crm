@@ -1,5 +1,4 @@
 .idea
 *.pyc
-db.sqlite3
 media/*
 html-template_tbd/*
