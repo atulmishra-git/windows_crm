@@ -18,7 +18,8 @@ OPTIONS = {
     'margin-bottom': '0.7842in',
     'margin-left': '0.9842in',
     'encoding': "UTF-8",
-    'no-outline': None
+    #'no-outline': None,
+    #'disable-smart-shrinking': None
 }
 
 
