@@ -14,7 +14,7 @@ from mainapp.models import PurchaseRecord, Customer, Attachments
 WATT1 = 310
 WATT2 = 325
 OPTIONS = {
-    'page-size': 'A5',
+    'page-size': 'A3',
     'margin-top': '0.7842in',
     'margin-right': '0.9842in',
     'margin-bottom': '0.7842in',
