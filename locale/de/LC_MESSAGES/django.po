@@ -1310,35 +1310,18 @@ msgstr "Deutsch"
 #~ msgid "Add %(object_type|title)s"
 #~ msgstr "Titel %(object_type|title)s hinzufügen"
 
-# mainapp/templates2/search/index.html:164
+# mainapp/templates2/search/index.html:164 mainapp/templates2/purchases/list_purchases.html:147
 #~ msgid "Next"
 #~ msgstr "Nächster"
 
-# mainapp/templates2/search/index.html:165
+# mainapp/templates2/search/index.html:165 mainapp/templates2/purchases/list_purchases.html:148
 #~ msgid "Last"
 #~ msgstr "Zuletzt"
 
-# mainapp/templates2/search/index.html:162
+#: mainapp/templates2/search/index.html:162 mainapp/templates2/purchases/list_purchases.html:145
 #~ msgid "First"
 #~ msgstr "Zuerst"
 
-# mainapp/templates2/search/index.html:163
+# mainapp/templates2/search/index.html:163 mainapp/templates2/purchases/list_purchases.html:146
 #~ msgid "Previous"
 #~ msgstr "Bisherige"
-
-
-# mainapp/templates2/purchases/list_purchases.html:145
-#~ msgid "First"
-#~ msgstr "Zuerst"
-
-# mainapp/templates2/purchases/list_purchases.html:146
-#~ msgid "Previous"
-#~ msgstr "Bisherige"
-
-# mainapp/templates2/purchases/list_purchases.html:147
-#~ msgid "Next"
-#~ msgstr "Nächster"
-
-# mainapp/templates2/purchases/list_purchases.html:148
-#~ msgid "Last"
-#~ msgstr "Zuletzt"
