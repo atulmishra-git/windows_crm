@@ -1309,3 +1309,7 @@ msgstr "Deutsch"
 
 #~ msgid "Add %(object_type|title)s"
 #~ msgstr "Titel %(object_type|title)s hinzufügen"
+
+# mainapp/templates2/search/index.html:164
+#~ msgid "Next"
+#~ msgstr "Nächster"
