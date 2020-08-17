@@ -155,7 +155,9 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
-STATICT_ROOT = '/home/windows_crm/'
+
+STATICT_ROOT = os.path.join(BASE_DIR, 'cdn', 'static')
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "cdn", "static2"),
     os.path.join(BASE_DIR, "cdn", "static"),
