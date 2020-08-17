@@ -1325,3 +1325,20 @@ msgstr "Deutsch"
 # mainapp/templates2/search/index.html:163
 #~ msgid "Previous"
 #~ msgstr "Bisherige"
+
+
+# mainapp/templates2/purchases/list_purchases.html:145
+#~ msgid "First"
+#~ msgstr "Zuerst"
+
+# mainapp/templates2/purchases/list_purchases.html:146
+#~ msgid "Previous"
+#~ msgstr "Bisherige"
+
+# mainapp/templates2/purchases/list_purchases.html:147
+#~ msgid "Next"
+#~ msgstr "Nächster"
+
+# mainapp/templates2/purchases/list_purchases.html:148
+#~ msgid "Last"
+#~ msgstr "Zuletzt"

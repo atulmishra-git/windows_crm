@@ -141,6 +141,12 @@
 {% endblock %}
 
 {% block pagejs %}
+    <script>
+      var sFirst = "{% trans "First" %}";
+      var sPrevious = "{% trans "Previous" %}";
+      var sNext = "{% trans "Next" %}";
+      var sLast = "{% trans "Last"%}";
+    </script>
     <script src="{% static 'app-assets/js/scripts/datatables/datatable.js' %}"></script>
 {% endblock %}
 
