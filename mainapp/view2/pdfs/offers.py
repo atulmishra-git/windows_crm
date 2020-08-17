@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.base import File
 from django.http.response import HttpResponse
 from django.template.loader import render_to_string
+from django.conf import settings
+import os
 
 from mainapp.models import PurchaseRecord, Customer, Attachments
 
@@ -27,7 +29,7 @@ def save_to_attachment(customer, kind, rendered, by):
     name = f"uploads/{customer.id}-{kind}-" \
            f"{customer.first_name + '-' + customer.surname}-" \
            f"{'%02d' % dt.day}-{'%02d' % dt.month}-{dt.year}.pdf"
-    pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
+    pdfkit.from_string(rendered, os.path.join(settings.BASE_DIR, "media/" + name), options=OPTIONS)
     att = Attachments.objects.create(
         file_name=name.split("/")[-1].split(".")[0],
         kind=kind,
