@@ -1310,18 +1310,22 @@ msgstr "Deutsch"
 #~ msgid "Add %(object_type|title)s"
 #~ msgstr "Titel %(object_type|title)s hinzufügen"
 
-#: mainapp/templates2/search/index.html:164 mainapp/templates2/purchases/list_purchases.html:147
+#: mainapp/templates2/search/index.html:164 mainapp/templates2/purchases/list_purchases.html:147 mainapp/templates2/managers/list_managers.html:133
+#: mainapp/templates2/mechanic/list_mechanic.html:137 mainapp/templates2/reseller/list_reseller.html:140
 #~ msgid "Next"
 #~ msgstr "Nächster"
 
-#: mainapp/templates2/search/index.html:165 mainapp/templates2/purchases/list_purchases.html:148
+#: mainapp/templates2/search/index.html:165 mainapp/templates2/purchases/list_purchases.html:148 mainapp/templates2/managers/list_managers.html:134
+#: mainapp/templates2/mechanic/list_mechanic.html:138 mainapp/templates2/reseller/list_reseller.html:141
 #~ msgid "Last"
 #~ msgstr "Zuletzt"
 
-#: mainapp/templates2/search/index.html:162 mainapp/templates2/purchases/list_purchases.html:145
+#: mainapp/templates2/search/index.html:162 mainapp/templates2/purchases/list_purchases.html:145 mainapp/templates2/managers/list_managers.html:131
+#: mainapp/templates2/mechanic/list_mechanic.html:135 mainapp/templates2/reseller/list_reseller.html:138
 #~ msgid "First"
 #~ msgstr "Zuerst"
 
-#: mainapp/templates2/search/index.html:163 mainapp/templates2/purchases/list_purchases.html:146
+#: mainapp/templates2/search/index.html:163 mainapp/templates2/purchases/list_purchases.html:146 mainapp/templates2/managers/list_managers.html:132
+#: mainapp/templates2/mechanic/list_mechanic.html:136 mainapp/templates2/reseller/list_reseller.html:139
 #~ msgid "Previous"
 #~ msgstr "Bisherige"
