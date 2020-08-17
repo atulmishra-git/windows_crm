@@ -20,14 +20,6 @@ $(document).ready(function() {
      ********************************************/
 
     var groupingTable = $('.row-grouping').DataTable({
-        oLanguage: {
-          oPaginate: {
-            sFirst: sFirst,
-            sPrevious: sPrevious,
-            sNext: sNext,
-            sLast: sLast
-          }
-        },
         "columnDefs": [{
             "visible": false,
             "targets": 2
@@ -99,6 +91,14 @@ $(document).ready(function() {
     ***************************************************************/
 
     $('.dataex-html5-selectors').DataTable( {
+        oLanguage: {
+          oPaginate: {
+            sFirst: sFirst,
+            sPrevious: sPrevious,
+            sNext: sNext,
+            sLast: sLast
+          }
+        },
         dom: 'Bfrtip',
         buttons: [
             {
