@@ -10,7 +10,7 @@ def add_ac(obj):
     s2 = obj.ac_purchases.all()
     return int(len(s1)) + int(len(s2))
 
-@register.tag
+@register.simple_tag
 def pdf_logo():
     logo = os.path.join(settings.BASE_DIR, "cdn", "static", "images", "logo1.png")
     with open(logo, 'r') as img_file:
