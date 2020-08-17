@@ -26,7 +26,7 @@ OPTIONS = {
 def save_to_attachment(customer, kind, rendered, by):
     dt = datetime.now()
     name = f"uploads/{customer.id}-{kind}-" \
-           f"{customer.first_name + '-' + customer.surname} " \
+           f"{customer.first_name + '-' + customer.surname}-" \
            f"{'%02d' % dt.day}-{'%02d' % dt.month}-{dt.year}.pdf"
     pdfkit.from_string(rendered, "media/" + name, options=OPTIONS)
     att = Attachments.objects.create(
