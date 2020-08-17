@@ -57,7 +57,7 @@
                                 <td>{{ obj.company_name|default:"-" }}</td>
                                 <td>{{ obj.street|default:"-" }}</td>
                                 <td>{{ obj.place|default:"-" }}</td>
-                                <td> {# {{ obj|add_ac }} #}</td>
+                                <td> {{ obj|add_ac:'' }}</td>
                                 <td>
                                     <a href="{% url 'mainapp:new:edit_mechanic' pk=obj.id %}"
                                        class=""><i class="feather icon-edit-1"></i>
