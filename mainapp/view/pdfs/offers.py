@@ -9,8 +9,6 @@ from django.template.loader import render_to_string
 
 from mainapp.models import PurchaseRecord, Customer, Attachments
 
-from django.template.response import TemplateResponse
-
 WATT1 = 310
 WATT2 = 325
 OPTIONS = {
@@ -57,7 +55,6 @@ def download_offer(request, customer_id):
         'creation_date': datetime.today(),
     }
 
-    return TemplateResponse(request, template_name, context)
     rendered = render_to_string(template_name,
                                 context,
                                 request=request)

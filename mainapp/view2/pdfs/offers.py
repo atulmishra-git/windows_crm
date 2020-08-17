@@ -10,7 +10,6 @@ from django.conf import settings
 import os
 
 from mainapp.models import PurchaseRecord, Customer, Attachments
-from django.template.response import TemplateResponse
 
 WATT1 = 310
 WATT2 = 325
@@ -21,8 +20,7 @@ OPTIONS = {
     'margin-bottom': '0.7842in',
     'margin-left': '0.9842in',
     'encoding': "UTF-8",
-    'no-outline': None,
-    'size': '6cm'
+    'no-outline': None
 }
 
 
@@ -57,8 +55,6 @@ def download_offer(request, customer_id):
         'creator': request.user,
         'creation_date': datetime.today(),
     }
-
-    return TemplateResponse(request, template_name, context)
 
     rendered = render_to_string(template_name,
                                 context,
