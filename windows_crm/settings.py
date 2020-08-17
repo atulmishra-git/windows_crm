@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'channels',
     'mainapp',
     'chat',
+    'des'
 ]
 
 MIDDLEWARE = [
@@ -177,17 +178,18 @@ SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
 
 # EMAIL SETTINGS
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'des.backends.ConfiguredEmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-FROM_EMAIL = 'energiewerke.bayern@gmail.com'
-FROM_EMAIL_PASSWORD = 'bugs@123'
+#FROM_EMAIL = 'energiewerke.bayern@gmail.com'
+#FROM_EMAIL_PASSWORD = 'bugs@123'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = FROM_EMAIL
-EMAIL_HOST_PASSWORD = FROM_EMAIL_PASSWORD
-EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_HOST_USER = FROM_EMAIL
+#EMAIL_HOST_PASSWORD = FROM_EMAIL_PASSWORD
+#EMAIL_USE_TLS = True
 # use_ssl: EMAIL_USE_SSL
 # timeout: EMAIL_TIMEOUT
 # ssl_keyfile: EMAIL_SSL_KEYFILE
