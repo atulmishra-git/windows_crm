@@ -158,5 +158,8 @@
 {% endblock %}
 
 {% block pagejs %}
+    <script>
+      var sFirst = {% trans %} "First" {% endtrans %};
+    </script>
     <script src="{% static 'app-assets/js/scripts/ui/data-list-view.js' %}"></script>
 {% endblock %}

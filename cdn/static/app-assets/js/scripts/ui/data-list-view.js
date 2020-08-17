@@ -23,7 +23,13 @@ $(document).ready(function() {
       '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
     oLanguage: {
       sLengthMenu: "_MENU_",
-      sSearch: ""
+      sSearch: "",
+      oPaginate: {
+        sFirst: sFirst,
+        sPrevious: "Previous Page",
+        sNext: "Next Page",
+        sLast: "Last Page"
+      }
     },
     aLengthMenu: [[4, 10, 15, 20], [4, 10, 15, 20]],
     select: {
