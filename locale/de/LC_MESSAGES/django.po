@@ -1313,3 +1313,15 @@ msgstr "Deutsch"
 # mainapp/templates2/search/index.html:164
 #~ msgid "Next"
 #~ msgstr "Nächster"
+
+# mainapp/templates2/search/index.html:165
+#~ msgid "Last"
+#~ msgstr "Zuletzt"
+
+# mainapp/templates2/search/index.html:162
+#~ msgid "First"
+#~ msgstr "Zuerst"
+
+# mainapp/templates2/search/index.html:163
+#~ msgid "Previous"
+#~ msgstr "Bisherige"
