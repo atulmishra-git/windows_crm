@@ -1,4 +1,5 @@
 {% load static %}
+{% load app_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -176,7 +177,7 @@
 	<div class="container">
         <div class="logo-div">
             <div class="logo">
-                <img src="/static/images/logo1.png" style="width: 280px;" alt="logo">
+                <img src="data:image/png;base64,{% pdf_logo %}" style="width: 280px;" alt="logo">
             </div>
         </div>
         <div style="height: 125px;"></div>
@@ -251,7 +252,7 @@ und qualitativ hochwertigen Komponenten.</p>
     <div class="container" >
 		<div class="logo-div">
             <div class="logo">
-                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+                <img src="data:image/png;base64,{% pdf_logo %}" style="width: 280px;" alt="logo">
             </div>
         </div>
 		<div style="height: 100px;"></div>
@@ -383,7 +384,7 @@ und qualitativ hochwertigen Komponenten.</p>
     <div class="container">
 		<div class="logo-div">
             <div class="logo">
-                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+                <img src="data:image/png;base64,{% pdf_logo %}" style="width: 280px;" alt="logo">
             </div>
         </div>
 		<table class="invoice-table" border="2">
@@ -474,7 +475,7 @@ und qualitativ hochwertigen Komponenten.</p>
     <div class="container">
 		<div class="logo-div">
             <div class="logo">
-                <img src="http://localhost:8000/static/images/logo1.png" style="width: 280px;" alt="logo">
+                <img src="data:image/png;base64,{% pdf_logo %}" style="width: 280px;" alt="logo">
             </div>
         </div>
         <table class="invoice-table" border="2">
