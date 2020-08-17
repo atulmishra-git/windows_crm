@@ -10,6 +10,7 @@ from django.conf import settings
 import os
 
 from mainapp.models import PurchaseRecord, Customer, Attachments
+from django.template.response import TemplateResponse
 
 WATT1 = 310
 WATT2 = 325
@@ -55,6 +56,8 @@ def download_offer(request, customer_id):
         'creator': request.user,
         'creation_date': datetime.today(),
     }
+
+    return TemplateResponse(request, template_name, context)
 
     rendered = render_to_string(template_name,
                                 context,
