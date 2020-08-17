@@ -60,7 +60,7 @@
                                 <td>{{ obj.street|default:"-" }}</td>
                                 <td>{{ obj.place|default:"-" }}</td>
                                 <td>{{ obj.birthday|default:"-" }}</td>
-                                <td>{{ obj.purchaserecord_set}}</td>
+                                <td>{{ obj.purchases.all()}}</td>
                                 <td>
                                     <a href="{% url 'mainapp:new:edit_reseller' pk=obj.id %}"
                                        class=""><i class="feather icon-edit-1"></i>
