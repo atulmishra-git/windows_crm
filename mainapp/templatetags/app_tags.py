@@ -13,5 +13,5 @@ def add_ac(obj):
 @register.simple_tag
 def pdf_logo():
     logo = os.path.join(settings.BASE_DIR, "cdn", "static", "images", "logo1.png")
-    with open(logo, 'r') as img_file:
+    with open(logo, 'rb') as img_file:
         return base64.b64encode(img_file.read())
