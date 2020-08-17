@@ -44,6 +44,7 @@
                             <th>{% trans 'company' %}</th>
                             <th>{% trans 'street' %}</th>
                             <th>{% trans 'place' %}</th>
+                            <th>{% trans 'Number of installations' %}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -56,6 +57,7 @@
                                 <td>{{ obj.company_name|default:"-" }}</td>
                                 <td>{{ obj.street|default:"-" }}</td>
                                 <td>{{ obj.place|default:"-" }}</td>
+                                <td>{{ obj.dc_purchases.all|length}}</td>
                                 <td>
                                     <a href="{% url 'mainapp:new:edit_mechanic' pk=obj.id %}"
                                        class=""><i class="feather icon-edit-1"></i>

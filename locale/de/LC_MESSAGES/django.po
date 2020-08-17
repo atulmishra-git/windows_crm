@@ -1329,3 +1329,11 @@ msgstr "Deutsch"
 #: mainapp/templates2/mechanic/list_mechanic.html:136 mainapp/templates2/reseller/list_reseller.html:139
 #~ msgid "Previous"
 #~ msgstr "Bisherige"
+
+#: mainapp/templates2/reseller/list_reseller.html:49
+#~ msgid "Number of sales"
+#~ msgstr "Anzahl der Verkäufe"
+
+#: mainapp/templates2/mechanic/list_mechanic.html:47
+#~ msgid "Number of installations"
+#~ msgstr "Anzahl der Installationen"
