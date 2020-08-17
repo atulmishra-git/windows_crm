@@ -467,14 +467,14 @@
 		    </tr>
         </table>
     </div>
-    <div style="clear:both;"><!--clear--></div>
+    <div><!--clear--></div>
 
     <div class="container" style="margin:50px;">
-		<!-- <div class="logo-div">
+		<div class="logo-div">
             <div class="logo">
                 <img src="data:image/png;base64,{% pdf_logo %}" style="width: 280px;" alt="logo">
             </div>
-        </div> -->
+        </div>
         <table class="invoice-table" border="2">
             <tr>
                 <th>POS</th>
@@ -539,11 +539,11 @@
                     <span class="p-small">einsehbar unter www.energiewerke-bayern.de</span>
                 </td>
             </tr>
-            <tr style="margin-top: 30px;">
-                <td style="margin-top: 30px;width: 40px;text-align: center;"></td>
-                <td style="margin-top: 30px;width: 80px;"></td>
-                <td style="margin-top: 30px;width: 80px;"></td>
-                <td style="margin-top: 30px; text-align: right">
+            <tr style="margin-top: -30px;">
+                <td style="margin-top: -30px;width: 40px;text-align: center;"></td>
+                <td style="margin-top: -30px;width: 80px;"></td>
+                <td style="margin-top: -30px;width: 80px;"></td>
+                <td style="margin-top: -30px; text-align: right">
                     <span style="text-align: right;margin-right: 30px;"><b>Zwischensumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_without_tax|floatformat:2 }} €</b></span>
                     <p style="text-align: right;margin-right: 30px;"><b>MwSt 19% :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.tax|floatformat:2 }} €</b></p>
                     <span style="text-align: right;margin-right: 30px;"><b>Gesamtsumme :&nbsp;&nbsp;&nbsp;{{ customer.purchase_record.price_with_tax|floatformat:2 }} €</b></span>
