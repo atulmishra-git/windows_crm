@@ -6,5 +6,5 @@ def get(value, arg):
     return value.get(arg)
 
 @register.filter
-def add(s, s):
-    return int(s) + int(s)
+def add(s1, s2):
+    return int(len(s1)) + int(len(s2))
