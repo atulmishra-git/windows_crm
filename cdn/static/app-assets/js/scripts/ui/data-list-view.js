@@ -26,9 +26,9 @@ $(document).ready(function() {
       sSearch: "",
       oPaginate: {
         sFirst: sFirst,
-        sPrevious: "Previous Page",
-        sNext: "Next Page",
-        sLast: "Last Page"
+        sPrevious: sPrevious,
+        sNext: sNext,
+        sLast: sLast
       }
     },
     aLengthMenu: [[4, 10, 15, 20], [4, 10, 15, 20]],
