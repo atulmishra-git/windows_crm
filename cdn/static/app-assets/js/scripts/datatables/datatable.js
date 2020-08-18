@@ -96,7 +96,8 @@ $(document).ready(function() {
             sFirst: sFirst,
             sPrevious: sPrevious,
             sNext: sNext,
-            sLast: sLast
+            sLast: sLast,
+            sInfo: sInfo
           }
         },
         dom: 'Bfrtip',

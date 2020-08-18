@@ -185,7 +185,7 @@ class PurchaseRecord(models.Model):
     # OFFER INFORMATION
     offer_date = models.DateField(_("offer date"), blank=True, null=True)
     reseller_name = models.ForeignKey("Reseller", on_delete=models.SET_NULL,
-                                      null=True, blank=True, related_name='purchases')
+                                      null=True, blank=True, related_name='purchases', verbose_name=_("Reseller"))
     declined = models.BooleanField(_("declined"), default=False, null=True, blank=True)
     # TECHNICAL DETAILS
     date_sent = models.DateField(_('date sent'), null=True, blank=True)
@@ -193,10 +193,10 @@ class PurchaseRecord(models.Model):
                                                    blank=False, default=False)
     dc_term = models.DateField(_('DC Term'), blank=True, null=True)
     dc_mechanic = models.ForeignKey('Mechanic', on_delete=models.SET_NULL,
-                                    null=True, blank=True, related_name='dc_purchases')
+                                    null=True, blank=True, related_name='dc_purchases', verbose_name=_("DC Mechanic"))
     ac_term = models.DateField(_('AC Term'), blank=True, null=True)
     ac_mechanic = models.ForeignKey("Mechanic", on_delete=models.SET_NULL,
-                                    null=True, blank=True, related_name='ac_purchases')
+                                    null=True, blank=True, related_name='ac_purchases', verbose_name=_("AC Mechanic"))
     # INFORMATION FOR THE ROOF
     roof_type = models.CharField(_("roof type"), max_length=255, null=True, blank=True)
     roof_tilt = models.FloatField(_("roof tilt"), help_text=_("in Degrees"), null=True, blank=True)

@@ -15,3 +15,7 @@ def pdf_logo():
     logo = os.path.join(settings.BASE_DIR, "cdn", "static", "images", "logo1.png")
     with open(logo, 'rb') as img_file:
         return str(base64.b64encode(img_file.read()), 'utf-8')
+
+@register.filter
+def none_to_zero(s):
+    return 0 if s is None else s

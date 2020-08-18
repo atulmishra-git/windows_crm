@@ -455,7 +455,7 @@ msgstr "Firma"
 
 #: mainapp/models.py:443 mainapp/models.py:457
 msgid "name"
-msgstr "Nachname"
+msgstr "Vorname"
 
 #: mainapp/templates/add_manager.html:14
 #: mainapp/templates/attachment_type.html:30
@@ -609,11 +609,13 @@ msgstr "Ort"
 
 #: mainapp/templates/calendars/calendar.html:168
 #: mainapp/templates2/calendar/index.html:251
+#: mainapp/models.py:196
 msgid "DC Mechanic"
 msgstr "DC - Monteur"
 
 #: mainapp/templates/calendars/calendar.html:178
 #: mainapp/templates2/calendar/index.html:233
+#: mainapp/models.py:199
 msgid "AC Mechanic"
 msgstr "AC - Monteur"
 
@@ -945,6 +947,7 @@ msgstr "Monteure"
 
 #: mainapp/templates2/base/side-nav.html:39
 #: mainapp/templates2/reseller/list_reseller.html:34
+#: mainapp/models.py:188
 msgid "Reseller"
 msgstr "Verkäufer"
 
@@ -1105,7 +1108,9 @@ msgid "Total Area"
 msgstr "Gesamtfläche der Module"
 
 # mainapp/templates/add_manager.html:8
-#: mainapp/templates2/purchases/list_purchases.html:36
+#: mainapp/templates2/purchases/list_purchases.html:36 mainapp/templates2/search/index.html:166
+#: mainapp/templates2/managers/list_managers.html:135 mainapp/templates2/mechanic/list_mechanic.html:143
+#: mainapp/templates2/reseller/list_reseller.html:144
 msgid "Add New"
 msgstr "Hinzufügen"
 
@@ -1337,3 +1342,31 @@ msgstr "Deutsch"
 #: mainapp/templates2/mechanic/list_mechanic.html:47
 #~ msgid "Number of installations"
 #~ msgstr "Anzahl der Installationen"
+
+# mainapp/templates2/search/index.html:44
+#~ msgid "Choose file"
+#~ msgstr "Datei wählen"
+
+#: mainapp/templates2/purchases/list_purchases.html:149 mainapp/templates2/managers/list_managers.html:136
+#: mainapp/templates2/mechanic/list_mechanic.html:144 mainapp/templates2/reseller/list_reseller.html:145
+#: mainapp/templates2/search/index.html:167 mainapp/templates2/tasks/list.html:186
+#~ msgid "Showing"
+#~ msgstr "Zeigen"
+
+#: mainapp/templates2/purchases/list_purchases.html:150 mainapp/templates2/managers/list_managers.html:137
+#: mainapp/templates2/mechanic/list_mechanic.html:145 mainapp/templates2/reseller/list_reseller.html:146
+#: mainapp/templates2/search/index.html:168 mainapp/templates2/tasks/list.html:187
+#~ msgid "entries"
+#~ msgstr "Einträge"
+
+#: mainapp/templates2/purchases/list_purchases.html:151 mainapp/templates2/managers/list_managers.html:138
+#: mainapp/templates2/mechanic/list_mechanic.html:146 mainapp/templates2/reseller/list_reseller.html:147
+#: mainapp/templates2/search/index.html:169 mainapp/templates2/tasks/list.html:188
+#~ msgid "to"
+#~ msgstr "zu"
+
+#: mainapp/templates2/purchases/list_purchases.html:152 mainapp/templates2/managers/list_managers.html:139
+#: mainapp/templates2/mechanic/list_mechanic.html:147 mainapp/templates2/reseller/list_reseller.html:148
+#: mainapp/templates2/search/index.html:170 mainapp/templates2/tasks/list.html:189
+#~ msgid "of"
+#~ msgstr "von"

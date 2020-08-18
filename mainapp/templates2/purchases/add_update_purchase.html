@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load app_tags %}
 
 {% block vendorcss %}
     <!-- BEGIN: Vendor CSS-->
@@ -550,7 +551,7 @@
                                                     <label>{{ form.alignment.label }}</label>
                                                     <div class="controls">
                                                         <input type="text" id="id_alignment"
-                                                               value="{{ form.alignment.value }}"
+                                                               value="{{ form.alignment.value | none_to_zero }}"
                                                                name="alignment" class="form-control"
                                                                placeholder="{% trans 'Alignment' %}">
                                                         <div class="help-block">
