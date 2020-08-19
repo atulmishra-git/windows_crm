@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 from chat.consumers import get_room
 from chat.models import ChatRoom, Message
-from mainapp.models import User
+from mainapp.models import User, Customer
 
 
 @login_required
@@ -44,7 +44,8 @@ def index(request):
     context = {
         'users': users_with_chat_room_messages | User.objects.exclude(
             id=request.user.id).exclude(
-            id__in=users_with_chat_room_messages.values_list('id')
+            id__in=users_with_chat_room_messages.values_list('id'),
+            custome=Customer.objects.last()
         )
         # 'users': User.objects.exclude(id=request.user.id)
     }
@@ -64,7 +65,7 @@ def room(request):
             other_id=other.id,
             other=str(other),
             messages=[{
-                'sender': msg.sender.id, 
+                'sender': msg.sender.id,
                 'message': msg.message,
                 'timestamp': msg.timestamp
             } for msg in messages]
