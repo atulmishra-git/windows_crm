@@ -24,7 +24,7 @@
             <!-- Content types section start -->
             <section id="content-types">
                 <div class="row match-height">
-                    <div class="col-xl-8 col-md-6 col-sm-12">
+                    <div class="col-xl-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
@@ -50,36 +50,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6 col-sm-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <h4 class="card-title">{{ operation }}</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form class="form" method="POST">
-                                        <div class="form-body">
-                                        {% csrf_token %}
-                                            {% for field in form %}
-                                                <div class="form-group">
-                                                    <label for="feedback1" class="sr-only">{{ field.label }}</label>
-                                                    {{ field }}
-                                                    {% if field.errors %}
-                                                        Error: {{ field.errors }}
-                                                    {% endif %}
-                                                </div>
-                                            {% endfor %}
-                                        </div>
+                </div>
+                <div class="row">
+                  <div class="col-xl-4 col-md-6 col-sm-12">
+                      <div class="card">
+                          <div class="card-content">
+                              <div class="card-body">
+                                  <h4 class="card-title">{{ operation }}</h4>
+                              </div>
+                              <div class="card-body">
+                                  <form class="form" method="POST">
+                                      <div class="form-body">
+                                      {% csrf_token %}
+                                          {% for field in form %}
+                                              <div class="form-group">
+                                                  <label for="feedback1" class="sr-only">{{ field.label }}</label>
+                                                  {{ field }}
+                                                  {% if field.errors %}
+                                                      Error: {{ field.errors }}
+                                                  {% endif %}
+                                              </div>
+                                          {% endfor %}
+                                      </div>
 
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary mr-1">Submit</button>
-                                            <button type="reset" class="btn btn-outline-warning">Cancel</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                      <div class="form-actions">
+                                          <button type="submit" class="btn btn-primary mr-1">Submit</button>
+                                          <button type="reset" class="btn btn-outline-warning">Cancel</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                 </div>
             </section>
             <!-- Content types section end -->

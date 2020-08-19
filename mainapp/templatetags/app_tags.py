@@ -19,3 +19,8 @@ def pdf_logo():
 @register.filter
 def none_to_zero(s):
     return 0 if s is None else s
+
+@register.simple_tag
+def sum_price(obj):
+    p = [o.price_without_tax for o in obj.purchases.all()]
+    return sum(p)

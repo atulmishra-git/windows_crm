@@ -13,6 +13,12 @@
           href="{% static 'app-assets/vendors/css/calendars/extensions/timegrid.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/pickers/pickadate/pickadate.css' %}">
     <!-- END: Vendor CSS-->
+    <style>
+      .form-label-group > label {
+         opacity: 1 !important;
+         position: initial !important;
+      }
+    </style>
 {% endblock %}
 
 {% block pagecss %}
@@ -99,7 +105,7 @@
                                         <label for="cal-description">{% trans 'Description' %}</label>
                                     </fieldset>
                                 </div>
-{#                                <div class="modal-footer">#}
+                                <div class="modal-footer">
 {#                                    <button type="button" class="btn btn-primary cal-add-event waves-effect waves-light"#}
 {#                                            disabled>#}
 {#                                        Add Event#}
@@ -112,11 +118,12 @@
 {#                                            class="btn btn-flat-danger cancel-event waves-effect waves-light"#}
 {#                                            data-dismiss="modal">Cancel#}
 {#                                    </button>#}
-{#                                    <button type="button"#}
-{#                                            class="btn btn-flat-danger remove-event d-none waves-effect waves-light"#}
-{#                                            data-dismiss="modal">Remove#}
-{#                                    </button>#}
-{#                                </div>#}
+{% csrf_token %}
+                                    <button type="button"
+                                            class="btn btn-flat-danger remove-event d-none waves-effect waves-light"
+                                            data-dismiss="modal">Remove
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -144,14 +151,14 @@
                                         </select>
                                     </fieldset>
                                     <fieldset class="form-label-group">
+                                        <label for="cal-start-date">{% trans 'Date' %}</label>
                                         <input type="text" class="form-control pickadate" id="cal-task-date"
                                                placeholder="{% trans 'Start Date' %}">
-                                        <label for="cal-start-date">{% trans 'Date' %}</label>
                                     </fieldset>
                                     <fieldset class="form-label-group">
+                                        <label for="cal-description">{% trans 'Task' %}</label>
                                         <textarea class="form-control" id="cal-task-title" rows="5"
                                                   placeholder="{% trans 'Task' %}" required></textarea>
-                                        <label for="cal-description">{% trans 'Task' %}</label>
                                     </fieldset>
                                 </div>
                                 <div class="modal-footer">
@@ -346,7 +353,7 @@
                     $(".modal-calendar #cal-end-date").val(moment(info.event.end).format('YYYY-MM-DD'));
                     $(".modal-calendar #cal-description").val(info.event.extendedProps.description);
 {#                    $(".modal-calendar .cal-submit-event").removeClass("d-none");#}
-{#                    $(".modal-calendar .remove-event").removeClass("d-none");#}
+                    $(".modal-calendar .remove-event").removeClass("d-none").attr('data-id', info.event.id);
                     $(".modal-calendar .cal-add-event").addClass("d-none");
                     $(".modal-calendar .cancel-event").addClass("d-none");
                     $(".calendar-dropdown .dropdown-menu").find(".selected").removeClass("selected");
@@ -373,9 +380,11 @@
             });
 
             // Remove Event
-            $(".remove-event").on("click", function () {
-                var removeEvent = calendar.getEventById('newEvent');
+            $(".remove-event").on("click", function (e) {
+                var id = e.currentTarget.dataset.id;
+                var removeEvent = calendar.getEventById(id);
                 removeEvent.remove();
+                $.post("{% url 'mainapp:new:delete_task' 0 %}".replace(0, id), {csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val()} );
             });
 
 

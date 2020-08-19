@@ -16,7 +16,8 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
             'date_sent': forms.DateInput(attrs={'type': 'date'}),
             'dc_term': forms.DateInput(attrs={'type': 'date'}),
             'ac_term': forms.DateInput(attrs={'type': 'date'}),
-            'project_planning_created': forms.Select(choices=((True, _('Yes')), (False, _('No'))))
+            'project_planning_created': forms.Select(choices=((True, _('Yes')), (False, _('No')))),
+            'date_of_receipt': forms.DateInput(attrs={'type': 'date'})
         }
 
     def __init__(self, *args, **kwargs):
@@ -96,6 +97,9 @@ class PurchaseRecordForm(LabelAdder, forms.ModelForm):
                 Column('ac_term', css_class='form-group col-md-6 mb-0'),
                 Column('ac_mechanic', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
+            ),
+            Row(
+                Column('date_of_receipt', css_class='form-group col-md-6 mb-0')
             ),
             HTML('<h4></h4><br/>' % _("Information of the Roof")),
             'roof_type',

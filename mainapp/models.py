@@ -80,6 +80,14 @@ CALL_NOTE_PRIORITY_CHOICES = (
 
 
 class Customer(models.Model):
+    def auto_code():
+        number = Customer.objects.count()
+        if number is None:
+            return 6112
+        else:
+            return int(number) + 1
+
+    customer_code = models.PositiveIntegerField(_("Customer Code"), default=auto_code, unique=True)
     first_name = models.CharField(_("first name"), max_length=255)
     offer_id = models.CharField(_("offer id"), max_length=255, blank=True,
                                 null=True)
@@ -134,9 +142,9 @@ class Customer(models.Model):
 class CallNotes(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='call_notes')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='call_notes')
-    notes = models.CharField(_("notes"), max_length=1000)
+    notes = models.TextField(_("notes"), max_length=1000)
     status = models.PositiveSmallIntegerField(choices=CALL_NOTE_PRIORITY_CHOICES,
-                                              default=CALL_NOTE_PRIORITY.medium)
+                                              default=CALL_NOTE_PRIORITY.high)
     created = models.DateTimeField(null=True)
 
     def save(self, *args, **kwargs):
@@ -222,6 +230,7 @@ class PurchaseRecord(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
+    date_of_receipt = models.DateField(_("Date of receipt"), blank=True, null=True)
 
     @classmethod
     def purchases_last_seven_days(cls):

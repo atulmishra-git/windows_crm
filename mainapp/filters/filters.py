@@ -20,7 +20,8 @@ class CustomerFilter(django_filters.FilterSet):
             'place': ['icontains'],
             'phone': ['iexact'],
             'mobile': ['iexact'],
-            'email': ['iexact']
+            'email': ['iexact'],
+            'customer_code': ['iexact']
         }
 
 

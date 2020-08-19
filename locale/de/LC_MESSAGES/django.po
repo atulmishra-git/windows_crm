@@ -318,7 +318,7 @@ msgstr "Anzahl der Module"
 
 #: mainapp/models.py:174
 msgid "with battery"
-msgstr "mit Speicher"
+msgstr "Speicher"
 
 #: mainapp/models.py:176 mainapp/models.py:178
 msgid "Kw/H"
@@ -733,7 +733,7 @@ msgstr "Anzahl der Module"
 #: mainapp/templates2/dashboard/purchase_detail.html:35
 #: mainapp/templates2/purchases/add_update_purchase.html:163
 msgid "With Battery"
-msgstr "mit Speicher"
+msgstr "Speicher"
 
 #: mainapp/templates/home/customer_purchase_modal.html:75
 #: mainapp/templates/home/customer_purchase_modal.html:82
@@ -976,15 +976,17 @@ msgstr "Beschreibung"
 #: mainapp/templates2/calendar/index.html:153
 #: mainapp/templates2/calendar/index.html:154
 #: mainapp/templates2/tasks/update.html:34
+#: mainapp/templates2/calendar/index.html:138
+#: mainapp/templates2/calendar/index.html:158
 msgid "Task"
 msgstr "Aufgaben"
 
-#: mainapp/templates2/calendar/index.html:140
-#: mainapp/templates2/calendar/index.html:210
+#: mainapp/templates2/calendar/index.html:146
+#: mainapp/templates2/calendar/index.html:217
 msgid "Private"
 msgstr "Privat"
 
-#: mainapp/templates2/calendar/index.html:149
+#: mainapp/templates2/calendar/index.html:153
 msgid "Date"
 msgstr "Datum"
 
@@ -1137,7 +1139,7 @@ msgstr "Watt"
 #: mainapp/templates2/purchases/list_purchases.html:50
 #: mainapp/templates2/purchases/list_purchases.html:102
 msgid "WITH BATTERY"
-msgstr "mit Speicher"
+msgstr "Speicher"
 
 #: mainapp/templates2/purchases/list_purchases.html:52
 #: mainapp/templates2/purchases/list_purchases.html:104
@@ -1370,3 +1372,11 @@ msgstr "Deutsch"
 #: mainapp/templates2/search/index.html:170 mainapp/templates2/tasks/list.html:189
 #~ msgid "of"
 #~ msgstr "von"
+
+#: mainapp/models.py:255
+#~ msgid "Date of receipt"
+#~ msgstr "Eingangsdatum"
+
+#: mainapp/templates2/reseller/list_reseller.html:50
+#~ msgid "Total of sales"
+#~ msgstr "Gesamtsumme der Verkäufe"

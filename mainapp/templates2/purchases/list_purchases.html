@@ -48,7 +48,7 @@
                                                     <th>{% trans 'RESELLER'  %}</th>
                                                     <th>{% trans 'MODULE COUNT'  %}</th>
                                                     <th>{% trans 'WATT' %}</th>
-                                                    <th>{% trans 'WITH BATTERY' %} + KW/H</th>
+                                                    <th>{% trans 'WITH BATTERY' %}</th>
                                                     <th>{% trans 'KWP' %}</th>
                                                     <th>{% trans 'EXTRA DETAILS' %}</th>
                                                     <th>{% trans 'CREATED' %}</th>
@@ -64,7 +64,7 @@
                                             </thead>
                                             <tbody>
                                                 {% for obj in object_list %}
-                                                    <tr>
+                                                    <tr {% if obj.declined %} style="background-color:#ffb8b8; color:red;" {% endif %}>
                                                         <td>{{ obj.customer|default:"-" }} (id={{ obj.customer.id }})</td>
                                                         <td>{{ obj.offer_date|default:"-" }}</td>
                                                         <td>{{ obj.reseller_name|default:"-" }}</td>
@@ -72,7 +72,7 @@
                                                         <td>{{ obj.watt|default:"-" }}</td>
                                                         <td>
                                                             {% if obj.with_battery %}
-                                                                Ja + {{ obj.kwh|default:"-" }}
+                                                                {{obj.manufacturer}} {{ obj.kwh|default:"-" }}
                                                             {% else %}
                                                                 Nein + {{ obj.kwh2|default:"-" }}
                                                             {% endif %}

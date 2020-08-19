@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from mainapp.filters.filters import PurchaseFilter
 from mainapp.forms.add_purchase_record import PurchaseRecordForm
-from mainapp.models import PurchaseRecord
+from mainapp.models import PurchaseRecord, Customer
 from mainapp.permissions import IsSuperAdmin
 from mainapp.view.mixins import FilterListMixin
 
@@ -54,6 +54,7 @@ class ListPurchaseView(LoginRequiredMixin, FilterListMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
         context['object_type'] = _('Purchase')
+        context['customer'] = Customer.objects.last()
         return context
 
 

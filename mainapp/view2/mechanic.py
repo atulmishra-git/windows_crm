@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from mainapp.forms.mechanic import MechanicForm
 from django.shortcuts import redirect, reverse
-from mainapp.models import Mechanic
+from mainapp.models import Mechanic, Customer
 from mainapp.permissions import IsSuperAdmin
 
 
@@ -14,6 +14,7 @@ class ListObjectsView(IsSuperAdmin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = MechanicForm()
+        context['customer'] = Customer.objects.last()
         return context
 
 
