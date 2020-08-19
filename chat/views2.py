@@ -44,9 +44,9 @@ def index(request):
     context = {
         'users': users_with_chat_room_messages | User.objects.exclude(
             id=request.user.id).exclude(
-            id__in=users_with_chat_room_messages.values_list('id'),
-            customer=Customer.objects.last()
-        )
+            id__in=users_with_chat_room_messages.values_list('id')
+        ),
+        customer=Customer.objects.last()
         # 'users': User.objects.exclude(id=request.user.id)
     }
     return render(request, 'chat2/index.html', context=context)
