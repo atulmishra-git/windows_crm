@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from mainapp.forms.mixins import FormRequestMixin
 from mainapp.forms.task import AddTaskForm
 from django.shortcuts import reverse, redirect
-from mainapp.models import Tasks
+from mainapp.models import Tasks, Customer
 
 
 class IsCreatorMixin(object):
@@ -43,6 +43,7 @@ class TasksView(LoginRequiredMixin, FormRequestMixin, ListView):
         context['completed_list'] = self.filter_by_user(
             Tasks.objects.filter(completed=True)
         ).order_by('-todo_date')[:5]
+        context['customer'] = Customer.objects.last()
         return context
 
     def get_queryset(self):
