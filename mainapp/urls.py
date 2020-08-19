@@ -16,7 +16,7 @@ urlpatterns = [
     path('logout', login.logout_view, name='logout'),
 
     # Home
-    #path('old/home/', home.HomeView.as_view(), name='home'),
+    path('home/', home.HomeView.as_view(), name='home'),
     path('home/customer/<customer_id>/', home.CustomerHomeView.as_view(), name='customer_home'),
 
     path('manager/', add_manager.CreateManagerView.as_view(), name='add_manager'),
