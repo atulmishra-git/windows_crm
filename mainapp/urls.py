@@ -16,7 +16,7 @@ urlpatterns = [
     path('logout', login.logout_view, name='logout'),
 
     # Home
-    path('old/home/', home.HomeView.as_view(), name='home'),
+    #path('old/home/', home.HomeView.as_view(), name='home'),
     path('home/customer/<customer_id>/', home.CustomerHomeView.as_view(), name='customer_home'),
 
     path('manager/', add_manager.CreateManagerView.as_view(), name='add_manager'),
@@ -34,7 +34,7 @@ urlpatterns = [
     path('purchases/<int:pk>/', add_purchase.UpdatePurchaseView.as_view(), name='edit_purchase'),
     path('update_purchase/<int:pk>/', add_purchase.update_purchase, name='patch_purchase'),
     path('delete/purchases/<int:pk>/', add_purchase.DeletePurchaseView.as_view(), name='delete_purchase'),
-    
+
     path('task_list/', task.TasksView.as_view(), name='open_task_list'),
     path('task/<int:pk>/', task.TaskUpdateView.as_view(), name='edit_task'),
     path('delete/task/<int:pk>/', task.DeleteTaskView.as_view(), name='delete_task'),
