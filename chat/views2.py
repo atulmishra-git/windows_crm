@@ -45,7 +45,7 @@ def index(request):
         'users': users_with_chat_room_messages | User.objects.exclude(
             id=request.user.id).exclude(
             id__in=users_with_chat_room_messages.values_list('id'),
-            custome=Customer.objects.last()
+            customer=Customer.objects.last()
         )
         # 'users': User.objects.exclude(id=request.user.id)
     }
