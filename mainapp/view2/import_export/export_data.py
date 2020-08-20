@@ -7,7 +7,7 @@ from django.core.files.storage import default_storage
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
-from mainapp.models import Customer, PurchaseRecord
+from mainapp.models import Customer
 
 
 def export_xls(request):
@@ -21,7 +21,7 @@ def export_xls(request):
     row_num = 0
 
     columns = [
-        ("Customer ID", 4000),
+        ("Customer Code", 4000),
         ("First Name", 4000),
         ("Family Name", 4000),
         ("Street", 4000),
@@ -30,21 +30,6 @@ def export_xls(request):
         ("E - Mail", 4000),
         ("Phone", 4000),
         ("Birthday", 4000),
-        ("", 4000),
-        ("Offer - Date", 4000),
-        ("Reseller", 4000),
-        ("Count of Module", 4000),
-        ("Watt", 4000),
-        ("Battery + KWH", 4000),
-        ("Kwp", 4000),
-        ("Additional components", 6000),
-        ("Projection created", 4000),
-        ("Price", 4000),
-        ("Delivery Date", 4000),
-        ("DC Date", 4000),
-        ("DC Mechanic", 4000),
-        ("AC - Date", 4000),
-        ("AC Mechanic", 4000),
     ]
 
     font_style = xlwt.XFStyle()
@@ -76,9 +61,8 @@ def export_xls(request):
 
     for obj in customers:
         row_num += 1
-        purchase = getattr(obj, "purchase_record", None)
         row = [
-            obj.pk,
+            obj.customer_code,
             obj.first_name,
             obj.surname,
             obj.street,
@@ -86,34 +70,13 @@ def export_xls(request):
             obj.place,
             obj.email,
             obj.phone,
-            obj.birthday,
-            "*****",
+            obj.birthday
         ]
-        if purchase is not None:
-            row += [
-                getattr(purchase, "offer_date", None),
-                getattr(purchase, "reseller_name", None),
-                getattr(purchase, "module_count", None),
-                getattr(purchase, "watt", None),
-                "{} {}".format("Yes" if getattr(purchase, "with_battery", None) else "No", getattr(purchase, "kwh", None) or getattr(purchase, "kwh2", None) or ""),
-                getattr(purchase, "kwp", None),
-                getattr(purchase, "extra_details", None),
-                "Yes" if getattr(purchase, "project_planning_created", None) else "No",
-                "€{}".format(getattr(purchase, "price_with_tax", None)) if getattr(purchase, "price_with_tax", None) else "",
-                getattr(purchase, "date_sent", None),
-                getattr(purchase, "dc_term", None),
-                getattr(purchase, "dc_mechanic", None),
-                getattr(purchase, "ac_term", None),
-                getattr(purchase, "ac_mechanic", None),
-            ]
         for col_num in range(len(row)):
             style = font_style
             val = row[col_num]
             if isinstance(val, date):
                 style = date_style
-            elif row[col_num] == "*****":
-                style = bg_red
-                val = ""
             ws.write(row_num, col_num, val, style)
 
     wb.save(response)
@@ -131,6 +94,7 @@ def import_xls(request):
     sheet = wb.sheet_by_index(0)
 
     customer_keys = [
+        'customer_code',
         'first_name',
         'surname',
         'street',
@@ -139,34 +103,15 @@ def import_xls(request):
         'email',
         'phone',
         'birthday',
-        '_'
     ]
-    purchase_keys = [
-        'offer_date',
-        'reseller_name',
-        'module_count',
-        'watt',
-        'with_battery',  # if true 'kwh' else 'kwh2'
-        'kwp',
-        'extra_details',
-        'project_planning_created',  # yes/no
-        'price_with_tax',  # price with tax
-        'date_sent',
-        'dc_term',
-        'dc_mechanic',
-        'ac_term',
-        'ac_mechanic',
-    ]
-
     created_customer = 0
 
-    all_keys = customer_keys + purchase_keys
+    all_keys = customer_keys
     for row in range(1, sheet.nrows):
         d = {}
         for col in range(1, len(all_keys) + 1):
-            d[all_keys[col - 1]] = sheet.cell_value(row, col)
+            d[all_keys[col - 1]] = sheet.cell_value(row, col-1)
         customer_data = {}
-        purchase_data = {}
 
         if not d['phone']:
             messages.error(request, 'Phone Missing.')
@@ -179,14 +124,12 @@ def import_xls(request):
         customer_data['street'] = d['street']
         customer_data['postcode'] = d['postcode']
         customer_data['place'] = d['place']
+        customer_data['customer_code'] = d['customer_code']
 
         # check if customer exists
         customer = Customer(**customer_data)
         if Customer.objects.filter(phone=d['phone']).exists():
             customer = Customer.objects.get(phone=d['phone'])
-            # delete the existing purchase record
-            if getattr(customer, 'purchase_record', None):
-                customer.purchase_record.delete()
             for k, v in customer_data.items():
                 setattr(customer, k, v)
         else:
@@ -196,48 +139,5 @@ def import_xls(request):
             customer.birthday = xlrd.xldate.xldate_as_datetime(d['birthday'], wb.datemode)
         customer.save()
 
-        # purchase
-        purchase_data['reseller_name'] = d['reseller_name']
-        if d['module_count']:
-            purchase_data['module_count'] = float(d['module_count'])
-        if d['watt']:
-            purchase_data['watt'] = float(d['watt'])
-
-        if d['with_battery']:
-            with_battery_data, kwh_data = d['with_battery'].split(' ')
-            if with_battery_data == 'Yes':
-                with_battery = True
-                key = 'kwh'
-            else:
-                with_battery = False
-                key = 'kwh2'
-            purchase_data['with_battery'] = with_battery
-            purchase_data[key] = kwh_data
-
-        # purchase_data['kwp'] = d['kwp']
-        purchase_data['extra_details'] = d['extra_details']
-        purchase_data['project_planning_created'] = d['project_planning_created'] == 'Yes'
-        if d['price_with_tax']:
-            if not isinstance(d['price_with_tax'], float):
-                purchase_data['price_without_tax'] = float(d['price_with_tax'][1:]) / 1.19
-            else:
-                purchase_data['price_without_tax'] = d['price_with_tax'] / 1.19
-        try:
-            if d['offer_date']:
-                purchase_data['offer_date'] = xlrd.xldate.xldate_as_datetime(d['offer_date'], wb.datemode)
-            if d['date_sent']:
-                purchase_data['date_sent'] = xlrd.xldate.xldate_as_datetime(d['date_sent'], wb.datemode)
-            if d['dc_term']:
-                purchase_data['dc_term'] = xlrd.xldate.xldate_as_datetime(d['dc_term'], wb.datemode)
-            if d['ac_term']:
-                purchase_data['ac_term'] = xlrd.xldate.xldate_as_datetime(d['ac_term'], wb.datemode)
-        except:
-            pass
-        purchase_data['dc_mechanic'] = d['dc_mechanic']
-        purchase_data['ac_mechanic'] = d['ac_mechanic']
-
-        if any([purchase_data.get('module_count'), purchase_data.get('dc_term'), purchase_data.get('ac_term'),
-                purchase_data.get('date_sent'), purchase_data.get('watt')]):
-            PurchaseRecord.objects.create(customer=customer, **purchase_data)
     messages.success(request, '{} neue kunden'.format(created_customer))
     return redirect('mainapp:new:search')

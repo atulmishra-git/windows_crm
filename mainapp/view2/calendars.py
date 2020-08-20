@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 from django.template.response import TemplateResponse
 
-from mainapp.models import PurchaseRecord, Tasks, Customer
+from mainapp.models import PurchaseRecord, Tasks, Customer, User
 
 
 def calendar(request, year=None, month=None):
@@ -97,6 +97,7 @@ def calendar(request, year=None, month=None):
         tasks=json.dumps(public_tasks),  # old compatible
         public_tasks=json.dumps(public_tasks),
         private_tasks=json.dumps(private_tasks),
-        customer=Customer.objects.last()
+        customer=Customer.objects.last(),
+        users=User.objects.all()
     )
     return TemplateResponse(request, 'calendar/index.html', context)

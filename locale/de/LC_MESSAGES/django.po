@@ -1380,3 +1380,7 @@ msgstr "Deutsch"
 #: mainapp/templates2/reseller/list_reseller.html:50
 #~ msgid "Total of sales"
 #~ msgstr "Gesamtsumme der Verkäufe"
+
+#: mainapp/templates2/calendar/index.html:159
+#~ msgid "Assigned To"
+#~ msgstr "Zugewiesen an"

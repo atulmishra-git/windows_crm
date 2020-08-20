@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from mainapp.forms.mixins import FormRequestMixin
 from mainapp.forms.task import AddTaskForm
 from django.shortcuts import reverse, redirect
-from mainapp.models import Tasks, Customer
+from mainapp.models import Tasks, Customer, User
 
 
 class IsCreatorMixin(object):
@@ -109,9 +109,11 @@ def create_task(request):
         for k, v in request.POST.items():
             data.update({k: v})
         data['private'] = data['private'] == 'true'
+        user = User.objects.get(pk=data['assigned_to'])
+        del data['assigned_to']
         Tasks.objects.create(
             **data,
-            user=request.user,
+            user=user,
             creator=request.user,
         )
     return JsonResponse(data={}, status=200)

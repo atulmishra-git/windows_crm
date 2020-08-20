@@ -156,6 +156,14 @@
                                                placeholder="{% trans 'Start Date' %}">
                                     </fieldset>
                                     <fieldset class="form-label-group">
+                                        <label for="cal-start-date">{% trans 'Assigned To' %}</label>
+                                        <select class="form-control" id="cal-task-assigned_to">
+                                          {% for user in users %}
+                                            <option value="{{user.id}}">{{user}}</option>
+                                          {% endfor %}
+                                        </select>
+                                    </fieldset>
+                                    <fieldset class="form-label-group">
                                         <label for="cal-description">{% trans 'Task' %}</label>
                                         <textarea class="form-control" id="cal-task-title" rows="5"
                                                   placeholder="{% trans 'Task' %}" required></textarea>
@@ -452,10 +460,12 @@
                 let startDate = $("#cal-task-date").val();
                 let isPrivate = $("#cal-task-private").val() == 'true';
                 let correctEndDate = new Date(startDate);
+                let assignedTo = $("#cal-task-assigned_to").val();
                 const obj = {
                     message: eventTitle,
                     todo_date: startDate,
-                    'private': isPrivate
+                    'private': isPrivate,
+                    assigned_to: assignedTo
                 };
                 calendar.addEvent({
                     id: obj.message + '123',

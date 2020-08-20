@@ -460,6 +460,10 @@ class Reseller(models.Model):
     def __str__(self):
         return "{} {}".format(self.name, self.surname)
 
+    @property
+    def fullname(self):
+        return "{} {}".format(self.name, self.surname)
+
 
 class Mechanic(models.Model):
     company_name = models.CharField(_('company'), max_length=500, null=True, blank=True)
@@ -471,4 +475,8 @@ class Mechanic(models.Model):
     phone = models.CharField(_("Phone"), max_length=20)
 
     def __str__(self):
+        return "{} {}".format(self.name, self.surname)
+        
+    @property
+    def fullname(self):
         return "{} {}".format(self.name, self.surname)
