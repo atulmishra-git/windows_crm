@@ -1384,3 +1384,11 @@ msgstr "Deutsch"
 #: mainapp/templates2/calendar/index.html:159
 #~ msgid "Assigned To"
 #~ msgstr "Zugewiesen an"
+
+#: mainapp/templates2/chat2/index.html:93
+#~ msgid "Search or start a new chat"
+#! msgstr "Suchen oder starten Sie einen neuen Chat"
+
+#: mainapp/templates2/chat2/index.html:157
+#~ msgid "Type your message"
+#~ msgstr "Geben Sie Ihre Nachricht ein"

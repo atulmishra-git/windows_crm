@@ -90,7 +90,7 @@
                             </div>
                             <fieldset class="form-group position-relative has-icon-left mx-1 my-0 w-100">
                                 <input type="text" class="form-control round" id="chat-search"
-                                       placeholder="Search or start a new chat">
+                                       placeholder="{% trans 'Search or start a new chat'%}">
                                 <div class="form-control-position">
                                     <i class="feather icon-search"></i>
                                 </div>
@@ -154,7 +154,7 @@
                                 <form class="chat-app-input d-flex" onsubmit="onMessage();"
                                       action="javascript:void(0);">
                                     <input type="text" class="form-control message mr-1 ml-50" id="iconLeft4-1"
-                                           placeholder="Type your message">
+                                           placeholder="{% trans 'Type your message' %}">
                                     <button type="button" class="btn btn-primary send"
                                             onclick="onMessage();"><i
                                             class="fa fa-paper-plane-o d-lg-none"></i> <span class="d-none d-lg-block">Send</span>
@@ -290,7 +290,7 @@
 
         function fetchRoomMessages(user_id) {
             if (user_id.length > 0) {
-                // roomUrl = 
+                // roomUrl =
                 $.ajax({
                     url: "{% url 'mainapp:new:chat:room' %}" + "?user=" + user_id,
                     type: 'get',
