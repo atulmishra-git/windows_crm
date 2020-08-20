@@ -63,7 +63,7 @@
                                 <td>{{ obj.place|default:"-" }}</td>
                                 <td>{{ obj.birthday|default:"-" }}</td>
                                 <td>{{ obj.purchases.all|length}}</td>
-                                <td>{% sum_price obj %}</td>
+                                <td>{% sum_price obj %} (€)</td>
                                 <td>
                                     <a href="{% url 'mainapp:new:edit_reseller' pk=obj.id %}"
                                        class=""><i class="feather icon-edit-1"></i>
