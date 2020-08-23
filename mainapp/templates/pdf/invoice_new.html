@@ -1,0 +1,208 @@
+{% load static %}
+{% load app_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 17px;
+    }
+    div.container{
+        width: 21cm;
+        /*height: 29.7cm;*/
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 0.5cm;
+        /*box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);*/
+    }
+    table{
+      border:0;
+      width: 100%;
+      padding: 10px;
+    }
+    div.line-height{
+      height: 30px;
+    }
+    td.header-border-bottom{
+      border-bottom:2px solid #666;
+    }
+    td.info-contact{
+      font-size:13px;
+      color: #222;
+      padding:2px;
+    }
+    table.contact-header tr td p{
+      margin:2px;
+    }
+    table.confirmation_table{
+      border-collapse: collapse;
+      padding:10px;
+    }
+    table.confirmation_table tr:first-child {
+       border:2px solid #000;
+    }
+    table.confirmation_table tr td {
+      padding: 4px 10px;
+      border: none;
+    }
+    div.customer-info-box {
+      border: 2px solid #000;
+      width: 150px;
+      padding: 3px 5px;
+      margin: 30px 0;
+    }
+    div.customer-info-box p {
+        margin: 0;
+        padding: 0;
+    }
+    .delivery-note-table {
+      overflow: hidden;
+      border: 2px solid !important;
+    }
+    .delivery-note-table tr td {
+        padding: 8px 0;
+        font-size: 14px;
+    }
+    .delivery-note-table tr td:last-child {
+      padding: 0;
+    }
+    div.delivery-note-area{
+      padding:10px;
+    }
+    table.invoice-table {
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    table.invoice-table tr:first-child {
+      border: 2px solid #000;
+    }
+    div.invoice-table-div{
+      padding:10px ;
+    }
+    table.small-text{
+      padding:10px;
+      width:100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <table class="logo-table">
+      <tr>
+        <td align="right"><img src="data:image/png;base64,{% pdf_logo %}" style="width: 280px;" alt="logo"></td>
+      </tr>
+    </table>
+
+    <div class="line-height"></div>
+
+    <table class="header-title">
+      <tr>
+        <td class="header-border-bottom"><h3>Ihr Partner für Energie </h3></td>
+      </tr>
+      <tr>
+        <td class="info-contact">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</td>
+      <tr>
+    </table>
+
+    <table class="contact-header">
+      <tr>
+        <td style="width:60%;">
+          <p>{{ mrms|title|default:"-" }}</p>
+          <p>{{ customer|title }}</p>
+          <p>{{ customer.street|title|truncatechars:10|default:"-" }}</p>
+          <p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
+        </td>
+        <td style="38%;" valign="top" align="right">
+          <p><a href="www.energiewerke-bayern.de">www.energiewerke-bayern.de</a></p>
+          <p><a href="info@energiewerke-bayern.de">info@energiewerke-bayern.de</a></p>
+        </td>
+      </tr>
+    </table>
+
+    <table class="germering-area">
+      <tr>
+        <td align="left"><b>Rechnung</b></td>
+      </tr>
+    </table>
+
+    <div class="line-height"></div>
+    <div class="line-height"></div>
+
+    <table class="offer-start-area">
+      <tr>
+        <td>
+          <b>Rechnung Nr. {{ customer.invoice_id }}</b><br>
+          <span style="font-size: 13px">Bitte bei Zahlungen und Schriftverkehr angeben!</span>
+        </td>
+        <td align="right">
+          <span>Rechnungsdatum: <span>{{ creation_date|date }}</span> </span><br>
+          <span>Kundennummer: <span>{{ customer.id }}</span> </span><br>
+          <span>Leistungszeitraum: <span>{{ dc_term_month }} / {{ dc_term_year }}</span> </span><br>
+          <span></span>
+        </td>
+      </tr>
+    </table>
+
+
+    <table class="offer-end-area">
+      <tr style="
+      border: 1px solid black;
+      background-color: #a9d7f3;
+      border-collapse: collapse;
+      vertical-align: middle;">
+          <th style="height:25px;">Beschreibung</th>
+          <th style="height:25px;">Betrag</th>
+      </tr>
+
+      <tr style="height: 97px;">
+          <td style="border: 0.5px solid grey;">Lieferung und Montage der Photovoltaikanlage <br><br>(inkl. Komponenten)</td>
+          <td style="text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.price_without_tax|floatformat:2 }} €</td>
+      </tr>
+      <tr>
+          <td style="height:25px; padding-left: 65%;" >Summe netto &nbsp;  </td>
+          <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.price_without_tax|floatformat:2 }} €</td>
+      </tr>
+      <tr>
+          <td style="height:25px; padding-left: 65%;" >zzgl. 19% MwSt &nbsp;</td>
+          <td style="height:25px; text-align: center; border: 0.5px solid grey;">{{ customer.purchase_record.tax|floatformat:2 }} €</td>
+      </tr>
+      <tr>
+          <td style="height:25px; padding-left: 65%;" ><b>Summe brutto &nbsp;</b></td>
+          <td style="height:25px; text-align: center; border: 0.5px solid grey;"><b>{{ customer.purchase_record.price_with_tax|floatformat:2 }} €</b></td>
+      </tr>
+      <tr>
+        <td colspan="2"><p>Bitte begleichen Sie den Rechnungsbetrag umgehend nach Erhalt der Rechnung auf das unten angegebene Konto.</p></td>
+      </tr>
+    </table>
+
+
+    <div class="line-height"></div>
+    <div class="line-height"></div>
+
+
+    <table class="footer-table">
+        <tr>
+            <td>Energiewerke Bayern GmbH</td>
+            <td>Commerzbank München</td>
+            <td>Geschäftsführer:</td>
+        </tr>
+        <tr>
+            <td>Augsburgerstr. 1C</td>
+            <td>IBAN:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE90 7004 0041 0212 8999 01</td>
+            <td>Krinninger Andreas</td>
+        </tr>
+        <tr>
+            <td>D-82110 Germering</td>
+            <td>BIC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COBADEFFXXX</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Tel.: 089-89311773</td>
+        </tr>
+    </table>
+
+
+</body>
+</html>

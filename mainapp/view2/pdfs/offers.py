@@ -70,9 +70,9 @@ def download_offer_confirm(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     purchase = customer.purchase_record
     if purchase.watt == WATT1:
-        template_name = 'pdf/offer_confirm1.html'
+        template_name = 'pdf/offer_confirm1_new.html'
     else:
-        template_name = 'pdf/offer_confirm2.html'
+        template_name = 'pdf/offer_confirm2_new.html'
 
     context = {
         'mrms': "Herr" if customer.gender == 'Male' else "Frau",
@@ -93,7 +93,7 @@ def download_offer_confirm(request, customer_id):
 def download_install(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     purchase = customer.purchase_record
-    template_name = 'pdf/install.html'
+    template_name = 'pdf/install_new.html'
 
     context = {
         'mrms': "Herr" if customer.gender == 'Male' else "Frau",
@@ -114,7 +114,7 @@ def download_install(request, customer_id):
 def download_invoice(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     purchase = customer.purchase_record
-    template_name = 'pdf/invoice.html'
+    template_name = 'pdf/invoice_new.html'
 
     context = {
         'mrms': "Herr" if customer.gender == 'Male' else "Frau",

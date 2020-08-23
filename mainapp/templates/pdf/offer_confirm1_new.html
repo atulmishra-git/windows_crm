@@ -1,14 +1,13 @@
 {% load static %}
 {% load app_tags %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <style>
     body {
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 16px;
+        font-size: 17px;
     }
     div.container{
         width: 21cm;
@@ -18,18 +17,13 @@
         margin-bottom: 0.5cm;
         /*box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);*/
     }
-    table.logo-table{
+    table{
       border:0;
       width: 100%;
       padding: 10px;
     }
     div.line-height{
       height: 30px;
-    }
-    table.header-title{
-      width: 100%;
-      padding: 10px;
-      border:0;
     }
     td.header-border-bottom{
       border-bottom:2px solid #666;
@@ -42,23 +36,17 @@
     table.contact-header tr td p{
       margin:2px;
     }
-    table.delivery-note-table, table.confirmation-area, table.footer-table, table.contact-header, table.germering-area,
-    table.offer-end-area, table.offer-start-area, table.hombble-area, table.invoice-table, table.last-table, table.most-last-table{
-      padding:10px;
-      border:0;
-      width:100%;
-    }
     table.confirmation_table{
       border-collapse: collapse;
       padding:10px;
     }
     table.confirmation_table tr:first-child {
-			 border:2px solid #000;
-		}
+       border:2px solid #000;
+    }
     table.confirmation_table tr td {
-			padding: 4px 10px;
-			border: none;
-		}
+      padding: 4px 10px;
+      border: none;
+    }
     div.customer-info-box {
       border: 2px solid #000;
       width: 150px;
@@ -88,8 +76,8 @@
       font-size: 14px;
     }
     table.invoice-table tr:first-child {
-			border: 2px solid #000;
-		}
+      border: 2px solid #000;
+    }
     div.invoice-table-div{
       padding:10px ;
     }
@@ -101,7 +89,6 @@
 </head>
 <body>
   <div class="container">
-
     <table class="logo-table">
       <tr>
         <td align="right"><img src="data:image/png;base64,{% pdf_logo %}" style="width: 280px;" alt="logo"></td>
@@ -124,15 +111,16 @@
         <td style="width:60%;">
           <p>{{ mrms|title|default:"-" }}</p>
           <p>{{ customer|title }}</p>
-    			<p>{{ customer.street|title|truncatechars:10|default:"-" }}</p>
-    			<p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
+          <p>{{ customer.street|title|truncatechars:10|default:"-" }}</p>
+          <p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
         </td>
-        <td style="40%;" valign="top">
+        <td style="38%;" valign="top" align="right">
           <p><a href="www.energiewerke-bayern.de">www.energiewerke-bayern.de</a></p>
           <p><a href="info@energiewerke-bayern.de">info@energiewerke-bayern.de</a></p>
         </td>
       </tr>
     </table>
+
 
     <table class="germering-area">
       <tr>
@@ -147,6 +135,7 @@
       </tr>
     </table>
 
+
     <table class="offer-end-area">
       <tr>
         <td class="header-border-bottom">
@@ -154,11 +143,11 @@
         </td>
       </tr>
       <tr>
-        <td><p>vielen Dank für Ihr Interesse an unseren Leistungen</p></td>
+        <td><p>vielen Dank für Ihr Interesse an unseren Leistungen.</p></td>
       </tr>
       <tr>
-        <td><p>Anbei erhalten Sie Ihr Angebot, das für Sie persönlich erstellt wurde</p>
-          <p>Auf den folgenden Seiten finden Sie einen detaillierten Überblick bezüglich unserer Leistungen</p>
+        <td><p>Anbei erhalten Sie Ihr Angebot, das für Sie persönlich erstellt wurde.</p>
+          <p>Auf den folgenden Seiten finden Sie einen detaillierten Überblick bezüglich unserer Leistungen.</p>
         </td>
       </tr>
       <tr>
@@ -177,7 +166,7 @@
     </table>
 
     <div class="line-height"></div>
-		<div class="line-height"></div>
+    <div class="line-height"></div>
 
     <table class="footer-table">
         <tr>
@@ -200,7 +189,8 @@
         </tr>
     </table>
 
-		<div class="line-height"></div>
+    <div class="line-height"></div>
+    <div class="line-height"></div>
 
     <div><!--clear--></div>
 
@@ -255,6 +245,7 @@
         </td>
       </tr>
     </table>
+
 
 
     <div class="delivery-note-area">
@@ -346,8 +337,8 @@
     <div><!--clear--></div>
 
     <div class="line-height"></div>
-		<div class="line-height"></div>
-		<div class="line-height"></div>
+    <div class="line-height"></div>
+    <div class="line-height"></div>
 
     <table class="logo-table">
       <tr>
@@ -443,10 +434,10 @@
     <div><!--clear--></div>
 
     <div class="line-height"></div>
-		<div class="line-height"></div>
-		<div class="line-height"></div>
-		<div class="line-height"></div>
-		<div class="line-height"></div>
+    <div class="line-height"></div>
+    <div class="line-height"></div>
+    <div class="line-height"></div>
+    <div class="line-height"></div>
 
     <table class="logo-table">
       <tr>
@@ -540,7 +531,6 @@
       </tr>
     </table>
 
-
     <table class="last-table">
         <tr>
           <td class="header-border-bottom" style="width:45%">
@@ -579,6 +569,7 @@
         </td>
       </tr>
     </table>
+
 
   </div>
 </body>

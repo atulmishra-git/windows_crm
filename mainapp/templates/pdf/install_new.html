@@ -1,0 +1,198 @@
+{% load static %}
+{% load app_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 17px;
+    }
+    div.container{
+        width: 21cm;
+        /*height: 29.7cm;*/
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 0.5cm;
+        /*box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);*/
+    }
+    table{
+      border:0;
+      width: 100%;
+      padding: 10px;
+    }
+    div.line-height{
+      height: 30px;
+    }
+    td.header-border-bottom{
+      border-bottom:2px solid #666;
+    }
+    td.info-contact{
+      font-size:13px;
+      color: #222;
+      padding:2px;
+    }
+    table.contact-header tr td p{
+      margin:2px;
+    }
+    table.confirmation_table{
+      border-collapse: collapse;
+      padding:10px;
+    }
+    table.confirmation_table tr:first-child {
+       border:2px solid #000;
+    }
+    table.confirmation_table tr td {
+      padding: 4px 10px;
+      border: none;
+    }
+    div.customer-info-box {
+      border: 2px solid #000;
+      width: 150px;
+      padding: 3px 5px;
+      margin: 30px 0;
+    }
+    div.customer-info-box p {
+        margin: 0;
+        padding: 0;
+    }
+    .delivery-note-table {
+      overflow: hidden;
+      border: 2px solid !important;
+    }
+    .delivery-note-table tr td {
+        padding: 8px 0;
+        font-size: 14px;
+    }
+    .delivery-note-table tr td:last-child {
+      padding: 0;
+    }
+    div.delivery-note-area{
+      padding:10px;
+    }
+    table.invoice-table {
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    table.invoice-table tr:first-child {
+      border: 2px solid #000;
+    }
+    div.invoice-table-div{
+      padding:10px ;
+    }
+    table.small-text{
+      padding:10px;
+      width:100%;
+    }
+    .yellow-bold{
+      background:yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <table class="logo-table">
+      <tr>
+        <td align="right"><img src="data:image/png;base64,{% pdf_logo %}" style="width: 280px;" alt="logo"></td>
+      </tr>
+    </table>
+
+    <table class="header-title">
+      <tr>
+        <td class="header-border-bottom"><h3>Ihr Partner für Energie </h3></td>
+      </tr>
+      <tr>
+        <td class="info-contact">Energiewerke Bayern GmbH | Augsburgerstr.1C | D- 82110 Germering | Tel.: 089-89311773</td>
+      <tr>
+    </table>
+
+    <table class="contact-header">
+      <tr>
+        <td style="width:60%;">
+          <p>{{ mrms|title|default:"-" }}</p>
+          <p>{{ customer|title }}</p>
+          <p>{{ customer.street|title|truncatechars:10|default:"-" }}</p>
+          <p>{{ customer.postcode|upper|default:"-" }}, {{ customer.place|title|default:"-" }}</p>
+        </td>
+        <td style="38%;" valign="top" align="right">
+          <p><a href="www.energiewerke-bayern.de">www.energiewerke-bayern.de</a></p>
+          <p><a href="info@energiewerke-bayern.de">info@energiewerke-bayern.de</a></p>
+        </td>
+      </tr>
+    </table>
+
+
+    <table class="germering-area">
+      <tr>
+        <td align="right"><p>Germering den, <span>{{ creation_date|date }}</span></p></td>
+      </tr>
+    </table>
+
+    <table class="offer-start-area">
+      <tr>
+        <td><b>Montagebestätigung</b></td>
+        <td align="right"> <b>Kundennr : <span>{{ customer.id }}</span> </b></td>
+      </tr>
+    </table>
+
+
+    <table class="offer-end-area">
+      <tr>
+        <td class="header-border-bottom">
+          <p>Sehr{% if mrms == 'Herr' %} geehrter Herr{% else %} geehrte Frau{% endif %} {{ customer.surname|title }},</p>
+        </td>
+      </tr>
+      <tr>
+        <td><p>vielen Dank für Ihr Interesse an unseren Leistungen.</p></td>
+      </tr>
+      <tr>
+        <td><p>Anbei erhalten Sie Ihr Angebot, das für Sie persönlich erstellt wurde.</p>
+          <div class="yellow-bold">
+              <p style="margin: 0;padding: 0; font-weight: bold;">Montagetermin: {{ customer.purchase_record.dc_term|date }}</p>
+              <p style="margin: 0;padding: 0;"><span>Die Lieferung der Ware erfolgt einen Tag vor Montage.<span style="font-size: 13px;">( Bei Montage Montags/ Lieferung Freitags vorab)</span></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Wir gewähren eine sorgfältige Planung und Montage Ihrer Photovoltaikanlage mit unseren leistungsstarken
+                  und qualitativ hochwertigen Komponenten.</p>
+              <p>Für Rückfragen steht Ihnen das Team der gerne zur Verfügung.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Mit freundlichen Grüßen</p>
+          <p>Ihr Energiewerke Bayern GmbH Team</p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="line-height"></div>
+    <div class="line-height"></div>
+
+    <table class="footer-table">
+        <tr>
+            <td>Energiewerke Bayern GmbH</td>
+            <td>Commerzbank München</td>
+            <td>Geschäftsführer:</td>
+        </tr>
+        <tr>
+            <td>Augsburgerstr. 1C</td>
+            <td>IBAN:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE90 7004 0041 0212 8999 01</td>
+            <td>Krinninger Andreas</td>
+        </tr>
+        <tr>
+            <td>D-82110 Germering</td>
+            <td>BIC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COBADEFFXXX</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Tel.: 089-89311773</td>
+        </tr>
+    </table>
+
+  </div>
+</body>
+</html>
