@@ -11,6 +11,8 @@ import os
 
 from mainapp.models import PurchaseRecord, Customer, Attachments
 
+from django.template.response import TemplateResponse
+
 WATT1 = 310
 WATT2 = 325
 OPTIONS = {
@@ -45,9 +47,9 @@ def download_offer(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     purchase = customer.purchase_record
     if purchase.watt == WATT1:
-        template_name = 'pdf/offer1.html'
+        template_name = 'pdf/offer1_new.html'
     else:
-        template_name = 'pdf/offer2.html'
+        template_name = 'pdf/offer2_new.html'
 
     context = {
         'mrms': "Herr" if customer.gender == 'Male' else "Frau",
