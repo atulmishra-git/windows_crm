@@ -16,7 +16,7 @@ from django.template.response import TemplateResponse
 WATT1 = 310
 WATT2 = 325
 OPTIONS = {
-    'page-size': 'A3',
+    'page-size': 'A4',
     'margin-top': '0.7842in',
     'margin-right': '0.9842in',
     'margin-bottom': '0.7842in',
