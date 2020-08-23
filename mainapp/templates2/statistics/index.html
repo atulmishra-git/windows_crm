@@ -1,0 +1,143 @@
+{% extends 'base/index.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load app_tags %}
+{% load crispy_forms_tags %}
+
+{% block vendorcss %}
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/charts/apexcharts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pp-assets/vendors/css/extensions/tether-theme-arrows.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pp-assets/vendors/css/extensions/tether.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pp-assets/vendors/css/extensions/shepherd-theme-default.css' %}">
+    <!-- END: Vendor CSS-->
+{% endblock %}
+
+
+{% block pagecss %}
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/plugins/tour/tour.css' %}">
+    <!-- END: Page CSS-->
+
+{% endblock %}
+
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-body">
+      <!-- Input Validation start -->
+      <section class="input-validation">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                      </div>
+                      <div class="card-content">
+                          <div class="card-body ml-5">
+                              <form id="id_form" class="form-horizontal" method="POST">
+                                 {% csrf_token %}
+                                  <div class="row">
+                                        <div class="col-sm">{{ form.reseller|as_crispy_field}}</div>
+                                        <div class="col-sm">{{ form.view_type|as_crispy_field}}</div>
+                                        <div class="col-sm">{{ form.month|as_crispy_field}}</div>
+                                        <div class="col-sm">{{ form.year|as_crispy_field}}</div>
+                                  </div>
+                                  <button id="id_form_btn" type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- Input Validation end -->
+
+      <section>
+        <div id="container" style="width: 75%;">
+            <canvas id="render_chart" data-url="{% url 'mainapp:new:render_chart' %}"></canvas>
+        </div>
+      </section>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block pagevendorjs %}
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- END: Page Vendor JS-->
+{% endblock %}
+
+{% block pagejs %}
+  <script type="text/javascript">
+    $(document).ready(function(r){
+        $("#id_month").prop('disabled', true);
+        $("#id_year").prop('disabled', true);
+        var vt = $("#id_view_type").val();
+        if(vt == 1){
+          $("#id_month").prop('disabled', false);
+        }else{
+          $("#id_month").prop('disabled', true);
+        }
+
+        $("#id_view_type").on('change', function(e){
+            if( $(this).val() == 2 ){
+              $("#id_year").prop('disabled', false);
+              $("#id_month").prop('disabled', true);
+            }else{
+              $("#id_year").prop('disabled', true);
+              $("#id_month").prop('disabled', false);
+            }
+        });
+
+
+        var render_chart = $("#render_chart");
+
+        $("#id_form").on('submit', function(e){
+            e.preventDefault();
+
+            $.ajax({
+              url: render_chart.data('url'),
+              data: {
+                csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val(),
+                reseller: $("#id_reseller").val(),
+                view_type: $("#id_view_type").val(),
+                month: $("#id_month").val(),
+                year: $("#id_year").val()
+              },
+              type: 'POST'
+            }).done(function(data){
+                 var ctx = render_chart[0].getContext("2d");
+                  new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                      labels: data.labels,
+                      datasets: [{
+                        label: 'Sales',
+                        backgroundColor: 'blue',
+                        data: data.data
+                      }]
+                    },
+                    options: {
+                      responsive: true,
+                      legend: {
+                        position: 'top',
+                      },
+                      title: {
+                        display: true,
+                        text: 'Sales Bar Chart'
+                      }
+                    }
+                  });
+             });
+
+        });
+
+    });
+  </script>
+{% endblock %}

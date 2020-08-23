@@ -6,6 +6,7 @@ from mainapp.view2 import login, home, add_manager, add_customer, \
     reseller
 from mainapp.view2.import_export.export_data import export_xls, import_xls
 from mainapp.view2.pdfs import offers
+from mainapp.view2 import statistics
 
 urlpatterns = [
     path('heartbeat/', login.heartbeat, name='heartbeat'),
@@ -81,4 +82,7 @@ urlpatterns = [
     path('offer_confirm/<customer_id>/', offers.download_offer_confirm, name='pdf_offer_confirm'),
     path('install/<customer_id>/', offers.download_install, name='pdf_install'),
     path('invoice/<customer_id>/', offers.download_invoice, name='pdf_invoice'),
+    path('statistics/', statistics.index, name='statistics'),
+    path('statistics/render_chart/', statistics.render_chart, name='render_chart')
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
