@@ -1454,10 +1454,6 @@ msgstr "Deutsch"
 #~ msgstr "August"
 
 #: mainapp/view2/statistics.py:12
-#~ msgid "August"
-#~ msgstr "August"
-
-#: mainapp/view2/statistics.py:12
 #~ msgid "September"
 #~ msgstr "September"
 
