@@ -9,7 +9,8 @@ from django.db.models.functions import Extract
 
 
 def months():
-    lst = ['Janaury', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    lst = [_('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'), _('August'), _('September'),
+    _('October'), _('November'), _('December')]
     results = []
     for i in range(0, len(lst)):
         results.append((i+1, lst[i]))
@@ -18,14 +19,14 @@ def months():
 
 def years():
     results = []
-    for i in range(2020, 2090):
+    for i in range(2010, 2090):
         results.append((i, i))
     return results
 
 
 class StatsForm(forms.Form):
     reseller = forms.ModelChoiceField(label=_('Reseller'), queryset=Reseller.objects.all())
-    view_type = forms.ChoiceField(label=_('View Type'), widget=forms.Select, choices=[(1, 'Monthly'), (2, 'Yearly')])
+    view_type = forms.ChoiceField(label=_('View Type'), widget=forms.Select, choices=[(1, _('Monthly')), (2, _('Yearly'))])
     month = forms.ChoiceField(label=_('Month'), widget=forms.Select, choices=months())
     year = forms.ChoiceField(label=_('Year'), widget=forms.Select, choices=years())
 
@@ -36,9 +37,11 @@ def index(request):
     context['form'] = StatsForm()
     return render(request, "statistics/index.html", context)
 
+
 def render_chart(request):
     labels = []
     data = []
+    totals = {}
     if request.method == 'POST':
         reseller = Reseller.objects.get(pk=int(request.POST['reseller']))
         month = request.POST.get('month')
@@ -55,9 +58,11 @@ def render_chart(request):
             values('purchases__date_of_receipt').\
             filter(month=month).order_by('purchases__date_of_receipt').annotate(count=Count('month'))
 
+            totals['month'] = 0
             for entry in queryset:
                 data.append(entry['count'])
                 labels.append(entry['purchases__date_of_receipt'])
+                totals['month'] += entry['count']
 
         if int(view_type) == 2 and year:
             label = year
@@ -67,13 +72,16 @@ def render_chart(request):
             values('month').\
             filter(year=year).order_by('year').annotate(count=Count('year'))
 
+            totals['year'] = 0
             for entry in queryset:
                 data.append(entry['count'])
                 labels.append(lst[int(entry['month'])-1])
+                totals['year'] += entry['count']
 
     return JsonResponse(
         data={
             'labels': labels,
-            'data': data
+            'data': data,
+            'totals': totals
         }
     )

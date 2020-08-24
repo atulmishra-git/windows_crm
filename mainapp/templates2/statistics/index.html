@@ -58,8 +58,9 @@
       <!-- Input Validation end -->
 
       <section>
-        <div id="container" style="width: 75%;">
+        <div id="container">
             <canvas id="render_chart" data-url="{% url 'mainapp:new:render_chart' %}"></canvas>
+            <div id="total" class="ml-5 p-1"></div>
         </div>
       </section>
     </div>
@@ -112,13 +113,20 @@
               },
               type: 'POST'
             }).done(function(data){
-                 var ctx = render_chart[0].getContext("2d");
+                 if(  parseInt($("#id_view_type").val()) == 2){
+                      $("#total").html("{% trans 'Total Sales in Year' %} : "+data.totals.year);
+                 }else {
+                      $("#total").html("{% trans 'Total Sales in Month' %} : "+data.totals.month);
+                 }
+
+
+                  var ctx = render_chart[0].getContext("2d");
                   new Chart(ctx, {
                     type: 'bar',
                     data: {
                       labels: data.labels,
                       datasets: [{
-                        label: 'Sales',
+                        label: "{% trans 'Sales' %}",
                         backgroundColor: 'blue',
                         data: data.data
                       }]
@@ -130,7 +138,7 @@
                       },
                       title: {
                         display: true,
-                        text: 'Sales Bar Chart'
+                        text: "{% trans 'Sales Bar Chart' %}"
                       }
                     }
                   });

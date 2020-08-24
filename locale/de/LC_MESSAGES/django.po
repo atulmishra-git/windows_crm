@@ -1318,26 +1318,26 @@ msgstr "Deutsch"
 #~ msgstr "Titel %(object_type|title)s hinzufügen"
 
 #: mainapp/templates2/search/index.html:164 mainapp/templates2/purchases/list_purchases.html:147 mainapp/templates2/managers/list_managers.html:133
-#: mainapp/templates2/mechanic/list_mechanic.html:137 mainapp/templates2/reseller/list_reseller.html:140
+#: mainapp/templates2/mechanic/list_mechanic.html:137 mainapp/templates2/reseller/list_reseller.html:145
 #~ msgid "Next"
 #~ msgstr "Nächster"
 
 #: mainapp/templates2/search/index.html:165 mainapp/templates2/purchases/list_purchases.html:148 mainapp/templates2/managers/list_managers.html:134
-#: mainapp/templates2/mechanic/list_mechanic.html:138 mainapp/templates2/reseller/list_reseller.html:141
+#: mainapp/templates2/mechanic/list_mechanic.html:138 mainapp/templates2/reseller/list_reseller.html:146
 #~ msgid "Last"
 #~ msgstr "Zuletzt"
 
 #: mainapp/templates2/search/index.html:162 mainapp/templates2/purchases/list_purchases.html:145 mainapp/templates2/managers/list_managers.html:131
-#: mainapp/templates2/mechanic/list_mechanic.html:135 mainapp/templates2/reseller/list_reseller.html:138
+#: mainapp/templates2/mechanic/list_mechanic.html:135 mainapp/templates2/reseller/list_reseller.html:143
 #~ msgid "First"
 #~ msgstr "Zuerst"
 
 #: mainapp/templates2/search/index.html:163 mainapp/templates2/purchases/list_purchases.html:146 mainapp/templates2/managers/list_managers.html:132
-#: mainapp/templates2/mechanic/list_mechanic.html:136 mainapp/templates2/reseller/list_reseller.html:139
+#: mainapp/templates2/mechanic/list_mechanic.html:136 mainapp/templates2/reseller/list_reseller.html:144
 #~ msgid "Previous"
 #~ msgstr "Bisherige"
 
-#: mainapp/templates2/reseller/list_reseller.html:49
+#: mainapp/templates2/reseller/list_reseller.html:50
 #~ msgid "Number of sales"
 #~ msgstr "Anzahl der Verkäufe"
 
@@ -1377,7 +1377,7 @@ msgstr "Deutsch"
 #~ msgid "Date of receipt"
 #~ msgstr "Eingangsdatum"
 
-#: mainapp/templates2/reseller/list_reseller.html:50
+#: mainapp/templates2/reseller/list_reseller.html:51
 #~ msgid "Total of sales"
 #~ msgstr "Gesamtsumme der Verkäufe"
 
@@ -1392,3 +1392,83 @@ msgstr "Deutsch"
 #: mainapp/templates2/chat2/index.html:157
 #~ msgid "Type your message"
 #~ msgstr "Geben Sie Ihre Nachricht ein"
+
+#: mainapp/templates2/statistics/index.html:117
+#~ msgid "Total Sales in Year"
+#~ msgstr "Gesamtumsatz im Jahr"
+
+#: mainapp/templates2/statistics/index.html:119
+#~ msgid "Total Sales in Month"
+#~ msgstr "Gesamtumsatz im Monat"
+
+#: mainapp/view2/statistics.py:29
+#~ msgid "View Type"
+#~ msgstr "Ansicht"
+
+#: mainapp/templates2/statistics/index.html:141
+#~ msgid "Sales Bar Chart"
+#~ msgstr "Anzahl der Verkäufe"
+
+#: mainapp/templates2/statistics/index.html:129
+#~ msgid "Sales"
+#~ msgstr "Verkäufe"
+
+#: mainapp/view2/statistics.py:29
+#~ msgid "Monthly"
+#~ msgstr "Monat"
+
+#: mainapp/view2/statistics.py:29
+#~ msgid "Yearly"
+#~ msgstr "Jahr"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "January"
+#~ msgstr "Januar"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "February"
+#~ msgstr "Februar"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "March"
+#~ msgstr "März"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "April"
+#~ msgstr "April"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "May"
+#~ msgstr "Kann"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "June"
+#~ msgstr "Juni"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "July"
+#~ msgstr "Juli"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "August"
+#~ msgstr "August"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "August"
+#~ msgstr "August"
+
+#: mainapp/view2/statistics.py:12
+#~ msgid "September"
+#~ msgstr "September"
+
+#: mainapp/view2/statistics.py:13
+#~ msgid "October"
+#~ msgstr "Oktober"
+
+#: mainapp/view2/statistics.py:13
+#~ msgid "November"
+#~ msgstr "November"
+
+#: mainapp/view2/statistics.py:13
+#~ msgid "December"
+#~ msgstr "Dezember"
