@@ -77,21 +77,21 @@
 {% block pagejs %}
   <script type="text/javascript">
     $(document).ready(function(r){
-        $("#id_month").prop('disabled', true);
-        $("#id_year").prop('disabled', true);
-        var vt = $("#id_view_type").val();
-        if(vt == 1){
-          $("#id_month").prop('disabled', false);
-        }else{
-          $("#id_month").prop('disabled', true);
-        }
+        // $("#id_month").prop('disabled', true);
+        // $("#id_year").prop('disabled', true);
+        // var vt = $("#id_view_type").val();
+        // if(vt == 1){
+        //   $("#id_month").prop('disabled', false);
+        // }else{
+        //   $("#id_month").prop('disabled', true);
+        // }
 
         $("#id_view_type").on('change', function(e){
             if( $(this).val() == 2 ){
               $("#id_year").prop('disabled', false);
               $("#id_month").prop('disabled', true);
             }else{
-              $("#id_year").prop('disabled', true);
+              $("#id_year").prop('disabled', false);
               $("#id_month").prop('disabled', false);
             }
         });
@@ -114,9 +114,9 @@
               type: 'POST'
             }).done(function(data){
                  if(  parseInt($("#id_view_type").val()) == 2){
-                      $("#total").html("{% trans 'Total Sales in Year' %} : "+data.totals.year);
+                      $("#total").html("{% trans 'Total Sales in Year' %} : "+data.totals.year+"€");
                  }else {
-                      $("#total").html("{% trans 'Total Sales in Month' %} : "+data.totals.month);
+                      $("#total").html("{% trans 'Total Sales in Month' %} : "+data.totals.month+"€");
                  }
 
 

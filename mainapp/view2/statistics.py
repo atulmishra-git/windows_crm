@@ -54,8 +54,9 @@ def render_chart(request):
             label = lst[int(month)-1]
             queryset = Reseller.objects.filter(pk=int(request.POST['reseller'])).\
             annotate(month=Extract('purchases__date_of_receipt', 'month')).\
-            values('purchases__date_of_receipt').\
-            filter(month=month).order_by('purchases__date_of_receipt').annotate(count=Count('month'))
+            annotate(year=Extract('purchases__date_of_receipt','year')).\
+            values('purchases__date_of_receipt', 'purchases__price_without_tax').\
+            filter(month=month, year=year).order_by('purchases__date_of_receipt').annotate(count=Sum('purchases__price_without_tax'))
 
             totals['month'] = 0
             for entry in queryset:
@@ -64,12 +65,15 @@ def render_chart(request):
                 totals['month'] += entry['count']
 
         if int(view_type) == 2 and year:
+            labels = []
+            data = []
+            totals = {}
             label = year
             label = lst[int(month)-1]
             queryset = Reseller.objects.filter(pk=int(request.POST['reseller'])).\
             annotate(year=Extract('purchases__date_of_receipt', 'year'), month=Extract('purchases__date_of_receipt', 'month')).\
-            values('month').\
-            filter(year=year).order_by('year').annotate(count=Count('year'))
+            values('month', 'purchases__price_without_tax').\
+            filter(year=year).order_by('year').annotate(count=Sum('purchases__price_without_tax'))
 
             totals['year'] = 0
             for entry in queryset:
