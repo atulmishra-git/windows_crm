@@ -1472,3 +1472,7 @@ msgstr "Deutsch"
 #: mainapp/view2/statistics.py:13
 #~ msgid "December"
 #~ msgstr "Dezember"
+
+#: mainapp/templates2/base/side-nav.html:59
+#~ msgid "Statistics"
+#~ msgstr "Statistik"

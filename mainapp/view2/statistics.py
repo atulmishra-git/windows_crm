@@ -20,7 +20,8 @@ def months():
 def years():
     results = []
     for i in range(2010, 2090):
-        results.append((i, i))
+        x = str(i)
+        results.append((i, x))
     return results
 
 
@@ -48,8 +49,6 @@ def render_chart(request):
         year = request.POST.get('year')
         view_type = request.POST.get('view_type')
         lst = ['Janaury', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-
 
         if int(view_type) == 1 and month:
             label = lst[int(month)-1]

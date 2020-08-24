@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainapp.urls')),
     path('django-des/', include(des_urls)),
+    path("tinymce/", include("tinymce.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

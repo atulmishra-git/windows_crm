@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 import os
 
-from mainapp.models import PurchaseRecord, Customer, Attachments
+from mainapp.models import PurchaseRecord, Customer, Attachments, Pdf
 
 from django.template.response import TemplateResponse
 
@@ -58,21 +58,33 @@ def download_offer(request, customer_id):
         'creation_date': datetime.today(),
     }
 
+    if purchase.watt == WATT1:
+        pdf = Pdf.objects.get(name='offer1')
+        path = os.path.join(settings.BASE_DIR, 'mainapp', 'templates', 'pdf', "pdf_"+pdf.name+".html")
+
+        with open(path, 'w') as f:
+            f.write(pdf.content)
+        template_name = "pdf/pdf_"+pdf.name+".html"
+    else:
+        pdf = Pdf.objects.get(name='offer2')
+        path = os.path.join(settings.BASE_DIR, 'mainapp', 'templates', 'pdf', "pdf_"+pdf.name+".html")
+
+        with open(path, 'w') as f:
+            f.write(pdf.content)
+        template_name = "pdf/pdf_"+pdf.name+".html"
+
     rendered = render_to_string(template_name,
                                 context,
                                 request=request)
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
     save_to_attachment(customer=customer, kind="AB", rendered=rendered, by=request.user)
+    os.remove(os.path.join(settings.BASE_DIR, 'mainapp', 'templates', template_name))
     return HttpResponse(pdf, content_type="application/pdf")
 
 
 def download_offer_confirm(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     purchase = customer.purchase_record
-    if purchase.watt == WATT1:
-        template_name = 'pdf/offer_confirm1_new.html'
-    else:
-        template_name = 'pdf/offer_confirm2_new.html'
 
     context = {
         'mrms': "Herr" if customer.gender == 'Male' else "Frau",
@@ -81,19 +93,41 @@ def download_offer_confirm(request, customer_id):
         'creation_date': datetime.today(),
     }
 
+    if purchase.watt == WATT1:
+        pdf = Pdf.objects.get(name='offer_confirm1')
+        path = os.path.join(settings.BASE_DIR, 'mainapp', 'templates', 'pdf', "pdf_"+pdf.name+".html")
+
+        with open(path, 'w') as f:
+            f.write(pdf.content)
+        template_name = "pdf/pdf_"+pdf.name+".html"
+    else:
+        pdf = Pdf.objects.get(name='offer_confirm2')
+        path = os.path.join(settings.BASE_DIR, 'mainapp', 'templates', 'pdf', "pdf_"+pdf.name+".html")
+
+        with open(path, 'w') as f:
+            f.write(pdf.content)
+        template_name = "pdf/pdf_"+pdf.name+".html"
+
     rendered = render_to_string(template_name,
                                 context,
                                 request=request)
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
     save_to_attachment(customer=customer, kind="AG-B", rendered=rendered, by=request.user)
+    os.remove(os.path.join(settings.BASE_DIR, 'mainapp', 'templates', template_name))
     return HttpResponse(pdf, content_type="application/pdf")
 
 
 def download_install(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     purchase = customer.purchase_record
-    template_name = 'pdf/install_new.html'
+
+    pdf = Pdf.objects.get(name='install')
+    path = os.path.join(settings.BASE_DIR, 'mainapp', 'templates', 'pdf', "pdf_"+pdf.name+".html")
+
+    with open(path, 'w') as f:
+        f.write(pdf.content)
+    template_name = "pdf/pdf_"+pdf.name+".html"
 
     context = {
         'mrms': "Herr" if customer.gender == 'Male' else "Frau",
@@ -108,13 +142,20 @@ def download_install(request, customer_id):
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
     save_to_attachment(customer=customer, kind="M-B", rendered=rendered, by=request.user)
+    os.remove(os.path.join(settings.BASE_DIR, 'mainapp', 'templates', template_name))
     return HttpResponse(pdf, content_type="application/pdf")
 
 
 def download_invoice(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     purchase = customer.purchase_record
-    template_name = 'pdf/invoice_new.html'
+
+    pdf = Pdf.objects.get(name='invoice')
+    path = os.path.join(settings.BASE_DIR, 'mainapp', 'templates', 'pdf', "pdf_"+pdf.name+".html")
+
+    with open(path, 'w') as f:
+        f.write(pdf.content)
+    template_name = "pdf/pdf_"+pdf.name+".html"
 
     context = {
         'mrms': "Herr" if customer.gender == 'Male' else "Frau",
@@ -131,4 +172,5 @@ def download_invoice(request, customer_id):
 
     pdf = pdfkit.from_string(rendered, False, options=OPTIONS)
     save_to_attachment(customer=customer, kind="RG", rendered=rendered, by=request.user)
+    os.remove(os.path.join(settings.BASE_DIR, 'mainapp', 'templates', template_name))
     return HttpResponse(pdf, content_type="application/pdf")

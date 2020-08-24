@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from mainapp.fields import ContentTypeRestrictedFileField
 from mainapp.view.constants import CALL_NOTE_PRIORITY
 from .usermanager import UserManager
-
+from tinymce.models import HTMLField
 
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
@@ -476,7 +476,15 @@ class Mechanic(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.name, self.surname)
-        
+
     @property
     def fullname(self):
         return "{} {}".format(self.name, self.surname)
+
+
+class Pdf(models.Model):
+    name = models.CharField(_('Name'), max_length=255)
+    content = HTMLField(_('Content'), null=True, blank=True)
+
+    def __str__(self):
+        return self.name
